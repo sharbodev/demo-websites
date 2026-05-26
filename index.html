@@ -3,32 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WebPro.kg — Профессиональные сайты для бизнеса в Кыргызстане</title>
-    <meta name="description" content="Создаём премиальные, быстрые и эффективные сайты для бизнеса в Кыргызстане. Дизайн мирового уровня с интеграцией WhatsApp.">
+    <title>WebPro.kg — Премиальные сайты для бизнеса в Кыргызстане</title>
+    <meta name="description" content="Создаём шедевры веб-дизайна для бизнеса в Кыргызстане. Премиальный дизайн, интерактивные эффекты, WhatsApp-интеграция.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* 1609plus inspired dark electric color scheme */
-            --bg: #060913;
-            --bg-deep: #03050a;
-            --surface: rgba(10, 14, 26, 0.7);
-            --surface-card: #0a0e1a;
-            --surface-hover: #12182c;
-            --primary: #0052FF;      /* Sleek Electric Blue */
-            --primary-glow: rgba(0, 82, 255, 0.15);
+            /* Ultra-premium cosmic colors */
+            --bg: #03050c;
+            --bg-deep: #010206;
+            --surface: rgba(8, 12, 28, 0.4);
+            --surface-card: rgba(8, 12, 28, 0.7);
+            --surface-hover: rgba(14, 20, 44, 0.8);
+            --primary: #0052FF;      /* Pure Electric Blue */
+            --primary-glow: rgba(0, 82, 255, 0.25);
             --secondary: #3b82f6;
             --accent: #00D4FF;       /* Cyan */
-            --accent-glow: rgba(0, 212, 255, 0.15);
-            --border: rgba(255, 255, 255, 0.06);
-            --border-hover: rgba(0, 82, 255, 0.3);
+            --accent-glow: rgba(0, 212, 255, 0.2);
+            --border: rgba(255, 255, 255, 0.05);
+            --border-hover: rgba(0, 82, 255, 0.4);
             --text: #F8FAFC;
             --muted: #64748B;
             --white: #FFFFFF;
             --radius: 12px;
-            --radius-lg: 16px;
-            --transition: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            --radius-lg: 20px;
+            --transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         *, *::before, *::after {
@@ -64,12 +64,22 @@
             text-decoration: none;
         }
 
-        /* Dotted Grid Background just like 1609plus.com */
+        /* Dotted Grid Background overlay */
         .grid-overlay {
             position: fixed;
             inset: 0;
-            background-image: radial-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-            background-size: 24px 24px;
+            background-image: radial-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+            background-size: 28px 28px;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        /* HTML5 Canvas Space Stars */
+        #spaceCanvas {
+            position: fixed;
+            inset: 0;
+            width: 100vw;
+            height: 100vh;
             pointer-events: none;
             z-index: 1;
         }
@@ -79,7 +89,7 @@
             margin: 0 auto;
             padding: 0 24px;
             position: relative;
-            z-index: 2;
+            z-index: 3;
         }
 
         /* ========== HEADER ========== */
@@ -95,9 +105,9 @@
         }
 
         .header.scrolled {
-            background: rgba(6, 9, 19, 0.8);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
+            background: rgba(3, 5, 12, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--border);
             padding-top: 4px;
             padding-bottom: 4px;
@@ -117,15 +127,15 @@
             align-items: center;
             gap: 10px;
             font-family: 'Outfit', sans-serif;
-            font-weight: 800;
-            font-size: 1.4rem;
-            letter-spacing: -0.03em;
+            font-weight: 900;
+            font-size: 1.45rem;
+            letter-spacing: -0.04em;
         }
 
         .logo-icon {
-            width: 32px;
-            height: 32px;
-            background: var(--primary);
+            width: 34px;
+            height: 34px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
             border-radius: 8px;
             display: flex;
             align-items: center;
@@ -135,8 +145,8 @@
         }
 
         .logo-icon svg {
-            width: 18px;
-            height: 18px;
+            width: 20px;
+            height: 20px;
         }
 
         .logo span {
@@ -144,7 +154,10 @@
         }
 
         .logo span span {
-            color: var(--secondary);
+            background: linear-gradient(90deg, var(--accent), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .nav-desktop {
@@ -167,10 +180,11 @@
             background: rgba(255, 255, 255, 0.03);
         }
 
+        /* Shiny CTA Button with gradient border */
         .header-cta {
             display: none;
             padding: 10px 20px;
-            background: var(--primary);
+            background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 8px;
             color: var(--white);
@@ -179,13 +193,29 @@
             font-weight: 600;
             cursor: pointer;
             transition: all var(--transition);
-            box-shadow: 0 4px 12px var(--primary-glow);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-cta::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+            transition: 0.5s;
+        }
+
+        .header-cta:hover::before {
+            left: 100%;
         }
 
         .header-cta:hover {
-            background: #1a66ff;
+            background: var(--primary);
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 20px var(--primary-glow);
             transform: translateY(-1px);
-            box-shadow: 0 6px 20px rgba(0, 82, 255, 0.35);
         }
 
         /* Hamburger */
@@ -225,7 +255,7 @@
         .mobile-menu {
             position: fixed;
             inset: 0;
-            background: rgba(3, 5, 10, 0.98);
+            background: rgba(1, 2, 6, 0.98);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             z-index: 999;
@@ -283,98 +313,107 @@
             padding: 140px 0 80px;
         }
 
-        /* Sleek background radial glow elements just like 1609plus */
+        /* Dynamic moving gradient light spots */
         .hero-glow-blob {
             position: absolute;
             border-radius: 50%;
             filter: blur(140px);
-            opacity: 0.15;
+            opacity: 0.18;
             pointer-events: none;
+            mix-blend-mode: screen;
+            animation: drift 15s ease-in-out infinite alternate;
         }
 
         .hero-glow-blob-1 {
-            width: 500px;
-            height: 500px;
+            width: 600px;
+            height: 600px;
             background: var(--primary);
-            top: -10%;
+            top: -15%;
             right: 5%;
         }
 
         .hero-glow-blob-2 {
-            width: 400px;
-            height: 400px;
+            width: 500px;
+            height: 500px;
             background: var(--accent);
-            bottom: 10%;
+            bottom: 5%;
             left: -10%;
+            animation-duration: 20s;
+        }
+
+        @keyframes drift {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(40px, 30px) scale(1.1); }
         }
 
         .hero-content {
             position: relative;
-            z-index: 2;
+            z-index: 3;
             text-align: center;
-            max-width: 860px;
+            max-width: 900px;
             margin: 0 auto;
         }
 
-        /* Rounded badge with border gradient feel */
+        /* Glowing Border Badge */
         .hero-badge {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            padding: 6px 16px;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid var(--border);
+            padding: 8px 18px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 100px;
             font-size: 0.8rem;
             font-weight: 500;
             color: var(--text);
-            margin-bottom: 24px;
-            backdrop-filter: blur(8px);
+            margin-bottom: 28px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 20px rgba(0, 82, 255, 0.05);
         }
 
         .hero-badge-dot {
-            width: 6px;
-            height: 6px;
+            width: 8px;
+            height: 8px;
             background: var(--accent);
             border-radius: 50%;
-            box-shadow: 0 0 8px var(--accent);
-            animation: pulse-glow 2s infinite;
+            box-shadow: 0 0 10px var(--accent);
+            animation: pulse-glow 1.5s infinite;
         }
 
         @keyframes pulse-glow {
             0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.4; transform: scale(1.3); }
+            50% { opacity: 0.3; transform: scale(1.4); }
         }
 
         .hero h1 {
-            font-size: clamp(2.4rem, 6vw, 4.4rem);
+            font-size: clamp(2.6rem, 6.5vw, 4.8rem);
             font-weight: 900;
             letter-spacing: -0.04em;
             line-height: 1.05;
-            margin-bottom: 20px;
+            margin-bottom: 24px;
             color: var(--white);
         }
 
         .hero h1 span.gradient-text {
-            background: linear-gradient(135deg, #FFF 40%, rgba(255, 255, 255, 0.7) 70%, var(--secondary) 100%);
+            background: linear-gradient(135deg, #FFFFFF 30%, #CFD8DC 70%, var(--secondary) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
 
         .hero h1 span.electric {
-            background: linear-gradient(90deg, #00D4FF, #0052FF);
+            background: linear-gradient(90deg, #00E5FF, #0052FF);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            text-shadow: 0 0 40px rgba(0, 82, 255, 0.2);
+            filter: drop-shadow(0 0 30px rgba(0, 82, 255, 0.4));
         }
 
         .hero-subtitle {
-            font-size: clamp(1rem, 2vw, 1.15rem);
+            font-size: clamp(1rem, 2.2vw, 1.2rem);
             color: var(--muted);
-            max-width: 620px;
-            margin: 0 auto 36px;
+            max-width: 660px;
+            margin: 0 auto 40px;
             line-height: 1.7;
             font-weight: 400;
         }
@@ -382,44 +421,45 @@
         .hero-actions {
             display: flex;
             flex-wrap: wrap;
-            gap: 14px;
+            gap: 16px;
             justify-content: center;
         }
 
+        /* Sleek Button with glowing effect */
         .btn-primary {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            padding: 14px 28px;
-            background: var(--primary);
+            gap: 10px;
+            padding: 16px 36px;
+            background: linear-gradient(90deg, var(--primary), #0066FF);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 8px;
+            border-radius: 10px;
             color: var(--white);
             font-family: 'Inter', sans-serif;
-            font-size: 0.95rem;
+            font-size: 0.98rem;
             font-weight: 600;
             cursor: pointer;
             transition: all var(--transition);
-            box-shadow: 0 4px 14px var(--primary-glow);
+            box-shadow: 0 4px 20px rgba(0, 82, 255, 0.4);
         }
 
         .btn-primary:hover {
-            background: #1a66ff;
+            background: linear-gradient(90deg, #0066FF, #0088FF);
             transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(0, 82, 255, 0.4);
+            box-shadow: 0 8px 30px rgba(0, 82, 255, 0.6);
         }
 
         .btn-secondary {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            padding: 14px 28px;
-            background: rgba(255, 255, 255, 0.02);
+            gap: 10px;
+            padding: 16px 36px;
+            background: rgba(255, 255, 255, 0.01);
             border: 1px solid var(--border);
-            border-radius: 8px;
+            border-radius: 10px;
             color: var(--text);
             font-family: 'Inter', sans-serif;
-            font-size: 0.95rem;
+            font-size: 0.98rem;
             font-weight: 500;
             cursor: pointer;
             transition: all var(--transition);
@@ -427,27 +467,27 @@
         }
 
         .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.04);
             border-color: rgba(255, 255, 255, 0.15);
             transform: translateY(-1px);
         }
 
         /* ========== SECTIONS SHARED ========== */
         .section {
-            padding: 100px 0;
+            padding: 110px 0;
             position: relative;
         }
 
         .section-header {
             text-align: center;
-            margin-bottom: 56px;
+            margin-bottom: 64px;
         }
 
         .section-label {
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            padding: 4px 12px;
+            padding: 6px 14px;
             background: rgba(255, 255, 255, 0.02);
             border: 1px solid var(--border);
             border-radius: 100px;
@@ -455,22 +495,22 @@
             font-weight: 600;
             color: var(--secondary);
             text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: 16px;
+            letter-spacing: 0.08em;
+            margin-bottom: 18px;
         }
 
         .section-title {
-            font-size: clamp(1.8rem, 4vw, 2.6rem);
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
             font-weight: 800;
             letter-spacing: -0.03em;
-            margin-bottom: 12px;
+            margin-bottom: 16px;
             color: var(--white);
         }
 
         .section-desc {
             color: var(--muted);
-            font-size: 1rem;
-            max-width: 500px;
+            font-size: 1.02rem;
+            max-width: 520px;
             margin: 0 auto;
         }
 
@@ -502,9 +542,10 @@
         .portfolio-grid {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 20px;
+            gap: 24px;
         }
 
+        /* Premium Bento-style card with mouse spotlight border */
         .portfolio-card {
             position: relative;
             background: var(--surface-card);
@@ -517,17 +558,34 @@
             display: block;
         }
 
+        /* Mouse tracking spotlight effect container */
+        .portfolio-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            pointer-events: none;
+            background: radial-gradient(800px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(0, 82, 255, 0.12), transparent 40%);
+            z-index: 3;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .portfolio-card:hover::after {
+            opacity: 1;
+        }
+
         .portfolio-card:hover {
-            transform: translateY(-4px);
-            border-color: var(--border-hover);
-            box-shadow: 0 12px 30px rgba(0, 82, 255, 0.08);
+            transform: translateY(-6px);
+            border-color: rgba(0, 82, 255, 0.3);
+            box-shadow: 0 15px 35px rgba(0, 82, 255, 0.06);
         }
 
         .portfolio-preview {
             position: relative;
-            height: 200px;
+            height: 210px;
             overflow: hidden;
-            background: #03050a;
+            background: #010205;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -536,48 +594,49 @@
         .portfolio-preview-bg {
             position: absolute;
             inset: 0;
-            transition: transform 0.5s var(--transition);
-            opacity: 0.9;
+            transition: transform 0.6s var(--transition);
+            opacity: 0.85;
         }
 
         .portfolio-card:hover .portfolio-preview-bg {
-            transform: scale(1.04);
+            transform: scale(1.05);
             opacity: 1;
         }
 
-        /* Beautiful minimalist card previews with glow blobs behind mockups */
+        /* Elegant preview theme gradients */
         .preview-dental {
-            background: radial-gradient(circle at top right, var(--primary-glow), transparent 70%), #0d1527;
+            background: radial-gradient(circle at top right, var(--primary-glow), transparent 70%), #0c1221;
         }
         .preview-restaurant {
-            background: radial-gradient(circle at top right, rgba(217, 119, 6, 0.15), transparent 70%), #241910;
+            background: radial-gradient(circle at top right, rgba(217, 119, 6, 0.15), transparent 70%), #21160e;
         }
         .preview-education {
-            background: radial-gradient(circle at top right, rgba(124, 58, 237, 0.15), transparent 70%), #1d142d;
+            background: radial-gradient(circle at top right, rgba(124, 58, 237, 0.15), transparent 70%), #1a1228;
         }
         .preview-construction {
-            background: radial-gradient(circle at top right, rgba(220, 38, 38, 0.15), transparent 70%), #251212;
+            background: radial-gradient(circle at top right, rgba(220, 38, 38, 0.15), transparent 70%), #211010;
         }
         .preview-auto {
-            background: radial-gradient(circle at top right, rgba(6, 182, 212, 0.15), transparent 70%), #0c1c24;
+            background: radial-gradient(circle at top right, rgba(6, 182, 212, 0.15), transparent 70%), #0a1820;
         }
 
-        /* 1609plus styled sleek browser mockup */
+        /* Glassmorphic Browser Mockup */
         .preview-mockup {
             position: absolute;
             top: 24px;
             width: 82%;
-            height: 176px;
-            background: rgba(10, 14, 26, 0.85);
-            border-radius: 8px 8px 0 0;
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            height: 186px;
+            background: rgba(5, 7, 16, 0.88);
+            border-radius: 10px 10px 0 0;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
             border: 1px solid rgba(255, 255, 255, 0.08);
             border-bottom: none;
             overflow: hidden;
             display: flex;
             flex-direction: column;
-            transition: transform 0.5s var(--transition);
+            transition: transform 0.6s var(--transition);
+            z-index: 2;
         }
 
         .portfolio-card:hover .preview-mockup {
@@ -586,13 +645,13 @@
         }
 
         .preview-mockup-bar {
-            height: 22px;
-            background: rgba(255, 255, 255, 0.02);
+            height: 24px;
+            background: rgba(255, 255, 255, 0.01);
             border-bottom: 1px solid rgba(255, 255, 255, 0.04);
             display: flex;
             align-items: center;
-            padding: 0 10px;
-            gap: 4px;
+            padding: 0 12px;
+            gap: 5px;
         }
 
         .preview-mockup-dot {
@@ -607,10 +666,10 @@
 
         .preview-mockup-content {
             flex: 1;
-            padding: 12px;
+            padding: 14px;
             display: flex;
             flex-direction: column;
-            gap: 6px;
+            gap: 7px;
         }
 
         .preview-mockup-line {
@@ -618,56 +677,58 @@
             border-radius: 2px;
             background: rgba(255, 255, 255, 0.08);
         }
-        .preview-mockup-line:nth-child(1) { width: 40%; background: var(--secondary); opacity: 0.8; }
-        .preview-mockup-line:nth-child(2) { width: 75%; }
-        .preview-mockup-line:nth-child(3) { width: 55%; }
+        .preview-mockup-line:nth-child(1) { width: 35%; background: var(--secondary); opacity: 0.9; }
+        .preview-mockup-line:nth-child(2) { width: 70%; }
+        .preview-mockup-line:nth-child(3) { width: 50%; }
         .preview-mockup-line:nth-child(4) { 
-            width: 45%; 
+            width: 40%; 
             height: 18px; 
-            margin-top: 8px; 
+            margin-top: 10px; 
             background: var(--primary-glow); 
             border: 1px solid rgba(0, 82, 255, 0.2); 
-            border-radius: 4px; 
+            border-radius: 5px; 
         }
 
         .portfolio-info {
-            padding: 24px;
+            padding: 28px;
             border-top: 1px solid var(--border);
-            background: linear-gradient(to bottom, rgba(10, 14, 26, 0.4), rgba(6, 9, 19, 0.8));
+            background: linear-gradient(to bottom, rgba(5, 7, 16, 0.4), rgba(3, 5, 12, 0.8));
+            position: relative;
+            z-index: 4;
         }
 
         .portfolio-category {
             display: inline-block;
-            padding: 2px 8px;
-            background: rgba(255, 255, 255, 0.03);
+            padding: 3px 10px;
+            background: rgba(255, 255, 255, 0.02);
             border: 1px solid var(--border);
-            border-radius: 4px;
-            font-size: 0.7rem;
+            border-radius: 6px;
+            font-size: 0.72rem;
             font-weight: 600;
             color: var(--muted);
             text-transform: uppercase;
             letter-spacing: 0.04em;
-            margin-bottom: 12px;
+            margin-bottom: 14px;
         }
 
         .portfolio-card:hover .portfolio-category {
             color: var(--secondary);
-            border-color: rgba(0, 82, 255, 0.15);
+            border-color: rgba(0, 82, 255, 0.2);
             background: rgba(0, 82, 255, 0.05);
         }
 
         .portfolio-name {
-            font-size: 1.25rem;
+            font-size: 1.3rem;
             font-weight: 700;
-            margin-bottom: 6px;
+            margin-bottom: 8px;
             color: var(--white);
         }
 
         .portfolio-desc {
             color: var(--muted);
             font-size: 0.85rem;
-            margin-bottom: 16px;
-            line-height: 1.5;
+            margin-bottom: 20px;
+            line-height: 1.55;
         }
 
         .portfolio-link {
@@ -690,7 +751,7 @@
         }
 
         .portfolio-card:hover .portfolio-link svg {
-            transform: translateX(2px);
+            transform: translateX(3px);
         }
 
         @media (min-width: 640px) {
@@ -714,9 +775,9 @@
 
         .service-card {
             position: relative;
-            padding: 24px;
+            padding: 28px;
             background: var(--surface-card);
-            border-radius: var(--radius);
+            border-radius: var(--radius-lg);
             border: 1px solid var(--border);
             transition: all var(--transition);
             overflow: hidden;
@@ -724,28 +785,47 @@
             flex-direction: column;
         }
 
+        /* Spotlight hover on Service Card */
+        .service-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            pointer-events: none;
+            background: radial-gradient(400px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(0, 82, 255, 0.08), transparent 40%);
+            z-index: 3;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .service-card:hover::after {
+            opacity: 1;
+        }
+
         .service-card:hover {
-            border-color: var(--border-hover);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(0, 82, 255, 0.06);
+            border-color: rgba(0, 82, 255, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 24px rgba(0, 82, 255, 0.04);
         }
 
         .service-icon {
-            width: 44px;
-            height: 44px;
+            width: 46px;
+            height: 46px;
             background: rgba(255, 255, 255, 0.02);
             border: 1px solid var(--border);
             border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 16px;
+            margin-bottom: 18px;
             transition: all var(--transition);
+            position: relative;
+            z-index: 4;
         }
 
         .service-card:hover .service-icon {
-            border-color: rgba(0, 82, 255, 0.3);
-            background: rgba(0, 82, 255, 0.05);
+            border-color: rgba(0, 82, 255, 0.25);
+            background: rgba(0, 82, 255, 0.04);
             box-shadow: 0 0 12px var(--primary-glow);
         }
 
@@ -755,34 +835,40 @@
         }
 
         .service-card:hover svg {
-            stroke: var(--secondary);
+            stroke: var(--accent);
         }
 
         .service-name {
-            font-size: 1.05rem;
+            font-size: 1.1rem;
             font-weight: 700;
-            margin-bottom: 6px;
+            margin-bottom: 8px;
             color: var(--white);
+            position: relative;
+            z-index: 4;
         }
 
         .service-desc {
             color: var(--muted);
             font-size: 0.82rem;
-            margin-bottom: 16px;
+            margin-bottom: 20px;
             line-height: 1.5;
             flex: 1;
+            position: relative;
+            z-index: 4;
         }
 
         .service-price {
             font-family: 'Outfit', sans-serif;
-            font-size: 1.15rem;
+            font-size: 1.18rem;
             font-weight: 700;
             color: var(--text);
             border-top: 1px solid var(--border);
-            padding-top: 12px;
+            padding-top: 14px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            position: relative;
+            z-index: 4;
         }
 
         .service-card:hover .service-price {
@@ -814,24 +900,26 @@
         .process-step {
             background: var(--surface-card);
             border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 24px;
+            border-radius: var(--radius-lg);
+            padding: 28px;
             display: flex;
             flex-direction: column;
-            gap: 16px;
+            gap: 20px;
             position: relative;
+            transition: all var(--transition);
         }
 
         .process-step:hover {
-            border-color: rgba(255, 255, 255, 0.12);
+            border-color: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
         }
 
         .step-number {
-            width: 32px;
-            height: 32px;
-            background: rgba(255, 255, 255, 0.03);
+            width: 36px;
+            height: 36px;
+            background: rgba(255, 255, 255, 0.02);
             border: 1px solid var(--border);
-            border-radius: 6px;
+            border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -839,18 +927,20 @@
             font-size: 0.95rem;
             font-weight: 700;
             color: var(--secondary);
+            transition: all var(--transition);
         }
 
         .process-step:hover .step-number {
-            background: rgba(0, 82, 255, 0.05);
+            background: rgba(0, 82, 255, 0.04);
             border-color: rgba(0, 82, 255, 0.25);
             color: var(--accent);
+            box-shadow: 0 0 10px var(--primary-glow);
         }
 
         .step-content h3 {
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             font-weight: 700;
-            margin-bottom: 6px;
+            margin-bottom: 8px;
             color: var(--white);
         }
 
@@ -876,38 +966,41 @@
         .why-item {
             display: flex;
             align-items: center;
-            gap: 16px;
-            padding: 16px 20px;
+            gap: 18px;
+            padding: 18px 22px;
             background: var(--surface-card);
-            border-radius: var(--radius);
+            border-radius: var(--radius-lg);
             border: 1px solid var(--border);
             transition: all var(--transition);
         }
 
         .why-item:hover {
-            border-color: rgba(255, 255, 255, 0.12);
+            border-color: rgba(255, 255, 255, 0.1);
             transform: translateX(4px);
+            background: var(--surface-hover);
         }
 
         .why-icon {
-            width: 38px;
-            height: 38px;
+            width: 40px;
+            height: 40px;
             background: rgba(255, 255, 255, 0.02);
             border: 1px solid var(--border);
-            border-radius: 6px;
+            border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
+            transition: all var(--transition);
         }
 
         .why-item:hover .why-icon {
-            border-color: rgba(0, 82, 255, 0.2);
-            color: var(--secondary);
+            border-color: rgba(0, 82, 255, 0.25);
+            color: var(--accent);
+            box-shadow: 0 0 8px var(--primary-glow);
         }
 
         .why-text {
-            font-size: 0.9rem;
+            font-size: 0.92rem;
             font-weight: 600;
             color: var(--text);
         }
@@ -922,7 +1015,7 @@
 
         /* ========== CTA SECTION ========== */
         .cta-section {
-            padding: 100px 0;
+            padding: 120px 0;
             position: relative;
             overflow: hidden;
             border-top: 1px solid var(--border);
@@ -930,12 +1023,12 @@
 
         .cta-glow-blob {
             position: absolute;
-            width: 500px;
-            height: 500px;
+            width: 600px;
+            height: 600px;
             background: var(--primary);
             border-radius: 50%;
-            filter: blur(140px);
-            opacity: 0.12;
+            filter: blur(150px);
+            opacity: 0.14;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
@@ -944,37 +1037,39 @@
 
         .cta-card {
             position: relative;
-            z-index: 1;
+            z-index: 3;
             text-align: center;
-            padding: 56px 24px;
+            padding: 64px 32px;
             background: var(--surface-card);
             border: 1px solid var(--border);
             border-radius: var(--radius-lg);
-            max-width: 760px;
+            max-width: 800px;
             margin: 0 auto;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
         }
 
         .cta-card h2 {
-            font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+            font-size: clamp(1.8rem, 3.5vw, 2.4rem);
             font-weight: 800;
-            margin-bottom: 12px;
+            margin-bottom: 14px;
             color: var(--white);
         }
 
         .cta-card p {
             color: var(--muted);
-            font-size: 0.95rem;
-            max-width: 480px;
-            margin: 0 auto 32px;
+            font-size: 0.98rem;
+            max-width: 520px;
+            margin: 0 auto 36px;
         }
 
         /* ========== FOOTER ========== */
         .footer {
-            padding: 32px 0;
+            padding: 36px 0;
             border-top: 1px solid var(--border);
             background: var(--bg-deep);
             position: relative;
-            z-index: 2;
+            z-index: 10;
         }
 
         .footer-inner {
@@ -987,8 +1082,8 @@
 
         .footer-brand {
             font-family: 'Outfit', sans-serif;
-            font-size: 1.1rem;
-            font-weight: 800;
+            font-size: 1.15rem;
+            font-weight: 900;
             color: var(--white);
         }
 
@@ -1018,9 +1113,9 @@
             bottom: 24px;
             right: 24px;
             z-index: 998;
-            width: 52px;
-            height: 52px;
-            background: #25C366;
+            width: 54px;
+            height: 54px;
+            background: #25D366;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -1084,15 +1179,21 @@
 
         .stat-item {
             text-align: center;
-            padding: 16px;
-            background: rgba(255, 255, 255, 0.01);
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.005);
             border: 1px solid var(--border);
-            border-radius: var(--radius);
+            border-radius: var(--radius-lg);
+            transition: all var(--transition);
+        }
+
+        .stat-item:hover {
+            border-color: rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.01);
         }
 
         .stat-number {
             font-family: 'Outfit', sans-serif;
-            font-size: clamp(1.8rem, 4vw, 2.4rem);
+            font-size: clamp(2rem, 4.5vw, 2.6rem);
             font-weight: 800;
             color: var(--white);
             line-height: 1.1;
@@ -1100,9 +1201,9 @@
 
         .stat-label {
             color: var(--muted);
-            font-size: 0.8rem;
+            font-size: 0.82rem;
             font-weight: 500;
-            margin-top: 4px;
+            margin-top: 6px;
         }
 
         @media (min-width: 768px) {
@@ -1138,12 +1239,15 @@
     <!-- Sleek Dotted Mesh Background -->
     <div class="grid-overlay"></div>
 
+    <!-- HTML5 Space Canvas (Twinkling & Twisting Space Stars) -->
+    <canvas id="spaceCanvas"></canvas>
+
     <!-- ========== HEADER ========== -->
     <header class="header" id="header">
         <div class="header-inner">
             <a href="#hero" class="logo">
                 <div class="logo-icon">
-                    <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
                         <path d="M4 4L10 2L16 4L16 12L10 18L4 12Z" stroke="white" stroke-width="1.8" fill="none"/>
                         <circle cx="10" cy="9" r="2.5" fill="white"/>
                     </svg>
@@ -1186,22 +1290,22 @@
             <div class="hero-content">
                 <div class="hero-badge">
                     <span class="hero-badge-dot"></span>
-                    Простые решения для малого бизнеса в Кыргызстане
+                    Профессиональные сайты космического уровня в Бишкеке
                 </div>
                 <h1>
-                    <span class="gradient-text">Профессиональные сайты</span><br>
+                    <span class="gradient-text">Создаём сайты</span><br>
                     которые приводят <span class="electric">клиентов</span>
                 </h1>
                 <p class="hero-subtitle">
-                    Создаём стильные, быстрые и конверсионные сайты с интеграцией в WhatsApp. Без затягивания сроков и скрытых расходов.
+                    Эксклюзивный дизайн, интерактивные эффекты и мгновенная интеграция с мессенджерами. Ваш бизнес заслуживает лучшего представительства в интернете.
                 </p>
                 <div class="hero-actions">
                     <a href="https://wa.me/996555123456?text=Здравствуйте!%20Интересует%20создание%20сайта" class="btn-primary" target="_blank" rel="noopener">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
-                        <span>Начать проект</span>
+                        <span>Написать в WhatsApp</span>
                     </a>
                     <a href="#portfolio" class="btn-secondary">
-                        <span>Смотреть демо</span>
+                        <span>Посмотреть работы</span>
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
                     </a>
                 </div>
@@ -1236,8 +1340,8 @@
         <div class="container">
             <div class="section-header reveal">
                 <div class="section-label">Портфолио</div>
-                <h2 class="section-title">Готовые примеры сайтов</h2>
-                <p class="section-desc">Вы можете посмотреть рабочие прототипы сайтов, созданные специально под различные сферы бизнеса</p>
+                <h2 class="section-title">Наши демо-сайты</h2>
+                <p class="section-desc">Кликните по любой карточке, чтобы открыть полностью функциональный прототип сайта для вашей ниши</p>
             </div>
 
             <div class="portfolio-grid">
@@ -1262,9 +1366,9 @@
                     <div class="portfolio-info">
                         <span class="portfolio-category">Клиники и стоматологии</span>
                         <h3 class="portfolio-name">Белая Улыбка</h3>
-                        <p class="portfolio-desc">Чистый и внушающий доверие сайт клиники. Сетка услуг, прайс-лист, отзывы и запись в один клик через WhatsApp.</p>
+                        <p class="portfolio-desc">Премиальный сайт стоматологической клиники. Удобная запись на прием, понятная сетка услуг и отзывы.</p>
                         <span class="portfolio-link">
-                            Открыть демо
+                            Открыть демо-сайт
                             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
                         </span>
                     </div>
@@ -1289,11 +1393,11 @@
                         </div>
                     </div>
                     <div class="portfolio-info">
-                        <span class="portfolio-category">Кафе и рестораны</span>
+                        <span class="portfolio-category">Кафе, рестораны, кофейни</span>
                         <h3 class="portfolio-name">Чайхана Бишкек</h3>
-                        <p class="portfolio-desc">Уютный, стильный дизайн с красивым интерактивным меню (вкладки с ценами), галереей залов и мгновенной бронью столов.</p>
+                        <p class="portfolio-desc">Современное онлайн-меню с ценами, галерея интерьера и форма быстрого бронирования столов.</p>
                         <span class="portfolio-link">
-                            Открыть демо
+                            Открыть демо-сайт
                             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
                         </span>
                     </div>
@@ -1318,11 +1422,11 @@
                         </div>
                     </div>
                     <div class="portfolio-info">
-                        <span class="portfolio-category">Образовательные центры</span>
+                        <span class="portfolio-category">Образовательные центры / курсы</span>
                         <h3 class="portfolio-name">Билим</h3>
-                        <p class="portfolio-desc">Яркий, понятный сайт для школы или курсов. Каталог направлений, сетка расписания, аккордеон с FAQ и кнопка «Записаться».</p>
+                        <p class="portfolio-desc">Креативный и структурированный сайт для курсов, расписание занятий, возрастные группы и FAQ.</p>
                         <span class="portfolio-link">
-                            Открыть демо
+                            Открыть демо-сайт
                             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
                         </span>
                     </div>
@@ -1349,9 +1453,9 @@
                     <div class="portfolio-info">
                         <span class="portfolio-category">Строительство и ремонт</span>
                         <h3 class="portfolio-name">СтройМастер</h3>
-                        <p class="portfolio-desc">Премиальный темный дизайн. Услуги и цены, визуальные карточки проектов «До/После», интерактивные этапы работы.</p>
+                        <p class="portfolio-desc">Брутальный лендинг строительной бригады. Интерактивные слайды «До/После» и расчет сметы.</p>
                         <span class="portfolio-link">
-                            Открыть демо
+                            Открыть демо-сайт
                             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
                         </span>
                     </div>
@@ -1376,11 +1480,11 @@
                         </div>
                     </div>
                     <div class="portfolio-info">
-                        <span class="portfolio-category">Автосервисы и детейлинг</span>
+                        <span class="portfolio-category">Автосервисы / детейлинг</span>
                         <h3 class="portfolio-name">АвтоПро</h3>
-                        <p class="portfolio-desc">Брутальный темный дизайн в стиле автоспорта. Полный прайс-лист, обслуживаемые марки автомобилей, отзывы и запись.</p>
+                        <p class="portfolio-desc">Премиум-сайт автосервиса. Полный прайс-лист по категориям, список обслуживаемых авто и форма записи.</p>
                         <span class="portfolio-link">
-                            Открыть демо
+                            Открыть демо-сайт
                             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
                         </span>
                     </div>
@@ -1395,7 +1499,7 @@
             <div class="section-header reveal">
                 <div class="section-label">Услуги</div>
                 <h2 class="section-title">Что мы предлагаем</h2>
-                <p class="section-desc">Форматы сайтов, созданные для решения конкретных задач вашего бизнеса</p>
+                <p class="section-desc">Форматы сайтов, созданные для быстрого масштабирования вашего бизнеса</p>
             </div>
 
             <div class="services-grid">
@@ -1405,7 +1509,7 @@
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/></svg>
                     </div>
                     <h3 class="service-name">Одностраничный сайт</h3>
-                    <p class="service-desc">Компактная посадочная страница, которая дает клиенту всю важную информацию на одном экране.</p>
+                    <p class="service-desc">Вся ключевая информация о ваших услугах на одной красивой, структурированной странице.</p>
                     <div class="service-price">от 5 000 сом</div>
                 </div>
 
@@ -1415,7 +1519,7 @@
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
                     </div>
                     <h3 class="service-name">Сайт-визитка</h3>
-                    <p class="service-desc">Многостраничный презентационный сайт для создания солидного имиджа компании в сети.</p>
+                    <p class="service-desc">Солидное интернет-представительство вашей компании с несколькими внутренними страницами.</p>
                     <div class="service-price">от 8 000 сом</div>
                 </div>
 
@@ -1425,7 +1529,7 @@
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
                     </div>
                     <h3 class="service-name">Продающий Лендинг</h3>
-                    <p class="service-desc">Страница с высокой конверсией, формой захвата контактов и моментальной отправкой заявок в ваш WhatsApp.</p>
+                    <p class="service-desc">Конверсионная промо-страница с высокой эффективностью продаж и лид-формами.</p>
                     <div class="service-price">от 10 000 сом</div>
                 </div>
 
@@ -1435,7 +1539,7 @@
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
                     </div>
                     <h3 class="service-name">Мини-магазин</h3>
-                    <p class="service-desc">Полноценный каталог ваших товаров с корзиной и оформлением заказа напрямую в мессенджер.</p>
+                    <p class="service-desc">Удобная витрина товаров с корзиной и прямой отправкой заказа в WhatsApp.</p>
                     <div class="service-price">от 15 000 сом</div>
                 </div>
             </div>
@@ -1448,31 +1552,31 @@
             <div class="section-header reveal">
                 <div class="section-label">Процесс</div>
                 <h2 class="section-title">Как строится работа</h2>
-                <p class="section-desc">Мы ценим ваше время, поэтому свели весь процесс разработки всего к 3 простым этапам</p>
+                <p class="section-desc">Максимально быстро, понятно и без лишних согласований</p>
             </div>
 
             <div class="process-steps">
                 <div class="process-step reveal reveal-delay-1">
                     <div class="step-number">01</div>
                     <div class="step-content">
-                        <h3>Обсуждение и ТЗ</h3>
-                        <p>Вы рассказываете о задачах бизнеса в WhatsApp. Мы оперативно согласовываем структуру сайта, тексты и будущую цветовую гамму.</p>
+                        <h3>Идея и Смета</h3>
+                        <p>В WhatsApp обсуждаем ваш проект, выбираем цвета, определяем структуру и сразу утверждаем окончательный бюджет.</p>
                     </div>
                 </div>
 
                 <div class="process-step reveal reveal-delay-2">
                     <div class="step-number">02</div>
                     <div class="step-content">
-                        <h3>Быстрая разработка</h3>
-                        <p>Создаём сайт в течение 3–5 дней. Вы контролируете процесс в реальном времени и вносите правки до финального утверждения.</p>
+                        <h3>Разработка</h3>
+                        <p>Создаём полностью адаптивный и функциональный сайт за 3–5 дней. Вы видите процесс и можете легко вносить правки.</p>
                     </div>
                 </div>
 
                 <div class="process-step reveal reveal-delay-3">
                     <div class="step-number">03</div>
                     <div class="step-content">
-                        <h3>Запуск и поддержка</h3>
-                        <p>Размещаем сайт в интернете, подключаем к вашему домену и настраиваем форму для приема заявок. Сайт готов приносить прибыль.</p>
+                        <h3>Запуск и Поддержка</h3>
+                        <p>Подключаем домен, размещаем сайт на хостинге и проверяем отправку заявок. Мы остаёмся на связи и помогаем развивать проект.</p>
                     </div>
                 </div>
             </div>
@@ -1485,7 +1589,7 @@
             <div class="section-header reveal">
                 <div class="section-label">Преимущества</div>
                 <h2 class="section-title">Почему работают с нами</h2>
-                <p class="section-desc">Создаём современные, живые сайты без лишней бюрократии и переплат веб-студиям</p>
+                <p class="section-desc">Сочетаем скорость, доступные цены и безупречный визуальный стиль</p>
             </div>
 
             <div class="why-grid">
@@ -1500,35 +1604,35 @@
                     <div class="why-icon">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
                     </div>
-                    <span class="why-text">Доступная цена: от 5 000 сом</span>
+                    <span class="why-text">Доступно: от 5 000 сом</span>
                 </div>
 
                 <div class="why-item reveal reveal-delay-3">
                     <div class="why-icon">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
                     </div>
-                    <span class="why-text">Премиальный современный дизайн</span>
+                    <span class="why-text">Космический премиум-дизайн</span>
                 </div>
 
                 <div class="why-item reveal reveal-delay-4">
                     <div class="why-icon">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
                     </div>
-                    <span class="why-text">Отличный вид на смартфонах</span>
+                    <span class="why-text">Идеально для мобильных</span>
                 </div>
 
                 <div class="why-item reveal reveal-delay-5">
                     <div class="why-icon">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#25D366" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
                     </div>
-                    <span class="why-text">Связь через WhatsApp в один клик</span>
+                    <span class="why-text">Лиды напрямую в WhatsApp</span>
                 </div>
 
                 <div class="why-item reveal reveal-delay-5">
                     <div class="why-icon">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
                     </div>
-                    <span class="why-text">Надежное техническое сопровождение</span>
+                    <span class="why-text">Сопровождение и доработка</span>
                 </div>
             </div>
         </div>
@@ -1539,8 +1643,8 @@
         <div class="cta-glow-blob"></div>
         <div class="container">
             <div class="cta-card reveal">
-                <h2>Начнём создавать ваш сайт сегодня?</h2>
-                <p>Просто напишите мне в WhatsApp, и мы обсудим ваш проект, подберём дизайн и сразу рассчитаем стоимость.</p>
+                <h2>Создадим ваш новый сайт прямо сейчас?</h2>
+                <p>Напишите мне в WhatsApp — обсудим цели, выберем крутой стиль и сразу запустим проект в работу.</p>
                 <a href="https://wa.me/996555123456?text=Здравствуйте!%20Интересует%20создание%20сайта" class="btn-primary" target="_blank" rel="noopener">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
                     <span>Написать в WhatsApp</span>
@@ -1636,29 +1740,165 @@
             const y = (e.clientY / window.innerHeight - 0.5) * 2;
 
             glowBlobs.forEach((blob, i) => {
-                const speed = (i + 1) * 15;
+                const speed = (i + 1) * 20;
                 blob.style.transform = `translate(${x * speed}px, ${y * speed}px)`;
             });
         });
 
-        // ========== PORTFOLIO CARD TILT EFFECT ==========
-        document.querySelectorAll('.portfolio-card').forEach(card => {
+        // ========== PORTFOLIO CARD SPOTLIGHT & TILT ==========
+        document.querySelectorAll('.portfolio-card, .service-card').forEach(card => {
             card.addEventListener('mousemove', (e) => {
                 const rect = card.getBoundingClientRect();
                 const x = e.clientX - rect.left;
                 const y = e.clientY - rect.top;
-                const centerX = rect.width / 2;
-                const centerY = rect.height / 2;
-                const rotateX = (y - centerY) / centerY * -2;
-                const rotateY = (x - centerX) / centerX * 2;
 
-                card.style.transform = `perspective(1000px) translateY(-4px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+                // Set spotlight position
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+
+                // 3D tilt effect for portfolio cards
+                if (card.classList.contains('portfolio-card')) {
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    const rotateX = (y - centerY) / centerY * -2.5;
+                    const rotateY = (x - centerX) / centerX * 2.5;
+
+                    card.style.transform = `perspective(1000px) translateY(-6px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+                }
             });
 
             card.addEventListener('mouseleave', () => {
-                card.style.transform = '';
+                if (card.classList.contains('portfolio-card')) {
+                    card.style.transform = '';
+                }
             });
         });
+
+        // ========== HIGHLY OPTIMIZED INTERACTIVE SPACE CANVAS (STARRY SKY + PARALLAX + TWINKLE) ==========
+        const canvas = document.getElementById('spaceCanvas');
+        const ctx = canvas.getContext('2d');
+
+        let stars = [];
+        let shootingStars = [];
+        let mousePos = { x: 0, y: 0 };
+        let targetMousePos = { x: 0, y: 0 };
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            initStars();
+        }
+
+        class Star {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 1.5;
+                this.opacity = Math.random();
+                this.twinkleSpeed = 0.005 + Math.random() * 0.015;
+                this.twinkleDirection = Math.random() > 0.5 ? 1 : -1;
+                // Deeper stars move slower for 3D parallax depth
+                this.parallaxFactor = this.size * 0.02; 
+            }
+
+            draw() {
+                // Apply twinkling
+                this.opacity += this.twinkleSpeed * this.twinkleDirection;
+                if (this.opacity >= 1) {
+                    this.opacity = 1;
+                    this.twinkleDirection = -1;
+                } else if (this.opacity <= 0.1) {
+                    this.opacity = 0.1;
+                    this.twinkleDirection = 1;
+                }
+
+                // Apply interactive mouse parallax
+                const offsetX = mousePos.x * this.parallaxFactor;
+                const offsetY = mousePos.y * this.parallaxFactor;
+
+                ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`;
+                ctx.beginPath();
+                ctx.arc(this.x + offsetX, this.y + offsetY, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        class ShootingStar {
+            constructor() {
+                this.reset();
+            }
+
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = 0;
+                this.len = 60 + Math.random() * 80;
+                this.speed = 8 + Math.random() * 12;
+                this.dx = this.speed;
+                this.dy = this.speed * 0.6; // slant angle
+                this.opacity = 1;
+                this.fade = 0.015 + Math.random() * 0.02;
+            }
+
+            draw() {
+                this.x += this.dx;
+                this.y += this.dy;
+                this.opacity -= this.fade;
+
+                if (this.opacity <= 0) {
+                    return false;
+                }
+
+                ctx.strokeStyle = `rgba(0, 212, 255, ${this.opacity})`;
+                ctx.lineWidth = 1.5;
+                ctx.beginPath();
+                ctx.moveTo(this.x, this.y);
+                ctx.lineTo(this.x - this.len, this.y - (this.len * 0.6));
+                ctx.stroke();
+
+                return true;
+            }
+        }
+
+        function initStars() {
+            stars = [];
+            const count = Math.floor((canvas.width * canvas.height) / 8000);
+            for (let i = 0; i < count; i++) {
+                stars.push(new Star());
+            }
+        }
+
+        function animate() {
+            // Very dark subtle transparent sky clearing
+            ctx.fillStyle = 'rgba(3, 5, 12, 0.2)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // Easing the mouse position for smooth lag parallax effect
+            mousePos.x += (targetMousePos.x - mousePos.x) * 0.05;
+            mousePos.y += (targetMousePos.y - mousePos.y) * 0.05;
+
+            // Draw all stars
+            stars.forEach(star => star.draw());
+
+            // Random shooting stars chance
+            if (Math.random() < 0.0008 && shootingStars.length < 2) {
+                shootingStars.push(new ShootingStar());
+            }
+
+            // Draw and filter active shooting stars
+            shootingStars = shootingStars.filter(star => star.draw());
+
+            requestAnimationFrame(animate);
+        }
+
+        window.addEventListener('resize', resizeCanvas);
+        window.addEventListener('mousemove', (e) => {
+            // Normalize coordinates from center screen
+            targetMousePos.x = e.clientX - window.innerWidth / 2;
+            targetMousePos.y = e.clientY - window.innerHeight / 2;
+        });
+
+        resizeCanvas();
+        animate();
     </script>
 </body>
 </html>
