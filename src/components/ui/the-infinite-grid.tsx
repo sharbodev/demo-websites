@@ -2,85 +2,174 @@
 
 import React, { useState, useRef, useEffect } from "react";
 import { cn } from "@/lib/utils";
-import { 
-  motion, 
-  useMotionValue, 
-  useMotionTemplate, 
-  useAnimationFrame 
-} from "framer-motion";
 
-export const Component = () => {
-  const [count, setCount] = useState(0);
+interface Dot {
+  x0: number; // original X
+  y0: number; // original Y
+  x: number;  // current X
+  y: number;  // current Y
+  opacity: number;
+}
+
+export const TheInfiniteGrid = () => {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const mouse = useRef({ x: -1000, y: -1000 });
+  const dots = useRef<Dot[]>([]);
 
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const { left, top } = e.currentTarget.getBoundingClientRect();
-    mouseX.set(e.clientX - left);
-    mouseY.set(e.clientY - top);
-  };
+    const handleMouseMove = (e: MouseEvent) => {
+      const rect = container.getBoundingClientRect();
+      mouse.current.x = e.clientX - rect.left;
+      mouse.current.y = e.clientY - rect.top;
+    };
 
-  const gridOffsetX = useMotionValue(0);
-  const gridOffsetY = useMotionValue(0);
+    const handleMouseLeave = () => {
+      mouse.current.x = -1000;
+      mouse.current.y = -1000;
+    };
 
-  const speedX = 0.5; 
-  const speedY = 0.5;
+    container.addEventListener("mousemove", handleMouseMove);
+    container.addEventListener("mouseleave", handleMouseLeave);
+    return () => {
+      container.removeEventListener("mousemove", handleMouseMove);
+      container.removeEventListener("mouseleave", handleMouseLeave);
+    };
+  }, []);
 
-  useAnimationFrame(() => {
-    const currentX = gridOffsetX.get();
-    const currentY = gridOffsetY.get();
-    gridOffsetX.set((currentX + speedX) % 40);
-    gridOffsetY.set((currentY + speedY) % 40);
-  });
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    const container = containerRef.current;
+    if (!canvas || !container) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
 
-  const maskImage = useMotionTemplate`radial-gradient(300px circle at ${mouseX}px ${mouseY}px, black, transparent)`;
+    let animationFrameId: number;
+    const gap = 35; // dense and visual grid spacing
+
+    const initDots = () => {
+      const rect = container.getBoundingClientRect();
+      const w = rect.width;
+      const h = rect.height;
+      
+      const dpr = window.devicePixelRatio || 1;
+      canvas.width = w * dpr;
+      canvas.height = h * dpr;
+      ctx.resetTransform();
+      ctx.scale(dpr, dpr);
+
+      const tempDots: Dot[] = [];
+      const cols = Math.ceil(w / gap) + 1;
+      const rows = Math.ceil(h / gap) + 1;
+
+      for (let c = 0; c < cols; c++) {
+        for (let r = 0; r < rows; r++) {
+          const x = c * gap;
+          const y = r * gap;
+          tempDots.push({
+            x0: x,
+            y0: y,
+            x: x,
+            y: y,
+            opacity: 0.18,
+          });
+        }
+      }
+      dots.current = tempDots;
+    };
+
+    initDots();
+
+    const resizeObserver = new ResizeObserver(() => {
+      initDots();
+    });
+    resizeObserver.observe(container);
+
+    const repelRadius = 130;
+    const maxRepel = 40;
+    const ease = 0.08;
+
+    const animate = () => {
+      const rect = container.getBoundingClientRect();
+      ctx.clearRect(0, 0, rect.width, rect.height);
+
+      dots.current.forEach((dot) => {
+        const dx = dot.x0 - mouse.current.x;
+        const dy = dot.y0 - mouse.current.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+
+        let targetX = dot.x0;
+        let targetY = dot.y0;
+        let targetOpacity = 0.16;
+        let force = 0;
+
+        if (dist < repelRadius) {
+          force = (repelRadius - dist) / repelRadius; // 1 to 0
+          const angle = Math.atan2(dy, dx);
+          const push = force * maxRepel;
+
+          targetX = dot.x0 + Math.cos(angle) * push;
+          targetY = dot.y0 + Math.sin(angle) * push;
+          targetOpacity = 0.16 + force * 0.7; // shines bright
+        }
+
+        dot.x += (targetX - dot.x) * ease;
+        dot.y += (targetY - dot.y) * ease;
+        dot.opacity += (targetOpacity - dot.opacity) * ease;
+
+        ctx.beginPath();
+        // Shift color from slate-blue to cyan-blue based on mouse proximity
+        const r = Math.floor(143 + (56 - 143) * force);
+        const g = Math.floor(160 + (189 - 160) * force);
+        const b = Math.floor(181 + (248 - 181) * force);
+
+        ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${dot.opacity})`;
+        const radius = 1.0 + force * 1.5; // grows up to 2.5px
+        ctx.arc(dot.x, dot.y, radius, 0, Math.PI * 2);
+        ctx.fill();
+      });
+
+      animationFrameId = requestAnimationFrame(animate);
+    };
+
+    animate();
+
+    return () => {
+      cancelAnimationFrame(animationFrameId);
+      resizeObserver.disconnect();
+    };
+  }, []);
 
   return (
-    <div
-      ref={containerRef}
-      onMouseMove={handleMouseMove}
-      className={cn(
-        "relative w-full h-full min-h-[450px] flex flex-col items-center justify-center overflow-hidden bg-transparent"
-      )}
-    >
-      <div className="absolute inset-0 z-0 opacity-[0.05]">
-        <GridPattern offsetX={gridOffsetX} offsetY={gridOffsetY} />
-      </div>
-      <motion.div 
-        className="absolute inset-0 z-0 opacity-40"
-        style={{ maskImage, WebkitMaskImage: maskImage }}
-      >
-        <GridPattern offsetX={gridOffsetX} offsetY={gridOffsetY} />
-      </motion.div>
-
+    <div ref={containerRef} className="relative w-full h-full min-h-[450px] bg-transparent overflow-hidden">
+      <canvas
+        ref={canvasRef}
+        className="absolute inset-0 w-full h-full pointer-events-none opacity-85"
+      />
+      {/* Dynamic ambient lights */}
       <div className="absolute inset-0 pointer-events-none z-0">
         <div className="absolute right-[-20%] top-[-20%] w-[40%] h-[40%] rounded-full bg-blue-500/10 blur-[120px]" />
         <div className="absolute right-[10%] top-[-10%] w-[20%] h-[20%] rounded-full bg-cyan-500/10 blur-[100px]" />
         <div className="absolute left-[-10%] bottom-[-20%] w-[40%] h-[40%] rounded-full bg-indigo-500/10 blur-[120px]" />
       </div>
 
-      <div className="relative z-10 flex flex-col items-center text-center px-6 max-w-2xl mx-auto space-y-6 pointer-events-none">
-         <div className="space-y-3">
+      <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-6 max-w-2xl mx-auto space-y-6 pointer-events-none py-16">
+        <div className="space-y-3">
           <h3 className="text-3xl md:text-5xl font-extrabold tracking-tight text-white drop-shadow-sm font-outfit">
             Интерактивный Холст
           </h3>
           <p className="text-sm md:text-base text-[#8fa0b5] max-w-lg mx-auto leading-relaxed">
-            Поводите курсором по холсту, чтобы проявить скрытые слои интерфейса. Фоновый паттерн медленно скроллится, симулируя технологичный фон.
+            Поводите курсором по холсту, чтобы увидеть, как высокотехнологичная сетка точек рассыпается и деформируется под вашим движением.
           </p>
         </div>
         
         <div className="flex gap-4 pointer-events-auto">
-          <button 
-              onClick={() => setCount(count + 1)}
-              className="px-6 py-3 bg-blue-600 hover:bg-blue-500 text-white font-semibold rounded-lg shadow-lg active:scale-95 transition-all text-sm cursor-pointer"
-          >
-              Взаимодействовать ({count})
-          </button>
           <a 
               href="#contact"
-              className="px-6 py-3 bg-white/5 hover:bg-white/10 text-white font-semibold rounded-lg border border-white/10 active:scale-95 transition-all text-sm text-center flex items-center justify-center"
+              className="px-6 py-3 bg-blue-600 hover:bg-blue-500 text-white font-semibold rounded-lg shadow-lg active:scale-95 transition-all text-sm text-center flex items-center justify-center border border-white/5"
           >
               Обсудить проект
           </a>
@@ -90,77 +179,126 @@ export const Component = () => {
   );
 };
 
-const GridPattern = ({ offsetX, offsetY }: { offsetX: any, offsetY: any }) => {
-  return (
-    <svg className="w-full h-full">
-      <defs>
-        <motion.pattern
-          id="grid-pattern"
-          width="40"
-          height="40"
-          patternUnits="userSpaceOnUse"
-          x={offsetX}
-          y={offsetY}
-        >
-          <path
-            d="M 40 0 L 0 0 0 40"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1"
-            className="text-muted-foreground" 
-          />
-        </motion.pattern>
-      </defs>
-      <rect width="100%" height="100%" fill="url(#grid-pattern)" />
-    </svg>
-  );
-};
-
-export const TheInfiniteGrid = Component;
-
 export const GlobalInfiniteGrid = () => {
-  const mouseX = useMotionValue(-1000);
-  const mouseY = useMotionValue(-1000);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const mouse = useRef({ x: -1000, y: -1000 });
+  const dots = useRef<Dot[]>([]);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
-      mouseX.set(e.clientX);
-      mouseY.set(e.clientY);
+      mouse.current.x = e.clientX;
+      mouse.current.y = e.clientY;
     };
-    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("mousemove", handleMouseMove, { passive: true });
     return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, [mouseX, mouseY]);
+  }, []);
 
-  const gridOffsetX = useMotionValue(0);
-  const gridOffsetY = useMotionValue(0);
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
 
-  const speedX = 0.2; // slow and cinematic
-  const speedY = 0.2;
+    let animationFrameId: number;
+    const gap = 38; // visual screen-wide grid spacing
 
-  useAnimationFrame(() => {
-    const currentX = gridOffsetX.get();
-    const currentY = gridOffsetY.get();
-    gridOffsetX.set((currentX + speedX) % 40);
-    gridOffsetY.set((currentY + speedY) % 40);
-  });
+    const initDots = () => {
+      const w = window.innerWidth;
+      const h = window.innerHeight;
+      
+      const dpr = window.devicePixelRatio || 1;
+      canvas.width = w * dpr;
+      canvas.height = h * dpr;
+      ctx.resetTransform();
+      ctx.scale(dpr, dpr);
 
-  // Radial mask follows mouse globally across screen
-  const maskImage = useMotionTemplate`radial-gradient(280px circle at ${mouseX}px ${mouseY}px, black, transparent)`;
+      const tempDots: Dot[] = [];
+      const cols = Math.ceil(w / gap) + 1;
+      const rows = Math.ceil(h / gap) + 1;
+
+      for (let c = 0; c < cols; c++) {
+        for (let r = 0; r < rows; r++) {
+          const x = c * gap;
+          const y = r * gap;
+          tempDots.push({
+            x0: x,
+            y0: y,
+            x: x,
+            y: y,
+            opacity: 0.18, // beautiful high-end baseline visibility
+          });
+        }
+      }
+      dots.current = tempDots;
+    };
+
+    initDots();
+
+    const handleResize = () => {
+      initDots();
+    };
+    window.addEventListener("resize", handleResize);
+
+    const repelRadius = 140; // cursor reaction radius
+    const maxRepel = 45; // push distance
+    const ease = 0.08; // inertia ease return
+
+    const animate = () => {
+      const w = window.innerWidth;
+      const h = window.innerHeight;
+      ctx.clearRect(0, 0, w, h);
+
+      dots.current.forEach((dot) => {
+        const dx = dot.x0 - mouse.current.x;
+        const dy = dot.y0 - mouse.current.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+
+        let targetX = dot.x0;
+        let targetY = dot.y0;
+        let targetOpacity = 0.16;
+        let force = 0;
+
+        if (dist < repelRadius) {
+          force = (repelRadius - dist) / repelRadius;
+          const angle = Math.atan2(dy, dx);
+          const push = force * maxRepel;
+          
+          targetX = dot.x0 + Math.cos(angle) * push;
+          targetY = dot.y0 + Math.sin(angle) * push;
+          targetOpacity = 0.16 + force * 0.7; // glows bright near mouse
+        }
+
+        dot.x += (targetX - dot.x) * ease;
+        dot.y += (targetY - dot.y) * ease;
+        dot.opacity += (targetOpacity - dot.opacity) * ease;
+
+        ctx.beginPath();
+        const r = Math.floor(143 + (56 - 143) * force);
+        const g = Math.floor(160 + (189 - 160) * force);
+        const b = Math.floor(181 + (248 - 181) * force);
+
+        ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${dot.opacity})`;
+        const radius = 1.0 + force * 1.5;
+        ctx.arc(dot.x, dot.y, radius, 0, Math.PI * 2);
+        ctx.fill();
+      });
+
+      animationFrameId = requestAnimationFrame(animate);
+    };
+
+    animate();
+
+    return () => {
+      cancelAnimationFrame(animationFrameId);
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   return (
-    <div className="fixed inset-0 w-full h-full pointer-events-none z-[1] overflow-hidden">
-      {/* 1. Base extremely faint scrolling grid (opacity 1.5%) */}
-      <div className="absolute inset-0 z-0 opacity-[0.015] text-[#8fa0b5]">
-        <GridPattern offsetX={gridOffsetX} offsetY={gridOffsetY} />
-      </div>
-      
-      {/* 2. Active illuminated grid layer revealed around global mouse position */}
-      <motion.div 
-        className="absolute inset-0 z-0 opacity-25 text-blue-400"
-        style={{ maskImage, WebkitMaskImage: maskImage }}
-      >
-        <GridPattern offsetX={gridOffsetX} offsetY={gridOffsetY} />
-      </motion.div>
-    </div>
+    <canvas
+      ref={canvasRef}
+      className="fixed inset-0 w-full h-full pointer-events-none z-[1] opacity-70"
+      style={{ width: "100vw", height: "100vh" }}
+    />
   );
 };
