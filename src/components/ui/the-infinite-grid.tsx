@@ -42,7 +42,7 @@ export const Component = () => {
       ref={containerRef}
       onMouseMove={handleMouseMove}
       className={cn(
-        "relative w-full h-screen flex flex-col items-center justify-center overflow-hidden bg-background"
+        "relative w-full h-full min-h-[450px] flex flex-col items-center justify-center overflow-hidden bg-transparent"
       )}
     >
       <div className="absolute inset-0 z-0 opacity-[0.05]">
@@ -56,34 +56,34 @@ export const Component = () => {
       </motion.div>
 
       <div className="absolute inset-0 pointer-events-none z-0">
-        <div className="absolute right-[-20%] top-[-20%] w-[40%] h-[40%] rounded-full bg-orange-500/40 dark:bg-orange-600/20 blur-[120px]" />
-        <div className="absolute right-[10%] top-[-10%] w-[20%] h-[20%] rounded-full bg-primary/30 blur-[100px]" />
-        <div className="absolute left-[-10%] bottom-[-20%] w-[40%] h-[40%] rounded-full bg-blue-500/40 dark:bg-blue-600/20 blur-[120px]" />
+        <div className="absolute right-[-20%] top-[-20%] w-[40%] h-[40%] rounded-full bg-blue-500/10 blur-[120px]" />
+        <div className="absolute right-[10%] top-[-10%] w-[20%] h-[20%] rounded-full bg-cyan-500/10 blur-[100px]" />
+        <div className="absolute left-[-10%] bottom-[-20%] w-[40%] h-[40%] rounded-full bg-indigo-500/10 blur-[120px]" />
       </div>
 
-      <div className="relative z-10 flex flex-col items-center text-center px-4 max-w-3xl mx-auto space-y-6 pointer-events-none">
-         <div className="space-y-2">
-          <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-foreground drop-shadow-sm">
-            The Infinite Grid
-          </h1>
-          <p className="text-lg md:text-xl text-muted-foreground">
-            Move your cursor to reveal the active grid layer. <br/>
-            The pattern scrolls infinitely in the background.
+      <div className="relative z-10 flex flex-col items-center text-center px-6 max-w-2xl mx-auto space-y-6 pointer-events-none">
+         <div className="space-y-3">
+          <h3 className="text-3xl md:text-5xl font-extrabold tracking-tight text-white drop-shadow-sm font-outfit">
+            Интерактивный Холст
+          </h3>
+          <p className="text-sm md:text-base text-[#8fa0b5] max-w-lg mx-auto leading-relaxed">
+            Поводите курсором по холсту, чтобы проявить скрытые слои интерфейса. Фоновый паттерн медленно скроллится, симулируя технологичный фон.
           </p>
         </div>
         
         <div className="flex gap-4 pointer-events-auto">
           <button 
               onClick={() => setCount(count + 1)}
-              className="px-8 py-3 bg-primary text-primary-foreground font-semibold rounded-md hover:bg-primary/90 transition-all shadow-md active:scale-95"
+              className="px-6 py-3 bg-blue-600 hover:bg-blue-500 text-white font-semibold rounded-lg shadow-lg active:scale-95 transition-all text-sm cursor-pointer"
           >
-              Interact ({count})
+              Взаимодействовать ({count})
           </button>
-          <button 
-              className="px-8 py-3 bg-secondary text-secondary-foreground font-semibold rounded-md hover:bg-secondary/80 transition-all active:scale-95"
+          <a 
+              href="#contact"
+              className="px-6 py-3 bg-white/5 hover:bg-white/10 text-white font-semibold rounded-lg border border-white/10 active:scale-95 transition-all text-sm text-center flex items-center justify-center"
           >
-              Learn More
-          </button>
+              Обсудить проект
+          </a>
         </div>
       </div>
     </div>

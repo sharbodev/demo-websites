@@ -27,6 +27,7 @@ import {
 import { LocationTag } from "@/components/ui/location-tag";
 import PricingSection4 from "@/components/ui/pricing-section-4";
 import { Testimonials } from "@/components/ui/unique-testimonial";
+import { TheInfiniteGrid } from "@/components/ui/the-infinite-grid";
 
 export default function Home() {
   const [scrolled, setScrolled] = useState(false);
@@ -512,6 +513,20 @@ export default function Home() {
               </div>
             ))}
           </Marquee>
+        </div>
+      </section>
+
+      {/* ========== INTERACTIVE GRID SHOWCASE ========== */}
+      <section className="section bg-[#070a13] border-y border-white/5 relative z-20 overflow-hidden" id="sandbox">
+        <div className="max-w-6xl mx-auto px-6 text-center">
+          <div className="section-header">
+            <span className="section-label">Лаборатория интерактива</span>
+            <h2 className="section-title">Интерактивный Холст</h2>
+            <p className="section-desc">Поводите курсором мыши по области ниже, чтобы проявить активный слой бесконечной сетки с эффектом следования света</p>
+          </div>
+        </div>
+        <div className="h-[450px] relative w-full overflow-hidden border border-white/5 rounded-3xl max-w-5xl mx-auto my-6 bg-[#050811]/90 shadow-2xl backdrop-blur-md">
+          <TheInfiniteGrid />
         </div>
       </section>
 
