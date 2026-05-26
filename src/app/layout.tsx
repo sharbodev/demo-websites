@@ -1,16 +1,16 @@
 import type { Metadata } from "next";
-import { Inter, Outfit } from "next/font/google";
+import { Manrope, Unbounded } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({
+const manrope = Manrope({
   variable: "--font-sans",
   subsets: ["latin", "cyrillic"],
   weight: ["300", "400", "500", "600", "700", "800"],
 });
 
-const outfit = Outfit({
+const unbounded = Unbounded({
   variable: "--font-outfit",
-  subsets: ["latin"],
+  subsets: ["latin", "cyrillic"],
   weight: ["500", "600", "700", "800", "900"],
 });
 
@@ -27,7 +27,7 @@ export default function RootLayout({
   return (
     <html
       lang="ru"
-      className={`${inter.variable} ${outfit.variable} dark h-full antialiased`}
+      className={`${manrope.variable} ${unbounded.variable} dark h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-[#0a0d15] text-[#f1f5f9]">{children}</body>
     </html>
