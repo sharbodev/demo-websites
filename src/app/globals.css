@@ -51,6 +51,8 @@
   --animate-aurora: aurora 60s linear infinite;
   --animate-spotlight: spotlight 2s ease 0.75s 1 normal forwards;
   --animate-float: float 4s ease-in-out infinite;
+  --animate-marquee: marquee var(--duration) linear infinite;
+  --animate-marquee-vertical: marquee-vertical var(--duration) linear infinite;
 
   @keyframes aurora {
     from {
@@ -78,6 +80,24 @@
     }
     50% {
       transform: translateY(-10px);
+    }
+  }
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(calc(-100% - var(--gap)));
+    }
+  }
+
+  @keyframes marquee-vertical {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(calc(-100% - var(--gap)));
     }
   }
 }

@@ -7,6 +7,7 @@ import AnoAI from "@/components/ui/animated-shader-background";
 import { Spotlight } from "@/components/ui/ibelick-spotlight";
 import { Card } from "@/components/ui/card";
 import { ContainerScroll } from "@/components/ui/container-scroll-animation";
+import { Marquee } from "@/components/ui/marquee";
 import { 
   Activity, 
   Utensils, 
@@ -17,7 +18,11 @@ import {
   Zap, 
   DollarSign, 
   Layout, 
-  CheckCircle 
+  CheckCircle,
+  Clock,
+  Tag,
+  Laptop,
+  Smartphone
 } from "lucide-react";
 
 export default function Home() {
@@ -369,32 +374,134 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ========== WHY ========== */}
+      {/* ========== WHY US (Bento Grid) ========== */}
       <section className="section relative z-20" id="why">
         <div className="max-w-6xl mx-auto px-6">
           <div className="section-header">
             <span className="section-label">Преимущества</span>
-            <h2 className="section-title">Почему работают с нами</h2>
-            <p className="section-desc">Сочетаем скорость, доступные цены и безупречный визуальный стиль</p>
+            <h2 className="section-title">Почему выбирают WebPro.kg</h2>
+            <p className="section-desc">Создаем сайты, которые реально работают на ваш бизнес и окупаются с первых дней</p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {[
-              "Очень быстро: 3–5 дней",
-              "Доступная цена: от 5 000 сом",
-              "Космический премиум-дизайн",
-              "Идеальный вид на смартфонах",
-              "Лиды напрямую в WhatsApp",
-              "Сопровождение и доработка",
-            ].map((adv, idx) => (
-              <div key={idx} className="bg-[#0a0e1a]/85 border border-white/5 rounded-2xl px-6 py-4 flex items-center gap-4 hover:border-white/10 transition-all">
-                <div className="w-9 h-9 bg-blue-500/5 rounded-lg flex items-center justify-center text-blue-400 border border-blue-500/10">
-                  <CheckCircle className="w-4 h-4 text-cyan-400" />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            
+            {/* 1. SPEED CARD (2 columns on medium+) */}
+            <div className="md:col-span-2 relative bg-[#0a0e1a]/85 border border-white/5 rounded-3xl p-8 hover:border-blue-500/20 transition-all flex flex-col justify-between overflow-hidden group min-h-[260px]">
+              <Spotlight className="from-blue-600/10 via-transparent to-transparent" size={300} />
+              <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/5 rounded-full blur-3xl group-hover:bg-blue-500/10 transition-colors" />
+              <div>
+                <div className="w-12 h-12 bg-blue-500/10 border border-blue-500/20 rounded-xl flex items-center justify-center text-blue-400 mb-6 group-hover:scale-110 transition-transform">
+                  <Clock className="w-6 h-6" />
                 </div>
-                <span className="font-semibold text-sm text-[#f1f5f9]">{adv}</span>
+                <h3 className="font-outfit font-extrabold text-2xl text-white mb-3">Космическая скорость разработки</h3>
+                <p className="text-sm text-[#8fa0b5] max-w-md leading-relaxed">
+                  Ваш полностью готовый, наполненный и рабочий сайт будет запущен всего за **3–5 дней**. Сверхбыстрая разработка без потери премиального качества.
+                </p>
+              </div>
+              <div className="mt-6 flex items-center gap-3 bg-white/5 border border-white/5 rounded-full px-4 py-2 w-fit backdrop-blur-md">
+                <span className="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-ping" />
+                <span className="text-xs font-semibold text-cyan-400 uppercase tracking-wider">Разработка запущена</span>
+              </div>
+            </div>
+
+            {/* 2. PRICE CARD (1 column) */}
+            <div className="relative bg-[#0a0e1a]/85 border border-white/5 rounded-3xl p-8 hover:border-blue-500/20 transition-all flex flex-col justify-between overflow-hidden group min-h-[260px]">
+              <Spotlight className="from-amber-600/10 via-transparent to-transparent" size={240} />
+              <div>
+                <div className="w-12 h-12 bg-amber-500/10 border border-amber-500/20 rounded-xl flex items-center justify-center text-amber-400 mb-6 group-hover:scale-110 transition-transform">
+                  <Tag className="w-6 h-6" />
+                </div>
+                <h3 className="font-outfit font-extrabold text-2xl text-white mb-3">Прозрачная стоимость</h3>
+                <p className="text-sm text-[#8fa0b5] leading-relaxed">
+                  Стоимость разработки стартует **от 5 000 сом**. Полная прозрачность: никаких скрытых переплат, навязанных услуг или лишних ежемесячных подписок.
+                </p>
+              </div>
+              <div className="mt-6 text-sm font-semibold text-amber-400 uppercase tracking-wider">
+                Без скрытых платежей
+              </div>
+            </div>
+
+            {/* 3. RESPONSIVENESS CARD (1 column) */}
+            <div className="relative bg-[#0a0e1a]/85 border border-white/5 rounded-3xl p-8 hover:border-blue-500/20 transition-all flex flex-col justify-between overflow-hidden group min-h-[260px]">
+              <Spotlight className="from-indigo-600/10 via-transparent to-transparent" size={240} />
+              <div>
+                <div className="w-12 h-12 bg-indigo-500/10 border border-indigo-500/20 rounded-xl flex items-center justify-center text-indigo-400 mb-6 group-hover:scale-110 transition-transform">
+                  <Laptop className="w-6 h-6" />
+                </div>
+                <h3 className="font-outfit font-extrabold text-2xl text-white mb-3">100% адаптивность</h3>
+                <p className="text-sm text-[#8fa0b5] leading-relaxed">
+                  Ваш сайт будет выглядеть безупречно и открываться моментально на любых смартфонах, планшетах и компьютерах с сохранением всех интерактивных эффектов.
+                </p>
+              </div>
+              <div className="mt-6 flex gap-4 text-[#8fa0b5]">
+                <Smartphone className="w-5 h-5 group-hover:text-indigo-400 transition-colors" />
+                <Laptop className="w-5 h-5 group-hover:text-indigo-400 transition-colors" />
+              </div>
+            </div>
+
+            {/* 4. WHATSAPP CARD (2 columns on medium+) */}
+            <div className="md:col-span-2 relative bg-[#0a0e1a]/85 border border-white/5 rounded-3xl p-8 hover:border-blue-500/20 transition-all flex flex-col justify-between overflow-hidden group min-h-[260px]">
+              <Spotlight className="from-emerald-600/10 via-transparent to-transparent" size={300} />
+              <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-500/5 rounded-full blur-3xl group-hover:bg-emerald-500/10 transition-colors" />
+              <div>
+                <div className="w-12 h-12 bg-emerald-500/10 border border-emerald-500/20 rounded-xl flex items-center justify-center text-emerald-400 mb-6 group-hover:scale-110 transition-transform">
+                  <MessageSquare className="w-6 h-6" />
+                </div>
+                <h3 className="font-outfit font-extrabold text-2xl text-white mb-3">Лиды напрямую в ваш WhatsApp</h3>
+                <p className="text-sm text-[#8fa0b5] max-w-md leading-relaxed">
+                  Настроим моментальную отправку заполненных заявок с сайта прямо на ваш личный WhatsApp-номер. Мгновенно узнавайте о новых клиентах и отвечайте им в один клик.
+                </p>
+              </div>
+              <div className="mt-6 flex flex-col sm:flex-row sm:items-center gap-4 bg-emerald-500/5 border border-emerald-500/10 rounded-2xl p-4 w-full sm:w-fit max-w-sm backdrop-blur-md">
+                <div className="w-10 h-10 rounded-full bg-emerald-600 flex items-center justify-center shrink-0">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                </div>
+                <div className="flex-1 text-left">
+                  <div className="text-[10px] text-[#8fa0b5] font-semibold uppercase tracking-wider">Новое сообщение:</div>
+                  <div className="text-xs text-white italic">«Здравствуйте! Хочу заказать расчет сметы...»</div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* ========== TESTIMONIALS (Marquee) ========== */}
+      <section className="section bg-[#050811] border-y border-white/5 relative z-20 overflow-hidden">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="section-header">
+            <span className="section-label">Отзывы</span>
+            <h2 className="section-title">Что говорят о нашей работе</h2>
+            <p className="section-desc">Доверие клиентов — наш главный космический ресурс. Читайте отзывы реальных владельцев бизнеса</p>
+          </div>
+        </div>
+
+        <div className="relative flex w-full flex-col items-center justify-center overflow-hidden py-4">
+          <Marquee className="[--duration:35s] p-2" pauseOnHover={true}>
+            {[
+              { name: "Д-р Алмаз", role: "Стоматология «Белая Улыбка»", text: "Очень довольны работой! Сайт стоматологии запустили за 4 дня. Пациенты легко записываются через WhatsApp. Дизайн чистый и вызывает доверие!" },
+              { name: "Меерим", role: "Ресторан «Чайхана Бишкек»", text: "Заказали лендинг с красивым меню и бронью столов. Все заявки приходят напрямую мне в WhatsApp. Невероятно удобно и окупается с первого дня!" },
+              { name: "Данияр", role: "Учебный центр «Билим»", text: "Прекрасная скорость и уровень сервиса. Сделали интерактивное расписание, аккордеоны с FAQ и яркий дизайн. Будем сотрудничать дальше!" },
+              { name: "Арсен", role: "Автосервис «АвтоПро»", text: "Ребята сделали стильный темный сайт для детейлинга и ремонта. Сразу пошел приток клиентов с мобильных устройств. Рекомендую!" }
+            ].map((review, idx) => (
+              <div 
+                key={idx} 
+                className="relative w-80 cursor-pointer overflow-hidden rounded-2xl border border-white/5 bg-[#0a0e1a]/85 p-6 hover:border-blue-500/20 transition-all flex flex-col justify-between"
+              >
+                <div className="flex flex-col gap-3">
+                  <div className="flex items-center gap-1">
+                    <span className="text-yellow-400 font-bold text-sm">★★★★★</span>
+                  </div>
+                  <p className="text-xs text-[#8fa0b5] italic leading-relaxed">«{review.text}»</p>
+                </div>
+                <div className="mt-6 flex flex-col">
+                  <span className="text-xs font-bold text-white">{review.name}</span>
+                  <span className="text-[10px] text-[#566882] mt-0.5">{review.role}</span>
+                </div>
               </div>
             ))}
-          </div>
+          </Marquee>
         </div>
       </section>
 

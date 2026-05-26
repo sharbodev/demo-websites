@@ -12,14 +12,32 @@ const AnoAI = () => {
 
     const scene = new THREE.Scene();
     const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
-    const renderer = new THREE.WebGLRenderer({ antialias: true });
-    renderer.setSize(window.innerWidth, window.innerHeight);
+    
+    // Performance improvement: Turn off antialias since we are rendering at lower resolution anyway
+    const renderer = new THREE.WebGLRenderer({ antialias: false, powerPreference: "high-performance" });
+    
+    // Render at half resolution to decrease fragment shading cost by 4x, then scale up using CSS
+    const getRenderSize = () => {
+      const scale = 0.5; // 50% scale
+      return {
+        width: Math.max(256, Math.floor(window.innerWidth * scale)),
+        height: Math.max(256, Math.floor(window.innerHeight * scale))
+      };
+    };
+
+    const size = getRenderSize();
+    renderer.setSize(size.width, size.height, false);
+    renderer.domElement.style.width = '100%';
+    renderer.domElement.style.height = '100%';
+    renderer.domElement.style.position = 'absolute';
+    renderer.domElement.style.top = '0';
+    renderer.domElement.style.left = '0';
     container.appendChild(renderer.domElement);
 
     const material = new THREE.ShaderMaterial({
       uniforms: {
         iTime: { value: 0 },
-        iResolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight) }
+        iResolution: { value: new THREE.Vector2(size.width, size.height) }
       },
       vertexShader: `
         void main() {
@@ -30,7 +48,7 @@ const AnoAI = () => {
         uniform float iTime;
         uniform vec2 iResolution;
 
-        #define NUM_OCTAVES 3
+        #define NUM_OCTAVES 2
 
         float rand(vec2 n) {
           return fract(sin(dot(n, vec2(12.9898, 4.1414))) * 43758.5453);
@@ -68,9 +86,10 @@ const AnoAI = () => {
 
           float f = 2.0 + fbm(p + vec2(iTime * 5.0, 0.0)) * 0.5;
 
-          for (float i = 0.0; i < 35.0; i++) {
+          // Performance improvement: Decreased loop iterations from 35 to 14
+          for (float i = 0.0; i < 14.0; i++) {
             v = p + cos(i * i + (iTime + p.x * 0.08) * 0.025 + i * vec2(13.0, 11.0)) * 3.5 + vec2(sin(iTime * 3.0 + i) * 0.003, cos(iTime * 3.5 - i) * 0.003);
-            float tailNoise = fbm(v + vec2(iTime * 0.5, i)) * 0.3 * (1.0 - (i / 35.0));
+            float tailNoise = fbm(v + vec2(iTime * 0.5, i)) * 0.3 * (1.0 - (i / 14.0));
             vec4 auroraColors = vec4(
               0.1 + 0.3 * sin(i * 0.2 + iTime * 0.4),
               0.3 + 0.5 * cos(i * 0.3 + iTime * 0.5),
@@ -78,7 +97,7 @@ const AnoAI = () => {
               1.0
             );
             vec4 currentContribution = auroraColors * exp(sin(i * i + iTime * 0.8)) / length(max(v, vec2(v.x * f * 0.015, v.y * 1.5)));
-            float thinnessFactor = smoothstep(0.0, 1.0, i / 35.0) * 0.6;
+            float thinnessFactor = smoothstep(0.0, 1.0, i / 14.0) * 0.6;
             o += currentContribution * (1.0 + tailNoise * 0.8) * thinnessFactor;
           }
 
@@ -93,23 +112,37 @@ const AnoAI = () => {
     scene.add(mesh);
 
     let frameId: number;
+    let lastTime = performance.now();
+    
+    // FPS capping: run physics update & renders at around ~60fps
     const animate = () => {
-      material.uniforms.iTime.value += 0.016;
-      renderer.render(scene, camera);
       frameId = requestAnimationFrame(animate);
+      
+      const time = performance.now();
+      const delta = time - lastTime;
+      
+      // Throttle render loop if tab is out of focus or updates are too fast (cap at 60 FPS)
+      if (delta >= 16) { 
+        material.uniforms.iTime.value += 0.016;
+        renderer.render(scene, camera);
+        lastTime = time - (delta % 16);
+      }
     };
     animate();
 
     const handleResize = () => {
-      renderer.setSize(window.innerWidth, window.innerHeight);
-      material.uniforms.iResolution.value.set(window.innerWidth, window.innerHeight);
+      const newSize = getRenderSize();
+      renderer.setSize(newSize.width, newSize.height, false);
+      material.uniforms.iResolution.value.set(newSize.width, newSize.height);
     };
     window.addEventListener('resize', handleResize);
 
     return () => {
       cancelAnimationFrame(frameId);
       window.removeEventListener('resize', handleResize);
-      container.removeChild(renderer.domElement);
+      if (container.contains(renderer.domElement)) {
+        container.removeChild(renderer.domElement);
+      }
       geometry.dispose();
       material.dispose();
       renderer.dispose();
@@ -117,9 +150,7 @@ const AnoAI = () => {
   }, []);
 
   return (
-    <div ref={containerRef} className="relative overflow-x-hidden">
-      <div className="relative z-10 divider" />
-    </div>
+    <div ref={containerRef} className="absolute inset-0 w-full h-full overflow-hidden" />
   );
 };
 
