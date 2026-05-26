@@ -24,6 +24,9 @@ import {
   Laptop,
   Smartphone
 } from "lucide-react";
+import { LocationTag } from "@/components/ui/location-tag";
+import PricingSection4 from "@/components/ui/pricing-section-4";
+import { Testimonials } from "@/components/ui/unique-testimonial";
 
 export default function Home() {
   const [scrolled, setScrolled] = useState(false);
@@ -180,9 +183,8 @@ export default function Home() {
           <ContainerScroll
             titleComponent={
               <div className="text-center flex flex-col items-center">
-                <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-white/5 border border-white/10 rounded-full text-xs font-semibold tracking-wider uppercase text-blue-400 mb-6 backdrop-blur-md">
-                  <span className="w-2 h-2 bg-cyan-400 rounded-full shadow-lg shadow-cyan-400 animate-pulse" />
-                  Космический веб-дизайн в Бишкеке
+                <div className="mb-6">
+                  <LocationTag city="Бишкек" country="Кыргызстан" timezone="KGT (GMT+6)" />
                 </div>
                 <h1 className="text-4xl md:text-7xl font-extrabold tracking-tight leading-none text-white max-w-4xl mx-auto">
                   Создаем сайты нового <br />
@@ -347,6 +349,13 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ========== PRICING SECTION ========== */}
+      <section className="relative z-20" id="pricing">
+        <div className="max-w-6xl mx-auto px-6">
+          <PricingSection4 />
+        </div>
+      </section>
+
       {/* ========== PROCESS ========== */}
       <section className="section bg-[#050811] border-y border-white/5 relative z-20" id="process">
         <div className="max-w-6xl mx-auto px-6">
@@ -467,37 +476,38 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ========== TESTIMONIALS (Marquee) ========== */}
-      <section className="section bg-[#050811] border-y border-white/5 relative z-20 overflow-hidden">
+      {/* ========== TESTIMONIALS (Interactive Switcher & Marquee) ========== */}
+      <section className="section bg-[#050811] border-y border-white/5 relative z-20 overflow-hidden" id="testimonials">
         <div className="max-w-6xl mx-auto px-6">
           <div className="section-header">
             <span className="section-label">Отзывы</span>
             <h2 className="section-title">Что говорят о нашей работе</h2>
             <p className="section-desc">Доверие клиентов — наш главный космический ресурс. Читайте отзывы реальных владельцев бизнеса</p>
           </div>
+
+          {/* Interactive Testimonial Switcher */}
+          <div className="relative z-10 bg-[#0a0e1a]/40 border border-white/5 rounded-3xl p-4 md:p-8 backdrop-blur-md max-w-4xl mx-auto mb-16 shadow-2xl">
+            <Testimonials />
+          </div>
         </div>
 
-        <div className="relative flex w-full flex-col items-center justify-center overflow-hidden py-4">
-          <Marquee className="[--duration:35s] p-2" pauseOnHover={true}>
+        {/* Supporting Infinite Marquee Wall */}
+        <div className="relative flex w-full flex-col items-center justify-center overflow-hidden py-4 opacity-75">
+          <Marquee className="[--duration:45s] p-2" pauseOnHover={true}>
             {[
-              { name: "Д-р Алмаз", role: "Стоматология «Белая Улыбка»", text: "Очень довольны работой! Сайт стоматологии запустили за 4 дня. Пациенты легко записываются через WhatsApp. Дизайн чистый и вызывает доверие!" },
-              { name: "Меерим", role: "Ресторан «Чайхана Бишкек»", text: "Заказали лендинг с красивым меню и бронью столов. Все заявки приходят напрямую мне в WhatsApp. Невероятно удобно и окупается с первого дня!" },
-              { name: "Данияр", role: "Учебный центр «Билим»", text: "Прекрасная скорость и уровень сервиса. Сделали интерактивное расписание, аккордеоны с FAQ и яркий дизайн. Будем сотрудничать дальше!" },
-              { name: "Арсен", role: "Автосервис «АвтоПро»", text: "Ребята сделали стильный темный сайт для детейлинга и ремонта. Сразу пошел приток клиентов с мобильных устройств. Рекомендую!" }
+              { name: "Д-р Алмаз", role: "Стоматология «Белая Улыбка»", text: "Сайт стоматологии запустили за 4 дня. Пациенты легко записываются через WhatsApp." },
+              { name: "Меерим", role: "Ресторан «Чайхана Бишкек»", text: "Удобное интерактивное меню и бронь столов. Все заявки приходят напрямую мне в WhatsApp." },
+              { name: "Данияр", role: "Учебный центр «Билим»", text: "Сделали интерактивное расписание и яркий дизайн. Будем сотрудничать дальше!" },
+              { name: "Арсен", role: "Автосервис «АвтоПро»", text: "Ребята сделали стильный темный сайт для детейлинга и ремонта. Сразу пошел приток клиентов." }
             ].map((review, idx) => (
               <div 
                 key={idx} 
-                className="relative w-80 cursor-pointer overflow-hidden rounded-2xl border border-white/5 bg-[#0a0e1a]/85 p-6 hover:border-blue-500/20 transition-all flex flex-col justify-between"
+                className="relative w-80 cursor-pointer overflow-hidden rounded-xl border border-white/5 bg-[#0a0e1a]/60 p-5 hover:border-blue-500/20 transition-all flex flex-col justify-between"
               >
-                <div className="flex flex-col gap-3">
-                  <div className="flex items-center gap-1">
-                    <span className="text-yellow-400 font-bold text-sm">★★★★★</span>
-                  </div>
-                  <p className="text-xs text-[#8fa0b5] italic leading-relaxed">«{review.text}»</p>
-                </div>
-                <div className="mt-6 flex flex-col">
-                  <span className="text-xs font-bold text-white">{review.name}</span>
-                  <span className="text-[10px] text-[#566882] mt-0.5">{review.role}</span>
+                <p className="text-xs text-[#8fa0b5] italic leading-relaxed">«{review.text}»</p>
+                <div className="mt-4 flex items-center justify-between">
+                  <span className="text-[10px] font-bold text-white">{review.name}</span>
+                  <span className="text-[9px] text-[#566882]">{review.role}</span>
                 </div>
               </div>
             ))}
