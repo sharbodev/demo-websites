@@ -4,27 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WebPro.kg — Профессиональные сайты для бизнеса в Кыргызстане</title>
-    <meta name="description" content="Создаём красивые и эффективные сайты для бизнеса в Кыргызстане. Быстро, доступно, профессионально.">
+    <meta name="description" content="Создаём премиальные, быстрые и эффективные сайты для бизнеса в Кыргызстане. Дизайн мирового уровня с интеграцией WhatsApp.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #0F172A;
-            --bg-deep: #070D1A;
-            --surface: #1E293B;
-            --surface-light: #273548;
-            --primary: #6366F1;
-            --secondary: #8B5CF6;
-            --accent: #EC4899;
-            --gradient-start: #6366F1;
-            --gradient-end: #EC4899;
-            --text: #E2E8F0;
-            --muted: #94A3B8;
+            /* 1609plus inspired dark electric color scheme */
+            --bg: #060913;
+            --bg-deep: #03050a;
+            --surface: rgba(10, 14, 26, 0.7);
+            --surface-card: #0a0e1a;
+            --surface-hover: #12182c;
+            --primary: #0052FF;      /* Sleek Electric Blue */
+            --primary-glow: rgba(0, 82, 255, 0.15);
+            --secondary: #3b82f6;
+            --accent: #00D4FF;       /* Cyan */
+            --accent-glow: rgba(0, 212, 255, 0.15);
+            --border: rgba(255, 255, 255, 0.06);
+            --border-hover: rgba(0, 82, 255, 0.3);
+            --text: #F8FAFC;
+            --muted: #64748B;
             --white: #FFFFFF;
-            --radius: 16px;
-            --radius-sm: 10px;
-            --transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            --radius: 12px;
+            --radius-lg: 16px;
+            --transition: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         *, *::before, *::after {
@@ -42,7 +46,7 @@
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             background-color: var(--bg);
             color: var(--text);
-            line-height: 1.7;
+            line-height: 1.6;
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
@@ -52,6 +56,7 @@
             font-family: 'Outfit', sans-serif;
             line-height: 1.2;
             font-weight: 700;
+            letter-spacing: -0.02em;
         }
 
         a {
@@ -59,15 +64,22 @@
             text-decoration: none;
         }
 
-        img {
-            max-width: 100%;
-            display: block;
+        /* Dotted Grid Background just like 1609plus.com */
+        .grid-overlay {
+            position: fixed;
+            inset: 0;
+            background-image: radial-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 24px 24px;
+            pointer-events: none;
+            z-index: 1;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 24px;
+            position: relative;
+            z-index: 2;
         }
 
         /* ========== HEADER ========== */
@@ -78,14 +90,17 @@
             right: 0;
             z-index: 1000;
             padding: 0 24px;
-            transition: background var(--transition), box-shadow var(--transition), backdrop-filter var(--transition);
+            transition: all var(--transition);
+            border-bottom: 1px solid transparent;
         }
 
         .header.scrolled {
-            background: rgba(15, 23, 42, 0.82);
-            backdrop-filter: blur(20px) saturate(1.4);
-            -webkit-backdrop-filter: blur(20px) saturate(1.4);
-            box-shadow: 0 1px 0 rgba(255,255,255,0.04), 0 8px 32px rgba(0,0,0,0.3);
+            background: rgba(6, 9, 19, 0.8);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+            padding-top: 4px;
+            padding-bottom: 4px;
         }
 
         .header-inner {
@@ -100,103 +115,77 @@
         .logo {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
             font-family: 'Outfit', sans-serif;
             font-weight: 800;
-            font-size: 1.5rem;
-            letter-spacing: -0.02em;
+            font-size: 1.4rem;
+            letter-spacing: -0.03em;
         }
 
         .logo-icon {
-            width: 38px;
-            height: 38px;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            border-radius: 10px;
+            width: 32px;
+            height: 32px;
+            background: var(--primary);
+            border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
-            overflow: hidden;
-        }
-
-        .logo-icon::after {
-            content: '';
-            position: absolute;
-            inset: 2px;
-            background: var(--bg);
-            border-radius: 8px;
+            box-shadow: 0 0 20px var(--primary-glow);
         }
 
         .logo-icon svg {
-            position: relative;
-            z-index: 1;
+            width: 18px;
+            height: 18px;
         }
 
         .logo span {
-            background: linear-gradient(135deg, var(--white), var(--muted));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: var(--text);
         }
 
-        .logo .logo-dot {
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+        .logo span span {
+            color: var(--secondary);
         }
 
         .nav-desktop {
             display: none;
             align-items: center;
-            gap: 36px;
+            gap: 28px;
         }
 
         .nav-desktop a {
-            font-size: 0.9rem;
+            font-size: 0.88rem;
             font-weight: 500;
             color: var(--muted);
             transition: color var(--transition);
-            position: relative;
-        }
-
-        .nav-desktop a::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(90deg, var(--primary), var(--accent));
-            border-radius: 1px;
-            transition: width var(--transition);
+            padding: 6px 12px;
+            border-radius: 6px;
         }
 
         .nav-desktop a:hover {
-            color: var(--white);
-        }
-
-        .nav-desktop a:hover::after {
-            width: 100%;
+            color: var(--text);
+            background: rgba(255, 255, 255, 0.03);
         }
 
         .header-cta {
             display: none;
-            padding: 10px 24px;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            border: none;
-            border-radius: 50px;
+            padding: 10px 20px;
+            background: var(--primary);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
             color: var(--white);
             font-family: 'Inter', sans-serif;
             font-size: 0.85rem;
             font-weight: 600;
             cursor: pointer;
-            transition: transform var(--transition), box-shadow var(--transition);
+            transition: all var(--transition);
+            box-shadow: 0 4px 12px var(--primary-glow);
         }
 
         .header-cta:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 30px rgba(99, 102, 241, 0.4);
+            background: #1a66ff;
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(0, 82, 255, 0.35);
         }
 
         /* Hamburger */
@@ -213,7 +202,7 @@
 
         .hamburger span {
             display: block;
-            width: 24px;
+            width: 20px;
             height: 2px;
             background: var(--text);
             border-radius: 2px;
@@ -236,18 +225,18 @@
         .mobile-menu {
             position: fixed;
             inset: 0;
-            background: rgba(7, 13, 26, 0.96);
-            backdrop-filter: blur(24px);
-            -webkit-backdrop-filter: blur(24px);
+            background: rgba(3, 5, 10, 0.98);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             z-index: 999;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 32px;
+            gap: 24px;
             opacity: 0;
             pointer-events: none;
-            transition: opacity 0.4s ease;
+            transition: opacity 0.3s ease;
         }
 
         .mobile-menu.active {
@@ -257,25 +246,25 @@
 
         .mobile-menu a {
             font-family: 'Outfit', sans-serif;
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             font-weight: 600;
             color: var(--muted);
-            transition: color var(--transition), transform var(--transition);
+            transition: color var(--transition);
         }
 
         .mobile-menu a:hover {
-            color: var(--white);
-            transform: translateX(8px);
+            color: var(--text);
         }
 
         .mobile-menu .mobile-cta {
             margin-top: 16px;
-            padding: 14px 40px;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            border-radius: 50px;
-            font-size: 1.1rem;
+            padding: 12px 32px;
+            background: var(--primary);
+            border-radius: 8px;
+            font-size: 1rem;
             font-weight: 600;
             color: var(--white);
+            box-shadow: 0 4px 12px var(--primary-glow);
         }
 
         @media (min-width: 768px) {
@@ -291,256 +280,146 @@
             display: flex;
             align-items: center;
             overflow: hidden;
-            padding: 120px 0 80px;
+            padding: 140px 0 80px;
         }
 
-        .hero-bg {
-            position: absolute;
-            inset: 0;
-            overflow: hidden;
-        }
-
-        .hero-gradient-orb {
+        /* Sleek background radial glow elements just like 1609plus */
+        .hero-glow-blob {
             position: absolute;
             border-radius: 50%;
-            filter: blur(100px);
-            opacity: 0.35;
-            animation: orbFloat 20s ease-in-out infinite;
-        }
-
-        .hero-gradient-orb:nth-child(1) {
-            width: 600px;
-            height: 600px;
-            background: var(--primary);
-            top: -20%;
-            right: -10%;
-            animation-duration: 22s;
-        }
-
-        .hero-gradient-orb:nth-child(2) {
-            width: 500px;
-            height: 500px;
-            background: var(--accent);
-            bottom: -15%;
-            left: -10%;
-            animation-duration: 18s;
-            animation-delay: -5s;
-        }
-
-        .hero-gradient-orb:nth-child(3) {
-            width: 350px;
-            height: 350px;
-            background: var(--secondary);
-            top: 40%;
-            left: 30%;
-            animation-duration: 25s;
-            animation-delay: -10s;
-            opacity: 0.2;
-        }
-
-        @keyframes orbFloat {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            25% { transform: translate(40px, -30px) scale(1.05); }
-            50% { transform: translate(-20px, 20px) scale(0.95); }
-            75% { transform: translate(30px, 40px) scale(1.08); }
-        }
-
-        /* Floating Shapes */
-        .hero-shapes {
-            position: absolute;
-            inset: 0;
+            filter: blur(140px);
+            opacity: 0.15;
             pointer-events: none;
         }
 
-        .floating-shape {
-            position: absolute;
-            opacity: 0.08;
+        .hero-glow-blob-1 {
+            width: 500px;
+            height: 500px;
+            background: var(--primary);
+            top: -10%;
+            right: 5%;
         }
 
-        .floating-shape:nth-child(1) {
-            top: 15%;
-            left: 8%;
-            animation: floatShape1 16s ease-in-out infinite;
-        }
-        .floating-shape:nth-child(2) {
-            top: 25%;
-            right: 12%;
-            animation: floatShape2 20s ease-in-out infinite;
-        }
-        .floating-shape:nth-child(3) {
-            bottom: 20%;
-            left: 15%;
-            animation: floatShape3 18s ease-in-out infinite;
-        }
-        .floating-shape:nth-child(4) {
-            bottom: 30%;
-            right: 20%;
-            animation: floatShape1 22s ease-in-out infinite reverse;
-        }
-        .floating-shape:nth-child(5) {
-            top: 50%;
-            left: 50%;
-            animation: floatShape2 24s ease-in-out infinite;
-        }
-        .floating-shape:nth-child(6) {
-            top: 10%;
-            left: 45%;
-            animation: floatShape3 15s ease-in-out infinite reverse;
-        }
-
-        @keyframes floatShape1 {
-            0%, 100% { transform: translate(0,0) rotate(0deg); }
-            33% { transform: translate(30px,-25px) rotate(120deg); }
-            66% { transform: translate(-20px,15px) rotate(240deg); }
-        }
-        @keyframes floatShape2 {
-            0%, 100% { transform: translate(0,0) rotate(0deg); }
-            33% { transform: translate(-25px,30px) rotate(-90deg); }
-            66% { transform: translate(35px,-10px) rotate(-200deg); }
-        }
-        @keyframes floatShape3 {
-            0%, 100% { transform: translate(0,0) rotate(0deg); }
-            50% { transform: translate(20px,20px) rotate(180deg); }
-        }
-
-        /* Grid pattern overlay */
-        .hero-grid {
-            position: absolute;
-            inset: 0;
-            background-image:
-                linear-gradient(rgba(99, 102, 241, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(99, 102, 241, 0.03) 1px, transparent 1px);
-            background-size: 60px 60px;
-            mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
-            -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+        .hero-glow-blob-2 {
+            width: 400px;
+            height: 400px;
+            background: var(--accent);
+            bottom: 10%;
+            left: -10%;
         }
 
         .hero-content {
             position: relative;
             z-index: 2;
             text-align: center;
-            max-width: 800px;
+            max-width: 860px;
             margin: 0 auto;
         }
 
+        /* Rounded badge with border gradient feel */
         .hero-badge {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            padding: 8px 20px;
-            background: rgba(99, 102, 241, 0.12);
-            border: 1px solid rgba(99, 102, 241, 0.2);
-            border-radius: 50px;
-            font-size: 0.82rem;
+            padding: 6px 16px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            font-size: 0.8rem;
             font-weight: 500;
-            color: var(--primary);
-            margin-bottom: 32px;
+            color: var(--text);
+            margin-bottom: 24px;
             backdrop-filter: blur(8px);
         }
 
         .hero-badge-dot {
             width: 6px;
             height: 6px;
-            background: var(--primary);
+            background: var(--accent);
             border-radius: 50%;
-            animation: pulse 2s ease-in-out infinite;
+            box-shadow: 0 0 8px var(--accent);
+            animation: pulse-glow 2s infinite;
         }
 
-        @keyframes pulse {
+        @keyframes pulse-glow {
             0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.5; transform: scale(1.5); }
+            50% { opacity: 0.4; transform: scale(1.3); }
         }
 
         .hero h1 {
-            font-size: clamp(2.2rem, 5.5vw, 4rem);
+            font-size: clamp(2.4rem, 6vw, 4.4rem);
             font-weight: 900;
-            letter-spacing: -0.03em;
-            line-height: 1.1;
-            margin-bottom: 24px;
+            letter-spacing: -0.04em;
+            line-height: 1.05;
+            margin-bottom: 20px;
+            color: var(--white);
         }
 
-        .hero h1 .gradient-text {
-            background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
-            background-size: 200% auto;
+        .hero h1 span.gradient-text {
+            background: linear-gradient(135deg, #FFF 40%, rgba(255, 255, 255, 0.7) 70%, var(--secondary) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            animation: gradientShift 6s ease infinite;
         }
 
-        @keyframes gradientShift {
-            0%, 100% { background-position: 0% center; }
-            50% { background-position: 100% center; }
+        .hero h1 span.electric {
+            background: linear-gradient(90deg, #00D4FF, #0052FF);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 40px rgba(0, 82, 255, 0.2);
         }
 
         .hero-subtitle {
-            font-size: clamp(1rem, 2vw, 1.2rem);
+            font-size: clamp(1rem, 2vw, 1.15rem);
             color: var(--muted);
-            max-width: 600px;
-            margin: 0 auto 40px;
-            line-height: 1.8;
+            max-width: 620px;
+            margin: 0 auto 36px;
+            line-height: 1.7;
+            font-weight: 400;
         }
 
         .hero-actions {
             display: flex;
             flex-wrap: wrap;
-            gap: 16px;
+            gap: 14px;
             justify-content: center;
         }
 
         .btn-primary {
             display: inline-flex;
             align-items: center;
-            gap: 10px;
-            padding: 16px 36px;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            border: none;
-            border-radius: 60px;
+            gap: 8px;
+            padding: 14px 28px;
+            background: var(--primary);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
             color: var(--white);
             font-family: 'Inter', sans-serif;
-            font-size: 1rem;
+            font-size: 0.95rem;
             font-weight: 600;
             cursor: pointer;
-            transition: transform var(--transition), box-shadow var(--transition);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn-primary::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, var(--accent), var(--primary));
-            opacity: 0;
-            transition: opacity var(--transition);
+            transition: all var(--transition);
+            box-shadow: 0 4px 14px var(--primary-glow);
         }
 
         .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 40px rgba(99, 102, 241, 0.4), 0 4px 12px rgba(236, 72, 153, 0.2);
-        }
-
-        .btn-primary:hover::before {
-            opacity: 1;
-        }
-
-        .btn-primary span,
-        .btn-primary svg {
-            position: relative;
-            z-index: 1;
+            background: #1a66ff;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 82, 255, 0.4);
         }
 
         .btn-secondary {
             display: inline-flex;
             align-items: center;
-            gap: 10px;
-            padding: 16px 36px;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 60px;
+            gap: 8px;
+            padding: 14px 28px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border);
+            border-radius: 8px;
             color: var(--text);
             font-family: 'Inter', sans-serif;
-            font-size: 1rem;
+            font-size: 0.95rem;
             font-weight: 500;
             cursor: pointer;
             transition: all var(--transition);
@@ -548,38 +427,9 @@
         }
 
         .btn-secondary:hover {
-            background: rgba(255,255,255,0.1);
-            border-color: rgba(255,255,255,0.2);
-            transform: translateY(-2px);
-        }
-
-        /* Hero scroll indicator */
-        .scroll-indicator {
-            position: absolute;
-            bottom: 32px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 8px;
-            color: var(--muted);
-            font-size: 0.75rem;
-            font-weight: 500;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            animation: scrollBounce 2.5s ease-in-out infinite;
-        }
-
-        .scroll-indicator-line {
-            width: 1px;
-            height: 40px;
-            background: linear-gradient(to bottom, var(--muted), transparent);
-        }
-
-        @keyframes scrollBounce {
-            0%, 100% { transform: translateX(-50%) translateY(0); opacity: 1; }
-            50% { transform: translateX(-50%) translateY(8px); opacity: 0.5; }
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.15);
+            transform: translateY(-1px);
         }
 
         /* ========== SECTIONS SHARED ========== */
@@ -590,44 +440,45 @@
 
         .section-header {
             text-align: center;
-            margin-bottom: 64px;
+            margin-bottom: 56px;
         }
 
         .section-label {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            padding: 6px 16px;
-            background: rgba(99, 102, 241, 0.1);
-            border: 1px solid rgba(99, 102, 241, 0.15);
-            border-radius: 50px;
-            font-size: 0.78rem;
+            gap: 6px;
+            padding: 4px 12px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            font-size: 0.75rem;
             font-weight: 600;
-            color: var(--primary);
+            color: var(--secondary);
             text-transform: uppercase;
-            letter-spacing: 0.08em;
-            margin-bottom: 20px;
+            letter-spacing: 0.05em;
+            margin-bottom: 16px;
         }
 
         .section-title {
-            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-size: clamp(1.8rem, 4vw, 2.6rem);
             font-weight: 800;
-            letter-spacing: -0.02em;
-            margin-bottom: 16px;
+            letter-spacing: -0.03em;
+            margin-bottom: 12px;
+            color: var(--white);
         }
 
         .section-desc {
             color: var(--muted);
-            font-size: 1.05rem;
-            max-width: 560px;
+            font-size: 1rem;
+            max-width: 500px;
             margin: 0 auto;
         }
 
         /* Reveal animations */
         .reveal {
             opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            transform: translateY(20px);
+            transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .reveal.visible {
@@ -635,110 +486,127 @@
             transform: translateY(0);
         }
 
-        .reveal-delay-1 { transition-delay: 0.1s; }
-        .reveal-delay-2 { transition-delay: 0.2s; }
-        .reveal-delay-3 { transition-delay: 0.3s; }
-        .reveal-delay-4 { transition-delay: 0.4s; }
-        .reveal-delay-5 { transition-delay: 0.5s; }
+        .reveal-delay-1 { transition-delay: 0.05s; }
+        .reveal-delay-2 { transition-delay: 0.1s; }
+        .reveal-delay-3 { transition-delay: 0.15s; }
+        .reveal-delay-4 { transition-delay: 0.2s; }
+        .reveal-delay-5 { transition-delay: 0.25s; }
 
         /* ========== PORTFOLIO ========== */
         .portfolio {
             background: var(--bg-deep);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
         }
 
         .portfolio-grid {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 24px;
+            gap: 20px;
         }
 
         .portfolio-card {
             position: relative;
-            background: var(--surface);
-            border-radius: var(--radius);
+            background: var(--surface-card);
+            border-radius: var(--radius-lg);
             overflow: hidden;
-            border: 1px solid rgba(255,255,255,0.05);
-            transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+            border: 1px solid var(--border);
+            transition: all var(--transition);
             cursor: pointer;
             text-decoration: none;
             display: block;
         }
 
         .portfolio-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 24px 64px rgba(0,0,0,0.4), 0 0 0 1px rgba(99, 102, 241, 0.15);
-            border-color: rgba(99, 102, 241, 0.2);
+            transform: translateY(-4px);
+            border-color: var(--border-hover);
+            box-shadow: 0 12px 30px rgba(0, 82, 255, 0.08);
         }
 
         .portfolio-preview {
             position: relative;
-            height: 220px;
+            height: 200px;
             overflow: hidden;
+            background: #03050a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .portfolio-preview-bg {
             position: absolute;
             inset: 0;
-            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: transform 0.5s var(--transition);
+            opacity: 0.9;
         }
 
         .portfolio-card:hover .portfolio-preview-bg {
-            transform: scale(1.08);
+            transform: scale(1.04);
+            opacity: 1;
         }
 
-        /* Unique gradients for each card */
+        /* Beautiful minimalist card previews with glow blobs behind mockups */
         .preview-dental {
-            background: linear-gradient(135deg, #0EA5E9, #2563EB, #1E40AF);
+            background: radial-gradient(circle at top right, var(--primary-glow), transparent 70%), #0d1527;
         }
         .preview-restaurant {
-            background: linear-gradient(135deg, #F59E0B, #D97706, #B45309);
+            background: radial-gradient(circle at top right, rgba(217, 119, 6, 0.15), transparent 70%), #241910;
         }
         .preview-education {
-            background: linear-gradient(135deg, #8B5CF6, #7C3AED, #6D28D9);
+            background: radial-gradient(circle at top right, rgba(124, 58, 237, 0.15), transparent 70%), #1d142d;
         }
         .preview-construction {
-            background: linear-gradient(135deg, #1E293B, #991B1B, #DC2626);
+            background: radial-gradient(circle at top right, rgba(220, 38, 38, 0.15), transparent 70%), #251212;
         }
         .preview-auto {
-            background: linear-gradient(135deg, #0F172A, #0E7490, #06B6D4);
+            background: radial-gradient(circle at top right, rgba(6, 182, 212, 0.15), transparent 70%), #0c1c24;
         }
 
-        /* Browser mockup inside preview */
+        /* 1609plus styled sleek browser mockup */
         .preview-mockup {
             position: absolute;
             top: 24px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 85%;
-            height: 160px;
-            background: rgba(255,255,255,0.1);
+            width: 82%;
+            height: 176px;
+            background: rgba(10, 14, 26, 0.85);
             border-radius: 8px 8px 0 0;
             backdrop-filter: blur(12px);
-            border: 1px solid rgba(255,255,255,0.15);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-bottom: none;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.5s var(--transition);
+        }
+
+        .portfolio-card:hover .preview-mockup {
+            transform: translateY(-4px);
+            border-color: rgba(0, 82, 255, 0.25);
         }
 
         .preview-mockup-bar {
-            height: 24px;
-            background: rgba(0,0,0,0.3);
+            height: 22px;
+            background: rgba(255, 255, 255, 0.02);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
             display: flex;
             align-items: center;
             padding: 0 10px;
-            gap: 5px;
+            gap: 4px;
         }
 
         .preview-mockup-dot {
-            width: 7px;
-            height: 7px;
+            width: 6px;
+            height: 6px;
             border-radius: 50%;
-            background: rgba(255,255,255,0.25);
+            background: rgba(255, 255, 255, 0.15);
         }
-
-        .preview-mockup-dot:first-child { background: #EF4444; }
-        .preview-mockup-dot:nth-child(2) { background: #F59E0B; }
-        .preview-mockup-dot:nth-child(3) { background: #22C55E; }
+        .portfolio-card:hover .preview-mockup-dot:nth-child(1) { background: #ff5f56; }
+        .portfolio-card:hover .preview-mockup-dot:nth-child(2) { background: #ffbd2e; }
+        .portfolio-card:hover .preview-mockup-dot:nth-child(3) { background: #27c93f; }
 
         .preview-mockup-content {
+            flex: 1;
             padding: 12px;
             display: flex;
             flex-direction: column;
@@ -746,80 +614,75 @@
         }
 
         .preview-mockup-line {
-            height: 6px;
-            border-radius: 3px;
-            background: rgba(255,255,255,0.15);
+            height: 4px;
+            border-radius: 2px;
+            background: rgba(255, 255, 255, 0.08);
         }
-        .preview-mockup-line:nth-child(1) { width: 60%; }
-        .preview-mockup-line:nth-child(2) { width: 80%; }
-        .preview-mockup-line:nth-child(3) { width: 45%; }
-        .preview-mockup-line:nth-child(4) { width: 70%; height: 24px; margin-top: 6px; background: rgba(255,255,255,0.1); border-radius: 6px; }
-
-        /* Glow effect on hover */
-        .portfolio-preview::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to top, var(--surface) 0%, transparent 60%);
-            z-index: 1;
-        }
-
-        .portfolio-card:hover .portfolio-preview::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.05), transparent 70%);
-            z-index: 2;
+        .preview-mockup-line:nth-child(1) { width: 40%; background: var(--secondary); opacity: 0.8; }
+        .preview-mockup-line:nth-child(2) { width: 75%; }
+        .preview-mockup-line:nth-child(3) { width: 55%; }
+        .preview-mockup-line:nth-child(4) { 
+            width: 45%; 
+            height: 18px; 
+            margin-top: 8px; 
+            background: var(--primary-glow); 
+            border: 1px solid rgba(0, 82, 255, 0.2); 
+            border-radius: 4px; 
         }
 
         .portfolio-info {
-            padding: 28px;
-            position: relative;
+            padding: 24px;
+            border-top: 1px solid var(--border);
+            background: linear-gradient(to bottom, rgba(10, 14, 26, 0.4), rgba(6, 9, 19, 0.8));
         }
 
         .portfolio-category {
             display: inline-block;
-            padding: 4px 12px;
-            background: rgba(99, 102, 241, 0.1);
-            border: 1px solid rgba(99, 102, 241, 0.15);
-            border-radius: 50px;
-            font-size: 0.72rem;
+            padding: 2px 8px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-size: 0.7rem;
             font-weight: 600;
-            color: var(--primary);
+            color: var(--muted);
             text-transform: uppercase;
-            letter-spacing: 0.06em;
-            margin-bottom: 14px;
+            letter-spacing: 0.04em;
+            margin-bottom: 12px;
+        }
+
+        .portfolio-card:hover .portfolio-category {
+            color: var(--secondary);
+            border-color: rgba(0, 82, 255, 0.15);
+            background: rgba(0, 82, 255, 0.05);
         }
 
         .portfolio-name {
-            font-size: 1.35rem;
+            font-size: 1.25rem;
             font-weight: 700;
-            margin-bottom: 8px;
-            letter-spacing: -0.01em;
+            margin-bottom: 6px;
+            color: var(--white);
         }
 
         .portfolio-desc {
             color: var(--muted);
-            font-size: 0.9rem;
-            margin-bottom: 20px;
-            line-height: 1.6;
+            font-size: 0.85rem;
+            margin-bottom: 16px;
+            line-height: 1.5;
         }
 
         .portfolio-link {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            font-size: 0.88rem;
+            gap: 6px;
+            font-size: 0.82rem;
             font-weight: 600;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: var(--secondary);
             transition: gap var(--transition);
         }
 
         .portfolio-card:hover .portfolio-link {
-            gap: 14px;
+            gap: 10px;
+            color: var(--accent);
         }
 
         .portfolio-link svg {
@@ -827,7 +690,7 @@
         }
 
         .portfolio-card:hover .portfolio-link svg {
-            transform: translateX(4px);
+            transform: translateX(2px);
         }
 
         @media (min-width: 640px) {
@@ -840,98 +703,90 @@
             .portfolio-grid {
                 grid-template-columns: repeat(3, 1fr);
             }
-            .portfolio-card:nth-child(4),
-            .portfolio-card:nth-child(5) {
-                /* center last two cards */
-            }
-        }
-
-        /* Last row centering */
-        @media (min-width: 1024px) {
-            .portfolio-grid {
-                justify-items: center;
-            }
-            .portfolio-card {
-                width: 100%;
-            }
         }
 
         /* ========== SERVICES ========== */
         .services-grid {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 20px;
+            gap: 16px;
         }
 
         .service-card {
             position: relative;
-            padding: 32px;
-            background: var(--surface);
+            padding: 24px;
+            background: var(--surface-card);
             border-radius: var(--radius);
-            border: 1px solid rgba(255,255,255,0.05);
+            border: 1px solid var(--border);
             transition: all var(--transition);
             overflow: hidden;
-        }
-
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--primary), var(--accent));
-            opacity: 0;
-            transition: opacity var(--transition);
+            display: flex;
+            flex-direction: column;
         }
 
         .service-card:hover {
-            border-color: rgba(99, 102, 241, 0.15);
-            transform: translateY(-4px);
-            box-shadow: 0 16px 48px rgba(0,0,0,0.2);
-        }
-
-        .service-card:hover::before {
-            opacity: 1;
+            border-color: var(--border-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 82, 255, 0.06);
         }
 
         .service-icon {
-            width: 52px;
-            height: 52px;
-            background: rgba(99, 102, 241, 0.1);
-            border-radius: 14px;
+            width: 44px;
+            height: 44px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border);
+            border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 20px;
-            transition: background var(--transition);
+            margin-bottom: 16px;
+            transition: all var(--transition);
         }
 
         .service-card:hover .service-icon {
-            background: rgba(99, 102, 241, 0.18);
+            border-color: rgba(0, 82, 255, 0.3);
+            background: rgba(0, 82, 255, 0.05);
+            box-shadow: 0 0 12px var(--primary-glow);
+        }
+
+        .service-card svg {
+            stroke: var(--muted);
+            transition: stroke var(--transition);
+        }
+
+        .service-card:hover svg {
+            stroke: var(--secondary);
         }
 
         .service-name {
-            font-size: 1.15rem;
+            font-size: 1.05rem;
             font-weight: 700;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
+            color: var(--white);
         }
 
         .service-desc {
             color: var(--muted);
-            font-size: 0.88rem;
+            font-size: 0.82rem;
             margin-bottom: 16px;
-            line-height: 1.6;
+            line-height: 1.5;
+            flex: 1;
         }
 
         .service-price {
             font-family: 'Outfit', sans-serif;
-            font-size: 1.3rem;
+            font-size: 1.15rem;
             font-weight: 700;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: var(--text);
+            border-top: 1px solid var(--border);
+            padding-top: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .service-card:hover .service-price {
+            color: var(--accent);
         }
 
         @media (min-width: 640px) {
@@ -945,83 +800,69 @@
         /* ========== PROCESS ========== */
         .process {
             background: var(--bg-deep);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
         }
 
         .process-steps {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 32px;
+            gap: 20px;
             position: relative;
         }
 
         .process-step {
+            background: var(--surface-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 24px;
             display: flex;
-            align-items: flex-start;
-            gap: 24px;
+            flex-direction: column;
+            gap: 16px;
             position: relative;
         }
 
-        .step-number-wrap {
-            position: relative;
-            flex-shrink: 0;
+        .process-step:hover {
+            border-color: rgba(255, 255, 255, 0.12);
         }
 
         .step-number {
-            width: 64px;
-            height: 64px;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            border-radius: 20px;
+            width: 32px;
+            height: 32px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border);
+            border-radius: 6px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-family: 'Outfit', sans-serif;
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: var(--white);
-            position: relative;
-            z-index: 1;
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--secondary);
         }
 
-        .step-connector {
-            display: none;
+        .process-step:hover .step-number {
+            background: rgba(0, 82, 255, 0.05);
+            border-color: rgba(0, 82, 255, 0.25);
+            color: var(--accent);
         }
 
         .step-content h3 {
-            font-size: 1.3rem;
+            font-size: 1.1rem;
             font-weight: 700;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
+            color: var(--white);
         }
 
         .step-content p {
             color: var(--muted);
-            font-size: 0.92rem;
-            line-height: 1.7;
+            font-size: 0.85rem;
+            line-height: 1.6;
         }
 
         @media (min-width: 768px) {
             .process-steps {
                 grid-template-columns: repeat(3, 1fr);
-                gap: 40px;
-            }
-
-            .process-step {
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
-            }
-
-            .step-connector {
-                display: block;
-                position: absolute;
-                top: 32px;
-                left: calc(50% + 40px);
-                width: calc(100% - 80px);
-                height: 2px;
-                background: linear-gradient(90deg, rgba(99, 102, 241, 0.3), rgba(236, 72, 153, 0.3));
-            }
-
-            .process-step:last-child .step-connector {
-                display: none;
             }
         }
 
@@ -1029,40 +870,46 @@
         .why-grid {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 16px;
+            gap: 12px;
         }
 
         .why-item {
             display: flex;
             align-items: center;
-            gap: 20px;
-            padding: 24px 28px;
-            background: var(--surface);
+            gap: 16px;
+            padding: 16px 20px;
+            background: var(--surface-card);
             border-radius: var(--radius);
-            border: 1px solid rgba(255,255,255,0.04);
+            border: 1px solid var(--border);
             transition: all var(--transition);
         }
 
         .why-item:hover {
-            border-color: rgba(99, 102, 241, 0.12);
-            background: var(--surface-light);
-            transform: translateX(6px);
+            border-color: rgba(255, 255, 255, 0.12);
+            transform: translateX(4px);
         }
 
         .why-icon {
-            width: 48px;
-            height: 48px;
-            background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(236, 72, 153, 0.1));
-            border-radius: 14px;
+            width: 38px;
+            height: 38px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border);
+            border-radius: 6px;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
         }
 
+        .why-item:hover .why-icon {
+            border-color: rgba(0, 82, 255, 0.2);
+            color: var(--secondary);
+        }
+
         .why-text {
-            font-size: 1rem;
+            font-size: 0.9rem;
             font-weight: 600;
+            color: var(--text);
         }
 
         @media (min-width: 640px) {
@@ -1075,94 +922,84 @@
 
         /* ========== CTA SECTION ========== */
         .cta-section {
-            padding: 120px 0;
+            padding: 100px 0;
             position: relative;
             overflow: hidden;
+            border-top: 1px solid var(--border);
         }
 
-        .cta-bg {
+        .cta-glow-blob {
             position: absolute;
-            inset: 0;
-            overflow: hidden;
-        }
-
-        .cta-bg-orb {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(120px);
-        }
-
-        .cta-bg-orb:first-child {
             width: 500px;
             height: 500px;
             background: var(--primary);
-            top: -30%;
-            left: -10%;
-            opacity: 0.15;
-        }
-
-        .cta-bg-orb:last-child {
-            width: 400px;
-            height: 400px;
-            background: var(--accent);
-            bottom: -30%;
-            right: -10%;
+            border-radius: 50%;
+            filter: blur(140px);
             opacity: 0.12;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
         }
 
         .cta-card {
             position: relative;
             z-index: 1;
             text-align: center;
-            padding: 64px 32px;
-            background: rgba(30, 41, 59, 0.5);
-            border: 1px solid rgba(255,255,255,0.06);
-            border-radius: 24px;
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+            padding: 56px 24px;
+            background: var(--surface-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            max-width: 760px;
+            margin: 0 auto;
         }
 
         .cta-card h2 {
-            font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+            font-size: clamp(1.6rem, 3.5vw, 2.2rem);
             font-weight: 800;
-            margin-bottom: 16px;
+            margin-bottom: 12px;
+            color: var(--white);
         }
 
         .cta-card p {
             color: var(--muted);
-            font-size: 1.05rem;
-            max-width: 500px;
-            margin: 0 auto 36px;
+            font-size: 0.95rem;
+            max-width: 480px;
+            margin: 0 auto 32px;
         }
 
         /* ========== FOOTER ========== */
         .footer {
-            padding: 40px 0;
-            border-top: 1px solid rgba(255,255,255,0.05);
+            padding: 32px 0;
+            border-top: 1px solid var(--border);
+            background: var(--bg-deep);
+            position: relative;
+            z-index: 2;
         }
 
         .footer-inner {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 16px;
+            gap: 12px;
             text-align: center;
         }
 
         .footer-brand {
             font-family: 'Outfit', sans-serif;
-            font-size: 1.15rem;
-            font-weight: 700;
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--white);
         }
 
         .footer-copy {
             color: var(--muted);
-            font-size: 0.82rem;
+            font-size: 0.8rem;
         }
 
         .footer-location {
             color: var(--muted);
-            font-size: 0.8rem;
+            font-size: 0.78rem;
             display: flex;
             align-items: center;
             gap: 6px;
@@ -1178,66 +1015,57 @@
         /* ========== FLOATING WHATSAPP ========== */
         .whatsapp-float {
             position: fixed;
-            bottom: 28px;
-            right: 28px;
+            bottom: 24px;
+            right: 24px;
             z-index: 998;
-            width: 60px;
-            height: 60px;
-            background: #25D366;
+            width: 52px;
+            height: 52px;
+            background: #25C366;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 6px 24px rgba(37, 211, 102, 0.35);
-            transition: transform var(--transition), box-shadow var(--transition);
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.25);
+            transition: all var(--transition);
             cursor: pointer;
         }
 
         .whatsapp-float:hover {
-            transform: scale(1.1) translateY(-4px);
-            box-shadow: 0 12px 36px rgba(37, 211, 102, 0.45);
+            transform: scale(1.08) translateY(-2px);
+            box-shadow: 0 8px 30px rgba(37, 211, 102, 0.4);
         }
 
         .whatsapp-float::before {
             content: '';
             position: absolute;
-            inset: -4px;
+            inset: -3px;
             border-radius: 50%;
-            border: 2px solid rgba(37, 211, 102, 0.3);
+            border: 2px solid rgba(37, 211, 102, 0.2);
             animation: whatsappRing 2s ease-in-out infinite;
         }
 
         @keyframes whatsappRing {
             0%, 100% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.15); opacity: 0; }
+            50% { transform: scale(1.12); opacity: 0; }
         }
 
         .whatsapp-tooltip {
             position: absolute;
-            right: 72px;
+            right: 64px;
             top: 50%;
             transform: translateY(-50%);
-            background: var(--white);
-            color: #1a1a1a;
-            padding: 10px 16px;
-            border-radius: 10px;
-            font-size: 0.82rem;
+            background: var(--surface-card);
+            border: 1px solid var(--border);
+            color: var(--text);
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 0.78rem;
             font-weight: 500;
             white-space: nowrap;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.25);
             opacity: 0;
             pointer-events: none;
-            transition: opacity var(--transition), transform var(--transition);
-        }
-
-        .whatsapp-tooltip::after {
-            content: '';
-            position: absolute;
-            right: -6px;
-            top: 50%;
-            transform: translateY(-50%);
-            border: 6px solid transparent;
-            border-left-color: var(--white);
+            transition: all var(--transition);
         }
 
         .whatsapp-float:hover .whatsapp-tooltip {
@@ -1245,40 +1073,34 @@
             transform: translateY(-50%) translateX(-4px);
         }
 
-        /* ========== SEPARATOR ========== */
-        .section-separator {
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.15), rgba(236, 72, 153, 0.15), transparent);
-            margin: 0 auto;
-            max-width: 600px;
-        }
-
         /* ========== STATS STRIP ========== */
         .stats-strip {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 24px;
-            padding: 60px 0;
+            gap: 16px;
+            padding: 48px 0;
+            border-top: 1px solid var(--border);
         }
 
         .stat-item {
             text-align: center;
+            padding: 16px;
+            background: rgba(255, 255, 255, 0.01);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
         }
 
         .stat-number {
             font-family: 'Outfit', sans-serif;
-            font-size: clamp(2rem, 4vw, 2.8rem);
+            font-size: clamp(1.8rem, 4vw, 2.4rem);
             font-weight: 800;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            line-height: 1.2;
+            color: var(--white);
+            line-height: 1.1;
         }
 
         .stat-label {
             color: var(--muted);
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             font-weight: 500;
             margin-top: 4px;
         }
@@ -1287,18 +1109,9 @@
             .stats-strip { grid-template-columns: repeat(4, 1fr); }
         }
 
-        /* ========== RESPONSIVE ========== */
-        @media (max-width: 767px) {
-            .section { padding: 72px 0; }
-            .section-header { margin-bottom: 40px; }
-            .portfolio-preview { height: 180px; }
-            .portfolio-info { padding: 20px; }
-            .hero { padding: 100px 0 60px; }
-        }
-
         /* ========== CUSTOM SCROLLBAR ========== */
         ::-webkit-scrollbar {
-            width: 8px;
+            width: 6px;
         }
 
         ::-webkit-scrollbar-track {
@@ -1306,34 +1119,36 @@
         }
 
         ::-webkit-scrollbar-thumb {
-            background: var(--surface-light);
+            background: rgba(255, 255, 255, 0.08);
             border-radius: 4px;
         }
 
         ::-webkit-scrollbar-thumb:hover {
-            background: var(--muted);
+            background: rgba(255, 255, 255, 0.15);
         }
 
-        /* Selection */
         ::selection {
-            background: rgba(99, 102, 241, 0.3);
+            background: var(--primary-glow);
             color: var(--white);
         }
     </style>
 </head>
 <body>
 
+    <!-- Sleek Dotted Mesh Background -->
+    <div class="grid-overlay"></div>
+
     <!-- ========== HEADER ========== -->
     <header class="header" id="header">
         <div class="header-inner">
             <a href="#hero" class="logo">
                 <div class="logo-icon">
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                        <path d="M4 4L10 2L16 4L16 12L10 18L4 12Z" stroke="white" stroke-width="1.5" fill="none"/>
-                        <circle cx="10" cy="9" r="3" fill="white"/>
+                    <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
+                        <path d="M4 4L10 2L16 4L16 12L10 18L4 12Z" stroke="white" stroke-width="1.8" fill="none"/>
+                        <circle cx="10" cy="9" r="2.5" fill="white"/>
                     </svg>
                 </div>
-                <span>WebPro<span class="logo-dot">.kg</span></span>
+                <span>WebPro<span>.kg</span></span>
             </a>
 
             <nav class="nav-desktop">
@@ -1364,55 +1179,33 @@
 
     <!-- ========== HERO ========== -->
     <section class="hero" id="hero">
-        <div class="hero-bg">
-            <div class="hero-gradient-orb"></div>
-            <div class="hero-gradient-orb"></div>
-            <div class="hero-gradient-orb"></div>
-            <div class="hero-grid"></div>
-        </div>
-
-        <div class="hero-shapes">
-            <!-- Triangle -->
-            <svg class="floating-shape" width="60" height="60" viewBox="0 0 60 60"><polygon points="30,5 55,50 5,50" stroke="var(--primary)" stroke-width="1.5" fill="none"/></svg>
-            <!-- Circle -->
-            <svg class="floating-shape" width="50" height="50" viewBox="0 0 50 50"><circle cx="25" cy="25" r="20" stroke="var(--accent)" stroke-width="1.5" fill="none"/></svg>
-            <!-- Square rotated -->
-            <svg class="floating-shape" width="45" height="45" viewBox="0 0 45 45"><rect x="8" y="8" width="28" height="28" stroke="var(--secondary)" stroke-width="1.5" fill="none" transform="rotate(45 22.5 22.5)"/></svg>
-            <!-- Hexagon -->
-            <svg class="floating-shape" width="55" height="55" viewBox="0 0 55 55"><polygon points="27.5,5 49,16.5 49,38.5 27.5,50 6,38.5 6,16.5" stroke="var(--primary)" stroke-width="1.5" fill="none"/></svg>
-            <!-- Cross -->
-            <svg class="floating-shape" width="40" height="40" viewBox="0 0 40 40"><line x1="20" y1="5" x2="20" y2="35" stroke="var(--accent)" stroke-width="1.5"/><line x1="5" y1="20" x2="35" y2="20" stroke="var(--accent)" stroke-width="1.5"/></svg>
-            <!-- Pentagon -->
-            <svg class="floating-shape" width="50" height="50" viewBox="0 0 50 50"><polygon points="25,3 47,18 39,43 11,43 3,18" stroke="var(--secondary)" stroke-width="1.5" fill="none"/></svg>
-        </div>
+        <div class="hero-glow-blob hero-glow-blob-1"></div>
+        <div class="hero-glow-blob hero-glow-blob-2"></div>
 
         <div class="container">
             <div class="hero-content">
                 <div class="hero-badge">
                     <span class="hero-badge-dot"></span>
-                    Создаём сайты для бизнеса в Кыргызстане
+                    Простые решения для малого бизнеса в Кыргызстане
                 </div>
                 <h1>
-                    <span class="gradient-text">Профессиональные сайты</span><br>для вашего бизнеса
+                    <span class="gradient-text">Профессиональные сайты</span><br>
+                    которые приводят <span class="electric">клиентов</span>
                 </h1>
                 <p class="hero-subtitle">
-                    Простые, красивые и эффективные сайты, которые приводят клиентов. Без переплат и долгой разработки.
+                    Создаём стильные, быстрые и конверсионные сайты с интеграцией в WhatsApp. Без затягивания сроков и скрытых расходов.
                 </p>
                 <div class="hero-actions">
                     <a href="https://wa.me/996555123456?text=Здравствуйте!%20Интересует%20создание%20сайта" class="btn-primary" target="_blank" rel="noopener">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
-                        <span>Связаться</span>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+                        <span>Начать проект</span>
                     </a>
                     <a href="#portfolio" class="btn-secondary">
-                        <span>Смотреть работы</span>
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
+                        <span>Смотреть демо</span>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
                     </a>
                 </div>
             </div>
-        </div>
-
-        <div class="scroll-indicator">
-            <div class="scroll-indicator-line"></div>
         </div>
     </section>
 
@@ -1421,7 +1214,7 @@
         <div class="stats-strip reveal">
             <div class="stat-item">
                 <div class="stat-number">50+</div>
-                <div class="stat-label">Готовых проектов</div>
+                <div class="stat-label">Запущенных сайтов</div>
             </div>
             <div class="stat-item">
                 <div class="stat-number">3–5</div>
@@ -1433,20 +1226,18 @@
             </div>
             <div class="stat-item">
                 <div class="stat-number">24/7</div>
-                <div class="stat-label">Поддержка клиентов</div>
+                <div class="stat-label">Поддержка на связи</div>
             </div>
         </div>
     </div>
-
-    <div class="section-separator"></div>
 
     <!-- ========== PORTFOLIO ========== -->
     <section class="section portfolio" id="portfolio">
         <div class="container">
             <div class="section-header reveal">
                 <div class="section-label">Портфолио</div>
-                <h2 class="section-title">Наши последние работы</h2>
-                <p class="section-desc">Каждый проект разработан с учётом потребностей бизнеса и его клиентов</p>
+                <h2 class="section-title">Готовые примеры сайтов</h2>
+                <p class="section-desc">Вы можете посмотреть рабочие прототипы сайтов, созданные специально под различные сферы бизнеса</p>
             </div>
 
             <div class="portfolio-grid">
@@ -1469,12 +1260,12 @@
                         </div>
                     </div>
                     <div class="portfolio-info">
-                        <span class="portfolio-category">Стоматология</span>
+                        <span class="portfolio-category">Клиники и стоматологии</span>
                         <h3 class="portfolio-name">Белая Улыбка</h3>
-                        <p class="portfolio-desc">Современный сайт стоматологической клиники с онлайн-записью через WhatsApp и каталогом услуг</p>
+                        <p class="portfolio-desc">Чистый и внушающий доверие сайт клиники. Сетка услуг, прайс-лист, отзывы и запись в один клик через WhatsApp.</p>
                         <span class="portfolio-link">
-                            Посмотреть демо
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                            Открыть демо
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
                         </span>
                     </div>
                 </a>
@@ -1498,12 +1289,12 @@
                         </div>
                     </div>
                     <div class="portfolio-info">
-                        <span class="portfolio-category">Ресторан</span>
+                        <span class="portfolio-category">Кафе и рестораны</span>
                         <h3 class="portfolio-name">Чайхана Бишкек</h3>
-                        <p class="portfolio-desc">Атмосферный сайт ресторана национальной кухни с меню, фотогалереей и бронированием столиков</p>
+                        <p class="portfolio-desc">Уютный, стильный дизайн с красивым интерактивным меню (вкладки с ценами), галереей залов и мгновенной бронью столов.</p>
                         <span class="portfolio-link">
-                            Посмотреть демо
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                            Открыть демо
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
                         </span>
                     </div>
                 </a>
@@ -1527,12 +1318,12 @@
                         </div>
                     </div>
                     <div class="portfolio-info">
-                        <span class="portfolio-category">Учебный центр</span>
+                        <span class="portfolio-category">Образовательные центры</span>
                         <h3 class="portfolio-name">Билим</h3>
-                        <p class="portfolio-desc">Информативный сайт учебного центра с описанием курсов, расписанием и формой записи</p>
+                        <p class="portfolio-desc">Яркий, понятный сайт для школы или курсов. Каталог направлений, сетка расписания, аккордеон с FAQ и кнопка «Записаться».</p>
                         <span class="portfolio-link">
-                            Посмотреть демо
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                            Открыть демо
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
                         </span>
                     </div>
                 </a>
@@ -1556,12 +1347,12 @@
                         </div>
                     </div>
                     <div class="portfolio-info">
-                        <span class="portfolio-category">Строительство</span>
+                        <span class="portfolio-category">Строительство и ремонт</span>
                         <h3 class="portfolio-name">СтройМастер</h3>
-                        <p class="portfolio-desc">Солидный сайт строительной компании с портфолио объектов и калькулятором стоимости</p>
+                        <p class="portfolio-desc">Премиальный темный дизайн. Услуги и цены, визуальные карточки проектов «До/После», интерактивные этапы работы.</p>
                         <span class="portfolio-link">
-                            Посмотреть демо
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                            Открыть демо
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
                         </span>
                     </div>
                 </a>
@@ -1585,12 +1376,12 @@
                         </div>
                     </div>
                     <div class="portfolio-info">
-                        <span class="portfolio-category">Автосервис</span>
+                        <span class="portfolio-category">Автосервисы и детейлинг</span>
                         <h3 class="portfolio-name">АвтоПро</h3>
-                        <p class="portfolio-desc">Функциональный сайт автосервиса с прайс-листом, записью на обслуживание и отзывами клиентов</p>
+                        <p class="portfolio-desc">Брутальный темный дизайн в стиле автоспорта. Полный прайс-лист, обслуживаемые марки автомобилей, отзывы и запись.</p>
                         <span class="portfolio-link">
-                            Посмотреть демо
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                            Открыть демо
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
                         </span>
                     </div>
                 </a>
@@ -1604,94 +1395,84 @@
             <div class="section-header reveal">
                 <div class="section-label">Услуги</div>
                 <h2 class="section-title">Что мы предлагаем</h2>
-                <p class="section-desc">Выберите подходящий формат сайта для вашего бизнеса</p>
+                <p class="section-desc">Форматы сайтов, созданные для решения конкретных задач вашего бизнеса</p>
             </div>
 
             <div class="services-grid">
                 <!-- Service 1 -->
                 <div class="service-card reveal reveal-delay-1">
                     <div class="service-icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/></svg>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/></svg>
                     </div>
                     <h3 class="service-name">Одностраничный сайт</h3>
-                    <p class="service-desc">Компактный и информативный сайт на одной странице — идеален для старта</p>
+                    <p class="service-desc">Компактная посадочная страница, которая дает клиенту всю важную информацию на одном экране.</p>
                     <div class="service-price">от 5 000 сом</div>
                 </div>
 
                 <!-- Service 2 -->
                 <div class="service-card reveal reveal-delay-2">
                     <div class="service-icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
                     </div>
                     <h3 class="service-name">Сайт-визитка</h3>
-                    <p class="service-desc">Представительский сайт с несколькими страницами для солидного присутствия в сети</p>
+                    <p class="service-desc">Многостраничный презентационный сайт для создания солидного имиджа компании в сети.</p>
                     <div class="service-price">от 8 000 сом</div>
                 </div>
 
                 <!-- Service 3 -->
                 <div class="service-card reveal reveal-delay-3">
                     <div class="service-icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
                     </div>
-                    <h3 class="service-name">Лендинг с формой заявки</h3>
-                    <p class="service-desc">Продающая страница с формой заявки и интеграцией с WhatsApp для максимальной конверсии</p>
+                    <h3 class="service-name">Продающий Лендинг</h3>
+                    <p class="service-desc">Страница с высокой конверсией, формой захвата контактов и моментальной отправкой заявок в ваш WhatsApp.</p>
                     <div class="service-price">от 10 000 сом</div>
                 </div>
 
                 <!-- Service 4 -->
                 <div class="service-card reveal reveal-delay-4">
                     <div class="service-icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
                     </div>
-                    <h3 class="service-name">Мини-интернет-магазин</h3>
-                    <p class="service-desc">Каталог товаров с ценами, корзиной и оформлением заказа через мессенджер</p>
+                    <h3 class="service-name">Мини-магазин</h3>
+                    <p class="service-desc">Полноценный каталог ваших товаров с корзиной и оформлением заказа напрямую в мессенджер.</p>
                     <div class="service-price">от 15 000 сом</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <div class="section-separator"></div>
-
     <!-- ========== PROCESS ========== -->
     <section class="section process" id="process">
         <div class="container">
             <div class="section-header reveal">
                 <div class="section-label">Процесс</div>
-                <h2 class="section-title">Как мы работаем</h2>
-                <p class="section-desc">Три простых шага от идеи до готового сайта</p>
+                <h2 class="section-title">Как строится работа</h2>
+                <p class="section-desc">Мы ценим ваше время, поэтому свели весь процесс разработки всего к 3 простым этапам</p>
             </div>
 
             <div class="process-steps">
                 <div class="process-step reveal reveal-delay-1">
-                    <div class="step-number-wrap">
-                        <div class="step-number">1</div>
-                    </div>
+                    <div class="step-number">01</div>
                     <div class="step-content">
-                        <h3>Обсуждаем</h3>
-                        <p>Вы рассказываете о своём бизнесе и пожеланиях. Мы обсуждаем структуру, дизайн и функционал будущего сайта в WhatsApp.</p>
+                        <h3>Обсуждение и ТЗ</h3>
+                        <p>Вы рассказываете о задачах бизнеса в WhatsApp. Мы оперативно согласовываем структуру сайта, тексты и будущую цветовую гамму.</p>
                     </div>
-                    <div class="step-connector"></div>
                 </div>
 
                 <div class="process-step reveal reveal-delay-2">
-                    <div class="step-number-wrap">
-                        <div class="step-number">2</div>
-                    </div>
+                    <div class="step-number">02</div>
                     <div class="step-content">
-                        <h3>Делаю за 3–5 дней</h3>
-                        <p>Создаю дизайн и разрабатываю сайт. Вы видите промежуточные результаты и можете вносить правки на каждом этапе.</p>
+                        <h3>Быстрая разработка</h3>
+                        <p>Создаём сайт в течение 3–5 дней. Вы контролируете процесс в реальном времени и вносите правки до финального утверждения.</p>
                     </div>
-                    <div class="step-connector"></div>
                 </div>
 
                 <div class="process-step reveal reveal-delay-3">
-                    <div class="step-number-wrap">
-                        <div class="step-number">3</div>
-                    </div>
+                    <div class="step-number">03</div>
                     <div class="step-content">
-                        <h3>Вы получаете готовый сайт</h3>
-                        <p>Запускаем сайт, подключаем домен и настраиваем аналитику. Ваш бизнес начинает принимать клиентов из интернета.</p>
+                        <h3>Запуск и поддержка</h3>
+                        <p>Размещаем сайт в интернете, подключаем к вашему домену и настраиваем форму для приема заявок. Сайт готов приносить прибыль.</p>
                     </div>
                 </div>
             </div>
@@ -1703,51 +1484,51 @@
         <div class="container">
             <div class="section-header reveal">
                 <div class="section-label">Преимущества</div>
-                <h2 class="section-title">Почему выбирают нас</h2>
-                <p class="section-desc">Мы делаем процесс создания сайта максимально простым и удобным</p>
+                <h2 class="section-title">Почему работают с нами</h2>
+                <p class="section-desc">Создаём современные, живые сайты без лишней бюрократии и переплат веб-студиям</p>
             </div>
 
             <div class="why-grid">
                 <div class="why-item reveal reveal-delay-1">
                     <div class="why-icon">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
                     </div>
-                    <span class="why-text">Быстро — 3–5 дней</span>
+                    <span class="why-text">Очень быстро: 3–5 дней</span>
                 </div>
 
                 <div class="why-item reveal reveal-delay-2">
                     <div class="why-icon">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
                     </div>
-                    <span class="why-text">Доступно — от 5 000 сом</span>
+                    <span class="why-text">Доступная цена: от 5 000 сом</span>
                 </div>
 
                 <div class="why-item reveal reveal-delay-3">
                     <div class="why-icon">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
                     </div>
-                    <span class="why-text">Красиво и современно</span>
+                    <span class="why-text">Премиальный современный дизайн</span>
                 </div>
 
                 <div class="why-item reveal reveal-delay-4">
                     <div class="why-icon">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
                     </div>
-                    <span class="why-text">Адаптивный дизайн для телефонов</span>
+                    <span class="why-text">Отличный вид на смартфонах</span>
                 </div>
 
                 <div class="why-item reveal reveal-delay-5">
                     <div class="why-icon">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#25D366" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#25D366" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
                     </div>
-                    <span class="why-text">Интеграция с WhatsApp</span>
+                    <span class="why-text">Связь через WhatsApp в один клик</span>
                 </div>
 
                 <div class="why-item reveal reveal-delay-5">
                     <div class="why-icon">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
                     </div>
-                    <span class="why-text">Надёжная техподдержка</span>
+                    <span class="why-text">Надежное техническое сопровождение</span>
                 </div>
             </div>
         </div>
@@ -1755,16 +1536,13 @@
 
     <!-- ========== CTA ========== -->
     <section class="cta-section" id="contact">
-        <div class="cta-bg">
-            <div class="cta-bg-orb"></div>
-            <div class="cta-bg-orb"></div>
-        </div>
+        <div class="cta-glow-blob"></div>
         <div class="container">
             <div class="cta-card reveal">
-                <h2>Готовы получить свой сайт?</h2>
-                <p>Напишите нам в WhatsApp — обсудим ваш проект и предложим лучшее решение для вашего бизнеса</p>
+                <h2>Начнём создавать ваш сайт сегодня?</h2>
+                <p>Просто напишите мне в WhatsApp, и мы обсудим ваш проект, подберём дизайн и сразу рассчитаем стоимость.</p>
                 <a href="https://wa.me/996555123456?text=Здравствуйте!%20Интересует%20создание%20сайта" class="btn-primary" target="_blank" rel="noopener">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
                     <span>Написать в WhatsApp</span>
                 </a>
             </div>
@@ -1776,7 +1554,7 @@
         <div class="container">
             <div class="footer-inner">
                 <div class="footer-brand">WebPro.kg</div>
-                <div class="footer-copy">&copy; 2024 WebPro.kg. Все права защищены.</div>
+                <div class="footer-copy">&copy; 2026 WebPro.kg. Все права защищены.</div>
                 <div class="footer-location">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
                     Бишкек, Кыргызстан
@@ -1787,26 +1565,20 @@
 
     <!-- ========== FLOATING WHATSAPP ========== -->
     <a href="https://wa.me/996555123456?text=Здравствуйте!%20Интересует%20создание%20сайта" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Написать в WhatsApp">
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
         <span class="whatsapp-tooltip">Напишите нам</span>
     </a>
 
     <script>
         // ========== HEADER SCROLL ==========
         const header = document.getElementById('header');
-        let lastScroll = 0;
-
-        function handleScroll() {
-            const currentScroll = window.pageYOffset;
-            if (currentScroll > 50) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 40) {
                 header.classList.add('scrolled');
             } else {
                 header.classList.remove('scrolled');
             }
-            lastScroll = currentScroll;
-        }
-
-        window.addEventListener('scroll', handleScroll, { passive: true });
+        }, { passive: true });
 
         // ========== HAMBURGER ==========
         const hamburger = document.getElementById('hamburger');
@@ -1818,7 +1590,6 @@
             document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
         });
 
-        // Close mobile menu on link click
         document.querySelectorAll('.mobile-nav-link').forEach(link => {
             link.addEventListener('click', () => {
                 hamburger.classList.remove('active');
@@ -1829,7 +1600,6 @@
 
         // ========== INTERSECTION OBSERVER (REVEAL) ==========
         const revealElements = document.querySelectorAll('.reveal');
-
         const revealObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -1838,10 +1608,9 @@
                 }
             });
         }, {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
+            threshold: 0.05,
+            rootMargin: '0px 0px -40px 0px'
         });
-
         revealElements.forEach(el => revealObserver.observe(el));
 
         // ========== SMOOTH SCROLL FOR ANCHOR LINKS ==========
@@ -1860,47 +1629,17 @@
             });
         });
 
-        // ========== PARALLAX FOR HERO ORBS ==========
-        const heroOrbs = document.querySelectorAll('.hero-gradient-orb');
-
+        // ========== MOUSE TRACKING GLOW FOR HERO BLOBS ==========
+        const glowBlobs = document.querySelectorAll('.hero-glow-blob');
         window.addEventListener('mousemove', (e) => {
             const x = (e.clientX / window.innerWidth - 0.5) * 2;
             const y = (e.clientY / window.innerHeight - 0.5) * 2;
 
-            heroOrbs.forEach((orb, i) => {
-                const speed = (i + 1) * 8;
-                orb.style.transform = `translate(${x * speed}px, ${y * speed}px)`;
+            glowBlobs.forEach((blob, i) => {
+                const speed = (i + 1) * 15;
+                blob.style.transform = `translate(${x * speed}px, ${y * speed}px)`;
             });
         });
-
-        // ========== STATS COUNTER ANIMATION ==========
-        function animateCounters() {
-            const statNumbers = document.querySelectorAll('.stat-number');
-            statNumbers.forEach(stat => {
-                const text = stat.textContent;
-                // Simple fade-in effect — numbers are already set in HTML
-                stat.style.opacity = '0';
-                stat.style.transform = 'translateY(10px)';
-                stat.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-
-                setTimeout(() => {
-                    stat.style.opacity = '1';
-                    stat.style.transform = 'translateY(0)';
-                }, 200);
-            });
-        }
-
-        const statsSection = document.querySelector('.stats-strip');
-        const statsObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    animateCounters();
-                    statsObserver.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.3 });
-
-        if (statsSection) statsObserver.observe(statsSection);
 
         // ========== PORTFOLIO CARD TILT EFFECT ==========
         document.querySelectorAll('.portfolio-card').forEach(card => {
@@ -1910,10 +1649,10 @@
                 const y = e.clientY - rect.top;
                 const centerX = rect.width / 2;
                 const centerY = rect.height / 2;
-                const rotateX = (y - centerY) / centerY * -3;
-                const rotateY = (x - centerX) / centerX * 3;
+                const rotateX = (y - centerY) / centerY * -2;
+                const rotateY = (x - centerX) / centerX * 2;
 
-                card.style.transform = `perspective(1000px) translateY(-8px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+                card.style.transform = `perspective(1000px) translateY(-4px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
             });
 
             card.addEventListener('mouseleave', () => {
