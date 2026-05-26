@@ -10,22 +10,22 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* Ultra-premium cosmic colors */
-            --bg: #03050c;
-            --bg-deep: #010206;
-            --surface: rgba(8, 12, 28, 0.4);
-            --surface-card: rgba(8, 12, 28, 0.7);
-            --surface-hover: rgba(14, 20, 44, 0.8);
-            --primary: #0052FF;      /* Pure Electric Blue */
-            --primary-glow: rgba(0, 82, 255, 0.25);
-            --secondary: #3b82f6;
-            --accent: #00D4FF;       /* Cyan */
-            --accent-glow: rgba(0, 212, 255, 0.2);
-            --border: rgba(255, 255, 255, 0.05);
-            --border-hover: rgba(0, 82, 255, 0.4);
-            --text: #F8FAFC;
-            --muted: #64748B;
-            --white: #FFFFFF;
+            /* 1609plus inspired softer cosmic dark scheme */
+            --bg: #0a0d15;           /* Soft Slate Navy background */
+            --bg-deep: #06080d;      /* Slightly darker deep background */
+            --surface: rgba(18, 24, 38, 0.4);
+            --surface-card: rgba(18, 24, 38, 0.65);
+            --surface-hover: rgba(26, 34, 54, 0.8);
+            --primary: #3b82f6;      /* Premium softer blue */
+            --primary-glow: rgba(59, 130, 246, 0.2);
+            --secondary: #60a5fa;
+            --accent: #00d4ff;       /* Electric cyan */
+            --accent-glow: rgba(0, 212, 255, 0.15);
+            --border: rgba(255, 255, 255, 0.04);
+            --border-hover: rgba(59, 130, 246, 0.25);
+            --text: #f1f5f9;
+            --muted: #8fa0b5;        /* Softer light slate-gray */
+            --white: #ffffff;
             --radius: 12px;
             --radius-lg: 20px;
             --transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
@@ -1868,8 +1868,8 @@
         }
 
         function animate() {
-            // Very dark subtle transparent sky clearing
-            ctx.fillStyle = 'rgba(3, 5, 12, 0.2)';
+            // Blended transparent sky clearing for soft background
+            ctx.fillStyle = 'rgba(10, 13, 21, 0.22)';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
 
             // Easing the mouse position for smooth lag parallax effect
