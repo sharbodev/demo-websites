@@ -27,7 +27,7 @@ import {
 import { LocationTag } from "@/components/ui/location-tag";
 import PricingSection4 from "@/components/ui/pricing-section-4";
 import { Testimonials } from "@/components/ui/unique-testimonial";
-import { TheInfiniteGrid } from "@/components/ui/the-infinite-grid";
+import { TheInfiniteGrid, GlobalInfiniteGrid } from "@/components/ui/the-infinite-grid";
 
 export default function Home() {
   const [scrolled, setScrolled] = useState(false);
@@ -119,8 +119,8 @@ export default function Home() {
         <AnoAI />
       </div>
 
-      {/* Dotted Grid Background overlay */}
-      <div className="fixed inset-0 bg-[radial-gradient(rgba(255,255,255,0.015)_1px,transparent_1px)] bg-[size:28px_28px] pointer-events-none z-10" />
+      {/* Global Interactive Infinite Grid Background */}
+      <GlobalInfiniteGrid />
 
       {/* ========== HEADER ========== */}
       <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? "bg-[#060913]/70 backdrop-blur-md border-b border-white/5 py-3" : "py-5"}`}>

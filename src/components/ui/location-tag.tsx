@@ -50,11 +50,11 @@ export function LocationTag({ city = "Bishkek", country = "Kyrgyzstan", timezone
       </div>
 
       {/* Location text */}
-      <div className="flex items-center gap-2 overflow-hidden min-w-[120px] relative h-5">
+      <div className="flex items-center justify-center overflow-hidden min-w-[165px] relative h-6">
         <span
-          className="text-sm font-medium text-white/90 transition-all duration-500 block absolute inset-x-0"
+          className="text-sm font-semibold text-white/95 transition-all duration-500 block absolute inset-x-0 text-center whitespace-nowrap"
           style={{
-            transform: isHovered ? "translateY(-100%)" : "translateY(0)",
+            transform: isHovered ? "translateY(-130%)" : "translateY(0)",
             opacity: isHovered ? 0 : 1,
           }}
         >
@@ -62,9 +62,9 @@ export function LocationTag({ city = "Bishkek", country = "Kyrgyzstan", timezone
         </span>
 
         <span
-          className="text-sm font-medium text-white transition-all duration-500 block absolute inset-x-0"
+          className="text-sm font-semibold text-white transition-all duration-500 block absolute inset-x-0 text-center whitespace-nowrap"
           style={{
-            transform: isHovered ? "translateY(0)" : "translateY(100%)",
+            transform: isHovered ? "translateY(0)" : "translateY(130%)",
             opacity: isHovered ? 1 : 0,
           }}
         >

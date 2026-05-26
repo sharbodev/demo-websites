@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { 
   motion, 
@@ -117,3 +117,50 @@ const GridPattern = ({ offsetX, offsetY }: { offsetX: any, offsetY: any }) => {
 };
 
 export const TheInfiniteGrid = Component;
+
+export const GlobalInfiniteGrid = () => {
+  const mouseX = useMotionValue(-1000);
+  const mouseY = useMotionValue(-1000);
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      mouseX.set(e.clientX);
+      mouseY.set(e.clientY);
+    };
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, [mouseX, mouseY]);
+
+  const gridOffsetX = useMotionValue(0);
+  const gridOffsetY = useMotionValue(0);
+
+  const speedX = 0.2; // slow and cinematic
+  const speedY = 0.2;
+
+  useAnimationFrame(() => {
+    const currentX = gridOffsetX.get();
+    const currentY = gridOffsetY.get();
+    gridOffsetX.set((currentX + speedX) % 40);
+    gridOffsetY.set((currentY + speedY) % 40);
+  });
+
+  // Radial mask follows mouse globally across screen
+  const maskImage = useMotionTemplate`radial-gradient(280px circle at ${mouseX}px ${mouseY}px, black, transparent)`;
+
+  return (
+    <div className="fixed inset-0 w-full h-full pointer-events-none z-[1] overflow-hidden">
+      {/* 1. Base extremely faint scrolling grid (opacity 1.5%) */}
+      <div className="absolute inset-0 z-0 opacity-[0.015] text-[#8fa0b5]">
+        <GridPattern offsetX={gridOffsetX} offsetY={gridOffsetY} />
+      </div>
+      
+      {/* 2. Active illuminated grid layer revealed around global mouse position */}
+      <motion.div 
+        className="absolute inset-0 z-0 opacity-25 text-blue-400"
+        style={{ maskImage, WebkitMaskImage: maskImage }}
+      >
+        <GridPattern offsetX={gridOffsetX} offsetY={gridOffsetY} />
+      </motion.div>
+    </div>
+  );
+};
