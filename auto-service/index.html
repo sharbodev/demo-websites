@@ -1,0 +1,1693 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>АвтоПро — Профессиональный автосервис в Бишкеке</title>
+    <meta name="description" content="АвтоПро — профессиональный автосервис в Бишкеке. Диагностика, ремонт, обслуживание автомобилей всех марок. Гарантия качества.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0EA5E9;
+            --secondary: #06B6D4;
+            --accent: #22D3EE;
+            --neon-glow: rgba(14, 165, 233, 0.3);
+            --neon-glow-strong: rgba(14, 165, 233, 0.5);
+            --bg: #0A0A0A;
+            --surface: #171717;
+            --surface-2: #262626;
+            --text: #E5E5E5;
+            --text-muted: #A3A3A3;
+            --white: #FFFFFF;
+            --border: rgba(255, 255, 255, 0.06);
+            --font-body: 'Inter', sans-serif;
+            --font-heading: 'Outfit', sans-serif;
+            --radius: 12px;
+            --radius-sm: 8px;
+            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ===== Utility ===== */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: var(--font-body);
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 12px;
+        }
+
+        .section-label::before {
+            content: '';
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--accent);
+            border-radius: 1px;
+        }
+
+        .section-title {
+            font-family: var(--font-heading);
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .section-subtitle {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            max-width: 560px;
+            line-height: 1.7;
+        }
+
+        section {
+            padding: 100px 0;
+        }
+
+        /* ===== Scroll Animations ===== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s var(--transition), transform 0.7s var(--transition);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+        .reveal-delay-4 { transition-delay: 0.4s; }
+        .reveal-delay-5 { transition-delay: 0.5s; }
+
+        /* ===== Background Pattern ===== */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+            background-size: 60px 60px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* ===== Header ===== */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 0;
+            transition: background var(--transition), box-shadow var(--transition), padding var(--transition);
+        }
+
+        .header.scrolled {
+            background: rgba(10, 10, 10, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 1px 0 var(--border), 0 4px 30px rgba(0,0,0,0.3);
+        }
+
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 72px;
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--white);
+            text-decoration: none;
+            letter-spacing: -0.02em;
+            position: relative;
+        }
+
+        .logo span {
+            color: var(--accent);
+            text-shadow: 0 0 20px var(--neon-glow), 0 0 40px rgba(14, 165, 233, 0.15);
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color var(--transition);
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            border-radius: 1px;
+            transition: width var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--white);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            font-weight: 600;
+            padding: 10px 24px;
+            border-radius: var(--radius-sm);
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all var(--transition);
+            white-space: nowrap;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: var(--white);
+            box-shadow: 0 0 20px var(--neon-glow), 0 2px 8px rgba(0,0,0,0.3);
+        }
+
+        .btn-primary:hover {
+            background: var(--secondary);
+            box-shadow: 0 0 30px var(--neon-glow-strong), 0 4px 16px rgba(0,0,0,0.4);
+            transform: translateY(-1px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--text);
+            border: 1px solid var(--surface-2);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--primary);
+            color: var(--white);
+            background: rgba(14, 165, 233, 0.08);
+        }
+
+        .btn-large {
+            padding: 14px 32px;
+            font-size: 0.95rem;
+            border-radius: var(--radius);
+        }
+
+        /* Mobile Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: var(--text);
+            border-radius: 2px;
+            transition: all var(--transition);
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(10, 10, 10, 0.97);
+            backdrop-filter: blur(20px);
+            z-index: 999;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 24px;
+        }
+
+        .mobile-menu.open {
+            display: flex;
+        }
+
+        .mobile-menu a {
+            font-family: var(--font-heading);
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--text);
+            text-decoration: none;
+            transition: color var(--transition);
+        }
+
+        .mobile-menu a:hover {
+            color: var(--accent);
+        }
+
+        /* ===== Hero ===== */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 72px;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -200px;
+            right: -200px;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(14, 165, 233, 0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--border), transparent);
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(14, 165, 233, 0.1);
+            border: 1px solid rgba(14, 165, 233, 0.2);
+            border-radius: 100px;
+            padding: 6px 16px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--accent);
+            margin-bottom: 24px;
+        }
+
+        .hero-badge-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--accent);
+            animation: pulse-dot 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+
+        .hero h1 {
+            font-family: var(--font-heading);
+            font-size: clamp(2.2rem, 5vw, 3.4rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--white) 0%, var(--white) 50%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+            margin-bottom: 36px;
+            max-width: 480px;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 40px;
+            margin-top: 56px;
+            padding-top: 32px;
+            border-top: 1px solid var(--border);
+        }
+
+        .hero-stat-value {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--white);
+        }
+
+        .hero-stat-value span {
+            color: var(--accent);
+        }
+
+        .hero-stat-label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        .hero-visual {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-svg-wrap {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .hero-svg-wrap svg {
+            width: 100%;
+            height: auto;
+        }
+
+        .hero-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 320px;
+            height: 320px;
+            background: radial-gradient(circle, rgba(14, 165, 233, 0.12) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: glow-pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes glow-pulse {
+            0%, 100% { opacity: 0.6; transform: translate(-50%, -50%) scale(1); }
+            50% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
+        }
+
+        /* ===== Services ===== */
+        .services {
+            position: relative;
+        }
+
+        .services-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .services-header .section-subtitle {
+            margin: 0 auto;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .service-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 32px 28px;
+            transition: all var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+            opacity: 0;
+            transition: opacity var(--transition);
+        }
+
+        .service-card:hover {
+            border-color: rgba(14, 165, 233, 0.3);
+            box-shadow: 0 0 30px rgba(14, 165, 233, 0.08), 0 8px 32px rgba(0,0,0,0.3);
+            transform: translateY(-4px);
+        }
+
+        .service-card:hover::before {
+            opacity: 1;
+        }
+
+        .service-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 10px;
+            background: rgba(14, 165, 233, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            transition: all var(--transition);
+        }
+
+        .service-card:hover .service-icon {
+            background: rgba(14, 165, 233, 0.15);
+            box-shadow: 0 0 16px var(--neon-glow);
+        }
+
+        .service-icon svg {
+            width: 22px;
+            height: 22px;
+            color: var(--accent);
+        }
+
+        .service-title {
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: 8px;
+        }
+
+        .service-price {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 12px;
+        }
+
+        .service-desc {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* ===== Prices ===== */
+        .prices {
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .prices-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .prices-header .section-subtitle {
+            margin: 0 auto;
+        }
+
+        .price-table-wrap {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+        }
+
+        .price-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .price-table thead {
+            background: var(--surface-2);
+        }
+
+        .price-table th {
+            font-family: var(--font-heading);
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            text-align: left;
+            padding: 16px 24px;
+        }
+
+        .price-table td {
+            padding: 16px 24px;
+            border-top: 1px solid var(--border);
+            font-size: 0.95rem;
+        }
+
+        .price-table td:first-child {
+            color: var(--text);
+            font-weight: 500;
+        }
+
+        .price-table td:last-child {
+            color: var(--accent);
+            font-weight: 600;
+            font-family: var(--font-heading);
+            white-space: nowrap;
+        }
+
+        .price-table tbody tr {
+            transition: background var(--transition);
+        }
+
+        .price-table tbody tr:hover {
+            background: rgba(14, 165, 233, 0.04);
+        }
+
+        /* ===== Why Us ===== */
+        .why-us-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .why-us-header .section-subtitle {
+            margin: 0 auto;
+        }
+
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .why-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 32px 24px;
+            text-align: center;
+            transition: all var(--transition);
+        }
+
+        .why-card:hover {
+            border-color: rgba(14, 165, 233, 0.2);
+            box-shadow: 0 0 24px rgba(14, 165, 233, 0.06);
+            transform: translateY(-2px);
+        }
+
+        .why-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: rgba(14, 165, 233, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+        }
+
+        .why-icon svg {
+            width: 24px;
+            height: 24px;
+            color: var(--accent);
+        }
+
+        .why-title {
+            font-family: var(--font-heading);
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: 8px;
+        }
+
+        .why-desc {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* ===== Brands ===== */
+        .brands {
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            padding: 72px 0;
+        }
+
+        .brands-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .brands-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .brand-badge {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            padding: 16px 32px;
+            font-family: var(--font-heading);
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            transition: all var(--transition);
+            letter-spacing: 0.03em;
+        }
+
+        .brand-badge:hover {
+            color: var(--white);
+            border-color: rgba(14, 165, 233, 0.25);
+            background: rgba(14, 165, 233, 0.05);
+        }
+
+        /* ===== Reviews ===== */
+        .reviews-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .reviews-header .section-subtitle {
+            margin: 0 auto;
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .review-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 32px 28px;
+            transition: all var(--transition);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .review-card:hover {
+            border-color: rgba(14, 165, 233, 0.15);
+        }
+
+        .review-stars {
+            display: flex;
+            gap: 3px;
+            margin-bottom: 16px;
+        }
+
+        .review-stars svg {
+            width: 16px;
+            height: 16px;
+            color: #FBBF24;
+        }
+
+        .review-text {
+            font-size: 0.95rem;
+            color: var(--text);
+            line-height: 1.7;
+            flex: 1;
+            margin-bottom: 20px;
+        }
+
+        .review-author {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding-top: 16px;
+            border-top: 1px solid var(--border);
+        }
+
+        .review-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: var(--white);
+            flex-shrink: 0;
+        }
+
+        .review-avatar.av1 { background: linear-gradient(135deg, #0EA5E9, #06B6D4); }
+        .review-avatar.av2 { background: linear-gradient(135deg, #8B5CF6, #6366F1); }
+        .review-avatar.av3 { background: linear-gradient(135deg, #10B981, #059669); }
+
+        .review-author-name {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--white);
+        }
+
+        .review-author-car {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        /* ===== Contact ===== */
+        .contact {
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+        }
+
+        .contact-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .contact-header .section-subtitle {
+            margin: 0 auto;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        .contact-items {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+        }
+
+        .contact-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 10px;
+            background: rgba(14, 165, 233, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .contact-icon svg {
+            width: 20px;
+            height: 20px;
+            color: var(--accent);
+        }
+
+        .contact-item-title {
+            font-family: var(--font-heading);
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: 4px;
+        }
+
+        .contact-item-value {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        .contact-item-value a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color var(--transition);
+        }
+
+        .contact-item-value a:hover {
+            color: var(--accent);
+        }
+
+        .contact-map {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            height: 320px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-map::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(14, 165, 233, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(14, 165, 233, 0.04) 1px, transparent 1px);
+            background-size: 40px 40px;
+            pointer-events: none;
+        }
+
+        .contact-map svg {
+            color: var(--primary);
+            opacity: 0.5;
+        }
+
+        .contact-map span {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .contact-cta {
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        /* ===== Footer ===== */
+        .footer {
+            border-top: 1px solid var(--border);
+            padding: 40px 0;
+        }
+
+        .footer-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .footer-copy {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .footer-links a {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        /* ===== Floating WhatsApp ===== */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            z-index: 998;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: #25D366;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 16px rgba(37, 211, 102, 0.35), 0 2px 8px rgba(0,0,0,0.3);
+            transition: all var(--transition);
+            text-decoration: none;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.08);
+            box-shadow: 0 6px 24px rgba(37, 211, 102, 0.45), 0 4px 12px rgba(0,0,0,0.3);
+        }
+
+        .whatsapp-float svg {
+            width: 28px;
+            height: 28px;
+            color: var(--white);
+        }
+
+        .whatsapp-tooltip {
+            position: absolute;
+            right: 68px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            padding: 8px 14px;
+            font-size: 0.82rem;
+            color: var(--text);
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity var(--transition);
+        }
+
+        .whatsapp-float:hover .whatsapp-tooltip {
+            opacity: 1;
+        }
+
+        /* ===== Responsive ===== */
+        @media (max-width: 1024px) {
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .why-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .reviews-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .hero-visual {
+                order: -1;
+                max-height: 280px;
+            }
+
+            .hero-svg-wrap {
+                max-width: 350px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            section {
+                padding: 72px 0;
+            }
+
+            .nav-links,
+            .nav .btn {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .hero {
+                min-height: auto;
+                padding-top: 120px;
+                padding-bottom: 60px;
+            }
+
+            .hero-stats {
+                gap: 24px;
+            }
+
+            .hero-stat-value {
+                font-size: 1.4rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .why-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .reviews-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .brands-row {
+                gap: 10px;
+            }
+
+            .brand-badge {
+                padding: 12px 20px;
+                font-size: 0.88rem;
+            }
+
+            .price-table th,
+            .price-table td {
+                padding: 12px 16px;
+            }
+
+            .footer-inner {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-stats {
+                flex-direction: column;
+                gap: 16px;
+            }
+
+            .hero-actions {
+                flex-direction: column;
+            }
+
+            .hero-actions .btn {
+                width: 100%;
+            }
+
+            .why-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-visual {
+                display: none;
+            }
+
+            .whatsapp-float {
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="container header-inner">
+            <a href="#" class="logo">Авто<span>Про</span></a>
+            <nav class="nav">
+                <ul class="nav-links">
+                    <li><a href="#services">Услуги</a></li>
+                    <li><a href="#prices">Цены</a></li>
+                    <li><a href="#about">О нас</a></li>
+                    <li><a href="#contact">Контакты</a></li>
+                </ul>
+                <a href="https://wa.me/996555123456?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BF%D0%B8%D1%81%D0%B0%D1%82%D1%8C%D1%81%D1%8F%20%D0%BD%D0%B0%20%D1%81%D0%B5%D1%80%D0%B2%D0%B8%D1%81" target="_blank" class="btn btn-primary">Записаться</a>
+            </nav>
+            <button class="hamburger" id="hamburger" aria-label="Меню">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#services" onclick="closeMobile()">Услуги</a>
+        <a href="#prices" onclick="closeMobile()">Цены</a>
+        <a href="#about" onclick="closeMobile()">О нас</a>
+        <a href="#contact" onclick="closeMobile()">Контакты</a>
+        <a href="https://wa.me/996555123456?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BF%D0%B8%D1%81%D0%B0%D1%82%D1%8C%D1%81%D1%8F%20%D0%BD%D0%B0%20%D1%81%D0%B5%D1%80%D0%B2%D0%B8%D1%81" target="_blank" class="btn btn-primary" style="margin-top:12px;">Записаться</a>
+    </div>
+
+    <!-- Hero -->
+    <section class="hero" id="hero">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <div class="hero-badge reveal">
+                        <span class="hero-badge-dot"></span>
+                        Автосервис в Бишкеке
+                    </div>
+                    <h1 class="reveal reveal-delay-1">Ваш автомобиль в надёжных руках</h1>
+                    <p class="hero-description reveal reveal-delay-2">Профессиональная диагностика и ремонт автомобилей любых марок. Современное оборудование, оригинальные запчасти и гарантия на все виды работ.</p>
+                    <div class="hero-actions reveal reveal-delay-3">
+                        <a href="https://wa.me/996555123456?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BF%D0%B8%D1%81%D0%B0%D1%82%D1%8C%D1%81%D1%8F%20%D0%BD%D0%B0%20%D1%81%D0%B5%D1%80%D0%B2%D0%B8%D1%81" target="_blank" class="btn btn-primary btn-large">Записаться на сервис</a>
+                        <a href="#services" class="btn btn-outline btn-large">Наши услуги</a>
+                    </div>
+                    <div class="hero-stats reveal reveal-delay-4">
+                        <div>
+                            <div class="hero-stat-value">12<span>+</span></div>
+                            <div class="hero-stat-label">Лет опыта</div>
+                        </div>
+                        <div>
+                            <div class="hero-stat-value">8 000<span>+</span></div>
+                            <div class="hero-stat-label">Обслуженных авто</div>
+                        </div>
+                        <div>
+                            <div class="hero-stat-value">98<span>%</span></div>
+                            <div class="hero-stat-label">Довольных клиентов</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-visual reveal reveal-delay-2">
+                    <div class="hero-svg-wrap">
+                        <div class="hero-glow"></div>
+                        <svg viewBox="0 0 500 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Car silhouette -->
+                            <path d="M80 260 L120 260 L140 220 L180 200 L200 180 L320 180 L360 200 L380 220 L420 260 L440 260" stroke="currentColor" stroke-width="2" fill="none" opacity="0.15" style="color: var(--accent)"/>
+                            <path d="M100 260 Q100 240 120 240 L160 240 L180 200 L340 200 L360 240 L400 240 Q420 240 420 260 Z" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.2" style="color: var(--accent)"/>
+                            <!-- Wheels -->
+                            <circle cx="160" cy="264" r="28" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.2" style="color: var(--accent)"/>
+                            <circle cx="160" cy="264" r="16" fill="none" stroke="currentColor" stroke-width="1" opacity="0.15" style="color: var(--accent)"/>
+                            <circle cx="360" cy="264" r="28" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.2" style="color: var(--accent)"/>
+                            <circle cx="360" cy="264" r="16" fill="none" stroke="currentColor" stroke-width="1" opacity="0.15" style="color: var(--accent)"/>
+                            <!-- Wrench -->
+                            <g transform="translate(220, 100) rotate(-30)" opacity="0.25" style="color: var(--accent)">
+                                <path d="M0 0 L60 60 M50 50 L70 30 Q80 20 70 10 L60 20 L50 10 Q40 20 50 30 Z" stroke="currentColor" stroke-width="2" fill="none"/>
+                                <path d="M0 0 L-10 10 Q-15 15 -10 20 L0 10 L10 20 Q15 15 10 10 Z" stroke="currentColor" stroke-width="2" fill="none"/>
+                            </g>
+                            <!-- Gear -->
+                            <g transform="translate(310, 110)" opacity="0.2" style="color: var(--accent)">
+                                <circle cx="0" cy="0" r="20" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                                <circle cx="0" cy="0" r="8" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                                <line x1="0" y1="-24" x2="0" y2="-16" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+                                <line x1="0" y1="16" x2="0" y2="24" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+                                <line x1="-24" y1="0" x2="-16" y2="0" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+                                <line x1="16" y1="0" x2="24" y2="0" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+                                <line x1="-17" y1="-17" x2="-11" y2="-11" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+                                <line x1="11" y1="11" x2="17" y2="17" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+                                <line x1="17" y1="-17" x2="11" y2="-11" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+                                <line x1="-11" y1="11" x2="-17" y2="17" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+                            </g>
+                            <!-- Ground line -->
+                            <line x1="60" y1="292" x2="460" y2="292" stroke="currentColor" stroke-width="1" opacity="0.08" style="color: var(--accent)"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="services-header">
+                <div class="section-label reveal">Услуги</div>
+                <h2 class="section-title reveal reveal-delay-1">Полный спектр автосервисных услуг</h2>
+                <p class="section-subtitle reveal reveal-delay-2">Выполняем все виды работ по обслуживанию и ремонту автомобилей — от плановой диагностики до капитального ремонта.</p>
+            </div>
+            <div class="services-grid">
+                <!-- Card 1 -->
+                <div class="service-card reveal">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 6v6l4 2"/>
+                        </svg>
+                    </div>
+                    <h3 class="service-title">Диагностика двигателя</h3>
+                    <div class="service-price">от 1 500 сом</div>
+                    <p class="service-desc">Комплексная проверка состояния двигателя с использованием профессионального диагностического оборудования. Выявление неисправностей на ранней стадии.</p>
+                </div>
+                <!-- Card 2 -->
+                <div class="service-card reveal reveal-delay-1">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2v6m0 8v6M4.93 4.93l4.24 4.24m5.66 5.66l4.24 4.24M2 12h6m8 0h6M4.93 19.07l4.24-4.24m5.66-5.66l4.24-4.24"/>
+                        </svg>
+                    </div>
+                    <h3 class="service-title">Замена масла</h3>
+                    <div class="service-price">от 1 000 сом</div>
+                    <p class="service-desc">Замена моторного масла и фильтров с использованием рекомендованных производителем материалов. Быстро и качественно.</p>
+                </div>
+                <!-- Card 3 -->
+                <div class="service-card reveal reveal-delay-2">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/>
+                        </svg>
+                    </div>
+                    <h3 class="service-title">Ремонт ходовой</h3>
+                    <div class="service-price">от 3 000 сом</div>
+                    <p class="service-desc">Ремонт и замена элементов подвески, рулевого управления. Восстановление плавности хода и управляемости автомобиля.</p>
+                </div>
+                <!-- Card 4 -->
+                <div class="service-card reveal">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="3" width="20" height="14" rx="2"/>
+                            <path d="M8 21h8M12 17v4"/>
+                        </svg>
+                    </div>
+                    <h3 class="service-title">Компьютерная диагностика</h3>
+                    <div class="service-price">от 800 сом</div>
+                    <p class="service-desc">Считывание и расшифровка кодов ошибок, проверка всех электронных систем автомобиля. Точное определение неисправностей.</p>
+                </div>
+                <!-- Card 5 -->
+                <div class="service-card reveal reveal-delay-1">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"/>
+                            <circle cx="12" cy="12" r="3"/>
+                            <line x1="12" y1="2" x2="12" y2="5"/>
+                            <line x1="12" y1="19" x2="12" y2="22"/>
+                            <line x1="2" y1="12" x2="5" y2="12"/>
+                            <line x1="19" y1="12" x2="22" y2="12"/>
+                        </svg>
+                    </div>
+                    <h3 class="service-title">Шиномонтаж</h3>
+                    <div class="service-price">от 500 сом</div>
+                    <p class="service-desc">Сезонная замена шин, балансировка колёс, ремонт проколов. Работаем с колёсами любого диаметра.</p>
+                </div>
+                <!-- Card 6 -->
+                <div class="service-card reveal reveal-delay-2">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 3l1.912 5.813a2 2 0 001.272 1.272L21 12l-5.816 1.915a2 2 0 00-1.272 1.272L12 21l-1.912-5.813a2 2 0 00-1.272-1.272L3 12l5.816-1.915a2 2 0 001.272-1.272L12 3z"/>
+                        </svg>
+                    </div>
+                    <h3 class="service-title">Детейлинг и полировка</h3>
+                    <div class="service-price">от 5 000 сом</div>
+                    <p class="service-desc">Профессиональный уход за кузовом и салоном. Полировка, нанесение защитных покрытий, химчистка интерьера.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Price List -->
+    <section class="prices" id="prices">
+        <div class="container">
+            <div class="prices-header">
+                <div class="section-label reveal">Прайс-лист</div>
+                <h2 class="section-title reveal reveal-delay-1">Прозрачные цены</h2>
+                <p class="section-subtitle reveal reveal-delay-2">Честные и конкурентные цены без скрытых наценок. Окончательная стоимость зависит от модели автомобиля и сложности работ.</p>
+            </div>
+            <div class="price-table-wrap reveal reveal-delay-3">
+                <table class="price-table">
+                    <thead>
+                        <tr>
+                            <th>Услуга</th>
+                            <th>Стоимость</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Замена масла и фильтра</td>
+                            <td>1 000 — 2 000 сом</td>
+                        </tr>
+                        <tr>
+                            <td>Диагностика двигателя</td>
+                            <td>800 — 1 500 сом</td>
+                        </tr>
+                        <tr>
+                            <td>Замена тормозных колодок</td>
+                            <td>1 500 — 3 000 сом</td>
+                        </tr>
+                        <tr>
+                            <td>Ремонт подвески</td>
+                            <td>3 000 — 8 000 сом</td>
+                        </tr>
+                        <tr>
+                            <td>Замена ремня ГРМ</td>
+                            <td>5 000 — 10 000 сом</td>
+                        </tr>
+                        <tr>
+                            <td>Полная покраска кузова</td>
+                            <td>от 40 000 сом</td>
+                        </tr>
+                        <tr>
+                            <td>Детейлинг</td>
+                            <td>5 000 — 15 000 сом</td>
+                        </tr>
+                        <tr>
+                            <td>Кузовной ремонт</td>
+                            <td>от 3 000 сом</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Us -->
+    <section class="why-us" id="about">
+        <div class="container">
+            <div class="why-us-header">
+                <div class="section-label reveal">Почему мы</div>
+                <h2 class="section-title reveal reveal-delay-1">Доверьте ваш автомобиль профессионалам</h2>
+                <p class="section-subtitle reveal reveal-delay-2">Мы объединяем многолетний опыт, качественные материалы и индивидуальный подход к каждому клиенту.</p>
+            </div>
+            <div class="why-grid">
+                <div class="why-card reveal">
+                    <div class="why-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 8v4l3 3"/>
+                            <circle cx="12" cy="12" r="10"/>
+                        </svg>
+                    </div>
+                    <h3 class="why-title">Опыт 12+ лет</h3>
+                    <p class="why-desc">Многолетний практический опыт работы с автомобилями всех типов и сложности.</p>
+                </div>
+                <div class="why-card reveal reveal-delay-1">
+                    <div class="why-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M9 12l2 2 4-4"/>
+                            <path d="M12 2a10 10 0 100 20 10 10 0 000-20z"/>
+                        </svg>
+                    </div>
+                    <h3 class="why-title">Оригинальные запчасти</h3>
+                    <p class="why-desc">Используем только сертифицированные запасные части от проверенных поставщиков.</p>
+                </div>
+                <div class="why-card reveal reveal-delay-2">
+                    <div class="why-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        </svg>
+                    </div>
+                    <h3 class="why-title">Гарантия на работы</h3>
+                    <p class="why-desc">Предоставляем гарантию на все выполненные работы и установленные запчасти.</p>
+                </div>
+                <div class="why-card reveal reveal-delay-3">
+                    <div class="why-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="7" width="20" height="14" rx="2"/>
+                            <path d="M16 3h-8l-2 4h12l-2-4z"/>
+                            <circle cx="12" cy="14" r="3"/>
+                        </svg>
+                    </div>
+                    <h3 class="why-title">Современное оборудование</h3>
+                    <p class="why-desc">Работаем на современном диагностическом и ремонтном оборудовании ведущих производителей.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Brands -->
+    <section class="brands" id="brands">
+        <div class="container">
+            <div class="brands-header">
+                <div class="section-label reveal">Марки авто</div>
+                <h2 class="section-title reveal reveal-delay-1">Обслуживаем все популярные марки</h2>
+            </div>
+            <div class="brands-row reveal reveal-delay-2">
+                <div class="brand-badge">Toyota</div>
+                <div class="brand-badge">Honda</div>
+                <div class="brand-badge">Hyundai</div>
+                <div class="brand-badge">Kia</div>
+                <div class="brand-badge">Mercedes</div>
+                <div class="brand-badge">BMW</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews -->
+    <section class="reviews" id="reviews">
+        <div class="container">
+            <div class="reviews-header">
+                <div class="section-label reveal">Отзывы</div>
+                <h2 class="section-title reveal reveal-delay-1">Что говорят наши клиенты</h2>
+                <p class="section-subtitle reveal reveal-delay-2">Мы гордимся доверием наших клиентов и работаем над тем, чтобы каждый визит оправдывал ожидания.</p>
+            </div>
+            <div class="reviews-grid">
+                <div class="review-card reveal">
+                    <div class="review-stars">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    </div>
+                    <p class="review-text">Отличный сервис! Привозил свою Camry на диагностику — ребята нашли проблему за час, хотя в другом месте не могли разобраться неделю. Ремонт сделали качественно, цена адекватная. Теперь только к ним.</p>
+                    <div class="review-author">
+                        <div class="review-avatar av1">А</div>
+                        <div>
+                            <div class="review-author-name">Азамат К.</div>
+                            <div class="review-author-car">Toyota Camry 55</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="review-card reveal reveal-delay-1">
+                    <div class="review-stars">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    </div>
+                    <p class="review-text">Заменили ремень ГРМ на моём Tucson быстро и аккуратно. Приятно удивила стоимость — дешевле, чем у дилера, а качество ничуть не хуже. Мастера вежливые, всё объяснили. Рекомендую!</p>
+                    <div class="review-author">
+                        <div class="review-avatar av2">Д</div>
+                        <div>
+                            <div class="review-author-name">Динара М.</div>
+                            <div class="review-author-car">Hyundai Tucson</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="review-card reveal reveal-delay-2">
+                    <div class="review-stars">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    </div>
+                    <p class="review-text">Обслуживаю здесь свою тройку BMW уже третий год. Ребята разбираются в немцах, что для Бишкека редкость. Всегда ставят оригинальные запчасти и дают гарантию. Проверенное место.</p>
+                    <div class="review-author">
+                        <div class="review-avatar av3">Э</div>
+                        <div>
+                            <div class="review-author-name">Эрлан С.</div>
+                            <div class="review-author-car">BMW 3 Series (F30)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="contact-header">
+                <div class="section-label reveal">Контакты</div>
+                <h2 class="section-title reveal reveal-delay-1">Свяжитесь с нами</h2>
+                <p class="section-subtitle reveal reveal-delay-2">Запишитесь на обслуживание или задайте вопрос — мы всегда на связи.</p>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-items reveal reveal-delay-3">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+                                <circle cx="12" cy="10" r="3"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <div class="contact-item-title">Адрес</div>
+                            <div class="contact-item-value">ул. Ахунбаева 100, Бишкек, Кыргызстан</div>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <div class="contact-item-title">Телефон</div>
+                            <div class="contact-item-value"><a href="tel:+996555123456">+996 555 123 456</a></div>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"/>
+                                <path d="M12 6v6l4 2"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <div class="contact-item-title">Часы работы</div>
+                            <div class="contact-item-value">Пн — Сб: 8:00 — 19:00<br>Вс: 9:00 — 15:00</div>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <div class="contact-item-title">WhatsApp</div>
+                            <div class="contact-item-value"><a href="https://wa.me/996555123456" target="_blank">Написать в WhatsApp</a></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-map reveal reveal-delay-4">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+                        <circle cx="12" cy="10" r="3"/>
+                    </svg>
+                    <span>ул. Ахунбаева 100, Бишкек</span>
+                </div>
+            </div>
+            <div class="contact-cta reveal">
+                <a href="https://wa.me/996555123456?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BF%D0%B8%D1%81%D0%B0%D1%82%D1%8C%D1%81%D1%8F%20%D0%BD%D0%B0%20%D1%81%D0%B5%D1%80%D0%B2%D0%B8%D1%81" target="_blank" class="btn btn-primary btn-large">Записаться на сервис через WhatsApp</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-inner">
+            <div class="footer-copy">АвтоПро. Все права защищены, 2014 — 2026</div>
+            <div class="footer-links">
+                <a href="#services">Услуги</a>
+                <a href="#prices">Цены</a>
+                <a href="#contact">Контакты</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp -->
+    <a href="https://wa.me/996555123456?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BF%D0%B8%D1%81%D0%B0%D1%82%D1%8C%D1%81%D1%8F%20%D0%BD%D0%B0%20%D1%81%D0%B5%D1%80%D0%B2%D0%B8%D1%81" target="_blank" class="whatsapp-float" aria-label="WhatsApp">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+        <span class="whatsapp-tooltip">Написать в WhatsApp</span>
+    </a>
+
+    <script>
+        // Header scroll effect
+        const header = document.getElementById('header');
+        let lastScroll = 0;
+
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            if (currentScroll > 40) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+            lastScroll = currentScroll;
+        }, { passive: true });
+
+        // Mobile menu
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('open');
+            document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+        });
+
+        function closeMobile() {
+            hamburger.classList.remove('active');
+            mobileMenu.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        // Intersection Observer for scroll animations
+        const revealElements = document.querySelectorAll('.reveal');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -40px 0px'
+        });
+
+        revealElements.forEach(el => observer.observe(el));
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href === '#') return;
+                e.preventDefault();
+                const target = document.querySelector(href);
+                if (target) {
+                    const headerHeight = header.offsetHeight;
+                    const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

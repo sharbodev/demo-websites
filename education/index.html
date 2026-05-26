@@ -1,0 +1,2101 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Билим — Учебный центр нового поколения</title>
+  <meta name="description" content="Учебный центр Билим в Бишкеке. Курсы английского, математики, программирования, робототехники для детей и взрослых. Малые группы, опытные преподаватели.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary: #7C3AED;
+      --secondary: #8B5CF6;
+      --accent: #A78BFA;
+      --highlight: #F59E0B;
+      --highlight-hover: #D97706;
+      --bg: #FAF5FF;
+      --dark: #1E1B4B;
+      --card-bg: #EDE9FE;
+      --text: #1E1B4B;
+      --white: #FFFFFF;
+      --gray-100: #F3F0FF;
+      --gray-200: #E8E0F7;
+      --gray-400: #9CA3AF;
+      --gray-600: #6B7280;
+      --shadow-sm: 0 1px 3px rgba(124,58,237,0.08);
+      --shadow-md: 0 4px 16px rgba(124,58,237,0.10);
+      --shadow-lg: 0 8px 32px rgba(124,58,237,0.12);
+      --shadow-xl: 0 16px 48px rgba(124,58,237,0.15);
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --radius-xl: 24px;
+      --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4, h5 {
+      font-family: 'Outfit', sans-serif;
+      line-height: 1.2;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img { max-width: 100%; }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* ---------- HEADER ---------- */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(250, 245, 255, 0.82);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(124, 58, 237, 0.08);
+      transition: var(--transition);
+    }
+
+    .header.scrolled {
+      background: rgba(250, 245, 255, 0.95);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      font-size: 1.5rem;
+      color: var(--primary);
+    }
+
+    .logo-icon {
+      width: 38px;
+      height: 38px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text);
+      position: relative;
+      transition: color var(--transition);
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--primary);
+      border-radius: 1px;
+      transition: width var(--transition);
+    }
+
+    .nav-links a:hover { color: var(--primary); }
+    .nav-links a:hover::after { width: 100%; }
+
+    .nav-cta {
+      background: var(--highlight);
+      color: var(--white) !important;
+      padding: 10px 24px;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: all var(--transition);
+      box-shadow: 0 2px 8px rgba(245, 158, 11, 0.3);
+    }
+
+    .nav-cta::after { display: none !important; }
+    .nav-cta:hover {
+      background: var(--highlight-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 16px rgba(245, 158, 11, 0.4);
+      color: var(--white) !important;
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+    }
+
+    .hamburger span {
+      width: 24px;
+      height: 2px;
+      background: var(--dark);
+      border-radius: 2px;
+      transition: var(--transition);
+    }
+
+    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 72px;
+      left: 0;
+      right: 0;
+      background: rgba(250, 245, 255, 0.98);
+      backdrop-filter: blur(20px);
+      padding: 24px 20px;
+      flex-direction: column;
+      gap: 8px;
+      border-bottom: 1px solid rgba(124, 58, 237, 0.1);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .mobile-menu.active { display: flex; }
+
+    .mobile-menu a {
+      padding: 14px 16px;
+      font-size: 1rem;
+      font-weight: 500;
+      border-radius: var(--radius-sm);
+      transition: background var(--transition);
+    }
+
+    .mobile-menu a:hover { background: var(--card-bg); }
+
+    .mobile-menu .nav-cta {
+      text-align: center;
+      margin-top: 8px;
+    }
+
+    /* ---------- HERO ---------- */
+    .hero {
+      padding: 140px 0 80px;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(180deg, var(--bg) 0%, var(--white) 100%);
+    }
+
+    .hero-bg-decoration {
+      position: absolute;
+      top: -120px;
+      right: -200px;
+      width: 700px;
+      height: 700px;
+      opacity: 0.08;
+      pointer-events: none;
+    }
+
+    .hero-bg-decoration-2 {
+      position: absolute;
+      bottom: -80px;
+      left: -150px;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
+      opacity: 0.15;
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-content { max-width: 560px; }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--card-bg);
+      border: 1px solid rgba(124, 58, 237, 0.15);
+      padding: 8px 16px;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--primary);
+      margin-bottom: 24px;
+    }
+
+    .hero-badge-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--highlight);
+      border-radius: 50%;
+      animation: pulse-dot 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.6; transform: scale(1.3); }
+    }
+
+    .hero h1 {
+      font-size: clamp(2.2rem, 4vw, 3.2rem);
+      font-weight: 800;
+      color: var(--dark);
+      margin-bottom: 20px;
+      letter-spacing: -0.02em;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-description {
+      font-size: 1.1rem;
+      color: var(--gray-600);
+      line-height: 1.7;
+      margin-bottom: 36px;
+      max-width: 480px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 48px;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 32px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: var(--white);
+      font-weight: 600;
+      font-size: 1rem;
+      border-radius: 50px;
+      border: none;
+      cursor: pointer;
+      transition: all var(--transition);
+      box-shadow: 0 4px 16px rgba(124, 58, 237, 0.3);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(124, 58, 237, 0.4);
+    }
+
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 32px;
+      background: transparent;
+      color: var(--primary);
+      font-weight: 600;
+      font-size: 1rem;
+      border-radius: 50px;
+      border: 2px solid var(--accent);
+      cursor: pointer;
+      transition: all var(--transition);
+    }
+
+    .btn-outline:hover {
+      background: var(--card-bg);
+      border-color: var(--primary);
+      transform: translateY(-2px);
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 40px;
+    }
+
+    .hero-stat {
+      text-align: left;
+    }
+
+    .hero-stat-number {
+      font-family: 'Outfit', sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--primary);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .hero-stat-label {
+      font-size: 0.85rem;
+      color: var(--gray-600);
+      font-weight: 500;
+    }
+
+    .hero-visual {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .hero-illustration {
+      width: 100%;
+      max-width: 480px;
+      position: relative;
+    }
+
+    .hero-illustration svg {
+      width: 100%;
+      height: auto;
+    }
+
+    .hero-float-card {
+      position: absolute;
+      background: var(--white);
+      border-radius: var(--radius-md);
+      padding: 16px 20px;
+      box-shadow: var(--shadow-lg);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      animation: float 4s ease-in-out infinite;
+    }
+
+    .hero-float-card:nth-child(2) { animation-delay: -1.5s; }
+    .hero-float-card:nth-child(3) { animation-delay: -3s; }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .float-card-1 { top: 10%; right: -10px; }
+    .float-card-2 { bottom: 20%; left: -20px; }
+    .float-card-3 { bottom: 5%; right: 10%; }
+
+    .float-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .float-card-text-sm { font-size: 0.75rem; color: var(--gray-600); }
+    .float-card-text-lg { font-size: 0.95rem; font-weight: 600; color: var(--dark); }
+
+    /* ---------- SECTION COMMON ---------- */
+    .section {
+      padding: 100px 0;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .section-label {
+      display: inline-block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--primary);
+      background: var(--card-bg);
+      padding: 6px 16px;
+      border-radius: 50px;
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 16px;
+    }
+
+    .section-subtitle {
+      font-size: 1.05rem;
+      color: var(--gray-600);
+      max-width: 560px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    /* ---------- COURSES ---------- */
+    .courses {
+      background: var(--white);
+    }
+
+    .courses-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .course-card {
+      background: var(--white);
+      border: 1px solid rgba(124, 58, 237, 0.08);
+      border-radius: var(--radius-lg);
+      padding: 32px 28px;
+      transition: all var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .course-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+      transition: height var(--transition);
+    }
+
+    .course-card:nth-child(1)::before { background: linear-gradient(90deg, #7C3AED, #A78BFA); }
+    .course-card:nth-child(2)::before { background: linear-gradient(90deg, #F59E0B, #FBBF24); }
+    .course-card:nth-child(3)::before { background: linear-gradient(90deg, #10B981, #34D399); }
+    .course-card:nth-child(4)::before { background: linear-gradient(90deg, #F472B6, #EC4899); }
+    .course-card:nth-child(5)::before { background: linear-gradient(90deg, #3B82F6, #60A5FA); }
+    .course-card:nth-child(6)::before { background: linear-gradient(90deg, #EF4444, #F87171); }
+
+    .course-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-xl);
+      border-color: transparent;
+    }
+
+    .course-card:hover::before { height: 4px; }
+
+    .course-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .course-card:nth-child(1) .course-icon { background: #F3EAFF; }
+    .course-card:nth-child(2) .course-icon { background: #FEF3C7; }
+    .course-card:nth-child(3) .course-icon { background: #D1FAE5; }
+    .course-card:nth-child(4) .course-icon { background: #FCE7F3; }
+    .course-card:nth-child(5) .course-icon { background: #DBEAFE; }
+    .course-card:nth-child(6) .course-icon { background: #FEE2E2; }
+
+    .course-name {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--dark);
+      margin-bottom: 8px;
+    }
+
+    .course-age {
+      font-size: 0.85rem;
+      color: var(--gray-600);
+      margin-bottom: 20px;
+    }
+
+    .course-price {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 20px;
+    }
+
+    .course-price span {
+      font-size: 0.85rem;
+      font-weight: 400;
+      color: var(--gray-600);
+    }
+
+    .course-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 20px;
+      background: var(--card-bg);
+      color: var(--primary);
+      font-weight: 600;
+      font-size: 0.9rem;
+      border-radius: 50px;
+      border: none;
+      cursor: pointer;
+      transition: all var(--transition);
+    }
+
+    .course-btn:hover {
+      background: var(--primary);
+      color: var(--white);
+    }
+
+    .course-btn svg {
+      transition: transform var(--transition);
+    }
+
+    .course-btn:hover svg { transform: translateX(3px); }
+
+    /* ---------- HOW IT WORKS ---------- */
+    .how-it-works {
+      background: var(--bg);
+    }
+
+    .steps-container {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      position: relative;
+    }
+
+    .steps-container::before {
+      content: '';
+      position: absolute;
+      top: 44px;
+      left: 12.5%;
+      right: 12.5%;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--primary), var(--accent));
+      opacity: 0.3;
+    }
+
+    .step-card {
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .step-number {
+      width: 56px;
+      height: 56px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--white);
+      margin: 0 auto 20px;
+      box-shadow: 0 4px 16px rgba(124, 58, 237, 0.3);
+      position: relative;
+    }
+
+    .step-number::after {
+      content: '';
+      position: absolute;
+      inset: -6px;
+      border-radius: 50%;
+      border: 2px solid var(--accent);
+      opacity: 0.3;
+    }
+
+    .step-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--dark);
+      margin-bottom: 8px;
+    }
+
+    .step-desc {
+      font-size: 0.9rem;
+      color: var(--gray-600);
+      line-height: 1.6;
+    }
+
+    /* ---------- WHY US ---------- */
+    .why-us {
+      background: var(--white);
+    }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+
+    .why-card {
+      text-align: center;
+      padding: 36px 24px;
+      background: var(--bg);
+      border-radius: var(--radius-lg);
+      transition: all var(--transition);
+      border: 1px solid transparent;
+    }
+
+    .why-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+      border-color: rgba(124, 58, 237, 0.1);
+    }
+
+    .why-icon {
+      width: 64px;
+      height: 64px;
+      background: linear-gradient(135deg, var(--card-bg), var(--white));
+      border: 2px solid rgba(124, 58, 237, 0.1);
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+    }
+
+    .why-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--dark);
+      margin-bottom: 8px;
+    }
+
+    .why-desc {
+      font-size: 0.9rem;
+      color: var(--gray-600);
+      line-height: 1.6;
+    }
+
+    /* ---------- SCHEDULE ---------- */
+    .schedule {
+      background: var(--bg);
+    }
+
+    .schedule-wrapper {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-md);
+    }
+
+    .schedule-table {
+      width: 100%;
+      min-width: 700px;
+      border-collapse: collapse;
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+
+    .schedule-table thead {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+    }
+
+    .schedule-table th {
+      padding: 16px 20px;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--white);
+      text-align: left;
+      white-space: nowrap;
+    }
+
+    .schedule-table tbody tr {
+      transition: background var(--transition);
+    }
+
+    .schedule-table tbody tr:hover { background: var(--gray-100); }
+    .schedule-table tbody tr:not(:last-child) { border-bottom: 1px solid var(--gray-200); }
+
+    .schedule-table td {
+      padding: 14px 20px;
+      font-size: 0.9rem;
+      color: var(--text);
+      vertical-align: middle;
+    }
+
+    .schedule-table td:first-child {
+      font-weight: 600;
+      color: var(--primary);
+      white-space: nowrap;
+    }
+
+    .schedule-cell-course {
+      display: inline-block;
+      padding: 4px 12px;
+      background: var(--card-bg);
+      border-radius: 50px;
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--primary);
+      white-space: nowrap;
+    }
+
+    .schedule-cell-empty {
+      color: var(--gray-400);
+      font-size: 0.85rem;
+    }
+
+    /* ---------- TESTIMONIALS ---------- */
+    .testimonials {
+      background: var(--white);
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .testimonial-card {
+      background: var(--bg);
+      border-radius: var(--radius-lg);
+      padding: 32px 28px;
+      border: 1px solid rgba(124, 58, 237, 0.06);
+      transition: all var(--transition);
+      position: relative;
+    }
+
+    .testimonial-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .testimonial-quote {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      opacity: 0.08;
+    }
+
+    .testimonial-stars {
+      display: flex;
+      gap: 4px;
+      margin-bottom: 16px;
+    }
+
+    .testimonial-text {
+      font-size: 0.95rem;
+      color: var(--text);
+      line-height: 1.7;
+      margin-bottom: 24px;
+      font-style: italic;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .testimonial-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--white);
+    }
+
+    .testimonial-card:nth-child(1) .testimonial-avatar { background: linear-gradient(135deg, var(--primary), var(--accent)); }
+    .testimonial-card:nth-child(2) .testimonial-avatar { background: linear-gradient(135deg, #F59E0B, #FBBF24); }
+    .testimonial-card:nth-child(3) .testimonial-avatar { background: linear-gradient(135deg, #10B981, #34D399); }
+
+    .testimonial-name {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--dark);
+    }
+
+    .testimonial-role {
+      font-size: 0.82rem;
+      color: var(--gray-600);
+    }
+
+    /* ---------- FAQ ---------- */
+    .faq {
+      background: var(--bg);
+    }
+
+    .faq-list {
+      max-width: 720px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .faq-item {
+      background: var(--white);
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(124, 58, 237, 0.08);
+      overflow: hidden;
+      transition: all var(--transition);
+    }
+
+    .faq-item:hover { border-color: rgba(124, 58, 237, 0.15); }
+    .faq-item.active { border-color: var(--accent); box-shadow: var(--shadow-sm); }
+
+    .faq-question {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 24px;
+      cursor: pointer;
+      gap: 16px;
+      background: none;
+      border: none;
+      width: 100%;
+      text-align: left;
+      font-family: 'Outfit', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--dark);
+      transition: color var(--transition);
+    }
+
+    .faq-item.active .faq-question { color: var(--primary); }
+
+    .faq-chevron {
+      flex-shrink: 0;
+      width: 24px;
+      height: 24px;
+      transition: transform var(--transition);
+    }
+
+    .faq-item.active .faq-chevron { transform: rotate(180deg); }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), padding 0.3s;
+    }
+
+    .faq-answer-inner {
+      padding: 0 24px 20px;
+      font-size: 0.95rem;
+      color: var(--gray-600);
+      line-height: 1.7;
+    }
+
+    /* ---------- CONTACT ---------- */
+    .contact {
+      background: var(--white);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    .contact-info h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 24px;
+    }
+
+    .contact-item {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 24px;
+      align-items: flex-start;
+    }
+
+    .contact-item-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--card-bg);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .contact-item-label {
+      font-size: 0.82rem;
+      color: var(--gray-600);
+      margin-bottom: 4px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .contact-item-value {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--dark);
+    }
+
+    .contact-map {
+      background: var(--card-bg);
+      border-radius: var(--radius-lg);
+      height: 320px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-map-inner {
+      text-align: center;
+    }
+
+    .contact-map-pin {
+      margin-bottom: 16px;
+    }
+
+    .contact-map-text {
+      font-weight: 600;
+      color: var(--primary);
+      font-size: 0.95rem;
+    }
+
+    .contact-map-subtext {
+      font-size: 0.85rem;
+      color: var(--gray-600);
+      margin-top: 4px;
+    }
+
+    .contact-map-grid {
+      position: absolute;
+      inset: 0;
+      opacity: 0.05;
+      background-image:
+        linear-gradient(var(--primary) 1px, transparent 1px),
+        linear-gradient(90deg, var(--primary) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+
+    /* ---------- FOOTER ---------- */
+    .footer {
+      background: var(--dark);
+      padding: 60px 0 32px;
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .footer-inner {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 48px;
+    }
+
+    .footer-brand .logo {
+      color: var(--white);
+      margin-bottom: 16px;
+    }
+
+    .footer-brand p {
+      font-size: 0.9rem;
+      line-height: 1.7;
+      max-width: 300px;
+    }
+
+    .footer h4 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 20px;
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .footer-links a {
+      font-size: 0.9rem;
+      transition: color var(--transition);
+    }
+
+    .footer-links a:hover { color: var(--accent); }
+
+    .footer-bottom {
+      padding-top: 32px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.85rem;
+    }
+
+    /* ---------- FLOATING WHATSAPP ---------- */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      z-index: 999;
+      width: 60px;
+      height: 60px;
+      background: #25D366;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+      transition: all var(--transition);
+      cursor: pointer;
+    }
+
+    .whatsapp-float:hover {
+      transform: scale(1.08);
+      box-shadow: 0 6px 28px rgba(37, 211, 102, 0.5);
+    }
+
+    .whatsapp-float::before {
+      content: '';
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      background: rgba(37, 211, 102, 0.2);
+      animation: wa-pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes wa-pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.15); opacity: 0; }
+    }
+
+    .whatsapp-tooltip {
+      position: absolute;
+      right: 72px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: var(--white);
+      color: var(--dark);
+      padding: 10px 16px;
+      border-radius: var(--radius-sm);
+      font-size: 0.85rem;
+      font-weight: 500;
+      white-space: nowrap;
+      box-shadow: var(--shadow-md);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity var(--transition);
+    }
+
+    .whatsapp-float:hover .whatsapp-tooltip { opacity: 1; }
+
+    .whatsapp-tooltip::after {
+      content: '';
+      position: absolute;
+      right: -6px;
+      top: 50%;
+      transform: translateY(-50%);
+      border: 6px solid transparent;
+      border-left-color: var(--white);
+    }
+
+    /* ---------- SCROLL ANIMATIONS ---------- */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1), transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+    .reveal-delay-5 { transition-delay: 0.5s; }
+
+    /* ---------- RESPONSIVE ---------- */
+    @media (max-width: 1024px) {
+      .hero-inner {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      .hero-visual { display: none; }
+      .courses-grid { grid-template-columns: repeat(2, 1fr); }
+      .why-grid { grid-template-columns: repeat(2, 1fr); }
+      .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-inner { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      .section { padding: 72px 0; }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .hero { padding: 120px 0 60px; }
+      .hero-stats { gap: 24px; }
+      .hero-stat-number { font-size: 1.6rem; }
+      .courses-grid { grid-template-columns: 1fr; }
+      .steps-container {
+        grid-template-columns: 1fr 1fr;
+        gap: 32px;
+      }
+      .steps-container::before { display: none; }
+      .why-grid { grid-template-columns: 1fr 1fr; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .footer-inner { grid-template-columns: 1fr; gap: 32px; }
+      .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-buttons { flex-direction: column; }
+      .hero-buttons a, .hero-buttons button { width: 100%; justify-content: center; }
+      .hero-stats { flex-direction: column; gap: 16px; }
+      .steps-container { grid-template-columns: 1fr; }
+      .why-grid { grid-template-columns: 1fr; }
+      .whatsapp-float { bottom: 20px; right: 20px; width: 54px; height: 54px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ======== HEADER ======== -->
+  <header class="header" id="header">
+    <div class="container header-inner">
+      <a href="#" class="logo">
+        <div class="logo-icon">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M10 2L2 7L10 12L18 7L10 2Z" fill="white"/>
+            <path d="M2 13L10 18L18 13" stroke="white" stroke-width="2" stroke-linecap="round"/>
+            <path d="M2 10L10 15L18 10" stroke="white" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+          </svg>
+        </div>
+        Билим
+      </a>
+
+      <nav>
+        <ul class="nav-links">
+          <li><a href="#courses">Курсы</a></li>
+          <li><a href="#schedule">Расписание</a></li>
+          <li><a href="#about">О нас</a></li>
+          <li><a href="#testimonials">Отзывы</a></li>
+          <li><a href="#contact">Контакты</a></li>
+          <li><a href="https://wa.me/996555123456?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BF%D0%B8%D1%81%D0%B0%D1%82%D1%8C%20%D1%80%D0%B5%D0%B1%D1%91%D0%BD%D0%BA%D0%B0%20%D0%BD%D0%B0%20%D0%BA%D1%83%D1%80%D1%81%D1%8B" class="nav-cta" target="_blank" rel="noopener">Записаться</a></li>
+        </ul>
+      </nav>
+
+      <button class="hamburger" id="hamburger" aria-label="Меню">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#courses" class="mobile-link">Курсы</a>
+      <a href="#schedule" class="mobile-link">Расписание</a>
+      <a href="#about" class="mobile-link">О нас</a>
+      <a href="#testimonials" class="mobile-link">Отзывы</a>
+      <a href="#contact" class="mobile-link">Контакты</a>
+      <a href="https://wa.me/996555123456?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BF%D0%B8%D1%81%D0%B0%D1%82%D1%8C%20%D1%80%D0%B5%D0%B1%D1%91%D0%BD%D0%BA%D0%B0%20%D0%BD%D0%B0%20%D0%BA%D1%83%D1%80%D1%81%D1%8B" class="nav-cta" target="_blank" rel="noopener">Записаться</a>
+    </div>
+  </header>
+
+  <!-- ======== HERO ======== -->
+  <section class="hero" id="hero">
+    <div class="hero-bg-decoration">
+      <svg viewBox="0 0 700 700" fill="none">
+        <circle cx="350" cy="350" r="350" fill="url(#heroGrad)"/>
+        <defs>
+          <radialGradient id="heroGrad">
+            <stop offset="0%" stop-color="#7C3AED"/>
+            <stop offset="100%" stop-color="#A78BFA" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+      </svg>
+    </div>
+    <div class="hero-bg-decoration-2"></div>
+
+    <div class="container hero-inner">
+      <div class="hero-content">
+        <div class="hero-badge reveal">
+          <div class="hero-badge-dot"></div>
+          Набор на новый учебный год открыт
+        </div>
+        <h1 class="reveal reveal-delay-1">Инвестируйте в <span>знания</span> — это окупается</h1>
+        <p class="hero-description reveal reveal-delay-2">
+          Качественное образование для детей и взрослых в Бишкеке. Малые группы, индивидуальный подход и проверенные методики, которые дают реальный результат.
+        </p>
+        <div class="hero-buttons reveal reveal-delay-3">
+          <a href="#courses" class="btn-primary">
+            Выбрать курс
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <a href="https://wa.me/996555123456?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%BF%D0%BE%D0%BB%D1%83%D1%87%D0%B8%D1%82%D1%8C%20%D0%BA%D0%BE%D0%BD%D1%81%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%86%D0%B8%D1%8E" target="_blank" rel="noopener" class="btn-outline">Бесплатная консультация</a>
+        </div>
+        <div class="hero-stats reveal reveal-delay-4">
+          <div class="hero-stat">
+            <div class="hero-stat-number" data-target="500" data-suffix="+">0</div>
+            <div class="hero-stat-label">выпускников</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-number" data-target="15" data-suffix="">0</div>
+            <div class="hero-stat-label">курсов</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-number" data-target="8" data-suffix=" лет">0</div>
+            <div class="hero-stat-label">опыта</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-visual reveal reveal-delay-2">
+        <div class="hero-illustration">
+          <svg viewBox="0 0 480 400" fill="none">
+            <!-- Main book/education illustration -->
+            <rect x="80" y="100" width="320" height="220" rx="20" fill="url(#cardGrad)" opacity="0.15"/>
+            <rect x="100" y="80" width="280" height="220" rx="16" fill="url(#cardGrad2)" opacity="0.25"/>
+            <!-- Open book -->
+            <path d="M240 160 L140 180 L140 300 L240 280 Z" fill="#EDE9FE" stroke="#A78BFA" stroke-width="2"/>
+            <path d="M240 160 L340 180 L340 300 L240 280 Z" fill="#F3EAFF" stroke="#A78BFA" stroke-width="2"/>
+            <!-- Book lines -->
+            <line x1="160" y1="200" x2="220" y2="192" stroke="#C4B5FD" stroke-width="2" stroke-linecap="round"/>
+            <line x1="160" y1="215" x2="210" y2="208" stroke="#C4B5FD" stroke-width="2" stroke-linecap="round"/>
+            <line x1="160" y1="230" x2="215" y2="223" stroke="#C4B5FD" stroke-width="2" stroke-linecap="round"/>
+            <line x1="260" y1="192" x2="320" y2="200" stroke="#C4B5FD" stroke-width="2" stroke-linecap="round"/>
+            <line x1="260" y1="208" x2="310" y2="215" stroke="#C4B5FD" stroke-width="2" stroke-linecap="round"/>
+            <line x1="260" y1="223" x2="315" y2="230" stroke="#C4B5FD" stroke-width="2" stroke-linecap="round"/>
+            <!-- Graduation cap -->
+            <path d="M240 80 L190 105 L240 130 L290 105 Z" fill="#7C3AED"/>
+            <path d="M240 130 L240 150" stroke="#7C3AED" stroke-width="2"/>
+            <rect x="237" y="148" width="6" height="6" rx="3" fill="#F59E0B"/>
+            <path d="M290 105 L290 125" stroke="#7C3AED" stroke-width="2"/>
+            <!-- Decorative elements -->
+            <circle cx="100" cy="140" r="8" fill="#F59E0B" opacity="0.6"/>
+            <circle cx="380" cy="120" r="6" fill="#A78BFA" opacity="0.5"/>
+            <circle cx="370" cy="280" r="10" fill="#F59E0B" opacity="0.4"/>
+            <rect x="90" y="260" width="16" height="16" rx="4" fill="#8B5CF6" opacity="0.3" transform="rotate(15 98 268)"/>
+            <polygon points="400,200 406,215 420,215 408,224 413,238 400,229 387,238 392,224 380,215 394,215" fill="#F59E0B" opacity="0.3"/>
+            <defs>
+              <linearGradient id="cardGrad" x1="80" y1="100" x2="400" y2="320">
+                <stop offset="0%" stop-color="#7C3AED"/>
+                <stop offset="100%" stop-color="#A78BFA"/>
+              </linearGradient>
+              <linearGradient id="cardGrad2" x1="100" y1="80" x2="380" y2="300">
+                <stop offset="0%" stop-color="#8B5CF6"/>
+                <stop offset="100%" stop-color="#C4B5FD"/>
+              </linearGradient>
+            </defs>
+          </svg>
+
+          <div class="hero-float-card float-card-1">
+            <div class="float-icon" style="background:#F3EAFF;">
+              <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+                <path d="M11 2L13.5 7.5L19 8.5L15 12.5L16 18L11 15.5L6 18L7 12.5L3 8.5L8.5 7.5L11 2Z" fill="#F59E0B"/>
+              </svg>
+            </div>
+            <div>
+              <div class="float-card-text-sm">Средний балл ОРТ</div>
+              <div class="float-card-text-lg">198 баллов</div>
+            </div>
+          </div>
+
+          <div class="hero-float-card float-card-2">
+            <div class="float-icon" style="background:#D1FAE5;">
+              <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+                <path d="M9 11L11 13L15 9" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="11" cy="11" r="9" stroke="#10B981" stroke-width="2"/>
+              </svg>
+            </div>
+            <div>
+              <div class="float-card-text-sm">Результат</div>
+              <div class="float-card-text-lg">95% сдают</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== COURSES ======== -->
+  <section class="section courses" id="courses">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-label">Наши курсы</div>
+        <h2 class="section-title">Программы для каждого возраста</h2>
+        <p class="section-subtitle">Выберите подходящий курс для вашего ребёнка. Все программы разработаны с учётом современных образовательных стандартов.</p>
+      </div>
+
+      <div class="courses-grid">
+        <!-- Course 1: English -->
+        <div class="course-card reveal reveal-delay-1">
+          <div class="course-icon">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+              <circle cx="14" cy="14" r="12" stroke="#7C3AED" stroke-width="2"/>
+              <text x="14" y="18" text-anchor="middle" fill="#7C3AED" font-family="Outfit" font-weight="700" font-size="12">EN</text>
+            </svg>
+          </div>
+          <h3 class="course-name">Английский язык</h3>
+          <p class="course-age">Для детей 6 — 16 лет</p>
+          <div class="course-price">от 3 000 <span>сом/мес</span></div>
+          <a href="https://wa.me/996555123456?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%98%D0%BD%D1%82%D0%B5%D1%80%D0%B5%D1%81%D1%83%D0%B5%D1%82%20%D0%BA%D1%83%D1%80%D1%81%20%D0%B0%D0%BD%D0%B3%D0%BB%D0%B8%D0%B9%D1%81%D0%BA%D0%BE%D0%B3%D0%BE%20%D1%8F%D0%B7%D1%8B%D0%BA%D0%B0" target="_blank" rel="noopener" class="course-btn">
+            Подробнее
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+
+        <!-- Course 2: Math -->
+        <div class="course-card reveal reveal-delay-2">
+          <div class="course-icon">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+              <rect x="4" y="4" width="20" height="20" rx="4" stroke="#F59E0B" stroke-width="2"/>
+              <path d="M10 10h8M14 10v8M10 14h8" stroke="#F59E0B" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3 class="course-name">Математика (ОРТ)</h3>
+          <p class="course-age">Подготовка к ОРТ</p>
+          <div class="course-price">от 2 500 <span>сом/мес</span></div>
+          <a href="https://wa.me/996555123456?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%98%D0%BD%D1%82%D0%B5%D1%80%D0%B5%D1%81%D1%83%D0%B5%D1%82%20%D0%BA%D1%83%D1%80%D1%81%20%D0%BC%D0%B0%D1%82%D0%B5%D0%BC%D0%B0%D1%82%D0%B8%D0%BA%D0%B8" target="_blank" rel="noopener" class="course-btn">
+            Подробнее
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+
+        <!-- Course 3: Programming -->
+        <div class="course-card reveal reveal-delay-3">
+          <div class="course-icon">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+              <rect x="3" y="6" width="22" height="16" rx="3" stroke="#10B981" stroke-width="2"/>
+              <path d="M9 12l-3 3 3 3M19 12l3 3-3 3M13 10l2 10" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3 class="course-name">Программирование</h3>
+          <p class="course-age">Для детей 8 — 16 лет</p>
+          <div class="course-price">от 4 000 <span>сом/мес</span></div>
+          <a href="https://wa.me/996555123456?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%98%D0%BD%D1%82%D0%B5%D1%80%D0%B5%D1%81%D1%83%D0%B5%D1%82%20%D0%BA%D1%83%D1%80%D1%81%20%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F" target="_blank" rel="noopener" class="course-btn">
+            Подробнее
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+
+        <!-- Course 4: Preschool -->
+        <div class="course-card reveal reveal-delay-1">
+          <div class="course-icon">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+              <circle cx="14" cy="10" r="5" stroke="#EC4899" stroke-width="2"/>
+              <path d="M7 23c0-4 3-7 7-7s7 3 7 7" stroke="#EC4899" stroke-width="2" stroke-linecap="round"/>
+              <path d="M18 8l2-3M10 8l-2-3" stroke="#EC4899" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3 class="course-name">Подготовка к школе</h3>
+          <p class="course-age">Для детей 5 — 6 лет</p>
+          <div class="course-price">от 2 000 <span>сом/мес</span></div>
+          <a href="https://wa.me/996555123456?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%98%D0%BD%D1%82%D0%B5%D1%80%D0%B5%D1%81%D1%83%D0%B5%D1%82%20%D0%BF%D0%BE%D0%B4%D0%B3%D0%BE%D1%82%D0%BE%D0%B2%D0%BA%D0%B0%20%D0%BA%20%D1%88%D0%BA%D0%BE%D0%BB%D0%B5" target="_blank" rel="noopener" class="course-btn">
+            Подробнее
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+
+        <!-- Course 5: Russian -->
+        <div class="course-card reveal reveal-delay-2">
+          <div class="course-icon">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+              <path d="M5 6h3v16H5zM10 6h8c3 0 5 2 5 4.5S21 15 18 15h-8" stroke="#3B82F6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M10 15h9c3 0 5.5 2 5.5 4.5S22 24 19 24H5" stroke="#3B82F6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3 class="course-name">Русский язык и литература</h3>
+          <p class="course-age">Для детей 7 — 16 лет</p>
+          <div class="course-price">от 2 500 <span>сом/мес</span></div>
+          <a href="https://wa.me/996555123456?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%98%D0%BD%D1%82%D0%B5%D1%80%D0%B5%D1%81%D1%83%D0%B5%D1%82%20%D0%BA%D1%83%D1%80%D1%81%20%D1%80%D1%83%D1%81%D1%81%D0%BA%D0%BE%D0%B3%D0%BE%20%D1%8F%D0%B7%D1%8B%D0%BA%D0%B0" target="_blank" rel="noopener" class="course-btn">
+            Подробнее
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+
+        <!-- Course 6: Robotics -->
+        <div class="course-card reveal reveal-delay-3">
+          <div class="course-icon">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+              <rect x="6" y="10" width="16" height="12" rx="3" stroke="#EF4444" stroke-width="2"/>
+              <circle cx="11" cy="16" r="2" fill="#EF4444"/>
+              <circle cx="17" cy="16" r="2" fill="#EF4444"/>
+              <path d="M14 4v6M10 4h8" stroke="#EF4444" stroke-width="2" stroke-linecap="round"/>
+              <path d="M4 15h2M22 15h2" stroke="#EF4444" stroke-width="2" stroke-linecap="round"/>
+              <path d="M10 22v3M18 22v3" stroke="#EF4444" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3 class="course-name">Робототехника</h3>
+          <p class="course-age">Для детей 7 — 14 лет</p>
+          <div class="course-price">от 5 000 <span>сом/мес</span></div>
+          <a href="https://wa.me/996555123456?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%98%D0%BD%D1%82%D0%B5%D1%80%D0%B5%D1%81%D1%83%D0%B5%D1%82%20%D0%BA%D1%83%D1%80%D1%81%20%D1%80%D0%BE%D0%B1%D0%BE%D1%82%D0%BE%D1%82%D0%B5%D1%85%D0%BD%D0%B8%D0%BA%D0%B8" target="_blank" rel="noopener" class="course-btn">
+            Подробнее
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== HOW IT WORKS ======== -->
+  <section class="section how-it-works" id="how-it-works">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-label">Как начать</div>
+        <h2 class="section-title">Четыре простых шага</h2>
+        <p class="section-subtitle">От заявки до первого занятия — быстро и удобно. Мы позаботимся обо всём.</p>
+      </div>
+
+      <div class="steps-container">
+        <div class="step-card reveal reveal-delay-1">
+          <div class="step-number">1</div>
+          <h3 class="step-title">Оставьте заявку</h3>
+          <p class="step-desc">Свяжитесь с нами через WhatsApp или по телефону — мы ответим в течение часа</p>
+        </div>
+        <div class="step-card reveal reveal-delay-2">
+          <div class="step-number">2</div>
+          <h3 class="step-title">Бесплатное тестирование</h3>
+          <p class="step-desc">Определим уровень знаний и подберём оптимальную программу обучения</p>
+        </div>
+        <div class="step-card reveal reveal-delay-3">
+          <div class="step-number">3</div>
+          <h3 class="step-title">Подбор группы</h3>
+          <p class="step-desc">Подберём группу по возрасту и уровню подготовки вашего ребёнка</p>
+        </div>
+        <div class="step-card reveal reveal-delay-4">
+          <div class="step-number">4</div>
+          <h3 class="step-title">Начало занятий</h3>
+          <p class="step-desc">Начните обучение в удобное для вас время и наблюдайте за прогрессом</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== WHY US ======== -->
+  <section class="section why-us" id="about">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-label">Почему мы</div>
+        <h2 class="section-title">Наши преимущества</h2>
+        <p class="section-subtitle">Мы создали среду, в которой каждый ученик раскрывает свой потенциал.</p>
+      </div>
+
+      <div class="why-grid">
+        <div class="why-card reveal reveal-delay-1">
+          <div class="why-icon">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+              <circle cx="10" cy="10" r="4" stroke="#7C3AED" stroke-width="2"/>
+              <circle cx="18" cy="10" r="4" stroke="#7C3AED" stroke-width="2"/>
+              <circle cx="14" cy="18" r="4" stroke="#7C3AED" stroke-width="2"/>
+              <path d="M6 22c0-2 2-4 4-4M18 22c0-2 2-4 4-4" stroke="#7C3AED" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3 class="why-title">Малые группы</h3>
+          <p class="why-desc">До 8 человек в группе. Каждый ученик получает достаточно внимания от преподавателя.</p>
+        </div>
+
+        <div class="why-card reveal reveal-delay-2">
+          <div class="why-icon">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+              <path d="M14 3L17 9.5L24 10.5L19 15.5L20 22.5L14 19.5L8 22.5L9 15.5L4 10.5L11 9.5L14 3Z" stroke="#7C3AED" stroke-width="2" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3 class="why-title">Опытные преподаватели</h3>
+          <p class="why-desc">Наши педагоги — профессионалы с опытом работы от 5 лет и постоянным повышением квалификации.</p>
+        </div>
+
+        <div class="why-card reveal reveal-delay-3">
+          <div class="why-icon">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+              <path d="M14 4v2M14 22v2M4 14h2M22 14h2M7.5 7.5l1.5 1.5M19 19l1.5 1.5M7.5 20.5l1.5-1.5M19 9l1.5-1.5" stroke="#7C3AED" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="14" cy="14" r="5" stroke="#7C3AED" stroke-width="2"/>
+            </svg>
+          </div>
+          <h3 class="why-title">Удобное расположение</h3>
+          <p class="why-desc">Центр города, рядом с остановками общественного транспорта. Легко добраться из любого района.</p>
+        </div>
+
+        <div class="why-card reveal reveal-delay-4">
+          <div class="why-icon">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+              <circle cx="14" cy="14" r="10" stroke="#7C3AED" stroke-width="2"/>
+              <path d="M14 8v6l4 4" stroke="#7C3AED" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3 class="why-title">Гибкое расписание</h3>
+          <p class="why-desc">Утренние, дневные и вечерние группы. Подберём время, которое подходит именно вам.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== SCHEDULE ======== -->
+  <section class="section schedule" id="schedule">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-label">Расписание</div>
+        <h2 class="section-title">Расписание занятий</h2>
+        <p class="section-subtitle">Удобное расписание с утренними, дневными и вечерними группами.</p>
+      </div>
+
+      <div class="schedule-wrapper reveal">
+        <table class="schedule-table">
+          <thead>
+            <tr>
+              <th>Время</th>
+              <th>Понедельник</th>
+              <th>Вторник</th>
+              <th>Среда</th>
+              <th>Четверг</th>
+              <th>Пятница</th>
+              <th>Суббота</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>9:00 — 10:30</td>
+              <td><span class="schedule-cell-course">Подготовка к школе</span></td>
+              <td><span class="schedule-cell-course">Английский</span></td>
+              <td><span class="schedule-cell-course">Подготовка к школе</span></td>
+              <td><span class="schedule-cell-course">Английский</span></td>
+              <td><span class="schedule-cell-course">Подготовка к школе</span></td>
+              <td><span class="schedule-cell-course">Робототехника</span></td>
+            </tr>
+            <tr>
+              <td>11:00 — 12:30</td>
+              <td><span class="schedule-cell-course">Русский язык</span></td>
+              <td><span class="schedule-cell-course">Математика</span></td>
+              <td><span class="schedule-cell-course">Русский язык</span></td>
+              <td><span class="schedule-cell-course">Математика</span></td>
+              <td><span class="schedule-cell-course">Русский язык</span></td>
+              <td><span class="schedule-cell-course">Программирование</span></td>
+            </tr>
+            <tr>
+              <td>14:00 — 15:30</td>
+              <td><span class="schedule-cell-course">Английский</span></td>
+              <td><span class="schedule-cell-course">Программирование</span></td>
+              <td><span class="schedule-cell-course">Английский</span></td>
+              <td><span class="schedule-cell-course">Программирование</span></td>
+              <td><span class="schedule-cell-course">Английский</span></td>
+              <td><span class="schedule-cell-course">Математика</span></td>
+            </tr>
+            <tr>
+              <td>16:00 — 17:30</td>
+              <td><span class="schedule-cell-course">Математика</span></td>
+              <td><span class="schedule-cell-course">Робототехника</span></td>
+              <td><span class="schedule-cell-course">Математика</span></td>
+              <td><span class="schedule-cell-course">Робототехника</span></td>
+              <td><span class="schedule-cell-course">Математика</span></td>
+              <td><span class="schedule-cell-empty">—</span></td>
+            </tr>
+            <tr>
+              <td>18:00 — 19:30</td>
+              <td><span class="schedule-cell-course">Программирование</span></td>
+              <td><span class="schedule-cell-course">Английский</span></td>
+              <td><span class="schedule-cell-course">Программирование</span></td>
+              <td><span class="schedule-cell-course">Английский</span></td>
+              <td><span class="schedule-cell-course">Программирование</span></td>
+              <td><span class="schedule-cell-empty">—</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== TESTIMONIALS ======== -->
+  <section class="section testimonials" id="testimonials">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-label">Отзывы</div>
+        <h2 class="section-title">Что говорят родители</h2>
+        <p class="section-subtitle">Реальные отзывы родителей, чьи дети учатся в нашем центре.</p>
+      </div>
+
+      <div class="testimonials-grid">
+        <div class="testimonial-card reveal reveal-delay-1">
+          <svg class="testimonial-quote" width="40" height="40" viewBox="0 0 40 40" fill="none">
+            <path d="M10 25c-3 0-5-2-5-5 0-6 5-12 10-14l2 3c-4 2-6 5-6 7 1 0 2 0 3 1 2 1 3 3 3 5s-1 3-3 4-3 1-4-1zm15 0c-3 0-5-2-5-5 0-6 5-12 10-14l2 3c-4 2-6 5-6 7 1 0 2 0 3 1 2 1 3 3 3 5s-1 3-3 4-3 1-4-1z" fill="#7C3AED"/>
+          </svg>
+          <div class="testimonial-stars">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="#F59E0B"><path d="M9 1l2.2 4.5 5 .7-3.6 3.5.8 5L9 12.8 4.6 14.7l.8-5L1.8 6.2l5-.7L9 1z"/></svg>
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="#F59E0B"><path d="M9 1l2.2 4.5 5 .7-3.6 3.5.8 5L9 12.8 4.6 14.7l.8-5L1.8 6.2l5-.7L9 1z"/></svg>
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="#F59E0B"><path d="M9 1l2.2 4.5 5 .7-3.6 3.5.8 5L9 12.8 4.6 14.7l.8-5L1.8 6.2l5-.7L9 1z"/></svg>
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="#F59E0B"><path d="M9 1l2.2 4.5 5 .7-3.6 3.5.8 5L9 12.8 4.6 14.7l.8-5L1.8 6.2l5-.7L9 1z"/></svg>
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="#F59E0B"><path d="M9 1l2.2 4.5 5 .7-3.6 3.5.8 5L9 12.8 4.6 14.7l.8-5L1.8 6.2l5-.7L9 1z"/></svg>
+          </div>
+          <p class="testimonial-text">
+            «Сын занимается английским уже год. Результат просто поразительный — начал понимать мультфильмы на английском и общается с туристами без стеснения. Преподаватели умеют заинтересовать детей.»
+          </p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">АК</div>
+            <div>
+              <div class="testimonial-name">Айгуль Каримова</div>
+              <div class="testimonial-role">мама ученика, 9 лет</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card reveal reveal-delay-2">
+          <svg class="testimonial-quote" width="40" height="40" viewBox="0 0 40 40" fill="none">
+            <path d="M10 25c-3 0-5-2-5-5 0-6 5-12 10-14l2 3c-4 2-6 5-6 7 1 0 2 0 3 1 2 1 3 3 3 5s-1 3-3 4-3 1-4-1zm15 0c-3 0-5-2-5-5 0-6 5-12 10-14l2 3c-4 2-6 5-6 7 1 0 2 0 3 1 2 1 3 3 3 5s-1 3-3 4-3 1-4-1z" fill="#7C3AED"/>
+          </svg>
+          <div class="testimonial-stars">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="#F59E0B"><path d="M9 1l2.2 4.5 5 .7-3.6 3.5.8 5L9 12.8 4.6 14.7l.8-5L1.8 6.2l5-.7L9 1z"/></svg>
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="#F59E0B"><path d="M9 1l2.2 4.5 5 .7-3.6 3.5.8 5L9 12.8 4.6 14.7l.8-5L1.8 6.2l5-.7L9 1z"/></svg>
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="#F59E0B"><path d="M9 1l2.2 4.5 5 .7-3.6 3.5.8 5L9 12.8 4.6 14.7l.8-5L1.8 6.2l5-.7L9 1z"/></svg>
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="#F59E0B"><path d="M9 1l2.2 4.5 5 .7-3.6 3.5.8 5L9 12.8 4.6 14.7l.8-5L1.8 6.2l5-.7L9 1z"/></svg>
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="#F59E0B"><path d="M9 1l2.2 4.5 5 .7-3.6 3.5.8 5L9 12.8 4.6 14.7l.8-5L1.8 6.2l5-.7L9 1z"/></svg>
+          </div>
+          <p class="testimonial-text">
+            «Дочь готовилась к ОРТ по математике. Набрала 210 баллов из 220 и поступила на грант. Огромная благодарность преподавателям за терпение и профессионализм. Рекомендую всем знакомым.»
+          </p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">НТ</div>
+            <div>
+              <div class="testimonial-name">Нурлан Токтосунов</div>
+              <div class="testimonial-role">папа ученицы, 17 лет</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card reveal reveal-delay-3">
+          <svg class="testimonial-quote" width="40" height="40" viewBox="0 0 40 40" fill="none">
+            <path d="M10 25c-3 0-5-2-5-5 0-6 5-12 10-14l2 3c-4 2-6 5-6 7 1 0 2 0 3 1 2 1 3 3 3 5s-1 3-3 4-3 1-4-1zm15 0c-3 0-5-2-5-5 0-6 5-12 10-14l2 3c-4 2-6 5-6 7 1 0 2 0 3 1 2 1 3 3 3 5s-1 3-3 4-3 1-4-1z" fill="#7C3AED"/>
+          </svg>
+          <div class="testimonial-stars">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="#F59E0B"><path d="M9 1l2.2 4.5 5 .7-3.6 3.5.8 5L9 12.8 4.6 14.7l.8-5L1.8 6.2l5-.7L9 1z"/></svg>
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="#F59E0B"><path d="M9 1l2.2 4.5 5 .7-3.6 3.5.8 5L9 12.8 4.6 14.7l.8-5L1.8 6.2l5-.7L9 1z"/></svg>
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="#F59E0B"><path d="M9 1l2.2 4.5 5 .7-3.6 3.5.8 5L9 12.8 4.6 14.7l.8-5L1.8 6.2l5-.7L9 1z"/></svg>
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="#F59E0B"><path d="M9 1l2.2 4.5 5 .7-3.6 3.5.8 5L9 12.8 4.6 14.7l.8-5L1.8 6.2l5-.7L9 1z"/></svg>
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="#F59E0B"><path d="M9 1l2.2 4.5 5 .7-3.6 3.5.8 5L9 12.8 4.6 14.7l.8-5L1.8 6.2l5-.7L9 1z"/></svg>
+          </div>
+          <p class="testimonial-text">
+            «Младший сын ходит на робототехнику, а старшая — на программирование. Оба в восторге и ждут занятий с нетерпением. Видно, что в центре любят детей и знают, как работать с ними.»
+          </p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">ЕМ</div>
+            <div>
+              <div class="testimonial-name">Елена Миронова</div>
+              <div class="testimonial-role">мама учеников, 8 и 12 лет</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== FAQ ======== -->
+  <section class="section faq" id="faq">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-label">Вопросы</div>
+        <h2 class="section-title">Часто задаваемые вопросы</h2>
+        <p class="section-subtitle">Ответы на популярные вопросы от родителей.</p>
+      </div>
+
+      <div class="faq-list">
+        <div class="faq-item reveal reveal-delay-1">
+          <button class="faq-question">
+            С какого возраста вы принимаете детей?
+            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none">
+              <path d="M6 9l6 6 6-6" stroke="#7C3AED" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              Мы принимаем детей с 5 лет на курс подготовки к школе. Основные курсы — английский, математика, русский язык — доступны с 6-7 лет. Программирование и робототехника — с 7-8 лет. Для каждого возраста мы подбираем подходящую методику.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item reveal reveal-delay-2">
+          <button class="faq-question">
+            Есть ли пробное занятие?
+            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none">
+              <path d="M6 9l6 6 6-6" stroke="#7C3AED" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              Да, первое пробное занятие — бесплатное. Ребёнок сможет познакомиться с преподавателем, увидеть формат занятий и попробовать свои силы. После пробного занятия мы дадим рекомендации и поможем выбрать подходящую группу.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item reveal reveal-delay-3">
+          <button class="faq-question">
+            Как можно оплатить обучение?
+            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none">
+              <path d="M6 9l6 6 6-6" stroke="#7C3AED" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              Мы принимаем оплату наличными, банковским переводом, через Элкарт и MBank. Оплата производится ежемесячно до 5-го числа. При оплате за 3 месяца вперёд предоставляется скидка 10%.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item reveal reveal-delay-4">
+          <button class="faq-question">
+            Можно ли перенести занятие?
+            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none">
+              <path d="M6 9l6 6 6-6" stroke="#7C3AED" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              Да, вы можете перенести занятие, предупредив нас минимум за 24 часа. Пропущенное занятие можно отработать с другой группой того же уровня в течение текущей недели. Мы всегда идём навстречу и стараемся найти удобное решение.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item reveal reveal-delay-5">
+          <button class="faq-question">
+            Выдаёте ли вы сертификат по окончании курса?
+            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none">
+              <path d="M6 9l6 6 6-6" stroke="#7C3AED" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              Да, по завершении полного курса каждый ученик получает сертификат с указанием пройденной программы и уровня. Для курсов английского языка мы также проводим подготовку к международным экзаменам, результаты которых признаются за рубежом.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== CONTACT ======== -->
+  <section class="section contact" id="contact">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-label">Контакты</div>
+        <h2 class="section-title">Свяжитесь с нами</h2>
+        <p class="section-subtitle">Приходите в гости, звоните или пишите — мы всегда рады помочь.</p>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-info reveal reveal-delay-1">
+          <h3>Наши контакты</h3>
+
+          <div class="contact-item">
+            <div class="contact-item-icon">
+              <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+                <path d="M11 2C7.13 2 4 5.13 4 9c0 5.25 7 11 7 11s7-5.75 7-11c0-3.87-3.13-7-7-7z" stroke="#7C3AED" stroke-width="2"/>
+                <circle cx="11" cy="9" r="2.5" stroke="#7C3AED" stroke-width="2"/>
+              </svg>
+            </div>
+            <div>
+              <div class="contact-item-label">Адрес</div>
+              <div class="contact-item-value">ул. Токтогула 95, Бишкек</div>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-item-icon">
+              <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+                <path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 5a2 2 0 012-2z" stroke="#7C3AED" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div>
+              <div class="contact-item-label">Телефон</div>
+              <div class="contact-item-value">+996 (555) 123-456</div>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-item-icon">
+              <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+                <circle cx="11" cy="11" r="9" stroke="#7C3AED" stroke-width="2"/>
+                <path d="M11 6v5l3 3" stroke="#7C3AED" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div>
+              <div class="contact-item-label">Время работы</div>
+              <div class="contact-item-value">Пн — Сб: 9:00 — 20:00</div>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-item-icon">
+              <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+                <rect x="2" y="4" width="18" height="14" rx="3" stroke="#7C3AED" stroke-width="2"/>
+                <path d="M2 7l9 5.5L20 7" stroke="#7C3AED" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div>
+              <div class="contact-item-label">Электронная почта</div>
+              <div class="contact-item-value">info@bilim.kg</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-map reveal reveal-delay-2">
+          <div class="contact-map-grid"></div>
+          <div class="contact-map-inner">
+            <div class="contact-map-pin">
+              <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                <path d="M24 4C16.27 4 10 10.27 10 18c0 11 14 26 14 26s14-15 14-26c0-7.73-6.27-14-14-14z" fill="#7C3AED"/>
+                <circle cx="24" cy="18" r="5" fill="white"/>
+              </svg>
+            </div>
+            <div class="contact-map-text">ул. Токтогула 95</div>
+            <div class="contact-map-subtext">Бишкек, Кыргызстан</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== FOOTER ======== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <a href="#" class="logo">
+            <div class="logo-icon">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M10 2L2 7L10 12L18 7L10 2Z" fill="white"/>
+                <path d="M2 13L10 18L18 13" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                <path d="M2 10L10 15L18 10" stroke="white" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+              </svg>
+            </div>
+            Билим
+          </a>
+          <p>Учебный центр нового поколения. Даём качественное образование, которое открывает двери в успешное будущее.</p>
+        </div>
+
+        <div>
+          <h4>Навигация</h4>
+          <ul class="footer-links">
+            <li><a href="#courses">Курсы</a></li>
+            <li><a href="#schedule">Расписание</a></li>
+            <li><a href="#about">О нас</a></li>
+            <li><a href="#testimonials">Отзывы</a></li>
+            <li><a href="#faq">Вопросы</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4>Контакты</h4>
+          <ul class="footer-links">
+            <li><a href="tel:+996555123456">+996 (555) 123-456</a></li>
+            <li><a href="mailto:info@bilim.kg">info@bilim.kg</a></li>
+            <li><a href="#">ул. Токтогула 95, Бишкек</a></li>
+            <li><a href="#">Пн — Сб: 9:00 — 20:00</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>2025 Билим. Все права защищены.</span>
+        <span>Сделано с заботой о будущем</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ======== FLOATING WHATSAPP ======== -->
+  <a href="https://wa.me/996555123456?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BF%D0%B8%D1%81%D0%B0%D1%82%D1%8C%20%D1%80%D0%B5%D0%B1%D1%91%D0%BD%D0%BA%D0%B0%20%D0%BD%D0%B0%20%D0%BA%D1%83%D1%80%D1%81%D1%8B" target="_blank" rel="noopener" class="whatsapp-float" aria-label="WhatsApp">
+    <svg width="28" height="28" viewBox="0 0 28 28" fill="white">
+      <path d="M14 2C7.37 2 2 7.37 2 14c0 2.12.55 4.13 1.6 5.93L2 26l6.26-1.64A11.94 11.94 0 0014 26c6.63 0 12-5.37 12-12S20.63 2 14 2zm0 21.5c-1.94 0-3.82-.52-5.47-1.5l-.39-.23-4.06 1.06 1.08-3.96-.25-.4A9.44 9.44 0 013.5 14c0-5.8 4.7-10.5 10.5-10.5S24.5 8.2 24.5 14 19.8 23.5 14 23.5zm5.76-7.86c-.32-.16-1.87-.92-2.16-1.03-.29-.1-.5-.16-.71.16-.21.32-.82 1.03-1 1.24-.19.21-.37.24-.69.08-.32-.16-1.34-.49-2.55-1.57-.94-.84-1.58-1.88-1.76-2.2-.19-.32-.02-.49.14-.65.14-.14.32-.37.47-.56.16-.19.21-.32.32-.53.1-.21.05-.4-.03-.56-.08-.16-.71-1.71-.97-2.34-.26-.61-.52-.53-.71-.54h-.61c-.21 0-.56.08-.85.4-.29.32-1.11 1.08-1.11 2.64s1.14 3.06 1.29 3.27c.16.21 2.24 3.42 5.43 4.79.76.33 1.35.52 1.81.67.76.24 1.46.21 2.01.13.61-.09 1.87-.77 2.14-1.51.26-.74.26-1.38.19-1.51-.08-.13-.29-.21-.61-.37z"/>
+    </svg>
+    <div class="whatsapp-tooltip">Написать в WhatsApp</div>
+  </a>
+
+  <script>
+    // ---- Header scroll effect ----
+    const header = document.getElementById('header');
+    let lastScroll = 0;
+
+    window.addEventListener('scroll', () => {
+      const currentScroll = window.pageYOffset;
+      if (currentScroll > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+      lastScroll = currentScroll;
+    }, { passive: true });
+
+    // ---- Mobile menu ----
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      mobileMenu.classList.toggle('active');
+      document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+    });
+
+    document.querySelectorAll('.mobile-link').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        mobileMenu.classList.remove('active');
+        document.body.style.overflow = '';
+      });
+    });
+
+    // ---- Intersection Observer for scroll animations ----
+    const observerOptions = {
+      threshold: 0.15,
+      rootMargin: '0px 0px -40px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // ---- Animated counters ----
+    function animateCounter(element) {
+      const target = parseInt(element.dataset.target);
+      const suffix = element.dataset.suffix || '';
+      const duration = 2000;
+      const startTime = performance.now();
+
+      function update(currentTime) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        const current = Math.round(eased * target);
+        element.textContent = current + suffix;
+
+        if (progress < 1) {
+          requestAnimationFrame(update);
+        }
+      }
+
+      requestAnimationFrame(update);
+    }
+
+    const statsObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const counters = entry.target.querySelectorAll('.hero-stat-number');
+          counters.forEach(counter => animateCounter(counter));
+          statsObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    const statsSection = document.querySelector('.hero-stats');
+    if (statsSection) statsObserver.observe(statsSection);
+
+    // ---- FAQ accordion ----
+    document.querySelectorAll('.faq-question').forEach(button => {
+      button.addEventListener('click', () => {
+        const item = button.parentElement;
+        const answer = item.querySelector('.faq-answer');
+        const isActive = item.classList.contains('active');
+
+        // Close all
+        document.querySelectorAll('.faq-item').forEach(faq => {
+          faq.classList.remove('active');
+          faq.querySelector('.faq-answer').style.maxHeight = null;
+        });
+
+        // Open clicked if it was closed
+        if (!isActive) {
+          item.classList.add('active');
+          answer.style.maxHeight = answer.scrollHeight + 'px';
+        }
+      });
+    });
+
+    // ---- Smooth scroll for anchor links ----
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        if (href === '#') return;
+        e.preventDefault();
+        const target = document.querySelector(href);
+        if (target) {
+          const offset = 80;
+          const top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+          window.scrollTo({ top, behavior: 'smooth' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
