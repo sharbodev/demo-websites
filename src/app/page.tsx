@@ -2,7 +2,6 @@
 
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { 
   Rocket, 
   Briefcase, 
@@ -13,10 +12,9 @@ import {
   Tag,
   Laptop,
   Smartphone,
-  ChevronRight,
-  ArrowDown,
   Globe2,
-  ExternalLink
+  ExternalLink,
+  ArrowDown
 } from "lucide-react";
 import { GlobalInfiniteGrid } from "@/components/ui/the-infinite-grid";
 
@@ -38,24 +36,45 @@ export default function Home() {
       category: "Стоматология",
       desc: "Чистый и внушающий доверие сайт клиники. Сетка услуг, прайс-лист, отзывы и запись в один клик через WhatsApp.",
       href: "/dental-clinic/index.html",
-      imgUrl: "https://lh3.googleusercontent.com/aida-public/AB6AXuAiK-Up-k8nuWvpzj56e0kg0dd3TrB52VAP_0YlXL8E5A8VzFLt0LSlA0D73Y1ZLOOlyRdgT6Jc-mdOQ4Kqj7DFAfKLSEvof9sDyRQx6gZhxvvJMASyikIDpytqf7ooMvuKlUpXSvngcW1pC27ry4iWWjin8FQ-4q0JNW-5Tv3Ho4ym6RIggXUr88cBJjMOPLwv9EGmhg1GDOXn-f9lB3sAhcAjWCypE0yz1qvJwOaNVtJKCa8Ox-ix5zswTijSVrBUe6zTkR8ZL2U",
-      accent: "rgba(34, 211, 238, 0.1)",
+      imgUrl: "https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&q=80&w=600",
+      accent: "hover:border-cyan-400/30",
+      accentColor: "text-cyan-400 border-cyan-400/20",
     },
     {
       title: "Чайхана Бишкек",
       category: "Ресторан",
       desc: "Уютный, стильный дизайн с красивым меню, вкладками цен, галереей залов и мгновенной бронью столов.",
       href: "/restaurant/index.html",
-      imgUrl: "https://lh3.googleusercontent.com/aida-public/AB6AXuBaYd6ooZQOeVxnTzPAlRn1wbWZNsqqPsrugbANtqamI4gXG3ETvF4WcPAWYxnxHixGxChVNYZTTqEkn3NI_XPS0Z8l0uVsPX7qTQPsippRlCvYHllBXhVi9M5uckQRTycHBBheed0RFwU8vVxovX3SHZQHjVH_pj5ZTDyG6kPDXylsOqQXbSP2Uro54X2OxFxVvbvxAlvqiLllUZpBSh9uxX4K_EgizN0Ngg2w14L-62KZxiX-eCiHSubKg1smjoFuXAH2cVggvgI",
-      accent: "rgba(180, 197, 255, 0.1)",
+      imgUrl: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&q=80&w=600",
+      accent: "hover:border-amber-400/30",
+      accentColor: "text-amber-400 border-amber-400/20",
+    },
+    {
+      title: "Билим",
+      category: "Образование",
+      desc: "Яркий сайт для школы или курсов. Каталог направлений, сетка расписания, аккордеон с FAQ и кнопка заказа.",
+      href: "/education/index.html",
+      imgUrl: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&q=80&w=600",
+      accent: "hover:border-violet-400/30",
+      accentColor: "text-violet-400 border-violet-400/20",
+    },
+    {
+      title: "СтройМастер",
+      category: "Строительство",
+      desc: "Премиальный темный дизайн. Услуги и цены, визуальные карточки проектов «До/После» и интерактивные этапы работы.",
+      href: "/construction/index.html",
+      imgUrl: "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&q=80&w=600",
+      accent: "hover:border-red-500/30",
+      accentColor: "text-red-500 border-red-500/20",
     },
     {
       title: "АвтоПро",
       category: "Автосервис",
       desc: "Брутальный темный дизайн в стиле автоспорта. Полный прайс-лист по категориям, список обслуживаемых авто и форма записи.",
       href: "/auto-service/index.html",
-      imgUrl: "https://lh3.googleusercontent.com/aida-public/AB6AXuDWjZq9Nx3t0BsKUM3L4402gZKteYLjnDe5FiCLUFgUUWeGpMyKJo9JEeZwJna1Ys7CYXXaXAKfJf6OyGj2I0dCzNFXzUIZCRwYY31WbPGfrGhvf1mxxIX21hm6kUbdkrbeULOuzoX-JxIHadaMVHCUxS31p7bTl4n1sCnaTynkeiY2zDv4me1AqmP-neUkHRjhN8H9_E234_Sf_H08uQKdcf-7PjyRourXddXTNcSJr_sWOPORmeqVc0wawJyoOdIYgbBBY0ySlHc",
-      accent: "rgba(14, 165, 233, 0.1)",
+      imgUrl: "https://images.unsplash.com/photo-1486006920555-c77dce18193b?auto=format&fit=crop&q=80&w=600",
+      accent: "hover:border-cyan-500/30",
+      accentColor: "text-cyan-500 border-cyan-500/20",
     },
   ];
 
@@ -102,7 +121,7 @@ export default function Home() {
   ];
 
   return (
-    <div className="relative min-h-screen bg-[#070A13] text-[#F1F5F9] overflow-x-hidden">
+    <div className="relative min-h-screen bg-[#070A13] text-[#F1F5F9] overflow-x-hidden selection:bg-cyan-500/30 selection:text-white">
       
       {/* Noise filter backdrop layer */}
       <div 
@@ -112,7 +131,7 @@ export default function Home() {
         }}
       />
 
-      {/* Global subtle dots background grid (non-interactive, high performance) */}
+      {/* Global subtle dots background grid (completely static, 0% CPU impact) */}
       <GlobalInfiniteGrid />
 
       {/* ========== HEADER ========== */}
@@ -120,32 +139,32 @@ export default function Home() {
         id="navbar" 
         className={`fixed top-0 left-0 right-0 w-full z-50 border-b transition-all duration-300 ${
           scrolled 
-            ? "bg-[#0F172A]/80 backdrop-blur-xl border-white/10 shadow-lg py-4" 
+            ? "bg-[#0F172A]/85 backdrop-blur-xl border-white/10 shadow-lg py-4" 
             : "bg-transparent border-transparent py-6"
         }`}
       >
         <div className="flex justify-between items-center h-12 px-6 max-w-[1280px] mx-auto">
-          <Link href="/" className="font-outfit font-black text-2xl text-cyan-400 tracking-tight flex items-center gap-2 hover:scale-95 transition-transform duration-200">
+          <Link href="/" className="font-sora font-black text-2xl text-cyan-400 tracking-tight flex items-center gap-2 hover:scale-95 transition-transform duration-200">
             <span>WebPro<span className="text-white">.kg</span></span>
           </Link>
           
           <div className="hidden md:flex items-center space-x-1">
-            <a href="#portfolio" className="text-[#8FA0B5] hover:text-white transition-colors duration-300 text-xs uppercase tracking-widest px-4 py-2 rounded-lg hover:bg-white/5 font-semibold">
+            <a href="#portfolio" className="text-[#8FA0B5] hover:text-white transition-colors duration-300 text-label-caps px-4 py-2 rounded-lg hover:bg-white/5">
               Портфолио
             </a>
-            <a href="#services" className="text-[#8FA0B5] hover:text-white transition-colors duration-300 text-xs uppercase tracking-widest px-4 py-2 rounded-lg hover:bg-white/5 font-semibold">
+            <a href="#services" className="text-[#8FA0B5] hover:text-white transition-colors duration-300 text-label-caps px-4 py-2 rounded-lg hover:bg-white/5">
               Услуги
             </a>
-            <a href="#workflow" className="text-[#8FA0B5] hover:text-white transition-colors duration-300 text-xs uppercase tracking-widest px-4 py-2 rounded-lg hover:bg-white/5 font-semibold">
+            <a href="#workflow" className="text-[#8FA0B5] hover:text-white transition-colors duration-300 text-label-caps px-4 py-2 rounded-lg hover:bg-white/5">
               Как работаем
             </a>
-            <a href="#advantages" className="text-[#8FA0B5] hover:text-white transition-colors duration-300 text-xs uppercase tracking-widest px-4 py-2 rounded-lg hover:bg-white/5 font-semibold">
+            <a href="#advantages" className="text-[#8FA0B5] hover:text-white transition-colors duration-300 text-label-caps px-4 py-2 rounded-lg hover:bg-white/5">
               Преимущества
             </a>
           </div>
 
           <a 
-            className="hidden md:inline-flex items-center justify-center px-6 py-3 bg-cyan-400 text-[#00363e] font-outfit text-xs font-black uppercase tracking-wider rounded-full shadow-[0_0_20px_rgba(34,211,238,0.3)] hover:shadow-[0_0_30px_rgba(34,211,238,0.5)] hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300"
+            className="hidden md:inline-flex items-center justify-center px-6 py-3 bg-cyan-400 text-[#00363e] font-sora text-label-caps rounded-full shadow-[0_0_20px_rgba(34,211,238,0.3)] hover:shadow-[0_0_30px_rgba(34,211,238,0.5)] hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300"
             href="https://wa.me/996555123456?text=Здравствуйте!%20Интересует%20создание%20сайта" 
             target="_blank"
             rel="noopener noreferrer"
@@ -174,22 +193,22 @@ export default function Home() {
       <div className={`fixed inset-0 bg-[#070A13]/98 backdrop-blur-2xl z-40 flex flex-col items-center justify-center gap-8 transition-all duration-300 md:hidden ${
         mobileMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
       }`}>
-        <a href="#portfolio" onClick={() => setMobileMenuOpen(false)} className="text-xl font-bold tracking-widest text-[#8FA0B5] hover:text-white uppercase">Портфолио</a>
-        <a href="#services" onClick={() => setMobileMenuOpen(false)} className="text-xl font-bold tracking-widest text-[#8FA0B5] hover:text-white uppercase">Услуги</a>
-        <a href="#workflow" onClick={() => setMobileMenuOpen(false)} className="text-xl font-bold tracking-widest text-[#8FA0B5] hover:text-white uppercase">Как работаем</a>
-        <a href="#advantages" onClick={() => setMobileMenuOpen(false)} className="text-xl font-bold tracking-widest text-[#8FA0B5] hover:text-white uppercase">Преимущества</a>
+        <a href="#portfolio" onClick={() => setMobileMenuOpen(false)} className="text-xl font-bold tracking-widest text-[#8FA0B5] hover:text-white uppercase font-sora">Портфолио</a>
+        <a href="#services" onClick={() => setMobileMenuOpen(false)} className="text-xl font-bold tracking-widest text-[#8FA0B5] hover:text-white uppercase font-sora">Услуги</a>
+        <a href="#workflow" onClick={() => setMobileMenuOpen(false)} className="text-xl font-bold tracking-widest text-[#8FA0B5] hover:text-white uppercase font-sora">Как работаем</a>
+        <a href="#advantages" onClick={() => setMobileMenuOpen(false)} className="text-xl font-bold tracking-widest text-[#8FA0B5] hover:text-white uppercase font-sora">Преимущества</a>
         
         <a 
           href="https://wa.me/996555123456?text=Здравствуйте!%20Интересует%20создание%20сайта" 
           target="_blank" 
           rel="noopener noreferrer"
-          className="px-8 py-4 bg-cyan-400 text-[#00363e] font-outfit font-black rounded-full shadow-[0_0_20px_rgba(34,211,238,0.3)] text-sm uppercase tracking-wider"
+          className="px-8 py-4 bg-cyan-400 text-[#00363e] font-sora font-black rounded-full shadow-[0_0_20px_rgba(34,211,238,0.3)] text-sm uppercase tracking-wider"
         >
           Написать в WhatsApp
         </a>
       </div>
 
-      <main className="flex-grow pt-20 relative z-10">
+      <main className="flex-grow pt-20 relative z-10 animate-fade-in">
         
         {/* ========== HERO SECTION ========== */}
         <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden py-24 px-6">
@@ -202,25 +221,25 @@ export default function Home() {
           <div className="relative z-10 max-w-[1280px] mx-auto w-full text-center flex flex-col items-center">
             <div className="inline-flex items-center space-x-2 bg-white/5 backdrop-blur-md rounded-full px-5 py-2 mb-8 border border-white/10 shadow-inner">
               <span className="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-ping" />
-              <span className="font-outfit text-xs font-bold text-cyan-400 tracking-widest uppercase">
+              <span className="font-sans text-xs font-bold text-cyan-400 tracking-widest uppercase">
                 Бишкек, Кыргызстан KGT (GMT+6)
               </span>
             </div>
             
-            <h1 className="font-outfit font-black text-4xl md:text-7xl text-white mb-6 leading-tight max-w-5xl">
+            <h1 className="text-display-lg text-white mb-6 max-w-4xl">
               Создаем сайты нового <br className="hidden md:block"/>
               <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-[#d9b0ff] bg-clip-text text-transparent filter drop-shadow-sm">
                 космического уровня
               </span>
             </h1>
             
-            <p className="text-base md:text-xl text-[#8FA0B5] max-w-2xl mx-auto mb-12 font-normal leading-relaxed">
+            <p className="text-body-lg text-[#8FA0B5] max-w-2xl mx-auto mb-12">
               Эксклюзивный дизайн, интерактивные эффекты и удобная интеграция с WhatsApp. Запустим ваш проект за 3–5 дней.
             </p>
             
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto">
               <a 
-                className="w-full sm:w-auto px-8 py-4 bg-cyan-400 text-[#00363e] font-outfit text-sm font-black uppercase tracking-wider rounded-full shadow-[0_0_20px_rgba(34,211,238,0.3)] hover:shadow-[0_0_30px_rgba(34,211,238,0.6)] hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300 flex items-center justify-center gap-2"
+                className="w-full sm:w-auto px-8 py-4 bg-cyan-400 text-[#00363e] font-sora text-sm font-black uppercase tracking-wider rounded-full shadow-[0_0_20px_rgba(34,211,238,0.3)] hover:shadow-[0_0_30px_rgba(34,211,238,0.6)] hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300 flex items-center justify-center gap-2"
                 href="https://wa.me/996555123456?text=Здравствуйте!%20Интересует%20создание%20сайта"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -230,7 +249,7 @@ export default function Home() {
               </a>
               
               <a 
-                className="w-full sm:w-auto px-8 py-4 bg-white/5 hover:bg-white/10 text-white font-outfit text-xs font-black uppercase tracking-widest rounded-full border border-white/10 hover:border-white/20 transition-all duration-300 flex items-center justify-center gap-2"
+                className="w-full sm:w-auto px-8 py-4 bg-white/5 hover:bg-white/10 text-white font-sora text-xs font-black uppercase tracking-widest rounded-full border border-white/10 hover:border-white/20 transition-all duration-300 flex items-center justify-center gap-2"
                 href="#portfolio"
               >
                 <span>Смотреть работы</span>
@@ -251,8 +270,8 @@ export default function Home() {
                 { num: "24/7", label: "Поддержка клиентов" },
               ].map((stat, idx) => (
                 <div key={idx} className="text-center p-6 md:p-8 bg-[#0F172A]/40 backdrop-blur-md border border-white/5 rounded-2xl shadow-xl">
-                  <div className="font-outfit font-black text-3xl md:text-5xl text-cyan-400 mb-2">{stat.num}</div>
-                  <div className="text-xs md:text-sm text-[#8FA0B5] font-medium leading-relaxed">{stat.label}</div>
+                  <div className="font-sora font-black text-3xl md:text-5xl text-cyan-400 mb-2">{stat.num}</div>
+                  <div className="text-body-md text-[#8FA0B5] font-medium leading-relaxed">{stat.label}</div>
                 </div>
               ))}
             </div>
@@ -263,13 +282,13 @@ export default function Home() {
         <section className="py-24 px-6 relative" id="portfolio">
           <div className="max-w-[1280px] mx-auto">
             <div className="text-center mb-20 space-y-4">
-              <span className="font-outfit text-xs font-bold text-cyan-400 tracking-widest uppercase py-1.5 px-4 bg-cyan-400/5 border border-cyan-400/20 rounded-full">
+              <span className="text-label-caps text-cyan-400 py-1.5 px-4 bg-cyan-400/5 border border-cyan-400/20 rounded-full">
                 Портфолио
               </span>
-              <h2 className="font-outfit font-black text-3xl md:text-5xl text-white">
+              <h2 className="text-display-lg text-white">
                 Наши демо-сайты
               </h2>
-              <p className="text-base md:text-lg text-[#8FA0B5] max-w-2xl mx-auto leading-relaxed">
+              <p className="text-body-lg text-[#8FA0B5] max-w-2xl mx-auto leading-relaxed">
                 Кликните по любой карточке, чтобы открыть полностью функциональный прототип сайта для вашей ниши
               </p>
             </div>
@@ -281,7 +300,7 @@ export default function Home() {
                   href={demo.href} 
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-[#0F172A]/50 backdrop-blur-md rounded-2xl overflow-hidden group border border-white/5 hover:border-cyan-400/30 hover:-translate-y-2 shadow-2xl transition-all duration-300 flex flex-col min-h-[440px]"
+                  className={`bg-[#0F172A]/50 backdrop-blur-md rounded-2xl overflow-hidden group border border-white/5 ${demo.accent} hover:-translate-y-2 shadow-2xl transition-all duration-300 flex flex-col min-h-[440px]`}
                 >
                   <div className="h-52 relative overflow-hidden bg-[#181B25]">
                     <div className="absolute inset-0 bg-gradient-to-t from-[#070A13] via-transparent to-transparent z-10 opacity-80" />
@@ -291,10 +310,11 @@ export default function Home() {
                       alt={demo.title} 
                       className="w-full h-full object-cover opacity-60 group-hover:scale-105 group-hover:opacity-80 transition-all duration-500" 
                       src={demo.imgUrl}
+                      loading="lazy"
                     />
 
                     <div className="absolute top-4 left-4 z-20">
-                      <span className="px-3.5 py-1 bg-[#070A13]/90 backdrop-blur-md text-cyan-400 text-[10px] font-bold uppercase tracking-wider rounded-full border border-cyan-400/20">
+                      <span className={`px-3.5 py-1 bg-[#070A13]/90 backdrop-blur-md text-[10px] font-bold uppercase tracking-wider rounded-full border ${demo.accentColor}`}>
                         {demo.category}
                       </span>
                     </div>
@@ -302,10 +322,10 @@ export default function Home() {
 
                   <div className="p-8 flex-1 flex flex-col justify-between relative z-10 bg-gradient-to-b from-[#0F172A]/20 to-[#070A13]/90">
                     <div>
-                      <h3 className="font-outfit font-bold text-2xl text-white mb-3 group-hover:text-cyan-400 transition-colors">
+                      <h3 className="font-sora font-bold text-2xl text-white mb-3 group-hover:text-cyan-400 transition-colors">
                         {demo.title}
                       </h3>
-                      <p className="text-sm text-[#8FA0B5] leading-relaxed mb-6">
+                      <p className="text-body-md text-[#8FA0B5] leading-relaxed mb-6">
                         {demo.desc}
                       </p>
                     </div>
@@ -325,13 +345,13 @@ export default function Home() {
         <section className="py-24 px-6 bg-[#0B0E17]/40 border-y border-white/5 relative" id="services">
           <div className="max-w-[1280px] mx-auto">
             <div className="text-center mb-20 space-y-4">
-              <span className="font-outfit text-xs font-bold text-cyan-400 tracking-widest uppercase py-1.5 px-4 bg-cyan-400/5 border border-cyan-400/20 rounded-full">
+              <span className="text-label-caps text-cyan-400 py-1.5 px-4 bg-cyan-400/5 border border-cyan-400/20 rounded-full">
                 Услуги
               </span>
-              <h2 className="font-outfit font-black text-3xl md:text-5xl text-white">
+              <h2 className="text-display-lg text-white">
                 Что мы предлагаем
               </h2>
-              <p className="text-base md:text-lg text-[#8FA0B5] max-w-2xl mx-auto leading-relaxed">
+              <p className="text-body-lg text-[#8FA0B5] max-w-2xl mx-auto leading-relaxed">
                 Форматы сайтов, созданные для быстрого масштабирования вашего бизнеса
               </p>
             </div>
@@ -348,7 +368,7 @@ export default function Home() {
                 >
                   {service.popular && (
                     <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
-                      <span className="bg-cyan-400 text-[#00363e] text-[10px] font-black uppercase tracking-widest px-4 py-1 rounded-full shadow-lg">
+                      <span className="bg-cyan-400 text-[#00363e] text-label-caps px-4 py-1 rounded-full shadow-lg">
                         Популярный
                       </span>
                     </div>
@@ -363,22 +383,22 @@ export default function Home() {
                       {service.icon}
                     </div>
                     
-                    <h3 className="font-outfit font-bold text-xl text-white mb-2">{service.name}</h3>
-                    <p className="text-sm text-[#8FA0B5] leading-relaxed mb-8">{service.desc}</p>
+                    <h3 className="text-headline-sm text-white mb-2">{service.name}</h3>
+                    <p className="text-body-md text-[#8FA0B5] leading-relaxed mb-8">{service.desc}</p>
                   </div>
                   
                   <div className="mt-auto pt-6 border-t border-white/5">
-                    <div className="text-3xl font-outfit font-black text-cyan-400 mb-6">
+                    <div className="font-sora font-black text-3xl text-cyan-400 mb-6">
                       {service.price}
                     </div>
                     
                     <ul className="space-y-4 mb-8">
-                      <li className="flex items-center gap-3 text-xs text-[#8FA0B5]">
+                      <li className="flex items-center gap-3 text-body-md text-[#8FA0B5]">
                         <Clock className="w-4 h-4 text-cyan-400" />
                         <span>Срок: {service.term}</span>
                       </li>
                       {service.features.map((feature, fIdx) => (
-                        <li key={fIdx} className="flex items-center gap-3 text-xs text-[#8FA0B5]">
+                        <li key={fIdx} className="flex items-center gap-3 text-body-md text-[#8FA0B5]">
                           <CheckCircle className="w-4 h-4 text-cyan-400" />
                           <span>{feature}</span>
                         </li>
@@ -386,7 +406,7 @@ export default function Home() {
                     </ul>
 
                     <a 
-                      className={`w-full py-3.5 block text-center rounded-full text-xs font-black uppercase tracking-wider transition-all duration-300 font-outfit ${
+                      className={`w-full py-3.5 block text-center rounded-full text-label-caps transition-all duration-300 font-sora ${
                         service.popular 
                           ? "bg-cyan-400 text-[#00363e] shadow-[0_0_20px_rgba(34,211,238,0.2)] hover:shadow-[0_0_30px_rgba(34,211,238,0.4)]"
                           : "border border-white/10 text-white hover:bg-white/5 hover:border-white/20"
@@ -408,10 +428,10 @@ export default function Home() {
         <section className="py-24 px-6 relative" id="workflow">
           <div className="max-w-[1280px] mx-auto">
             <div className="text-center mb-20 space-y-4">
-              <span className="font-outfit text-xs font-bold text-cyan-400 tracking-widest uppercase py-1.5 px-4 bg-cyan-400/5 border border-cyan-400/20 rounded-full">
+              <span className="text-label-caps text-cyan-400 py-1.5 px-4 bg-cyan-400/5 border border-cyan-400/20 rounded-full">
                 Отзывы
               </span>
-              <h2 className="font-outfit font-black text-3xl md:text-5xl text-white">
+              <h2 className="text-display-lg text-white">
                 Что говорят о нашей работе
               </h2>
             </div>
@@ -439,7 +459,7 @@ export default function Home() {
               ].map((t, idx) => (
                 <div key={idx} className="bg-[#0F172A]/50 backdrop-blur-md rounded-2xl p-8 border border-white/5 flex flex-col justify-between hover:border-cyan-400/20 shadow-xl transition-all duration-300 relative">
                   <span className="absolute top-6 right-6 text-6xl text-cyan-400/5 font-serif select-none pointer-events-none">“</span>
-                  <p className="text-sm text-[#8FA0B5] italic leading-relaxed mb-8 relative z-10">
+                  <p className="text-body-md text-[#8FA0B5] italic leading-relaxed mb-8 relative z-10">
                     &ldquo;{t.quote}&rdquo;
                   </p>
                   <div className="flex items-center gap-4 border-t border-white/5 pt-6">
@@ -463,13 +483,13 @@ export default function Home() {
         <section className="py-24 px-6 bg-[#0B0E17]/40 border-y border-white/5 relative z-10" id="workflow">
           <div className="max-w-[1280px] mx-auto">
             <div className="text-center mb-20 space-y-4">
-              <span className="font-outfit text-xs font-bold text-cyan-400 tracking-widest uppercase py-1.5 px-4 bg-cyan-400/5 border border-cyan-400/20 rounded-full">
+              <span className="text-label-caps text-cyan-400 py-1.5 px-4 bg-cyan-400/5 border border-cyan-400/20 rounded-full">
                 Процесс
               </span>
-              <h2 className="font-outfit font-black text-3xl md:text-5xl text-white">
+              <h2 className="text-display-lg text-white">
                 Как строится работа
               </h2>
-              <p className="text-base md:text-lg text-[#8FA0B5] max-w-2xl mx-auto leading-relaxed">
+              <p className="text-body-lg text-[#8FA0B5] max-w-2xl mx-auto leading-relaxed">
                 Мы ценим ваше время, поэтому свели весь процесс разработки к 3 простым этапам
               </p>
             </div>
@@ -481,11 +501,11 @@ export default function Home() {
                 { num: "03", title: "Запуск и Поддержка", desc: "Размещаем сайт в интернете, подключаем к вашему домену и настраиваем форму для приема заявок. Сайт готов приносить прибыль." },
               ].map((step, idx) => (
                 <div key={idx} className="bg-[#0F172A]/50 border border-white/5 rounded-2xl p-8 hover:border-cyan-400/10 shadow-xl transition-all duration-300">
-                  <div className="w-12 h-12 bg-cyan-400/5 border border-cyan-400/20 rounded-xl flex items-center justify-center font-outfit font-black text-cyan-400 text-lg">
+                  <div className="w-12 h-12 bg-cyan-400/5 border border-cyan-400/20 rounded-xl flex items-center justify-center font-sora font-black text-cyan-400 text-lg">
                     {step.num}
                   </div>
-                  <h3 className="font-outfit font-bold text-xl text-white mt-6 mb-3">{step.title}</h3>
-                  <p className="text-sm text-[#8FA0B5] leading-relaxed">{step.desc}</p>
+                  <h3 className="text-headline-sm text-white mt-6 mb-3">{step.title}</h3>
+                  <p className="text-body-md text-[#8FA0B5] leading-relaxed">{step.desc}</p>
                 </div>
               ))}
             </div>
@@ -496,10 +516,10 @@ export default function Home() {
         <section className="py-24 px-6 relative" id="advantages">
           <div className="max-w-[1280px] mx-auto">
             <div className="text-center mb-20 space-y-4">
-              <span className="font-outfit text-xs font-bold text-cyan-400 tracking-widest uppercase py-1.5 px-4 bg-cyan-400/5 border border-cyan-400/20 rounded-full">
+              <span className="text-label-caps text-cyan-400 py-1.5 px-4 bg-cyan-400/5 border border-cyan-400/20 rounded-full">
                 Преимущества
               </span>
-              <h2 className="font-outfit font-black text-3xl md:text-5xl text-white">
+              <h2 className="text-display-lg text-white">
                 Почему выбирают WebPro.kg
               </h2>
             </div>
@@ -513,8 +533,8 @@ export default function Home() {
                   <div className="w-12 h-12 bg-cyan-500/10 border border-cyan-500/20 rounded-xl flex items-center justify-center text-cyan-400 mb-6 group-hover:scale-110 transition-transform">
                     <Clock className="w-6 h-6" />
                   </div>
-                  <h3 className="font-outfit font-black text-2xl text-white mb-3">Космическая скорость разработки</h3>
-                  <p className="text-sm text-[#8FA0B5] max-w-xl leading-relaxed">
+                  <h3 className="font-sora font-black text-2xl text-white mb-3">Космическая скорость разработки</h3>
+                  <p className="text-body-md text-[#8FA0B5] max-w-xl leading-relaxed">
                     Ваш полностью готовый, наполненный и рабочий сайт будет запущен всего за <strong className="text-white">3–5 дней</strong>. Сверхбыстрая разработка без потери премиального качества.
                   </p>
                 </div>
@@ -530,8 +550,8 @@ export default function Home() {
                   <div className="w-12 h-12 bg-amber-500/10 border border-amber-500/20 rounded-xl flex items-center justify-center text-amber-400 mb-6 group-hover:scale-110 transition-transform">
                     <Tag className="w-6 h-6" />
                   </div>
-                  <h3 className="font-outfit font-black text-2xl text-white mb-3">Прозрачная стоимость</h3>
-                  <p className="text-sm text-[#8FA0B5] leading-relaxed">
+                  <h3 className="font-sora font-black text-2xl text-white mb-3">Прозрачная стоимость</h3>
+                  <p className="text-body-md text-[#8FA0B5] leading-relaxed">
                     Стоимость разработки стартует <strong className="text-white">от 5 000 сом</strong>. Полная прозрачность: никаких скрытых переплат, навязанных услуг или лишних ежемесячных подписок.
                   </p>
                 </div>
@@ -546,8 +566,8 @@ export default function Home() {
                   <div className="w-12 h-12 bg-[#8350e8]/10 border border-[#8350e8]/20 rounded-xl flex items-center justify-center text-[#d9b0ff] mb-6 group-hover:scale-110 transition-transform">
                     <Laptop className="w-6 h-6" />
                   </div>
-                  <h3 className="font-outfit font-black text-2xl text-white mb-3">100% адаптивность</h3>
-                  <p className="text-sm text-[#8FA0B5] leading-relaxed">
+                  <h3 className="font-sora font-black text-2xl text-white mb-3">100% адаптивность</h3>
+                  <p className="text-body-md text-[#8FA0B5] leading-relaxed">
                     Ваш сайт будет выглядеть безупречно и открываться моментально на любых смартфонах, планшетах и компьютерах с сохранением всех интерактивных эффектов.
                   </p>
                 </div>
@@ -564,8 +584,8 @@ export default function Home() {
                   <div className="w-12 h-12 bg-emerald-500/10 border border-emerald-500/20 rounded-xl flex items-center justify-center text-emerald-400 mb-6 group-hover:scale-110 transition-transform">
                     <MessageSquare className="w-6 h-6" />
                   </div>
-                  <h3 className="font-outfit font-black text-2xl text-white mb-3">Лиды напрямую в ваш WhatsApp</h3>
-                  <p className="text-sm text-[#8FA0B5] max-w-xl leading-relaxed">
+                  <h3 className="font-sora font-black text-2xl text-white mb-3">Лиды напрямую в ваш WhatsApp</h3>
+                  <p className="text-body-md text-[#8FA0B5] max-w-xl leading-relaxed">
                     Настроим моментальную отправку заполненных заявок с сайта прямо на ваш личный WhatsApp-номер. Мгновенно узнавайте о новых клиентах и отвечайте им в один клик.
                   </p>
                 </div>
@@ -588,15 +608,15 @@ export default function Home() {
         {/* ========== CTA SECTION ========== */}
         <section className="py-24 px-6 relative" id="contact">
           <div className="max-w-4xl mx-auto text-center relative z-10 bg-[#0F172A]/70 backdrop-blur-md p-12 md:p-16 rounded-3xl border border-cyan-400/20 shadow-[0_0_50px_rgba(34,211,238,0.06)]">
-            <h2 className="font-outfit font-black text-3xl md:text-5xl text-white mb-6">
+            <h2 className="text-display-lg text-white mb-6">
               Создадим ваш новый сайт сегодня?
             </h2>
-            <p className="text-sm md:text-base text-[#8FA0B5] max-w-xl mx-auto mb-10 leading-relaxed">
+            <p className="text-body-lg text-[#8FA0B5] max-w-xl mx-auto mb-10">
               Просто напишите мне в WhatsApp — обсудим цели, выберем крутой стиль и сразу запустим проект в работу.
             </p>
             
             <a 
-              className="inline-flex items-center justify-center px-10 py-5 bg-[#25D366] text-white font-outfit text-sm font-black uppercase tracking-wider rounded-full shadow-[0_0_20px_rgba(37,211,102,0.4)] hover:bg-[#20bd5a] hover:shadow-[0_0_30px_rgba(37,211,102,0.6)] hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300 gap-3"
+              className="inline-flex items-center justify-center px-10 py-5 bg-[#25D366] text-white font-sora text-sm font-black uppercase tracking-wider rounded-full shadow-[0_0_20px_rgba(37,211,102,0.4)] hover:bg-[#20bd5a] hover:shadow-[0_0_30px_rgba(37,211,102,0.6)] hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300 gap-3"
               href="https://wa.me/996555123456?text=Здравствуйте!%20Интересует%20создание%20сайта"
               target="_blank"
               rel="noopener noreferrer"
@@ -610,32 +630,32 @@ export default function Home() {
       </main>
 
       {/* ========== FOOTER ========== */}
-      <footer className="bg-[#0B0E17] py-16 border-t border-white/5 relative z-10 text-sm">
+      <footer className="bg-[#0B0E17] py-16 border-t border-white/5 relative z-10">
         <div className="max-w-[1280px] mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12">
           <div className="col-span-1 md:col-span-2 space-y-4">
-            <Link href="/" className="font-outfit font-black text-2xl text-cyan-400">
+            <Link href="/" className="font-sora font-black text-2xl text-cyan-400">
               WebPro.kg
             </Link>
-            <p className="text-[#8FA0B5] max-w-sm leading-relaxed">
+            <p className="text-[#8FA0B5] max-w-sm leading-relaxed text-body-md">
               Эксклюзивный веб-дизайн и разработка премиальных сайтов для вашего бизнеса в Бишкеке и по всему Кыргызстану.
             </p>
-            <div className="text-xs text-[#566882] pt-4">
+            <div className="text-xs text-[#566882] pt-4 font-sans">
               &copy; 2026 WebPro.kg. Все права защищены.
             </div>
           </div>
           
           <div>
-            <h4 className="font-outfit font-bold text-xs uppercase tracking-widest text-white mb-6">Навигация</h4>
+            <h4 className="text-label-caps text-white mb-6">Навигация</h4>
             <ul className="space-y-3">
-              <li><a href="#portfolio" className="text-[#8FA0B5] hover:text-cyan-400 transition-colors text-xs font-semibold uppercase tracking-wider">Портфолио</a></li>
-              <li><a href="#services" className="text-[#8FA0B5] hover:text-cyan-400 transition-colors text-xs font-semibold uppercase tracking-wider">Услуги</a></li>
-              <li><a href="#workflow" className="text-[#8FA0B5] hover:text-cyan-400 transition-colors text-xs font-semibold uppercase tracking-wider">Как работаем</a></li>
+              <li><a href="#portfolio" className="text-[#8FA0B5] hover:text-cyan-400 transition-colors text-label-caps font-semibold">Портфолио</a></li>
+              <li><a href="#services" className="text-[#8FA0B5] hover:text-cyan-400 transition-colors text-label-caps font-semibold">Услуги</a></li>
+              <li><a href="#workflow" className="text-[#8FA0B5] hover:text-cyan-400 transition-colors text-label-caps font-semibold">Как работаем</a></li>
             </ul>
           </div>
           
           <div>
-            <h4 className="font-outfit font-bold text-xs uppercase tracking-widest text-white mb-6">Контакты</h4>
-            <ul className="space-y-3 font-semibold text-[#8FA0B5]">
+            <h4 className="text-label-caps text-white mb-6">Контакты</h4>
+            <ul className="space-y-3 font-semibold text-[#8FA0B5] text-body-md">
               <li className="flex items-center gap-2">
                 <Globe2 className="w-4 h-4 text-cyan-400" />
                 <span>Бишкек, Кыргызстан</span>
@@ -657,7 +677,7 @@ export default function Home() {
         aria-label="Написать в WhatsApp"
       >
         <svg className="w-8 h-8 fill-current" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"></path></svg>
-        <span className="absolute right-full mr-4 bg-[#0F172A] text-white px-4 py-2 rounded-lg text-xs font-bold shadow-2xl opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap border border-white/10">
+        <span className="absolute right-full mr-4 bg-[#0F172A] text-white px-4 py-2 rounded-lg text-xs font-bold shadow-2xl opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap border border-white/10 font-sans">
           Связаться в WhatsApp
         </span>
       </a>
