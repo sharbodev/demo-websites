@@ -1,1830 +1,416 @@
 <!DOCTYPE html>
-<html lang="ru">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Чайхана Бишкек — Уютное место с душой Востока</title>
-  <meta name="description" content="Чайхана Бишкек — ресторан восточной кухни с аутентичными рецептами. Плов, лагман, манты и шашлык в уютной атмосфере.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    *, *::before, *::after {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
 
-    :root {
-      --primary: #92400E;
-      --secondary: #D97706;
-      --accent: #F59E0B;
-      --bg: #FFFBEB;
-      --dark: #1C1917;
-      --card-bg: #FEF3C7;
-      --text: #292524;
-      --white: #FEFCE8;
-      --primary-light: #B45309;
-      --shadow-warm: 0 4px 24px rgba(146, 64, 14, 0.12);
-      --shadow-warm-lg: 0 12px 40px rgba(146, 64, 14, 0.18);
-      --radius: 16px;
-      --radius-sm: 10px;
-      --transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    html {
-      scroll-behavior: smooth;
-      font-size: 16px;
-    }
-
-    body {
-      font-family: 'Inter', sans-serif;
-      color: var(--text);
-      background: var(--bg);
-      line-height: 1.7;
-      overflow-x: hidden;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    h1, h2, h3, h4, h5, h6 {
-      font-family: 'Outfit', sans-serif;
-      line-height: 1.2;
-    }
-
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
-
-    img { max-width: 100%; }
-
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 24px;
-    }
-
-    /* ───── Scroll Animations ───── */
-    .reveal {
-      opacity: 0;
-      transform: translateY(32px);
-      transition: opacity 0.7s var(--transition), transform 0.7s var(--transition);
-    }
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .reveal-left {
-      opacity: 0;
-      transform: translateX(-40px);
-      transition: opacity 0.7s var(--transition), transform 0.7s var(--transition);
-    }
-    .reveal-left.visible {
-      opacity: 1;
-      transform: translateX(0);
-    }
-    .reveal-right {
-      opacity: 0;
-      transform: translateX(40px);
-      transition: opacity 0.7s var(--transition), transform 0.7s var(--transition);
-    }
-    .reveal-right.visible {
-      opacity: 1;
-      transform: translateX(0);
-    }
-
-    /* ───── HEADER ───── */
-    .header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 1000;
-      background: rgba(28, 25, 23, 0.88);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border-bottom: 1px solid rgba(217, 119, 6, 0.15);
-      transition: background var(--transition), box-shadow var(--transition);
-    }
-    .header.scrolled {
-      background: rgba(28, 25, 23, 0.96);
-      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.25);
-    }
-    .header-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 72px;
-    }
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    .logo-icon {
-      width: 40px;
-      height: 40px;
-      flex-shrink: 0;
-    }
-    .logo-text {
-      font-family: 'Outfit', sans-serif;
-      font-size: 1.35rem;
-      font-weight: 700;
-      color: var(--white);
-      letter-spacing: -0.02em;
-    }
-    .logo-sub {
-      display: block;
-      font-size: 0.65rem;
-      font-weight: 400;
-      color: var(--accent);
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      margin-top: -2px;
-    }
-    .nav { display: flex; align-items: center; gap: 8px; }
-    .nav a {
-      color: rgba(254, 252, 232, 0.8);
-      font-size: 0.9rem;
-      font-weight: 500;
-      padding: 8px 16px;
-      border-radius: 8px;
-      transition: color var(--transition), background var(--transition);
-    }
-    .nav a:hover {
-      color: var(--accent);
-      background: rgba(245, 158, 11, 0.08);
-    }
-    .btn-book {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: linear-gradient(135deg, var(--secondary), var(--accent));
-      color: var(--dark);
-      font-weight: 600;
-      font-size: 0.9rem;
-      padding: 10px 24px;
-      border-radius: 50px;
-      border: none;
-      cursor: pointer;
-      transition: transform var(--transition), box-shadow var(--transition);
-      white-space: nowrap;
-    }
-    .btn-book:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(245, 158, 11, 0.35);
-    }
-
-    /* Hamburger */
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      gap: 5px;
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 8px;
-      z-index: 1001;
-    }
-    .hamburger span {
-      width: 26px;
-      height: 2.5px;
-      background: var(--white);
-      border-radius: 4px;
-      transition: transform var(--transition), opacity var(--transition);
-    }
-    .hamburger.active span:nth-child(1) {
-      transform: rotate(45deg) translate(5px, 5px);
-    }
-    .hamburger.active span:nth-child(2) { opacity: 0; }
-    .hamburger.active span:nth-child(3) {
-      transform: rotate(-45deg) translate(5px, -5px);
-    }
-
-    /* Mobile Nav */
-    .mobile-nav {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(28, 25, 23, 0.97);
-      backdrop-filter: blur(20px);
-      z-index: 999;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      opacity: 0;
-      transition: opacity 0.4s ease;
-    }
-    .mobile-nav.open {
-      display: flex;
-      opacity: 1;
-    }
-    .mobile-nav a {
-      color: var(--white);
-      font-family: 'Outfit', sans-serif;
-      font-size: 1.5rem;
-      font-weight: 600;
-      padding: 12px 24px;
-      border-radius: 12px;
-      transition: color var(--transition), background var(--transition);
-    }
-    .mobile-nav a:hover {
-      color: var(--accent);
-      background: rgba(245, 158, 11, 0.1);
-    }
-
-    @media (max-width: 900px) {
-      .nav { display: none; }
-      .header .btn-book { display: none; }
-      .hamburger { display: flex; }
-    }
-
-    /* ───── HERO ───── */
-    .hero {
-      position: relative;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      overflow: hidden;
-      background: linear-gradient(160deg, #1C1917 0%, #44260a 35%, #92400E 60%, #7C2D12 100%);
-    }
-    .hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(ellipse 80% 60% at 70% 30%, rgba(245, 158, 11, 0.12) 0%, transparent 70%),
-        radial-gradient(ellipse 50% 80% at 20% 80%, rgba(217, 119, 6, 0.1) 0%, transparent 60%);
-    }
-    .hero-pattern {
-      position: absolute;
-      inset: 0;
-      opacity: 0.06;
-      pointer-events: none;
-    }
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      max-width: 680px;
-      padding: 120px 0 80px;
-    }
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(245, 158, 11, 0.12);
-      border: 1px solid rgba(245, 158, 11, 0.25);
-      color: var(--accent);
-      font-size: 0.82rem;
-      font-weight: 600;
-      padding: 8px 18px;
-      border-radius: 50px;
-      margin-bottom: 28px;
-      letter-spacing: 0.04em;
-    }
-    .hero h1 {
-      font-size: clamp(2.6rem, 6vw, 4.2rem);
-      font-weight: 800;
-      color: var(--white);
-      line-height: 1.1;
-      margin-bottom: 20px;
-      letter-spacing: -0.03em;
-    }
-    .hero h1 span {
-      background: linear-gradient(135deg, var(--accent), #FBBF24);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    .hero p {
-      font-size: 1.1rem;
-      color: rgba(254, 252, 232, 0.75);
-      line-height: 1.8;
-      margin-bottom: 36px;
-      max-width: 540px;
-    }
-    .hero-actions {
-      display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-    .btn-primary {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: linear-gradient(135deg, var(--secondary), var(--accent));
-      color: var(--dark);
-      font-weight: 700;
-      font-size: 1rem;
-      padding: 14px 32px;
-      border-radius: 50px;
-      border: none;
-      cursor: pointer;
-      transition: transform var(--transition), box-shadow var(--transition);
-    }
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 12px 32px rgba(245, 158, 11, 0.35);
-    }
-    .btn-secondary {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(254, 252, 232, 0.08);
-      border: 1.5px solid rgba(254, 252, 232, 0.25);
-      color: var(--white);
-      font-weight: 600;
-      font-size: 1rem;
-      padding: 14px 32px;
-      border-radius: 50px;
-      cursor: pointer;
-      transition: background var(--transition), border-color var(--transition), transform var(--transition);
-    }
-    .btn-secondary:hover {
-      background: rgba(254, 252, 232, 0.14);
-      border-color: rgba(254, 252, 232, 0.4);
-      transform: translateY(-2px);
-    }
-    .hero-decor {
-      position: absolute;
-      right: -60px;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 520px;
-      height: 520px;
-      opacity: 0.15;
-      pointer-events: none;
-    }
-    .hero-stats {
-      display: flex;
-      gap: 40px;
-      margin-top: 56px;
-      padding-top: 32px;
-      border-top: 1px solid rgba(254, 252, 232, 0.1);
-    }
-    .hero-stat {
-      text-align: left;
-    }
-    .hero-stat-num {
-      font-family: 'Outfit', sans-serif;
-      font-size: 1.8rem;
-      font-weight: 700;
-      color: var(--accent);
-    }
-    .hero-stat-label {
-      font-size: 0.82rem;
-      color: rgba(254, 252, 232, 0.5);
-      margin-top: 2px;
-    }
-
-    @media (max-width: 768px) {
-      .hero-content { padding: 100px 0 60px; }
-      .hero-stats { gap: 24px; flex-wrap: wrap; }
-      .hero-decor { display: none; }
-    }
-
-    /* ───── SECTION COMMON ───── */
-    .section { padding: 100px 0; }
-    .section-header {
-      text-align: center;
-      margin-bottom: 56px;
-    }
-    .section-tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 0.82rem;
-      font-weight: 600;
-      color: var(--secondary);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      margin-bottom: 12px;
-    }
-    .section-tag::before,
-    .section-tag::after {
-      content: '';
-      width: 20px;
-      height: 1.5px;
-      background: var(--secondary);
-      border-radius: 2px;
-    }
-    .section-title {
-      font-size: clamp(2rem, 4vw, 2.8rem);
-      font-weight: 700;
-      color: var(--dark);
-      letter-spacing: -0.02em;
-      margin-bottom: 16px;
-    }
-    .section-desc {
-      font-size: 1.05rem;
-      color: #78716C;
-      max-width: 560px;
-      margin: 0 auto;
-      line-height: 1.7;
-    }
-
-    /* ───── MENU SECTION ───── */
-    .menu-section {
-      background: linear-gradient(180deg, var(--bg) 0%, var(--card-bg) 50%, var(--bg) 100%);
-    }
-    .menu-tabs {
-      display: flex;
-      justify-content: center;
-      gap: 8px;
-      margin-bottom: 44px;
-      flex-wrap: wrap;
-    }
-    .menu-tab {
-      background: transparent;
-      border: 1.5px solid rgba(146, 64, 14, 0.2);
-      color: var(--primary);
-      font-family: 'Inter', sans-serif;
-      font-weight: 600;
-      font-size: 0.92rem;
-      padding: 12px 28px;
-      border-radius: 50px;
-      cursor: pointer;
-      transition: all var(--transition);
-    }
-    .menu-tab:hover {
-      border-color: var(--secondary);
-      background: rgba(217, 119, 6, 0.06);
-    }
-    .menu-tab.active {
-      background: linear-gradient(135deg, var(--primary), var(--primary-light));
-      color: var(--white);
-      border-color: transparent;
-      box-shadow: 0 4px 16px rgba(146, 64, 14, 0.25);
-    }
-    .menu-grid {
-      display: none;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 20px;
-    }
-    .menu-grid.active { display: grid; }
-    .menu-card {
-      background: rgba(255, 255, 255, 0.7);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(146, 64, 14, 0.08);
-      border-radius: var(--radius);
-      padding: 28px;
-      display: flex;
-      align-items: flex-start;
-      gap: 18px;
-      transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
-      cursor: default;
-    }
-    .menu-card:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-warm-lg);
-      border-color: rgba(217, 119, 6, 0.2);
-    }
-    .menu-card-icon {
-      width: 56px;
-      height: 56px;
-      flex-shrink: 0;
-      border-radius: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-    }
-    .menu-card-icon.hot { background: linear-gradient(135deg, #FED7AA, #FDBA74); }
-    .menu-card-icon.drink { background: linear-gradient(135deg, #D1FAE5, #A7F3D0); }
-    .menu-card-icon.dessert { background: linear-gradient(135deg, #FECDD3, #FDA4AF); }
-    .menu-card-body { flex: 1; }
-    .menu-card-top {
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      gap: 12px;
-      margin-bottom: 6px;
-    }
-    .menu-card-name {
-      font-family: 'Outfit', sans-serif;
-      font-size: 1.12rem;
-      font-weight: 600;
-      color: var(--dark);
-    }
-    .menu-card-price {
-      font-family: 'Outfit', sans-serif;
-      font-size: 1.12rem;
-      font-weight: 700;
-      color: var(--primary);
-      white-space: nowrap;
-    }
-    .menu-card-desc {
-      font-size: 0.88rem;
-      color: #78716C;
-      line-height: 1.6;
-    }
-
-    @media (max-width: 640px) {
-      .menu-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    /* ───── ABOUT ───── */
-    .about-section { background: var(--bg); }
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 60px;
-      align-items: center;
-    }
-    .about-visual {
-      position: relative;
-      aspect-ratio: 4/5;
-      border-radius: var(--radius);
-      overflow: hidden;
-      background: linear-gradient(145deg, #92400E 0%, #78350F 40%, #451A03 100%);
-    }
-    .about-visual-pattern {
-      position: absolute;
-      inset: 0;
-      opacity: 0.12;
-    }
-    .about-visual-content {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      padding: 36px;
-      background: linear-gradient(to top, rgba(28, 25, 23, 0.85), transparent);
-    }
-    .about-visual-year {
-      font-family: 'Outfit', sans-serif;
-      font-size: 4rem;
-      font-weight: 800;
-      color: var(--accent);
-      line-height: 1;
-    }
-    .about-visual-label {
-      font-size: 0.9rem;
-      color: rgba(254, 252, 232, 0.7);
-      margin-top: 4px;
-    }
-    .about-text h2 {
-      font-size: clamp(1.8rem, 3.5vw, 2.4rem);
-      font-weight: 700;
-      color: var(--dark);
-      margin-bottom: 20px;
-      letter-spacing: -0.02em;
-    }
-    .about-text h2 span { color: var(--primary); }
-    .about-text p {
-      font-size: 1rem;
-      color: #57534E;
-      margin-bottom: 16px;
-      line-height: 1.8;
-    }
-    .about-features {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      margin-top: 28px;
-    }
-    .about-feature {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
-    .about-feature-icon {
-      width: 44px;
-      height: 44px;
-      flex-shrink: 0;
-      border-radius: 12px;
-      background: var(--card-bg);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .about-feature-text {
-      font-size: 0.95rem;
-      font-weight: 500;
-      color: var(--dark);
-    }
-
-    @media (max-width: 768px) {
-      .about-grid {
-        grid-template-columns: 1fr;
-        gap: 40px;
-      }
-      .about-visual { max-height: 360px; }
-    }
-
-    /* ───── GALLERY ───── */
-    .gallery-section {
-      background: linear-gradient(180deg, var(--bg), var(--card-bg));
-    }
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
-    }
-    .gallery-card {
-      position: relative;
-      aspect-ratio: 3/4;
-      border-radius: var(--radius);
-      overflow: hidden;
-      cursor: pointer;
-      transition: transform var(--transition), box-shadow var(--transition);
-    }
-    .gallery-card:hover {
-      transform: translateY(-6px) scale(1.02);
-      box-shadow: var(--shadow-warm-lg);
-    }
-    .gallery-card:nth-child(1) {
-      background: linear-gradient(145deg, #92400E, #78350F, #451A03);
-    }
-    .gallery-card:nth-child(2) {
-      background: linear-gradient(145deg, #065F46, #047857, #064E3B);
-    }
-    .gallery-card:nth-child(3) {
-      background: linear-gradient(145deg, #7C2D12, #9A3412, #C2410C);
-    }
-    .gallery-card:nth-child(4) {
-      background: linear-gradient(145deg, #1E3A5F, #1E40AF, #1D4ED8);
-    }
-    .gallery-card-pattern {
-      position: absolute;
-      inset: 0;
-      opacity: 0.1;
-    }
-    .gallery-card-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.1) 40%, transparent 100%);
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      padding: 24px;
-      transition: background var(--transition);
-    }
-    .gallery-card:hover .gallery-card-overlay {
-      background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.2) 50%, transparent 100%);
-    }
-    .gallery-card-label {
-      font-family: 'Outfit', sans-serif;
-      font-size: 1.15rem;
-      font-weight: 600;
-      color: #fff;
-    }
-    .gallery-card-sub {
-      font-size: 0.82rem;
-      color: rgba(255,255,255,0.65);
-      margin-top: 4px;
-    }
-
-    @media (max-width: 900px) {
-      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
-    }
-    @media (max-width: 480px) {
-      .gallery-grid { grid-template-columns: 1fr; }
-      .gallery-card { aspect-ratio: 16/10; }
-    }
-
-    /* ───── FEATURES ───── */
-    .features-section { background: var(--dark); position: relative; overflow: hidden; }
-    .features-section::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse 60% 50% at 50% 0%, rgba(146,64,14,0.15), transparent);
-    }
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 24px;
-      position: relative;
-      z-index: 1;
-    }
-    .feature-card {
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.06);
-      border-radius: var(--radius);
-      padding: 36px 28px;
-      text-align: center;
-      transition: background var(--transition), border-color var(--transition), transform var(--transition);
-    }
-    .feature-card:hover {
-      background: rgba(255,255,255,0.08);
-      border-color: rgba(245,158,11,0.2);
-      transform: translateY(-4px);
-    }
-    .feature-icon {
-      width: 64px;
-      height: 64px;
-      margin: 0 auto 20px;
-      border-radius: 16px;
-      background: linear-gradient(135deg, rgba(245,158,11,0.15), rgba(217,119,6,0.1));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .feature-card h3 {
-      font-size: 1.05rem;
-      font-weight: 600;
-      color: var(--white);
-      margin-bottom: 10px;
-    }
-    .feature-card p {
-      font-size: 0.88rem;
-      color: rgba(254,252,232,0.5);
-      line-height: 1.6;
-    }
-
-    @media (max-width: 900px) {
-      .features-grid { grid-template-columns: repeat(2, 1fr); }
-    }
-    @media (max-width: 480px) {
-      .features-grid { grid-template-columns: 1fr; }
-    }
-
-    /* ───── REVIEWS ───── */
-    .reviews-section { background: var(--bg); }
-    .reviews-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-    }
-    .review-card {
-      background: rgba(255,255,255,0.6);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(146,64,14,0.08);
-      border-radius: var(--radius);
-      padding: 32px;
-      transition: transform var(--transition), box-shadow var(--transition);
-    }
-    .review-card:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-warm);
-    }
-    .review-stars {
-      display: flex;
-      gap: 3px;
-      margin-bottom: 16px;
-    }
-    .review-text {
-      font-size: 0.95rem;
-      color: #57534E;
-      line-height: 1.7;
-      margin-bottom: 20px;
-      font-style: italic;
-    }
-    .review-author {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    .review-avatar {
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Outfit', sans-serif;
-      font-weight: 700;
-      font-size: 1rem;
-      color: var(--white);
-      flex-shrink: 0;
-    }
-    .review-avatar.a1 { background: linear-gradient(135deg, #92400E, #B45309); }
-    .review-avatar.a2 { background: linear-gradient(135deg, #065F46, #059669); }
-    .review-avatar.a3 { background: linear-gradient(135deg, #7C2D12, #C2410C); }
-    .review-name {
-      font-weight: 600;
-      font-size: 0.95rem;
-      color: var(--dark);
-    }
-    .review-date {
-      font-size: 0.8rem;
-      color: #A8A29E;
-      margin-top: 2px;
-    }
-
-    @media (max-width: 900px) {
-      .reviews-grid { grid-template-columns: 1fr; }
-    }
-
-    /* ───── CONTACT ───── */
-    .contact-section {
-      background: linear-gradient(180deg, var(--bg), var(--card-bg));
-    }
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 40px;
-    }
-    .contact-info {
-      display: flex;
-      flex-direction: column;
-      gap: 28px;
-    }
-    .contact-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 16px;
-    }
-    .contact-icon {
-      width: 52px;
-      height: 52px;
-      flex-shrink: 0;
-      border-radius: 14px;
-      background: linear-gradient(135deg, var(--primary), var(--primary-light));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .contact-label {
-      font-size: 0.82rem;
-      color: #A8A29E;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      font-weight: 600;
-      margin-bottom: 4px;
-    }
-    .contact-value {
-      font-size: 1.02rem;
-      font-weight: 500;
-      color: var(--dark);
-    }
-    .contact-map {
-      border-radius: var(--radius);
-      overflow: hidden;
-      background: linear-gradient(135deg, #E7E5E4, #D6D3D1);
-      position: relative;
-      min-height: 360px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border: 1px solid rgba(146,64,14,0.08);
-    }
-    .contact-map-inner {
-      text-align: center;
-      color: #78716C;
-    }
-    .contact-map-inner svg {
-      margin-bottom: 12px;
-      opacity: 0.4;
-    }
-    .contact-map-inner p {
-      font-size: 0.95rem;
-      font-weight: 500;
-    }
-    .contact-map-inner span {
-      font-size: 0.82rem;
-      color: #A8A29E;
-    }
-
-    @media (max-width: 768px) {
-      .contact-grid { grid-template-columns: 1fr; }
-    }
-
-    /* ───── FOOTER ───── */
-    .footer {
-      background: var(--dark);
-      color: rgba(254,252,232,0.6);
-      padding: 64px 0 0;
-    }
-    .footer-grid {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr 1fr;
-      gap: 40px;
-      padding-bottom: 48px;
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-    }
-    .footer-brand .logo-text { font-size: 1.2rem; }
-    .footer-brand p {
-      margin-top: 14px;
-      font-size: 0.88rem;
-      line-height: 1.7;
-      max-width: 280px;
-    }
-    .footer-col h4 {
-      font-family: 'Outfit', sans-serif;
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: var(--white);
-      margin-bottom: 18px;
-    }
-    .footer-col a {
-      display: block;
-      font-size: 0.88rem;
-      color: rgba(254,252,232,0.5);
-      padding: 5px 0;
-      transition: color var(--transition);
-    }
-    .footer-col a:hover { color: var(--accent); }
-    .footer-social {
-      display: flex;
-      gap: 12px;
-      margin-top: 20px;
-    }
-    .footer-social a {
-      width: 40px;
-      height: 40px;
-      border-radius: 10px;
-      background: rgba(255,255,255,0.06);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: background var(--transition), transform var(--transition);
-      padding: 0;
-    }
-    .footer-social a:hover {
-      background: rgba(245,158,11,0.15);
-      transform: translateY(-2px);
-    }
-    .footer-bottom {
-      padding: 24px 0;
-      text-align: center;
-      font-size: 0.82rem;
-      color: rgba(254,252,232,0.3);
-    }
-
-    @media (max-width: 768px) {
-      .footer-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 32px;
-      }
-    }
-    @media (max-width: 480px) {
-      .footer-grid { grid-template-columns: 1fr; }
-    }
-
-    /* ───── FLOATING WHATSAPP ───── */
-    .whatsapp-float {
-      position: fixed;
-      bottom: 28px;
-      right: 28px;
-      z-index: 998;
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      background: #25D366;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 6px 24px rgba(37, 211, 102, 0.4);
-      transition: transform var(--transition), box-shadow var(--transition);
-      cursor: pointer;
-    }
-    .whatsapp-float:hover {
-      transform: scale(1.1);
-      box-shadow: 0 8px 32px rgba(37, 211, 102, 0.5);
-    }
-    .whatsapp-float svg {
-      width: 30px;
-      height: 30px;
-      fill: #fff;
-    }
-    .whatsapp-pulse {
-      position: absolute;
-      inset: -4px;
-      border-radius: 50%;
-      border: 2px solid #25D366;
-      animation: waPulse 2s ease-out infinite;
-    }
-    @keyframes waPulse {
-      0% { transform: scale(1); opacity: 0.6; }
-      100% { transform: scale(1.4); opacity: 0; }
-    }
-
-    /* ───── BOOKING SECTION (inside hero CTA) ───── */
-    .booking-section {
-      background: var(--card-bg);
-      border-top: 3px solid var(--accent);
-    }
-    .booking-inner {
-      text-align: center;
-      max-width: 600px;
-      margin: 0 auto;
-    }
-    .booking-inner h2 {
-      font-size: clamp(1.6rem, 3vw, 2.2rem);
-      color: var(--dark);
-      margin-bottom: 16px;
-    }
-    .booking-inner p {
-      color: #78716C;
-      margin-bottom: 32px;
-      font-size: 1rem;
-    }
-    .booking-inner .btn-primary {
-      font-size: 1.05rem;
-      padding: 16px 40px;
-    }
-
-    /* Utility: stagger children */
-    .stagger > * {
-      transition-delay: calc(var(--i, 0) * 80ms);
-    }
-  </style>
-</head>
-<body>
-
-  <!-- ═══════ HEADER ═══════ -->
-  <header class="header" id="header">
-    <div class="container header-inner">
-      <a href="#" class="logo">
-        <svg class="logo-icon" viewBox="0 0 40 40" fill="none">
-          <circle cx="20" cy="20" r="18" stroke="#D97706" stroke-width="2" fill="none"/>
-          <path d="M12 26c0-6 4-12 8-14 4 2 8 8 8 14" stroke="#F59E0B" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-          <circle cx="20" cy="18" r="4" fill="#D97706" opacity="0.6"/>
-          <path d="M16 26h8" stroke="#F59E0B" stroke-width="1.5" stroke-linecap="round"/>
-          <path d="M14 29h12" stroke="#D97706" stroke-width="1" stroke-linecap="round" opacity="0.5"/>
-        </svg>
-        <div>
-          <span class="logo-text">Чайхана Бишкек</span>
-          <span class="logo-sub">с душой Востока</span>
-        </div>
-      </a>
-      <nav class="nav">
-        <a href="#menu">Меню</a>
-        <a href="#about">О нас</a>
-        <a href="#gallery">Галерея</a>
-        <a href="#booking">Бронь</a>
-        <a href="#contact">Контакты</a>
-      </nav>
-      <a href="https://wa.me/996555123456?text=Здравствуйте!%20Хочу%20забронировать%20столик" class="btn-book" target="_blank" rel="noopener">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-        Забронировать
-      </a>
-      <button class="hamburger" id="hamburger" aria-label="Открыть меню">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-  </header>
-
-  <!-- Mobile Nav -->
-  <nav class="mobile-nav" id="mobileNav">
-    <a href="#menu" data-nav>Меню</a>
-    <a href="#about" data-nav>О нас</a>
-    <a href="#gallery" data-nav>Галерея</a>
-    <a href="#booking" data-nav>Бронь</a>
-    <a href="#contact" data-nav>Контакты</a>
-    <a href="https://wa.me/996555123456?text=Здравствуйте!%20Хочу%20забронировать%20столик" class="btn-book" target="_blank" rel="noopener" style="margin-top: 16px;">Забронировать</a>
-  </nav>
-
-  <!-- ═══════ HERO ═══════ -->
-  <section class="hero" id="hero">
-    <!-- Geometric pattern -->
-    <svg class="hero-pattern" width="100%" height="100%">
-      <defs>
-        <pattern id="eastPattern" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse">
-          <rect width="60" height="60" fill="none"/>
-          <path d="M30 0L60 30L30 60L0 30Z" stroke="#F59E0B" stroke-width="0.5" fill="none"/>
-          <circle cx="30" cy="30" r="8" stroke="#D97706" stroke-width="0.5" fill="none"/>
-          <rect x="22" y="22" width="16" height="16" stroke="#F59E0B" stroke-width="0.3" fill="none" transform="rotate(45 30 30)"/>
-        </pattern>
-      </defs>
-      <rect width="100%" height="100%" fill="url(#eastPattern)"/>
-    </svg>
-
-    <!-- Large decorative SVG on right -->
-    <svg class="hero-decor" viewBox="0 0 500 500" fill="none">
-      <circle cx="250" cy="250" r="200" stroke="#F59E0B" stroke-width="1"/>
-      <circle cx="250" cy="250" r="160" stroke="#D97706" stroke-width="0.5"/>
-      <circle cx="250" cy="250" r="120" stroke="#F59E0B" stroke-width="0.5"/>
-      <path d="M250 50L280 250L250 450L220 250Z" stroke="#F59E0B" stroke-width="0.8" fill="none"/>
-      <path d="M50 250L250 220L450 250L250 280Z" stroke="#D97706" stroke-width="0.8" fill="none"/>
-      <path d="M110 110L280 250L110 390" stroke="#F59E0B" stroke-width="0.5" fill="none"/>
-      <path d="M390 110L220 250L390 390" stroke="#F59E0B" stroke-width="0.5" fill="none"/>
-      <circle cx="250" cy="250" r="30" fill="#F59E0B" opacity="0.1"/>
-    </svg>
-
-    <div class="container">
-      <div class="hero-content">
-        <div class="hero-badge">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          Уютное место с душой Востока
-        </div>
-        <h1>Вкус, который <span>объединяет</span></h1>
-        <p>Настоящая восточная кухня в сердце Бишкека. Аутентичные рецепты, передаваемые из поколения в поколение, тёплая атмосфера и гостеприимство, которое чувствуется с первого шага.</p>
-        <div class="hero-actions">
-          <a href="#menu" class="btn-primary">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
-            Посмотреть меню
-          </a>
-          <a href="https://wa.me/996555123456?text=Здравствуйте!%20Хочу%20забронировать%20столик" class="btn-secondary" target="_blank" rel="noopener">
-            Забронировать столик
-          </a>
-        </div>
-        <div class="hero-stats">
-          <div class="hero-stat">
-            <div class="hero-stat-num">9+</div>
-            <div class="hero-stat-label">лет с вами</div>
-          </div>
-          <div class="hero-stat">
-            <div class="hero-stat-num">50+</div>
-            <div class="hero-stat-label">блюд в меню</div>
-          </div>
-          <div class="hero-stat">
-            <div class="hero-stat-num">12 000+</div>
-            <div class="hero-stat-label">довольных гостей</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════ MENU ═══════ -->
-  <section class="section menu-section" id="menu">
-    <div class="container">
-      <div class="section-header reveal">
-        <div class="section-tag">Наше меню</div>
-        <h2 class="section-title">Блюда, приготовленные с любовью</h2>
-        <p class="section-desc">Каждое блюдо — это история, рассказанная через вкус. Свежие продукты, традиционные рецепты и мастерство наших поваров.</p>
-      </div>
-
-      <div class="menu-tabs reveal">
-        <button class="menu-tab active" data-tab="hot">Горячие блюда</button>
-        <button class="menu-tab" data-tab="drinks">Напитки</button>
-        <button class="menu-tab" data-tab="desserts">Десерты</button>
-      </div>
-
-      <!-- Горячие блюда -->
-      <div class="menu-grid active stagger" data-menu="hot">
-        <div class="menu-card reveal" style="--i:0">
-          <div class="menu-card-icon hot">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#92400E" stroke-width="2" stroke-linecap="round"><path d="M12 3c-1 4-4 6-4 10a4 4 0 0 0 8 0c0-4-3-6-4-10z"/></svg>
-          </div>
-          <div class="menu-card-body">
-            <div class="menu-card-top">
-              <span class="menu-card-name">Плов</span>
-              <span class="menu-card-price">450 сом</span>
-            </div>
-            <p class="menu-card-desc">Рассыпчатый рис с нежной бараниной, морковью и специями. Готовится в казане на живом огне по старинному рецепту.</p>
-          </div>
-        </div>
-        <div class="menu-card reveal" style="--i:1">
-          <div class="menu-card-icon hot">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#92400E" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="14" r="7"/><path d="M8 7c0-2 1.5-4 4-4s4 2 4 4"/></svg>
-          </div>
-          <div class="menu-card-body">
-            <div class="menu-card-top">
-              <span class="menu-card-name">Лагман</span>
-              <span class="menu-card-price">350 сом</span>
-            </div>
-            <p class="menu-card-desc">Тянутая лапша с сочной говядиной, свежими овощами и ароматным бульоном. Домашнее тесто ручной работы.</p>
-          </div>
-        </div>
-        <div class="menu-card reveal" style="--i:2">
-          <div class="menu-card-icon hot">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#92400E" stroke-width="2" stroke-linecap="round"><path d="M6 18h12"/><path d="M8 18V8l4-4 4 4v10"/><circle cx="12" cy="13" r="2"/></svg>
-          </div>
-          <div class="menu-card-body">
-            <div class="menu-card-top">
-              <span class="menu-card-name">Манты</span>
-              <span class="menu-card-price">300 сом</span>
-            </div>
-            <p class="menu-card-desc">Сочные паровые пельмени с начинкой из рубленой баранины, лука и курдючного сала. Подаются со сметаной.</p>
-          </div>
-        </div>
-        <div class="menu-card reveal" style="--i:3">
-          <div class="menu-card-icon hot">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#92400E" stroke-width="2" stroke-linecap="round"><line x1="12" y1="20" x2="12" y2="4"/><line x1="8" y1="20" x2="8" y2="8"/><line x1="16" y1="20" x2="16" y2="8"/><path d="M6 20h12"/></svg>
-          </div>
-          <div class="menu-card-body">
-            <div class="menu-card-top">
-              <span class="menu-card-name">Шашлык</span>
-              <span class="menu-card-price">500 сом</span>
-            </div>
-            <p class="menu-card-desc">Маринованная баранина на углях, приготовленная до идеальной сочности. Подаётся с луком, зеленью и лавашом.</p>
-          </div>
-        </div>
-        <div class="menu-card reveal" style="--i:4">
-          <div class="menu-card-icon hot">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#92400E" stroke-width="2" stroke-linecap="round"><path d="M4 15l4-8 4 8"/><path d="M12 15l4-8 4 8"/><line x1="2" y1="19" x2="22" y2="19"/></svg>
-          </div>
-          <div class="menu-card-body">
-            <div class="menu-card-top">
-              <span class="menu-card-name">Самса</span>
-              <span class="menu-card-price">120 сом</span>
-            </div>
-            <p class="menu-card-desc">Хрустящая слоёная выпечка с начинкой из мяса и лука. Выпекается в тандыре до золотистой корочки.</p>
-          </div>
-        </div>
-        <div class="menu-card reveal" style="--i:5">
-          <div class="menu-card-icon hot">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#92400E" stroke-width="2" stroke-linecap="round"><ellipse cx="12" cy="14" rx="9" ry="5"/><path d="M3 14V10c0-2.76 4.03-5 9-5s9 2.24 9 5v4"/></svg>
-          </div>
-          <div class="menu-card-body">
-            <div class="menu-card-top">
-              <span class="menu-card-name">Куурдак</span>
-              <span class="menu-card-price">400 сом</span>
-            </div>
-            <p class="menu-card-desc">Жареное мясо с картофелем, луком и специями. Традиционное кыргызское блюдо с насыщенным вкусом.</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Напитки -->
-      <div class="menu-grid stagger" data-menu="drinks">
-        <div class="menu-card reveal" style="--i:0">
-          <div class="menu-card-icon drink">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#065F46" stroke-width="2" stroke-linecap="round"><path d="M17 8h1a4 4 0 0 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V8z"/><line x1="6" y1="2" x2="6" y2="5"/><line x1="10" y1="2" x2="10" y2="5"/><line x1="14" y1="2" x2="14" y2="5"/></svg>
-          </div>
-          <div class="menu-card-body">
-            <div class="menu-card-top">
-              <span class="menu-card-name">Чай зелёный</span>
-              <span class="menu-card-price">100 сом</span>
-            </div>
-            <p class="menu-card-desc">Ароматный зелёный чай, заваренный по восточной традиции. Подаётся в чайнике с пиалами.</p>
-          </div>
-        </div>
-        <div class="menu-card reveal" style="--i:1">
-          <div class="menu-card-icon drink">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#065F46" stroke-width="2" stroke-linecap="round"><path d="M17 8h1a4 4 0 0 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V8z"/><path d="M8 4c0 0 0 3 2 3s2-3 2-3"/></svg>
-          </div>
-          <div class="menu-card-body">
-            <div class="menu-card-top">
-              <span class="menu-card-name">Чай чёрный</span>
-              <span class="menu-card-price">100 сом</span>
-            </div>
-            <p class="menu-card-desc">Крепкий чёрный чай с насыщенным вкусом. Отлично сочетается с нашими десертами и выпечкой.</p>
-          </div>
-        </div>
-        <div class="menu-card reveal" style="--i:2">
-          <div class="menu-card-icon drink">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#065F46" stroke-width="2" stroke-linecap="round"><path d="M8 21h8"/><path d="M12 15v6"/><path d="M5 3h14l-2 12H7L5 3z"/><circle cx="12" cy="9" r="2"/></svg>
-          </div>
-          <div class="menu-card-body">
-            <div class="menu-card-top">
-              <span class="menu-card-name">Компот</span>
-              <span class="menu-card-price">150 сом</span>
-            </div>
-            <p class="menu-card-desc">Домашний компот из сезонных фруктов и сухофруктов. Освежающий и натуральный, без консервантов.</p>
-          </div>
-        </div>
-        <div class="menu-card reveal" style="--i:3">
-          <div class="menu-card-icon drink">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#065F46" stroke-width="2" stroke-linecap="round"><ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v6c0 1.66 3.13 3 7 3s7-1.34 7-3V6"/><path d="M5 12v5c0 1.66 3.13 3 7 3s7-1.34 7-3v-5"/></svg>
-          </div>
-          <div class="menu-card-body">
-            <div class="menu-card-top">
-              <span class="menu-card-name">Айран</span>
-              <span class="menu-card-price">120 сом</span>
-            </div>
-            <p class="menu-card-desc">Кисломолочный напиток собственного приготовления. Прекрасно утоляет жажду и дополняет мясные блюда.</p>
-          </div>
-        </div>
-        <div class="menu-card reveal" style="--i:4">
-          <div class="menu-card-icon drink">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#065F46" stroke-width="2" stroke-linecap="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M3 8h15v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V8z"/></svg>
-          </div>
-          <div class="menu-card-body">
-            <div class="menu-card-top">
-              <span class="menu-card-name">Кофе американо</span>
-              <span class="menu-card-price">200 сом</span>
-            </div>
-            <p class="menu-card-desc">Свежесваренный кофе из отборных зёрен средней обжарки. Бодрящий и ароматный.</p>
-          </div>
-        </div>
-        <div class="menu-card reveal" style="--i:5">
-          <div class="menu-card-icon drink">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#065F46" stroke-width="2" stroke-linecap="round"><path d="M8 2l1 5h6l1-5"/><path d="M6 7h12l-1 13a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2L6 7z"/><line x1="12" y1="11" x2="12" y2="17"/></svg>
-          </div>
-          <div class="menu-card-body">
-            <div class="menu-card-top">
-              <span class="menu-card-name">Лимонад</span>
-              <span class="menu-card-price">180 сом</span>
-            </div>
-            <p class="menu-card-desc">Домашний лимонад с мятой и свежим лимоном. Натуральный, лёгкий и освежающий.</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Десерты -->
-      <div class="menu-grid stagger" data-menu="desserts">
-        <div class="menu-card reveal" style="--i:0">
-          <div class="menu-card-icon dessert">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#9F1239" stroke-width="2" stroke-linecap="round"><path d="M4 16h16"/><path d="M6 16l1-5h10l1 5"/><path d="M9 11V8a3 3 0 0 1 6 0v3"/><circle cx="12" cy="5" r="1"/></svg>
-          </div>
-          <div class="menu-card-body">
-            <div class="menu-card-top">
-              <span class="menu-card-name">Чак-чак</span>
-              <span class="menu-card-price">250 сом</span>
-            </div>
-            <p class="menu-card-desc">Традиционная восточная сладость из теста с мёдом. Хрустящий, золотистый и невероятно ароматный.</p>
-          </div>
-        </div>
-        <div class="menu-card reveal" style="--i:1">
-          <div class="menu-card-icon dessert">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#9F1239" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="7"/><circle cx="12" cy="12" r="10"/></svg>
-          </div>
-          <div class="menu-card-body">
-            <div class="menu-card-top">
-              <span class="menu-card-name">Баурсаки</span>
-              <span class="menu-card-price">200 сом</span>
-            </div>
-            <p class="menu-card-desc">Воздушные кусочки жареного теста. Мягкие внутри и золотистые снаружи. Подаются с мёдом или вареньем.</p>
-          </div>
-        </div>
-        <div class="menu-card reveal" style="--i:2">
-          <div class="menu-card-icon dessert">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#9F1239" stroke-width="2" stroke-linecap="round"><path d="M4 18h16"/><path d="M4 18l2-10h12l2 10"/><path d="M8 8l1-4h6l1 4"/><line x1="12" y1="4" x2="12" y2="2"/></svg>
-          </div>
-          <div class="menu-card-body">
-            <div class="menu-card-top">
-              <span class="menu-card-name">Торт медовый</span>
-              <span class="menu-card-price">350 сом</span>
-            </div>
-            <p class="menu-card-desc">Нежнейший медовик по домашнему рецепту. Тонкие коржи, пропитанные сметанным кремом с натуральным мёдом.</p>
-          </div>
-        </div>
-        <div class="menu-card reveal" style="--i:3">
-          <div class="menu-card-icon dessert">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#9F1239" stroke-width="2" stroke-linecap="round"><path d="M5 18a7 7 0 0 1 14 0"/><path d="M12 11V6"/><circle cx="12" cy="4" r="2"/><line x1="3" y1="18" x2="21" y2="18"/><path d="M7 18v2h10v-2"/></svg>
-          </div>
-          <div class="menu-card-body">
-            <div class="menu-card-top">
-              <span class="menu-card-name">Мороженое</span>
-              <span class="menu-card-price">200 сом</span>
-            </div>
-            <p class="menu-card-desc">Домашнее сливочное мороженое. Три шарика на выбор: ваниль, шоколад или фисташка. Подаётся с вафлей.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════ ABOUT ═══════ -->
-  <section class="section about-section" id="about">
-    <div class="container">
-      <div class="about-grid">
-        <div class="about-visual reveal-left">
-          <svg class="about-visual-pattern" width="100%" height="100%">
-            <defs>
-              <pattern id="aboutPattern" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
-                <circle cx="20" cy="20" r="10" stroke="#F59E0B" stroke-width="0.5" fill="none"/>
-                <rect x="12" y="12" width="16" height="16" stroke="#D97706" stroke-width="0.3" fill="none" transform="rotate(45 20 20)"/>
-              </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#aboutPattern)"/>
-          </svg>
-          <div class="about-visual-content">
-            <div class="about-visual-year">2015</div>
-            <div class="about-visual-label">Год основания</div>
-          </div>
-        </div>
-        <div class="about-text reveal-right">
-          <div class="section-tag" style="justify-content: flex-start;">Наша история</div>
-          <h2>Традиции <span>вкуса</span> и гостеприимства</h2>
-          <p>Чайхана Бишкек — это семейный ресторан, который мы открыли в 2015 году с простой мечтой: создать место, где каждый гость почувствует себя как дома. Наши рецепты бережно хранятся в семье уже три поколения.</p>
-          <p>Мы используем только свежие, локально выращенные продукты. Мясо — от проверенных фермеров Чуйской области, овощи — с местных базаров, а специи привозим напрямую из Узбекистана и Индии.</p>
-          <div class="about-features">
-            <div class="about-feature">
-              <div class="about-feature-icon">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#92400E" stroke-width="2" stroke-linecap="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
-              </div>
-              <span class="about-feature-text">Семейные рецепты трёх поколений</span>
-            </div>
-            <div class="about-feature">
-              <div class="about-feature-icon">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#92400E" stroke-width="2" stroke-linecap="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-              </div>
-              <span class="about-feature-text">Готовим каждое блюдо с любовью</span>
-            </div>
-            <div class="about-feature">
-              <div class="about-feature-icon">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#92400E" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-              </div>
-              <span class="about-feature-text">Только натуральные ингредиенты</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════ GALLERY ═══════ -->
-  <section class="section gallery-section" id="gallery">
-    <div class="container">
-      <div class="section-header reveal">
-        <div class="section-tag">Наш интерьер</div>
-        <h2 class="section-title">Атмосфера уюта и тепла</h2>
-        <p class="section-desc">Каждый уголок нашей чайханы создан для вашего комфорта. Восточный колорит, мягкое освещение и внимание к деталям.</p>
-      </div>
-      <div class="gallery-grid">
-        <div class="gallery-card reveal" style="--i:0">
-          <svg class="gallery-card-pattern" width="100%" height="100%">
-            <defs>
-              <pattern id="gp1" x="0" y="0" width="30" height="30" patternUnits="userSpaceOnUse">
-                <circle cx="15" cy="15" r="6" stroke="#F59E0B" stroke-width="0.5" fill="none"/>
-              </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#gp1)"/>
-          </svg>
-          <div class="gallery-card-overlay">
-            <span class="gallery-card-label">Основной зал</span>
-            <span class="gallery-card-sub">Просторный зал на 40 мест с восточным декором</span>
-          </div>
-        </div>
-        <div class="gallery-card reveal" style="--i:1">
-          <svg class="gallery-card-pattern" width="100%" height="100%">
-            <defs>
-              <pattern id="gp2" x="0" y="0" width="24" height="24" patternUnits="userSpaceOnUse">
-                <rect x="4" y="4" width="16" height="16" stroke="#A7F3D0" stroke-width="0.5" fill="none" rx="2"/>
-              </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#gp2)"/>
-          </svg>
-          <div class="gallery-card-overlay">
-            <span class="gallery-card-label">Летняя терраса</span>
-            <span class="gallery-card-sub">Открытая терраса в тени виноградника</span>
-          </div>
-        </div>
-        <div class="gallery-card reveal" style="--i:2">
-          <svg class="gallery-card-pattern" width="100%" height="100%">
-            <defs>
-              <pattern id="gp3" x="0" y="0" width="28" height="28" patternUnits="userSpaceOnUse">
-                <path d="M14 0L28 14L14 28L0 14Z" stroke="#FDBA74" stroke-width="0.5" fill="none"/>
-              </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#gp3)"/>
-          </svg>
-          <div class="gallery-card-overlay">
-            <span class="gallery-card-label">VIP-комната</span>
-            <span class="gallery-card-sub">Приватная комната для особых мероприятий</span>
-          </div>
-        </div>
-        <div class="gallery-card reveal" style="--i:3">
-          <svg class="gallery-card-pattern" width="100%" height="100%">
-            <defs>
-              <pattern id="gp4" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
-                <polygon points="10,2 18,10 10,18 2,10" stroke="#93C5FD" stroke-width="0.4" fill="none"/>
-              </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#gp4)"/>
-          </svg>
-          <div class="gallery-card-overlay">
-            <span class="gallery-card-label">Уютный уголок</span>
-            <span class="gallery-card-sub">Мягкие топчаны для чаепития в кругу друзей</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════ FEATURES ═══════ -->
-  <section class="section features-section" id="features">
-    <div class="container">
-      <div class="section-header reveal">
-        <div class="section-tag" style="color: var(--accent);">Наши преимущества</div>
-        <h2 class="section-title" style="color: var(--white);">Больше, чем просто ресторан</h2>
-        <p class="section-desc" style="color: rgba(254,252,232,0.5);">Мы создаём не просто кухню, а атмосферу, в которую хочется возвращаться снова и снова.</p>
-      </div>
-      <div class="features-grid">
-        <div class="feature-card reveal" style="--i:0">
-          <div class="feature-icon">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="2" stroke-linecap="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
-          </div>
-          <h3>Живая музыка по пятницам</h3>
-          <p>Каждую пятницу у нас звучит живая восточная музыка. Наслаждайтесь ужином под мелодии домбры и дутара.</p>
-        </div>
-        <div class="feature-card reveal" style="--i:1">
-          <div class="feature-icon">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M6 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><circle cx="18" cy="5" r="2.5"/><path d="M21 12c0-1.7-1.1-3-2.5-3"/></svg>
-          </div>
-          <h3>Детская зона</h3>
-          <p>Просторная игровая зона для маленьких гостей. Родители отдыхают, а дети играют в безопасности.</p>
-        </div>
-        <div class="feature-card reveal" style="--i:2">
-          <div class="feature-icon">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="2" stroke-linecap="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-          </div>
-          <h3>Банкеты до 50 человек</h3>
-          <p>Организуем банкеты, тои, юбилеи и корпоративы. Индивидуальное меню и оформление зала.</p>
-        </div>
-        <div class="feature-card reveal" style="--i:3">
-          <div class="feature-icon">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="2" stroke-linecap="round"><rect x="1" y="6" width="22" height="12" rx="2"/><path d="M1 10h22"/><circle cx="12" cy="15" r="2"/></svg>
-          </div>
-          <h3>Доставка по городу</h3>
-          <p>Доставляем любимые блюда по всему Бишкеку. Оформите заказ через WhatsApp — быстро и удобно.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════ REVIEWS ═══════ -->
-  <section class="section reviews-section" id="reviews">
-    <div class="container">
-      <div class="section-header reveal">
-        <div class="section-tag">Отзывы гостей</div>
-        <h2 class="section-title">Что говорят наши гости</h2>
-        <p class="section-desc">Мнение наших гостей — лучшая награда за наш труд. Вот что они говорят о нас.</p>
-      </div>
-      <div class="reviews-grid">
-        <div class="review-card reveal" style="--i:0">
-          <div class="review-stars">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="#F59E0B" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="#F59E0B" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="#F59E0B" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="#F59E0B" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="#F59E0B" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          </div>
-          <p class="review-text">Лучший плов в Бишкеке, без преувеличений! Рассыпчатый, ароматный, с нежнейшей бараниной. Приходим сюда каждые выходные всей семьёй. Обслуживание всегда на высоте.</p>
-          <div class="review-author">
-            <div class="review-avatar a1">АК</div>
-            <div>
-              <div class="review-name">Айбек Касымов</div>
-              <div class="review-date">Март 2026</div>
-            </div>
-          </div>
-        </div>
-        <div class="review-card reveal" style="--i:1">
-          <div class="review-stars">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="#F59E0B" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="#F59E0B" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="#F59E0B" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="#F59E0B" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="#F59E0B" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          </div>
-          <p class="review-text">Отмечали день рождения мамы в VIP-комнате. Всё было идеально: вкуснейший лагман, сочные манты, а какой медовик! Персонал помог с оформлением. Огромное спасибо!</p>
-          <div class="review-author">
-            <div class="review-avatar a2">ДМ</div>
-            <div>
-              <div class="review-name">Динара Маматова</div>
-              <div class="review-date">Апрель 2026</div>
-            </div>
-          </div>
-        </div>
-        <div class="review-card reveal" style="--i:2">
-          <div class="review-stars">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="#F59E0B" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="#F59E0B" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="#F59E0B" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="#F59E0B" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="#D6D3D1" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          </div>
-          <p class="review-text">Заказывали доставку шашлыка и самсы через WhatsApp. Привезли быстро, ещё горячее! Вкус точно такой же, как в ресторане. Теперь заказываем регулярно. Летняя терраса — отдельный кайф!</p>
-          <div class="review-author">
-            <div class="review-avatar a3">РИ</div>
-            <div>
-              <div class="review-name">Руслан Исаков</div>
-              <div class="review-date">Май 2026</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════ BOOKING CTA ═══════ -->
-  <section class="section booking-section" id="booking">
-    <div class="container">
-      <div class="booking-inner reveal">
-        <div class="section-tag">Бронирование</div>
-        <h2>Забронируйте столик прямо сейчас</h2>
-        <p>Напишите нам в WhatsApp, и мы подберём лучший столик для вас и вашей компании. Бронирование бесплатное и занимает всего минуту.</p>
-        <a href="https://wa.me/996555123456?text=Здравствуйте!%20Хочу%20забронировать%20столик" class="btn-primary" target="_blank" rel="noopener">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-          Написать в WhatsApp
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════ CONTACT ═══════ -->
-  <section class="section contact-section" id="contact">
-    <div class="container">
-      <div class="section-header reveal">
-        <div class="section-tag">Контакты</div>
-        <h2 class="section-title">Как нас найти</h2>
-        <p class="section-desc">Мы расположены в самом центре Бишкека. Ждём вас каждый день!</p>
-      </div>
-      <div class="contact-grid">
-        <div class="contact-info reveal-left">
-          <div class="contact-item">
-            <div class="contact-icon">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FEF3C7" stroke-width="2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            </div>
-            <div>
-              <div class="contact-label">Адрес</div>
-              <div class="contact-value">ул. Абдрахманова 150, Бишкек</div>
-            </div>
-          </div>
-          <div class="contact-item">
-            <div class="contact-icon">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FEF3C7" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-            </div>
-            <div>
-              <div class="contact-label">Телефон</div>
-              <div class="contact-value">+996 555 123 456</div>
-            </div>
-          </div>
-          <div class="contact-item">
-            <div class="contact-icon">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FEF3C7" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-            </div>
-            <div>
-              <div class="contact-label">Часы работы</div>
-              <div class="contact-value">Ежедневно: 10:00 — 23:00</div>
-            </div>
-          </div>
-          <div class="contact-item">
-            <div class="contact-icon">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FEF3C7" stroke-width="2" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-            </div>
-            <div>
-              <div class="contact-label">Электронная почта</div>
-              <div class="contact-value">info@chayhana-bishkek.kg</div>
-            </div>
-          </div>
-        </div>
-        <div class="contact-map reveal-right">
-          <div class="contact-map-inner">
-            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#78716C" stroke-width="1.5" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            <p>ул. Абдрахманова 150</p>
-            <span>Бишкек, Кыргызстан</span>
-          </div>
-          <!-- Decorative map grid -->
-          <svg style="position:absolute;inset:0;width:100%;height:100%;opacity:0.08" viewBox="0 0 400 400">
-            <defs>
-              <pattern id="mapGrid" width="40" height="40" patternUnits="userSpaceOnUse">
-                <line x1="0" y1="0" x2="0" y2="40" stroke="#78716C" stroke-width="0.5"/>
-                <line x1="0" y1="0" x2="40" y2="0" stroke="#78716C" stroke-width="0.5"/>
-              </pattern>
-            </defs>
-            <rect width="400" height="400" fill="url(#mapGrid)"/>
-            <circle cx="200" cy="200" r="6" fill="#92400E" opacity="0.4"/>
-            <circle cx="200" cy="200" r="20" stroke="#92400E" stroke-width="0.5" fill="none" opacity="0.3"/>
-            <circle cx="200" cy="200" r="40" stroke="#92400E" stroke-width="0.3" fill="none" opacity="0.2"/>
-            <line x1="100" y1="180" x2="300" y2="180" stroke="#57534E" stroke-width="1.5" opacity="0.3"/>
-            <line x1="180" y1="100" x2="180" y2="300" stroke="#57534E" stroke-width="1.5" opacity="0.3"/>
-            <line x1="80" y1="220" x2="320" y2="220" stroke="#57534E" stroke-width="0.8" opacity="0.2"/>
-            <line x1="220" y1="80" x2="220" y2="320" stroke="#57534E" stroke-width="0.8" opacity="0.2"/>
-            <line x1="130" y1="120" x2="270" y2="280" stroke="#57534E" stroke-width="0.5" opacity="0.15"/>
-          </svg>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════ FOOTER ═══════ -->
-  <footer class="footer" id="footer">
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-brand">
-          <div class="logo" style="margin-bottom: 4px;">
-            <svg class="logo-icon" width="36" height="36" viewBox="0 0 40 40" fill="none">
-              <circle cx="20" cy="20" r="18" stroke="#D97706" stroke-width="2" fill="none"/>
-              <path d="M12 26c0-6 4-12 8-14 4 2 8 8 8 14" stroke="#F59E0B" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-              <circle cx="20" cy="18" r="4" fill="#D97706" opacity="0.6"/>
-            </svg>
-            <span class="logo-text">Чайхана Бишкек</span>
-          </div>
-          <p>Семейный ресторан восточной кухни в сердце Бишкека. Традиционные рецепты, тёплая атмосфера и настоящее гостеприимство с 2015 года.</p>
-          <div class="footer-social">
-            <a href="#" aria-label="Instagram">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="2" stroke-linecap="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="#F59E0B" stroke="none"/></svg>
-            </a>
-            <a href="#" aria-label="Facebook">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="2" stroke-linecap="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-            </a>
-            <a href="#" aria-label="Telegram">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="2" stroke-linecap="round"><path d="M22 2L11 13"/><path d="M22 2L15 22l-4-9-9-4z"/></svg>
-            </a>
-          </div>
-        </div>
-        <div class="footer-col">
-          <h4>Навигация</h4>
-          <a href="#menu">Меню</a>
-          <a href="#about">О нас</a>
-          <a href="#gallery">Галерея</a>
-          <a href="#reviews">Отзывы</a>
-        </div>
-        <div class="footer-col">
-          <h4>Услуги</h4>
-          <a href="#booking">Бронирование</a>
-          <a href="#features">Банкеты</a>
-          <a href="#features">Доставка</a>
-          <a href="#features">Детская зона</a>
-        </div>
-        <div class="footer-col">
-          <h4>Контакты</h4>
-          <a href="tel:+996555123456">+996 555 123 456</a>
-          <a href="mailto:info@chayhana-bishkek.kg">info@chayhana-bishkek.kg</a>
-          <a href="#">ул. Абдрахманова 150</a>
-          <a href="#">Ежедневно: 10:00 — 23:00</a>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        &copy; 2015 — 2026 Чайхана Бишкек. Все права защищены.
-      </div>
-    </div>
-  </footer>
-
-  <!-- ═══════ FLOATING WHATSAPP ═══════ -->
-  <a href="https://wa.me/996555123456?text=Здравствуйте!%20Хочу%20забронировать%20столик" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Написать в WhatsApp">
-    <div class="whatsapp-pulse"></div>
-    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-  </a>
-
-  <script>
-    /* ═══════ HAMBURGER MENU ═══════ */
-    const hamburger = document.getElementById('hamburger');
-    const mobileNav = document.getElementById('mobileNav');
-
-    hamburger.addEventListener('click', () => {
-      hamburger.classList.toggle('active');
-      mobileNav.classList.toggle('open');
-      document.body.style.overflow = mobileNav.classList.contains('open') ? 'hidden' : '';
-    });
-
-    document.querySelectorAll('[data-nav]').forEach(link => {
-      link.addEventListener('click', () => {
-        hamburger.classList.remove('active');
-        mobileNav.classList.remove('open');
-        document.body.style.overflow = '';
-      });
-    });
-
-    /* ═══════ HEADER SCROLL ═══════ */
-    const header = document.getElementById('header');
-    let lastScroll = 0;
-
-    window.addEventListener('scroll', () => {
-      const scrollY = window.scrollY;
-      header.classList.toggle('scrolled', scrollY > 60);
-      lastScroll = scrollY;
-    }, { passive: true });
-
-    /* ═══════ MENU TABS ═══════ */
-    const tabs = document.querySelectorAll('.menu-tab');
-    const grids = document.querySelectorAll('.menu-grid');
-
-    tabs.forEach(tab => {
-      tab.addEventListener('click', () => {
-        const target = tab.dataset.tab;
-
-        tabs.forEach(t => t.classList.remove('active'));
-        tab.classList.add('active');
-
-        grids.forEach(g => {
-          g.classList.remove('active');
-          if (g.dataset.menu === target) {
-            g.classList.add('active');
-            // Re-trigger reveal for newly visible cards
-            g.querySelectorAll('.menu-card').forEach(card => {
-              card.classList.remove('visible');
-              requestAnimationFrame(() => {
-                requestAnimationFrame(() => {
-                  card.classList.add('visible');
-                });
-              });
-            });
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Chaikhana Bishkek - Taste of Traditions</title>
+<!-- Fonts & Icons -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Outfit:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Design System Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "inverse-surface": "#e4e1e6",
+                    "surface-container-low": "#1b1b1e",
+                    "inverse-on-surface": "#303033",
+                    "on-surface-variant": "#bec8d2",
+                    "tertiary": "#ffb95f",
+                    "tertiary-fixed": "#ffddb8",
+                    "on-error": "#690005",
+                    "surface": "#131316",
+                    "secondary": "#d2bbff",
+                    "secondary-fixed": "#eaddff",
+                    "outline": "#88929b",
+                    "construction-red": "#DC2626",
+                    "primary-container": "#0ea5e9",
+                    "tertiary-container": "#d88a00",
+                    "surface-tint": "#89ceff",
+                    "on-background": "#e4e1e6",
+                    "tertiary-fixed-dim": "#ffb95f",
+                    "error": "#ffb4ab",
+                    "on-secondary": "#3f008e",
+                    "on-secondary-fixed": "#25005a",
+                    "on-surface": "#e4e1e6",
+                    "secondary-container": "#6001d1",
+                    "on-error-container": "#ffdad6",
+                    "on-tertiary-fixed": "#2a1700",
+                    "on-secondary-container": "#c9aeff",
+                    "on-tertiary-container": "#4a2c00",
+                    "on-primary-fixed-variant": "#004c6e",
+                    "on-tertiary": "#472a00",
+                    "surface-glass": "rgba(255, 255, 255, 0.03)",
+                    "on-primary-container": "#003751",
+                    "error-container": "#93000a",
+                    "surface-container-high": "#2a2a2d",
+                    "on-primary-fixed": "#001e2f",
+                    "surface-container": "#1f1f22",
+                    "surface-container-highest": "#353438",
+                    "primary-fixed": "#c9e6ff",
+                    "on-primary": "#00344d",
+                    "primary": "#89ceff",
+                    "secondary-fixed-dim": "#d2bbff",
+                    "outline-variant": "#3e4850",
+                    "surface-container-lowest": "#0e0e11",
+                    "auto-cyan": "#22D3EE",
+                    "on-tertiary-fixed-variant": "#653e00",
+                    "on-secondary-fixed-variant": "#5a00c6",
+                    "inverse-primary": "#006591",
+                    "background": "#131316",
+                    "surface-variant": "#353438",
+                    "education-indigo": "#1E1B4B",
+                    "restaurant-accent": "#92400E",
+                    "surface-bright": "#39393c",
+                    "primary-fixed-dim": "#89ceff",
+                    "surface-dim": "#131316"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-mobile": "20px",
+                    "base": "8px",
+                    "gutter": "24px",
+                    "margin-desktop": "64px",
+                    "container-max": "1280px"
+            },
+            "fontFamily": {
+                    "label-md": ["Inter"],
+                    "headline-sm": ["Outfit"],
+                    "headline-lg-mobile": ["Outfit"],
+                    "body-lg": ["Inter"],
+                    "display-lg": ["Outfit"],
+                    "headline-lg": ["Outfit"],
+                    "headline-md": ["Outfit"],
+                    "body-md": ["Inter"],
+                    "label-sm": ["Inter"]
+            },
+            "fontSize": {
+                    "label-md": ["14px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "headline-sm": ["24px", {"lineHeight": "1.4", "fontWeight": "500"}],
+                    "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "display-lg": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-lg": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "headline-md": ["32px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "1", "fontWeight": "500"}]
+            }
           }
+        }
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .icon-fill {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Custom scrollbar for webkit */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #131316; }
+        ::-webkit-scrollbar-thumb { background: #353438; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #88929b; }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md overflow-x-hidden">
+<!-- TopNavBar -->
+<header class="bg-surface/80 dark:bg-surface/80 backdrop-blur-xl text-primary dark:text-primary font-label-md text-label-md fixed top-0 w-full z-50 border-b border-outline-variant/10 shadow-sm transition-all duration-300" id="main-nav">
+<div class="flex justify-between items-center px-margin-mobile md:px-margin-desktop h-20 max-w-container-max mx-auto">
+<!-- Brand -->
+<a class="font-headline-sm text-headline-sm font-bold text-primary tracking-tight flex items-center gap-2" href="/">
+<span class="material-symbols-outlined icon-fill text-restaurant-accent">restaurant</span>
+                WebPro Ecosystem
+            </a>
+<!-- Desktop Navigation -->
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-primary font-bold border-b-2 border-primary pb-1 active:scale-95 transition-transform" href="/restaurant/index.html">Restaurant</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors active:scale-95 transition-transform hover:bg-surface-glass px-3 py-2 rounded-lg" href="/education/index.html">Education</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors active:scale-95 transition-transform hover:bg-surface-glass px-3 py-2 rounded-lg" href="/construction/index.html">Construction</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors active:scale-95 transition-transform hover:bg-surface-glass px-3 py-2 rounded-lg" href="/auto-service/index.html">Auto Service</a>
+</nav>
+<!-- Actions -->
+<div class="flex items-center gap-4">
+<button aria-label="Search" class="hidden md:flex text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">search</span>
+</button>
+<a class="hidden md:inline-flex bg-restaurant-accent text-white px-6 py-3 rounded-lg hover:bg-restaurant-accent/90 transition-colors duration-150 active:scale-95 border border-restaurant-accent/50 shadow-[0_0_15px_rgba(146,64,14,0.3)]" href="#booking">
+                    Contact Us
+                </a>
+<!-- Mobile Menu Toggle -->
+<button aria-label="Menu" class="md:hidden text-on-surface-variant">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</div>
+</header>
+<main>
+<!-- Hero Section -->
+<section class="relative min-h-screen flex items-center pt-20 overflow-hidden">
+<!-- Background Image -->
+<div class="absolute inset-0 z-0">
+<img alt="" class="w-full h-full object-cover opacity-40" data-alt="A highly cinematic and atmospheric interior shot of a premium Central Asian restaurant. The scene is illuminated by warm, glowing pendant lights casting dramatic shadows across dark wood tables and plush velvet seating. The color palette is dominated by deep blacks, rich mahogany, and intense accents of amber and burnt orange. The mood is intimate, luxurious, and steeped in tradition, aligning with a high-end dark-mode aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuABdC6DRYXyDI3fQ1h9RD5DSOUbhziSMgj3ra3cF2OGznzg1Git8H9ds43qUTPYYGogw9XAH4dvSYUZqYpKs5xL5MQ_fgFXYmzKtne_aJjs-leCpN7pHnmHiuNBBIB82THhhH2P53IlDImbTkMJYt637Iq_hgwru9Mm8NVuSUg8BY5BmGjHBwGruh5t6Edxn4pAg7Yf_Hx3ZJlZgRnFvi8-f_4QzfS5a0KogKFIm4DqHJ0sPT-dvUUNBQYSu0hqAQj33ve2kaYNSU0"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent"></div>
+<div class="absolute inset-0 bg-gradient-to-r from-background via-background/60 to-transparent"></div>
+</div>
+<div class="relative z-10 w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-20">
+<div class="max-w-3xl">
+<div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-surface-glass border border-restaurant-accent/30 backdrop-blur-md mb-6">
+<span class="w-2 h-2 rounded-full bg-restaurant-accent animate-pulse"></span>
+<span class="font-label-sm text-label-sm text-restaurant-accent uppercase tracking-wider">Chaikhana Bishkek</span>
+</div>
+<h1 class="font-display-lg text-display-lg text-on-surface mb-6">
+                        A Masterclass in <br/>
+<span class="text-transparent bg-clip-text bg-gradient-to-r from-restaurant-accent to-tertiary">Culinary Tradition</span>
+</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-10 max-w-xl">
+                        Experience the authentic flavors of Central Asia, reimagined for the modern palate. Precision-crafted dishes served in an atmosphere of unparalleled sophistication.
+                    </p>
+<div class="flex flex-col sm:flex-row gap-4">
+<a class="inline-flex items-center justify-center gap-2 bg-on-surface text-surface px-8 py-4 rounded-lg font-label-md text-label-md hover:bg-inverse-surface transition-colors active:scale-95 group" href="#booking">
+                            Book a Table
+                            <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</a>
+<a class="inline-flex items-center justify-center gap-2 bg-surface-glass border border-outline-variant/30 text-on-surface px-8 py-4 rounded-lg font-label-md text-label-md hover:bg-surface-container transition-colors backdrop-blur-md active:scale-95" href="#menu">
+<span class="material-symbols-outlined">menu_book</span>
+                            Explore Menu
+                        </a>
+</div>
+</div>
+</div>
+<!-- Scroll Indicator -->
+<div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce flex flex-col items-center gap-2 text-on-surface-variant/50">
+<span class="font-label-sm text-label-sm">Discover</span>
+<span class="material-symbols-outlined">arrow_downward</span>
+</div>
+</section>
+<!-- Menu Categories Bento Grid -->
+<section class="py-24 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto relative" id="menu">
+<!-- Decorative Glow -->
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-restaurant-accent/5 rounded-full blur-[120px] pointer-events-none"></div>
+<div class="mb-16 text-center md:text-left relative z-10">
+<h2 class="font-headline-lg text-headline-lg md:text-headline-lg text-on-surface mb-4">Curated Excellence</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">Our menu is a testament to quality, featuring locally sourced ingredients prepared with time-honored techniques and modern precision.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter relative z-10">
+<!-- Main Dishes (Spans 8 cols) -->
+<a class="group md:col-span-8 rounded-2xl overflow-hidden relative min-h-[400px] bg-surface-container-high border border-white/5 shadow-2xl transition-all duration-300 hover:border-restaurant-accent/30 block" href="#">
+<img alt="" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-40 transition-opacity duration-500 group-hover:scale-105" data-alt="A top-down view of a beautifully plated traditional Central Asian plov (pilaf) in a dark, textured ceramic bowl. The dish is rich with braised lamb, golden carrots, and roasted garlic, steaming slightly. The background is a dark, matte slate surface. The lighting is focused and dramatic, highlighting the textures of the food and creating a premium, mouth-watering aesthetic consistent with a dark-mode luxury brand." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZL86Ink50jAtiOcaKIMhjY1VrjWxybdaxS1h5DpWTwujrrsWIlQ_WdMBwkxQTmgATgvOD_24KDtECNOi3YcX123WMZm9_-qzI9DVuV5XS32_sZS9IZwehLuAMpdYnBQdAkv9s8DM3CbIn8ufzSH1-JkqILa16WJnFG-oaexc_--42-cC1ByZVQpGJhqbMhnKmUtUXq-r0AzsFvBQDhAg-YIfxogOMBD4C161zaap91MsjYcrEjtXGhltcx8fsyJeFEWa9MqsBZ3s"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface via-surface/40 to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-8 w-full">
+<div class="flex items-center justify-between">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2">Main Courses</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Signature Pilaf, Lagman, and deeply flavorful stews.</p>
+</div>
+<div class="w-12 h-12 rounded-full bg-surface-glass border border-white/10 backdrop-blur-md flex items-center justify-center group-hover:bg-restaurant-accent group-hover:border-restaurant-accent transition-all duration-300">
+<span class="material-symbols-outlined text-on-surface">arrow_outward</span>
+</div>
+</div>
+</div>
+</a>
+<!-- Grill (Spans 4 cols) -->
+<a class="group md:col-span-4 rounded-2xl overflow-hidden relative min-h-[400px] bg-surface-container-high border border-white/5 shadow-2xl transition-all duration-300 hover:border-restaurant-accent/30 block" href="#">
+<img alt="" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-40 transition-opacity duration-500 group-hover:scale-105" data-alt="Close-up of succulent meat skewers sizzling over hot charcoal on an open grill. Sparks and a light haze of smoke rise against a pitch-black background. The glowing embers provide a fierce, warm orange under-lighting that strongly accents the high-tech, premium dark aesthetic of the restaurant brand. The focus is sharp on the meat's charred texture." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDS2drNE2yspy7r9qWWzFOz1VwECagKOIm9CejRw2ZejmZdjpnEf36C-RIIDB9iMtyOcyjtMIY7hcClD83ivoNvZGsJV8c9JSYklzcthOcPTlNX7_oiZ0W4KolS1KzG_FLoVSB97HUFioe-99AnBt6YZa4AdDgcRQPRzkUHXBrnhP_Ym8ETSFomwOYP4TTf4vAScR5faA-PLVm5jS5eVXX_L3kSr5Jfk7KeXIZZSQCIJXxc4uL_LFDMNlnYiIPPCTjYVqGWE4lH2Pk"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface via-surface/40 to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-8 w-full">
+<div class="flex items-center justify-between">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-2">Premium Grill</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Charcoal-fired perfection.</p>
+</div>
+<div class="w-10 h-10 rounded-full bg-surface-glass border border-white/10 backdrop-blur-md flex items-center justify-center group-hover:bg-restaurant-accent group-hover:border-restaurant-accent transition-all duration-300">
+<span class="material-symbols-outlined text-on-surface">arrow_outward</span>
+</div>
+</div>
+</div>
+</a>
+<!-- Drinks (Spans 12 cols, shorter height) -->
+<a class="group md:col-span-12 rounded-2xl overflow-hidden relative min-h-[250px] bg-surface-container-high border border-white/5 shadow-2xl transition-all duration-300 hover:border-restaurant-accent/30 block flex items-center" href="#">
+<img alt="" class="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:opacity-30 transition-opacity duration-500 group-hover:scale-105" data-alt="A sophisticated dark bar setting featuring a row of ornate traditional teapots and modern crystal glassware resting on a polished black marble counter. The lighting is moody and directional, catching the condensation on the glasses and the metallic sheen of the teapots. Deep indigo and warm amber reflections emphasize the luxurious, high-end atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD8tWwhZhj11Q_Fgtc7DVvnJLgo_LxPB541txnfgLNTKnrZ73IJsgI8VME0a4LRSdqhzyEXosqqhKDPjaZCjD7Sfn5cnYJxTfQs1fGxTTXe1PDr2mOZatxyArsNlohqbf1AbG4AGWSRpRIvfubeu_Y4TIko5OpJiK5XeZmLgwc6AgtJpXEmAOqc7hE9ggfjm7svuOHl8QKQrD_bo3IgT9-aFM4vHesdB8hgLqqkspt-J7Cb3qgDTteygj7_uOPpd6ns5W3b74wUgR0"/>
+<div class="absolute inset-0 bg-gradient-to-r from-surface via-surface/80 to-transparent"></div>
+<div class="relative z-10 p-8 md:p-12 w-full md:w-1/2">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-3">Artisan Beverages</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6">From traditional spiced teas to modern mixology, crafted to complement every dish.</p>
+<span class="inline-flex items-center text-restaurant-accent font-label-md text-label-md group-hover:text-tertiary transition-colors">
+                            View Drinks Menu <span class="material-symbols-outlined ml-2 text-sm">chevron_right</span>
+</span>
+</div>
+</a>
+</div>
+</section>
+<!-- Interior Gallery (Asymmetric) -->
+<section class="py-24 bg-surface-container-lowest">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+<div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
+<div class="max-w-2xl">
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-4">Atmosphere Defined</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">A space designed for comfort and elegance. Deep tones, tactile materials, and precise lighting create an environment that elevates the dining experience.</p>
+</div>
+<a class="hidden md:inline-flex items-center gap-2 text-on-surface-variant hover:text-on-surface transition-colors font-label-md text-label-md" href="#">
+                        View Full Gallery
+                        <span class="material-symbols-outlined">east</span>
+</a>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-gutter auto-rows-[200px] md:auto-rows-[300px]">
+<!-- Large Feature Image -->
+<div class="col-span-2 row-span-2 rounded-xl overflow-hidden relative group">
+<img alt="" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A wide architectural shot of a high-end restaurant interior at night. The design features industrial-chic elements combined with traditional luxury: exposed dark steel beams, warm Edison bulb chandeliers, and plush, tufted leather booths in deep maroon. The overall tone is profoundly dark but warmly illuminated, perfectly capturing a modern glassmorphism aesthetic applied to physical space." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCjolN7bApSyxa8N2Q2omOyZyjAtv_kw28bqeoOs14fjVeHubQa33ttt6xEiVIhKTQ5RHVUGtRJolmshON3JTdBpFSmratj-AkvT3puS_XuPOiePd8zIDWfg3Sv84fjLxOgscRPFdIo_CS6yWjSy4cmkAdt5BlsNCl7RKGrpHIxkvzabri8CjPKF4YNvyZ4_tUcIH5aSfTRcu69ClmxSSduVtq-ZkBGDsqav9Sp7VMWqL9ljhnVq1e2Ce9gZq04Mx2Q0oI9QWBBfL8"/>
+<div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500"></div>
+</div>
+<!-- Standard Images -->
+<div class="col-span-1 row-span-1 rounded-xl overflow-hidden relative group">
+<img alt="" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A close detail shot of a sophisticated table setting in a dimly lit restaurant. A sleek black ceramic plate sits on a dark woven placemat, accompanied by minimalist matte-black cutlery and a crystal water glass catching a glint of warm amber light. The composition is highly structured, emphasizing precision and premium quality." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBUXX_U8L6PaR8SlE5M5USwuE5O7_njquaMIeUIAsbVuOYSQ8mGFMMCCrV61Oe8ySSIjsv8042JExF1I2zWMudmHD6-cHSYdC-7ZL4jWt-IUpxbN8R607JYGwJevKnaItXDWpqXg0S23_ygsyUayZ5tjzILy2iFpRUh1b47W-vHBiKaJO6-ZYUaag_Pi2oYXgtdOfjULC_xqgRWXCkEZFwTwFFRuW0W_27tH-4El-9FFzQHj083KZVLKkIlUpgNBMn6PhBpQe5J5Wg"/>
+</div>
+<div class="col-span-1 row-span-1 rounded-xl overflow-hidden relative group">
+<img alt="" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="An intimate corner of a luxury dining space featuring a small, polished wood table and two mid-century modern chairs upholstered in deep charcoal fabric. A single pendant light with a copper finish hangs directly above, creating a tight pool of warm light against the stark, dark-painted wall behind it. The mood is exclusive and quiet." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAyO92ffjxVzoeFkGecc6I6KhWjPBgD8NClGiNmAdX6FUE4C71s3Rpfd48NN1Hdp36nFCCmQnm9OR0TBk9owAP2wIuFA1n6OWxnSP_u2Bu8xyl11elcjsR-sOjveQ5No1v1icKeq7tA1FdltoN4plXUIrpGgb2Tj2RL19w4w58KIjm7eC71Oo1dXFUpX39QuVfesUwl_bjcc5IJZASexu2s89lCQN8YFLNDjZWuID4tdopgkLGPDi3lOZS4H2LssRjpQcoN2nSnJmc"/>
+</div>
+<div class="col-span-2 row-span-1 rounded-xl overflow-hidden relative group">
+<img alt="" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A bustling but elegant open kitchen viewed from the dark dining room. Chefs in crisp black uniforms are visible working intensely under bright, focused stainless-steel hoods. The contrast between the brilliant, clinical light of the kitchen and the deep shadows of the foreground dining area highlights the 'mechanical precision' aspect of the brand identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBjnXUJQ-JPNBZAFwcjtVligg5wCHhv0rkK0I9iKJRkO0Hz8Mo8uMyda8uKkykMubtaS5EXrVxZa5mbuBFMIFwDG3uV1x48I6KIggbosoZvgrRsYW5SAyAGMuhil-2nOoujtxteA678QzAWWoszfFWIEF42JnnS5bml_xN86-RtN6F3ADNMgFcYFpXddrWLinQAf2jdAdmDu9P6_9Gz-g7WQbrFAbfbJHmbXC30smCloDrAc2g5X_NVg1d_4FmEV_vbK9vE2nil90Q"/>
+</div>
+</div>
+</div>
+</section>
+<!-- Booking & WhatsApp CTA -->
+<section class="py-24 relative overflow-hidden" id="booking">
+<!-- Background element -->
+<div class="absolute inset-0 bg-surface-container-high border-y border-outline-variant/10"></div>
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop relative z-10">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+<!-- Form Area -->
+<div class="bg-surface border border-white/5 p-8 md:p-12 rounded-2xl shadow-2xl backdrop-blur-xl relative">
+<!-- Decorative top edge glow -->
+<div class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-restaurant-accent/50 to-transparent"></div>
+<h2 class="font-headline-md text-headline-md text-on-surface mb-2">Reserve Your Table</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mb-8">Secure your experience at Chaikhana Bishkek.</p>
+<form class="space-y-6">
+<div class="grid grid-cols-2 gap-4">
+<div class="space-y-1">
+<label class="font-label-sm text-label-sm text-on-surface-variant uppercase">Date</label>
+<input class="w-full bg-surface-container-lowest border-0 border-b border-outline-variant focus:border-restaurant-accent focus:ring-0 text-on-surface py-3 px-0 transition-colors" type="date"/>
+</div>
+<div class="space-y-1">
+<label class="font-label-sm text-label-sm text-on-surface-variant uppercase">Time</label>
+<input class="w-full bg-surface-container-lowest border-0 border-b border-outline-variant focus:border-restaurant-accent focus:ring-0 text-on-surface py-3 px-0 transition-colors" type="time"/>
+</div>
+</div>
+<div class="space-y-1">
+<label class="font-label-sm text-label-sm text-on-surface-variant uppercase">Guests</label>
+<select class="w-full bg-surface-container-lowest border-0 border-b border-outline-variant focus:border-restaurant-accent focus:ring-0 text-on-surface py-3 px-0 transition-colors">
+<option>2 People</option>
+<option>3 People</option>
+<option>4 People</option>
+<option>5+ People</option>
+</select>
+</div>
+<div class="space-y-1">
+<label class="font-label-sm text-label-sm text-on-surface-variant uppercase">Name</label>
+<input class="w-full bg-surface-container-lowest border-0 border-b border-outline-variant focus:border-restaurant-accent focus:ring-0 text-on-surface py-3 px-0 transition-colors" placeholder="John Doe" type="text"/>
+</div>
+<button class="w-full bg-on-surface text-surface py-4 rounded-lg font-label-md text-label-md hover:bg-inverse-surface transition-colors active:scale-[0.98] mt-4" type="button">
+                                Confirm Reservation
+                            </button>
+</form>
+</div>
+<!-- Direct Contact / WhatsApp -->
+<div class="space-y-8">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-4">Immediate Assistance</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Prefer to speak with us directly? For large gatherings, private events, or immediate inquiries, our concierge team is available via WhatsApp.</p>
+</div>
+<div class="flex flex-col gap-4">
+<a class="inline-flex items-center gap-4 bg-[#25D366]/10 border border-[#25D366]/20 p-6 rounded-xl hover:bg-[#25D366]/20 transition-colors group w-full max-w-md" href="#">
+<div class="w-12 h-12 rounded-full bg-[#25D366] flex items-center justify-center shadow-[0_0_20px_rgba(37,211,102,0.4)]">
+<!-- Simple WhatsApp icon approximation using Material Symbols -->
+<span class="material-symbols-outlined text-white">chat</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface">Message us on WhatsApp</p>
+<p class="font-body-md text-body-md text-on-surface-variant group-hover:text-on-surface transition-colors">+996 555 123 456</p>
+</div>
+<span class="material-symbols-outlined ml-auto text-on-surface-variant group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</a>
+<div class="flex items-center gap-4 text-on-surface-variant">
+<span class="material-symbols-outlined">location_on</span>
+<span class="font-body-md text-body-md">123 Manas Ave, Bishkek, Kyrgyzstan</span>
+</div>
+<div class="flex items-center gap-4 text-on-surface-variant">
+<span class="material-symbols-outlined">schedule</span>
+<span class="font-body-md text-body-md">Daily: 11:00 AM - 11:00 PM</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest dark:bg-surface-container-lowest text-primary dark:text-primary font-body-md text-body-md w-full pt-20 pb-10 border-t border-outline-variant/20">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<!-- Brand Column -->
+<div class="col-span-1 md:col-span-1 mb-8 md:mb-0">
+<div class="font-headline-md text-headline-md text-on-surface mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined icon-fill text-restaurant-accent">restaurant</span>
+                     WebPro
+                </div>
+<p class="text-on-surface-variant mb-6 text-sm">Multi-Niche Solutions.<br/>Precision Engineered.</p>
+</div>
+<!-- Links Columns -->
+<div class="col-span-1 md:col-span-3 grid grid-cols-2 md:grid-cols-3 gap-8">
+<div class="flex flex-col gap-3">
+<h4 class="font-label-md text-label-md text-on-surface uppercase tracking-wider mb-2">Ecosystem</h4>
+<a class="text-primary underline" href="/restaurant/index.html">Chaikhana Bishkek</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="/education/index.html">Bilim Education</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="/construction/index.html">StroyMaster</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="/auto-service/index.html">AutoPro Service</a>
+</div>
+<div class="flex flex-col gap-3">
+<h4 class="font-label-md text-label-md text-on-surface uppercase tracking-wider mb-2">Support</h4>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">WhatsApp Support</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Contact Us</a>
+</div>
+<div class="flex flex-col gap-3">
+<h4 class="font-label-md text-label-md text-on-surface uppercase tracking-wider mb-2">Legal</h4>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Terms of Service</a>
+</div>
+</div>
+<!-- Copyright -->
+<div class="col-span-1 md:col-span-4 mt-16 pt-8 border-t border-outline-variant/10 text-center md:text-left text-sm text-on-surface-variant flex flex-col md:flex-row justify-between items-center gap-4">
+<p>© 2024 WebPro Multi-Niche Solutions. Precision Engineered.</p>
+<div class="flex gap-4">
+<!-- Social placeholders -->
+<a class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center hover:bg-surface-bright transition-colors text-on-surface-variant hover:text-on-surface" href="#">
+<span class="material-symbols-outlined text-sm">language</span>
+</a>
+</div>
+</div>
+</div>
+</footer>
+<!-- Minimal JS for Nav background on scroll -->
+<script>
+        const nav = document.getElementById('main-nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                nav.classList.add('shadow-md');
+                nav.classList.replace('bg-surface/80', 'bg-surface/95');
+            } else {
+                nav.classList.remove('shadow-md');
+                nav.classList.replace('bg-surface/95', 'bg-surface/80');
+            }
         });
-      });
-    });
+    </script>
+</body></html>
 
-    /* ═══════ INTERSECTION OBSERVER ═══════ */
-    const observerOptions = {
-      root: null,
-      rootMargin: '0px 0px -60px 0px',
-      threshold: 0.1
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, observerOptions);
-
-    document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => {
-      observer.observe(el);
-    });
-
-    /* ═══════ SMOOTH SCROLL FOR ANCHOR LINKS ═══════ */
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-        const targetId = this.getAttribute('href');
-        if (targetId === '#') return;
-        e.preventDefault();
-        const target = document.querySelector(targetId);
-        if (target) {
-          const headerOffset = 80;
-          const elementPosition = target.getBoundingClientRect().top;
-          const offsetPosition = elementPosition + window.scrollY - headerOffset;
-          window.scrollTo({
-            top: offsetPosition,
-            behavior: 'smooth'
-          });
-        }
-      });
-    });
-  </script>
-</body>
-</html>

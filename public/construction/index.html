@@ -1,1716 +1,330 @@
 <!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>СтройМастер — Строительство и ремонт в Бишкеке</title>
-    <meta name="description" content="СтройМастер — строительная компания в Бишкеке. Строительство домов, ремонт квартир, дизайн интерьера. 10+ лет опыта, 200+ объектов.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;600;700;800;900&display=swap" rel="stylesheet">
-    <style>
-        *, *::before, *::after {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --primary: #DC2626;
-            --primary-hover: #B91C1C;
-            --secondary: #F97316;
-            --accent: #EAB308;
-            --bg-dark: #18181B;
-            --bg-surface: #27272A;
-            --bg-surface-hover: #303033;
-            --bg-light: #F4F4F5;
-            --text-light: #E4E4E7;
-            --text-muted: #A1A1AA;
-            --text-dark: #18181B;
-            --white: #FFFFFF;
-            --gradient-primary: linear-gradient(135deg, var(--primary), var(--secondary));
-            --gradient-accent: linear-gradient(135deg, var(--secondary), var(--accent));
-            --radius: 12px;
-            --radius-lg: 20px;
-            --shadow: 0 4px 24px rgba(0,0,0,0.3);
-            --shadow-lg: 0 8px 40px rgba(0,0,0,0.4);
-            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        html {
-            scroll-behavior: smooth;
-            scrollbar-width: thin;
-            scrollbar-color: var(--primary) var(--bg-dark);
-        }
-
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: var(--bg-dark);
-            color: var(--text-light);
-            line-height: 1.6;
-            overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Outfit', sans-serif;
-            line-height: 1.15;
-        }
-
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        img { max-width: 100%; }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
-
-        /* ==================== HEADER ==================== */
-        .header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            padding: 0 24px;
-            transition: var(--transition);
-            background: rgba(24, 24, 27, 0.75);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(255,255,255,0.06);
-        }
-
-        .header.scrolled {
-            background: rgba(24, 24, 27, 0.95);
-            box-shadow: 0 2px 24px rgba(0,0,0,0.4);
-        }
-
-        .header-inner {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            height: 72px;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-family: 'Outfit', sans-serif;
-            font-weight: 800;
-            font-size: 1.5rem;
-            color: var(--white);
-            letter-spacing: -0.5px;
-        }
-
-        .logo-icon {
-            width: 38px;
-            height: 38px;
-            flex-shrink: 0;
-        }
-
-        .logo span {
-            background: var(--gradient-primary);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .nav { display: flex; align-items: center; gap: 36px; }
-
-        .nav a {
-            font-size: 0.9rem;
-            font-weight: 500;
-            color: var(--text-muted);
-            transition: var(--transition);
-            position: relative;
-        }
-
-        .nav a::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--primary);
-            transition: var(--transition);
-        }
-
-        .nav a:hover { color: var(--white); }
-        .nav a:hover::after { width: 100%; }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 12px 28px;
-            border-radius: 10px;
-            font-family: 'Inter', sans-serif;
-            font-weight: 600;
-            font-size: 0.9rem;
-            cursor: pointer;
-            border: none;
-            transition: var(--transition);
-            white-space: nowrap;
-        }
-
-        .btn-primary {
-            background: var(--gradient-primary);
-            color: var(--white);
-            box-shadow: 0 4px 16px rgba(220, 38, 38, 0.35);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 24px rgba(220, 38, 38, 0.5);
-        }
-
-        .btn-outline {
-            background: transparent;
-            color: var(--white);
-            border: 2px solid rgba(255,255,255,0.25);
-        }
-
-        .btn-outline:hover {
-            border-color: var(--white);
-            background: rgba(255,255,255,0.06);
-            transform: translateY(-2px);
-        }
-
-        .header-cta { display: flex; }
-
-        .burger {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            cursor: pointer;
-            padding: 4px;
-            z-index: 1001;
-            background: none;
-            border: none;
-        }
-
-        .burger span {
-            display: block;
-            width: 26px;
-            height: 2.5px;
-            background: var(--white);
-            border-radius: 2px;
-            transition: var(--transition);
-        }
-
-        .burger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
-        .burger.active span:nth-child(2) { opacity: 0; }
-        .burger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
-
-        /* Mobile Menu */
-        .mobile-menu {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(24, 24, 27, 0.98);
-            backdrop-filter: blur(24px);
-            z-index: 999;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 32px;
-            opacity: 0;
-            transition: opacity 0.4s ease;
-        }
-
-        .mobile-menu.open {
-            display: flex;
-            opacity: 1;
-        }
-
-        .mobile-menu a {
-            font-family: 'Outfit', sans-serif;
-            font-size: 1.6rem;
-            font-weight: 600;
-            color: var(--text-light);
-            transition: var(--transition);
-        }
-
-        .mobile-menu a:hover { color: var(--primary); }
-
-        /* ==================== HERO ==================== */
-        .hero {
-            position: relative;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            padding: 120px 0 80px;
-            overflow: hidden;
-            background: var(--bg-dark);
-        }
-
-        .hero-pattern {
-            position: absolute;
-            inset: 0;
-            opacity: 0.04;
-            background-image:
-                linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px);
-            background-size: 60px 60px;
-        }
-
-        .hero-gradient {
-            position: absolute;
-            top: -20%;
-            right: -10%;
-            width: 700px;
-            height: 700px;
-            background: radial-gradient(circle, rgba(220,38,38,0.12) 0%, transparent 70%);
-            pointer-events: none;
-        }
-
-        .hero-gradient-2 {
-            position: absolute;
-            bottom: -10%;
-            left: -5%;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(249,115,22,0.08) 0%, transparent 70%);
-            pointer-events: none;
-        }
-
-        .hero-inner {
-            position: relative;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-        }
-
-        .hero-content { z-index: 2; }
-
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 8px 18px;
-            background: rgba(220, 38, 38, 0.12);
-            border: 1px solid rgba(220, 38, 38, 0.25);
-            border-radius: 100px;
-            font-size: 0.82rem;
-            font-weight: 600;
-            color: var(--primary);
-            margin-bottom: 28px;
-            letter-spacing: 0.3px;
-        }
-
-        .hero-badge-dot {
-            width: 7px;
-            height: 7px;
-            background: var(--primary);
-            border-radius: 50%;
-            animation: pulse-dot 2s infinite;
-        }
-
-        @keyframes pulse-dot {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.4; }
-        }
-
-        .hero h1 {
-            font-size: clamp(2.6rem, 5.5vw, 4.2rem);
-            font-weight: 900;
-            color: var(--white);
-            margin-bottom: 24px;
-            letter-spacing: -1.5px;
-        }
-
-        .hero h1 em {
-            font-style: normal;
-            background: var(--gradient-primary);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero-text {
-            font-size: 1.1rem;
-            color: var(--text-muted);
-            margin-bottom: 40px;
-            max-width: 520px;
-            line-height: 1.75;
-        }
-
-        .hero-actions {
-            display: flex;
-            gap: 16px;
-            flex-wrap: wrap;
-        }
-
-        .hero-stats-row {
-            display: flex;
-            gap: 40px;
-            margin-top: 52px;
-            padding-top: 32px;
-            border-top: 1px solid rgba(255,255,255,0.08);
-        }
-
-        .hero-stat-item h4 {
-            font-size: 1.6rem;
-            font-weight: 800;
-            color: var(--white);
-        }
-
-        .hero-stat-item h4 span {
-            color: var(--primary);
-        }
-
-        .hero-stat-item p {
-            font-size: 0.82rem;
-            color: var(--text-muted);
-            margin-top: 2px;
-        }
-
-        /* Hero Architectural SVG */
-        .hero-visual {
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 1;
-        }
-
-        .hero-svg-wrapper {
-            position: relative;
-            width: 100%;
-            max-width: 500px;
-        }
-
-        .hero-building-svg {
-            width: 100%;
-            height: auto;
-            filter: drop-shadow(0 20px 60px rgba(220,38,38,0.15));
-        }
-
-        /* ==================== SERVICES ==================== */
-        .services {
-            padding: 100px 0;
-            background: var(--bg-dark);
-            position: relative;
-        }
-
-        .section-label {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 0.82rem;
-            font-weight: 600;
-            color: var(--primary);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 16px;
-        }
-
-        .section-label::before {
-            content: '';
-            width: 32px;
-            height: 2px;
-            background: var(--gradient-primary);
-        }
-
-        .section-title {
-            font-size: clamp(2rem, 4vw, 2.8rem);
-            font-weight: 800;
-            color: var(--white);
-            margin-bottom: 16px;
-            letter-spacing: -1px;
-        }
-
-        .section-subtitle {
-            font-size: 1.05rem;
-            color: var(--text-muted);
-            max-width: 560px;
-            margin-bottom: 56px;
-            line-height: 1.7;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-        }
-
-        .service-card {
-            background: var(--bg-surface);
-            border: 1px solid rgba(255,255,255,0.06);
-            border-radius: var(--radius);
-            padding: 36px 28px;
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: var(--gradient-primary);
-            opacity: 0;
-            transition: var(--transition);
-        }
-
-        .service-card:hover {
-            transform: translateY(-6px);
-            border-color: rgba(220, 38, 38, 0.2);
-            box-shadow: 0 12px 40px rgba(0,0,0,0.3);
-            background: var(--bg-surface-hover);
-        }
-
-        .service-card:hover::before { opacity: 1; }
-
-        .service-icon {
-            width: 52px;
-            height: 52px;
-            border-radius: 12px;
-            background: rgba(220, 38, 38, 0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 20px;
-            transition: var(--transition);
-        }
-
-        .service-card:hover .service-icon {
-            background: rgba(220, 38, 38, 0.18);
-        }
-
-        .service-icon svg {
-            width: 26px;
-            height: 26px;
-            stroke: var(--primary);
-            fill: none;
-            stroke-width: 2;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-        }
-
-        .service-card h3 {
-            font-size: 1.15rem;
-            font-weight: 700;
-            color: var(--white);
-            margin-bottom: 8px;
-        }
-
-        .service-price {
-            font-size: 0.88rem;
-            font-weight: 600;
-            color: var(--secondary);
-            margin-bottom: 14px;
-        }
-
-        .service-card p {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            line-height: 1.6;
-        }
-
-        /* ==================== STATS ==================== */
-        .stats {
-            padding: 80px 0;
-            position: relative;
-            background: linear-gradient(180deg, var(--bg-dark) 0%, #1a1015 50%, var(--bg-dark) 100%);
-        }
-
-        .stats-inner {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 24px;
-        }
-
-        .stat-card {
-            text-align: center;
-            padding: 40px 20px;
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.06);
-            border-radius: var(--radius);
-            position: relative;
-            transition: var(--transition);
-        }
-
-        .stat-card:hover {
-            background: rgba(255,255,255,0.05);
-            border-color: rgba(220,38,38,0.2);
-        }
-
-        .stat-number {
-            font-family: 'Outfit', sans-serif;
-            font-size: clamp(2.4rem, 4vw, 3.4rem);
-            font-weight: 900;
-            background: var(--gradient-primary);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            line-height: 1.1;
-            margin-bottom: 8px;
-        }
-
-        .stat-label {
-            font-size: 0.92rem;
-            color: var(--text-muted);
-            font-weight: 500;
-        }
-
-        /* ==================== PORTFOLIO ==================== */
-        .portfolio {
-            padding: 100px 0;
-            background: var(--bg-dark);
-        }
-
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-        }
-
-        .project-card {
-            border-radius: var(--radius-lg);
-            overflow: hidden;
-            position: relative;
-            height: 320px;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .project-card:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .project-bg {
-            position: absolute;
-            inset: 0;
-            transition: transform 0.6s ease;
-        }
-
-        .project-card:hover .project-bg {
-            transform: scale(1.05);
-        }
-
-        .project-card:nth-child(1) .project-bg {
-            background: linear-gradient(135deg, #2d1a1a 0%, #3d2020 30%, #1a1a2d 70%, #1a2d1a 100%);
-        }
-        .project-card:nth-child(2) .project-bg {
-            background: linear-gradient(135deg, #1a2d2d 0%, #203d3d 30%, #2d1a2d 70%, #2d2d1a 100%);
-        }
-        .project-card:nth-child(3) .project-bg {
-            background: linear-gradient(135deg, #2d2d1a 0%, #3d3d20 30%, #1a1a2d 70%, #2d1a1a 100%);
-        }
-        .project-card:nth-child(4) .project-bg {
-            background: linear-gradient(135deg, #1a2d1a 0%, #203d20 30%, #2d1a2d 70%, #1a2d2d 100%);
-        }
-
-        /* Geometric pattern overlay on project cards */
-        .project-pattern {
-            position: absolute;
-            inset: 0;
-            opacity: 0.12;
-        }
-
-        .project-card:nth-child(1) .project-pattern {
-            background:
-                repeating-linear-gradient(45deg, transparent, transparent 20px, rgba(220,38,38,0.3) 20px, rgba(220,38,38,0.3) 21px),
-                repeating-linear-gradient(-45deg, transparent, transparent 20px, rgba(220,38,38,0.15) 20px, rgba(220,38,38,0.15) 21px);
-        }
-
-        .project-card:nth-child(2) .project-pattern {
-            background:
-                repeating-linear-gradient(0deg, transparent, transparent 30px, rgba(249,115,22,0.3) 30px, rgba(249,115,22,0.3) 31px),
-                repeating-linear-gradient(90deg, transparent, transparent 30px, rgba(249,115,22,0.15) 30px, rgba(249,115,22,0.15) 31px);
-        }
-
-        .project-card:nth-child(3) .project-pattern {
-            background: repeating-conic-gradient(rgba(234,179,8,0.15) 0% 25%, transparent 0% 50%) 0 0 / 40px 40px;
-        }
-
-        .project-card:nth-child(4) .project-pattern {
-            background:
-                repeating-linear-gradient(60deg, transparent, transparent 24px, rgba(220,38,38,0.25) 24px, rgba(220,38,38,0.25) 25px),
-                repeating-linear-gradient(120deg, transparent, transparent 24px, rgba(249,115,22,0.15) 24px, rgba(249,115,22,0.15) 25px);
-        }
-
-        .project-overlay {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(180deg, transparent 40%, rgba(24,24,27,0.95) 100%);
-            z-index: 1;
-        }
-
-        .project-info {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            padding: 28px;
-            z-index: 2;
-        }
-
-        .project-tag {
-            display: inline-block;
-            padding: 4px 14px;
-            background: rgba(220, 38, 38, 0.2);
-            border: 1px solid rgba(220, 38, 38, 0.3);
-            border-radius: 100px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            color: var(--primary);
-            margin-bottom: 10px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .project-info h3 {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: var(--white);
-            margin-bottom: 6px;
-        }
-
-        .project-info p {
-            font-size: 0.88rem;
-            color: var(--text-muted);
-        }
-
-        /* ==================== PROCESS ==================== */
-        .process {
-            padding: 100px 0;
-            background: var(--bg-dark);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .process-bg-glow {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 900px;
-            height: 400px;
-            background: radial-gradient(ellipse, rgba(220,38,38,0.06) 0%, transparent 70%);
-            pointer-events: none;
-        }
-
-        .process .section-title,
-        .process .section-label,
-        .process .section-subtitle {
-            text-align: center;
-        }
-
-        .process .section-subtitle {
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .process .section-label::before { display: none; }
-
-        .process-timeline {
-            display: flex;
-            justify-content: space-between;
-            position: relative;
-            padding: 0 20px;
-        }
-
-        .process-timeline::before {
-            content: '';
-            position: absolute;
-            top: 32px;
-            left: 60px;
-            right: 60px;
-            height: 2px;
-            background: rgba(255,255,255,0.08);
-        }
-
-        .process-timeline::after {
-            content: '';
-            position: absolute;
-            top: 32px;
-            left: 60px;
-            width: 0;
-            height: 2px;
-            background: var(--gradient-primary);
-            transition: width 1.5s ease;
-        }
-
-        .process-timeline.animated::after {
-            width: calc(100% - 120px);
-        }
-
-        .process-step {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            flex: 1;
-            position: relative;
-            z-index: 2;
-        }
-
-        .step-number {
-            width: 64px;
-            height: 64px;
-            border-radius: 50%;
-            background: var(--bg-surface);
-            border: 2px solid rgba(255,255,255,0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: 'Outfit', sans-serif;
-            font-size: 1.3rem;
-            font-weight: 800;
-            color: var(--text-muted);
-            margin-bottom: 20px;
-            transition: var(--transition);
-        }
-
-        .process-step.active .step-number {
-            background: var(--gradient-primary);
-            border-color: var(--primary);
-            color: var(--white);
-            box-shadow: 0 4px 20px rgba(220,38,38,0.4);
-        }
-
-        .process-step h4 {
-            font-size: 0.95rem;
-            font-weight: 700;
-            color: var(--white);
-            margin-bottom: 6px;
-        }
-
-        .process-step p {
-            font-size: 0.82rem;
-            color: var(--text-muted);
-            max-width: 140px;
-            line-height: 1.5;
-        }
-
-        /* ==================== WHY US ==================== */
-        .why-us {
-            padding: 100px 0;
-            background: var(--bg-dark);
-        }
-
-        .why-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-        }
-
-        .why-card {
-            background: var(--bg-surface);
-            border: 1px solid rgba(255,255,255,0.06);
-            border-radius: var(--radius);
-            padding: 36px 24px;
-            text-align: center;
-            transition: var(--transition);
-            position: relative;
-        }
-
-        .why-card:hover {
-            transform: translateY(-6px);
-            border-color: rgba(220,38,38,0.2);
-            box-shadow: var(--shadow);
-        }
-
-        .why-icon {
-            width: 60px;
-            height: 60px;
-            border-radius: 16px;
-            background: rgba(220, 38, 38, 0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 20px;
-            transition: var(--transition);
-        }
-
-        .why-card:hover .why-icon {
-            background: rgba(220, 38, 38, 0.18);
-            transform: scale(1.05);
-        }
-
-        .why-icon svg {
-            width: 28px;
-            height: 28px;
-            stroke: var(--primary);
-            fill: none;
-            stroke-width: 2;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-        }
-
-        .why-card h3 {
-            font-size: 1.05rem;
-            font-weight: 700;
-            color: var(--white);
-            margin-bottom: 10px;
-        }
-
-        .why-card p {
-            font-size: 0.88rem;
-            color: var(--text-muted);
-            line-height: 1.6;
-        }
-
-        /* ==================== CONTACT ==================== */
-        .contact {
-            padding: 100px 0;
-            background: var(--bg-light);
-            color: var(--text-dark);
-        }
-
-        .contact .section-label { color: var(--primary); }
-        .contact .section-title { color: var(--text-dark); }
-        .contact .section-subtitle { color: #52525B; }
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 48px;
-            align-items: start;
-        }
-
-        .contact-info-list {
-            display: flex;
-            flex-direction: column;
-            gap: 28px;
-        }
-
-        .contact-item {
-            display: flex;
-            gap: 16px;
-            align-items: flex-start;
-        }
-
-        .contact-item-icon {
-            width: 48px;
-            height: 48px;
-            min-width: 48px;
-            border-radius: 12px;
-            background: rgba(220, 38, 38, 0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .contact-item-icon svg {
-            width: 22px;
-            height: 22px;
-            stroke: var(--primary);
-            fill: none;
-            stroke-width: 2;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-        }
-
-        .contact-item h4 {
-            font-size: 0.95rem;
-            font-weight: 700;
-            color: var(--text-dark);
-            margin-bottom: 4px;
-        }
-
-        .contact-item p {
-            font-size: 0.9rem;
-            color: #52525B;
-            line-height: 1.5;
-        }
-
-        .contact-cta-card {
-            background: var(--bg-dark);
-            border-radius: var(--radius-lg);
-            padding: 48px 40px;
-            text-align: center;
-        }
-
-        .contact-cta-card h3 {
-            font-size: 1.6rem;
-            font-weight: 800;
-            color: var(--white);
-            margin-bottom: 12px;
-        }
-
-        .contact-cta-card p {
-            color: var(--text-muted);
-            margin-bottom: 32px;
-            line-height: 1.7;
-        }
-
-        .contact-cta-card .btn-primary {
-            padding: 16px 40px;
-            font-size: 1rem;
-        }
-
-        /* ==================== FOOTER ==================== */
-        .footer {
-            padding: 48px 0;
-            background: #111113;
-            border-top: 1px solid rgba(255,255,255,0.06);
-        }
-
-        .footer-inner {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 16px;
-        }
-
-        .footer-copy {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-        }
-
-        .footer-links {
-            display: flex;
-            gap: 28px;
-        }
-
-        .footer-links a {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            transition: var(--transition);
-        }
-
-        .footer-links a:hover { color: var(--white); }
-
-        /* ==================== FLOATING WHATSAPP ==================== */
-        .wa-float {
-            position: fixed;
-            bottom: 28px;
-            right: 28px;
-            z-index: 998;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: #25D366;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
-            transition: var(--transition);
-            animation: wa-pulse 3s infinite;
-        }
-
-        .wa-float:hover {
-            transform: scale(1.1);
-            box-shadow: 0 6px 28px rgba(37, 211, 102, 0.55);
-        }
-
-        .wa-float svg {
-            width: 30px;
-            height: 30px;
-            fill: var(--white);
-        }
-
-        @keyframes wa-pulse {
-            0%, 100% { box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4); }
-            50% { box-shadow: 0 4px 28px rgba(37, 211, 102, 0.6), 0 0 0 10px rgba(37, 211, 102, 0.08); }
-        }
-
-        /* ==================== ANIMATIONS ==================== */
-        .reveal {
-            opacity: 0;
-            transform: translateY(36px);
-            transition: opacity 0.7s ease, transform 0.7s ease;
-        }
-
-        .reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .reveal-delay-1 { transition-delay: 0.1s; }
-        .reveal-delay-2 { transition-delay: 0.2s; }
-        .reveal-delay-3 { transition-delay: 0.3s; }
-        .reveal-delay-4 { transition-delay: 0.4s; }
-        .reveal-delay-5 { transition-delay: 0.5s; }
-
-        /* ==================== RESPONSIVE ==================== */
-        @media (max-width: 1024px) {
-            .services-grid { grid-template-columns: repeat(2, 1fr); }
-            .stats-inner { grid-template-columns: repeat(2, 1fr); }
-            .why-grid { grid-template-columns: repeat(2, 1fr); }
-            .hero-inner { grid-template-columns: 1fr; gap: 40px; }
-            .hero-visual { display: none; }
-        }
-
-        @media (max-width: 768px) {
-            .nav { display: none; }
-            .header-cta { display: none; }
-            .burger { display: flex; }
-
-            .hero { padding: 100px 0 60px; min-height: auto; }
-            .hero h1 { font-size: 2.2rem; }
-            .hero-stats-row { gap: 24px; }
-            .hero-actions { flex-direction: column; }
-            .hero-actions .btn { text-align: center; justify-content: center; }
-
-            .services-grid { grid-template-columns: 1fr; }
-            .stats-inner { grid-template-columns: repeat(2, 1fr); gap: 16px; }
-            .stat-card { padding: 28px 16px; }
-
-            .portfolio-grid { grid-template-columns: 1fr; }
-            .project-card { height: 260px; }
-
-            .process-timeline {
-                flex-direction: column;
-                gap: 28px;
-                align-items: flex-start;
-                padding: 0;
-            }
-
-            .process-timeline::before {
-                top: 0;
-                bottom: 0;
-                left: 32px;
-                right: auto;
-                width: 2px;
-                height: auto;
-            }
-
-            .process-timeline::after {
-                top: 0;
-                left: 32px;
-                width: 2px;
-                height: 0;
-            }
-
-            .process-timeline.animated::after {
-                width: 2px;
-                height: 100%;
-            }
-
-            .process-step {
-                flex-direction: row;
-                text-align: left;
-                gap: 20px;
-            }
-
-            .step-number { min-width: 52px; width: 52px; height: 52px; font-size: 1.1rem; }
-
-            .why-grid { grid-template-columns: 1fr; }
-            .contact-grid { grid-template-columns: 1fr; }
-            .contact-cta-card { padding: 36px 24px; }
-
-            .footer-inner { flex-direction: column; text-align: center; }
-            .footer-links { justify-content: center; }
-
-            .wa-float { width: 54px; height: 54px; bottom: 20px; right: 20px; }
-            .wa-float svg { width: 26px; height: 26px; }
-
-            .section-title { font-size: 1.8rem; }
-        }
 
-        @media (max-width: 480px) {
-            .container { padding: 0 16px; }
-            .hero-stats-row { flex-direction: column; gap: 16px; }
-            .hero-stat-item { display: flex; align-items: center; gap: 12px; }
-            .stats-inner { grid-template-columns: 1fr 1fr; }
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>StroyMaster - Precision Engineering &amp; Construction</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Outfit:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "inverse-surface": "#e4e1e6",
+                      "surface-container-low": "#1b1b1e",
+                      "inverse-on-surface": "#303033",
+                      "on-surface-variant": "#bec8d2",
+                      "tertiary": "#ffb95f",
+                      "tertiary-fixed": "#ffddb8",
+                      "on-error": "#690005",
+                      "surface": "#131316",
+                      "secondary": "#d2bbff",
+                      "secondary-fixed": "#eaddff",
+                      "outline": "#88929b",
+                      "construction-red": "#DC2626",
+                      "primary-container": "#0ea5e9",
+                      "tertiary-container": "#d88a00",
+                      "surface-tint": "#89ceff",
+                      "on-background": "#e4e1e6",
+                      "tertiary-fixed-dim": "#ffb95f",
+                      "error": "#ffb4ab",
+                      "on-secondary": "#3f008e",
+                      "on-secondary-fixed": "#25005a",
+                      "on-surface": "#e4e1e6",
+                      "secondary-container": "#6001d1",
+                      "on-error-container": "#ffdad6",
+                      "on-tertiary-fixed": "#2a1700",
+                      "on-secondary-container": "#c9aeff",
+                      "on-tertiary-container": "#4a2c00",
+                      "on-primary-fixed-variant": "#004c6e",
+                      "on-tertiary": "#472a00",
+                      "surface-glass": "rgba(255, 255, 255, 0.03)",
+                      "on-primary-container": "#003751",
+                      "error-container": "#93000a",
+                      "surface-container-high": "#2a2a2d",
+                      "on-primary-fixed": "#001e2f",
+                      "surface-container": "#1f1f22",
+                      "surface-container-highest": "#353438",
+                      "primary-fixed": "#c9e6ff",
+                      "on-primary": "#00344d",
+                      "primary": "#89ceff",
+                      "secondary-fixed-dim": "#d2bbff",
+                      "outline-variant": "#3e4850",
+                      "surface-container-lowest": "#0e0e11",
+                      "auto-cyan": "#22D3EE",
+                      "on-tertiary-fixed-variant": "#653e00",
+                      "on-secondary-fixed-variant": "#5a00c6",
+                      "inverse-primary": "#006591",
+                      "background": "#131316",
+                      "surface-variant": "#353438",
+                      "education-indigo": "#1E1B4B",
+                      "restaurant-accent": "#92400E",
+                      "surface-bright": "#39393c",
+                      "primary-fixed-dim": "#89ceff",
+                      "surface-dim": "#131316"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "margin-mobile": "20px",
+                      "base": "8px",
+                      "gutter": "24px",
+                      "margin-desktop": "64px",
+                      "container-max": "1280px"
+              },
+              "fontFamily": {
+                      "label-md": [
+                              "Inter"
+                      ],
+                      "headline-sm": [
+                              "Outfit"
+                      ],
+                      "headline-lg-mobile": [
+                              "Outfit"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "display-lg": [
+                              "Outfit"
+                      ],
+                      "headline-lg": [
+                              "Outfit"
+                      ],
+                      "headline-md": [
+                              "Outfit"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "label-sm": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "label-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "1",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-sm": [
+                              "24px",
+                              {
+                                      "lineHeight": "1.4",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "32px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "display-lg": [
+                              "64px",
+                              {
+                                      "lineHeight": "1.1",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-md": [
+                              "32px",
+                              {
+                                      "lineHeight": "1.3",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-sm": [
+                              "12px",
+                              {
+                                      "lineHeight": "1",
+                                      "fontWeight": "500"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .text-glow {
+            text-shadow: 0 0 20px rgba(220, 38, 38, 0.5); /* construction-red */
+        }
+        .bg-grid-pattern {
+            background-image: linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px);
+            background-size: 40px 40px;
         }
     </style>
 </head>
-<body>
+<body class="bg-background text-on-surface font-body-md antialiased overflow-x-hidden selection:bg-construction-red selection:text-white">
+<!-- Top Navigation (Shared Component) -->
+<nav class="bg-surface/80 dark:bg-surface/80 backdrop-blur-xl fixed top-0 w-full z-50 border-b border-outline-variant/10 shadow-sm hidden md:block">
+<div class="flex justify-between items-center px-margin-desktop h-20 max-w-container-max mx-auto">
+<a href="/" class="font-headline-sm text-headline-sm font-bold text-primary tracking-tight">WebPro Ecosystem</a>
+<div class="flex items-center gap-gutter font-label-md text-label-md">
+<a class="text-on-surface-variant hover:text-primary transition-colors hover:bg-surface-glass transition-all duration-150 px-4 py-2 rounded-DEFAULT active:scale-95 transition-transform" href="/restaurant/index.html">Restaurant</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors hover:bg-surface-glass transition-all duration-150 px-4 py-2 rounded-DEFAULT active:scale-95 transition-transform" href="/education/index.html">Education</a>
+<a class="text-primary font-bold border-b-2 border-primary pb-1 px-4 py-2" href="/construction/index.html">Construction</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors hover:bg-surface-glass transition-all duration-150 px-4 py-2 rounded-DEFAULT active:scale-95 transition-transform" href="/auto-service/index.html">Auto Service</a>
+</div>
+<button class="bg-construction-red text-white font-label-md text-label-md px-6 py-3 rounded-DEFAULT hover:bg-red-700 transition-colors active:scale-95 border border-white/20 shadow-[0_0_15px_rgba(220,38,38,0.3)]">Contact Us</button>
+</div>
+</nav>
+<!-- Mobile Nav Anchor (Simplified for Demo) -->
+<nav class="md:hidden bg-surface/90 backdrop-blur-lg fixed top-0 w-full z-50 border-b border-white/10 px-margin-mobile h-16 flex items-center justify-between">
+<div class="font-headline-sm text-headline-sm font-bold text-white tracking-tight">StroyMaster</div>
+<button class="text-white"><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">menu</span></button>
+</nav>
+<!-- Main Content -->
+<main class="pt-24 md:pt-32 pb-20 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<!-- Hero Section -->
+<section class="relative rounded-xl overflow-hidden min-h-[716px] flex items-center mb-[120px] glass-card" data-alt="A massive, modern construction site viewed from above at twilight. Structural steel beams frame a rising skyscraper against a dark, moody sky. High-tech cranes glow with warning lights. The scene is illuminated by stark, industrial floodlights casting deep shadows, emphasizing precision engineering and raw power. The aesthetic is gritty yet highly sophisticated, dominated by deep blacks, metallic grays, and stark white lights, fitting a premium, high-end construction brand's dark theme." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCwVI_UgwrJ5RnDjzCnNkopW-ZznX9LdaZqT6p_J-FxFWjMLQBUELtj7wu7KPdkf7fQfaPZr1-S5M9-KPi0p-6HKCQqp4b3BnOCnystrsYBnYqt847JrmrAi3pWpNa7ExaKdKHq6EEJgcS8CVamr-vljFm5AxoAeiwn-2mRT10BCSLbXbZvRSmUqvjj0x5QU5E3lkBdvtl1slt9kPsSHKg1RB0RDd4hlj2MK52n38foqWX16M5h0Wo7VXrtc1atLmBCSTMZx3FDTsA'); background-size: cover; background-position: center; background-blend-mode: overlay;">
+<div class="absolute inset-0 bg-gradient-to-r from-surface-container-lowest/90 via-surface-container-lowest/70 to-transparent z-0"></div>
+<div class="relative z-10 p-8 md:p-16 max-w-3xl">
+<div class="inline-flex items-center gap-2 bg-construction-red/15 border border-construction-red/30 px-3 py-1.5 rounded-full mb-6">
+<span class="material-symbols-outlined text-construction-red text-[16px]">architecture</span>
+<span class="font-label-sm text-label-sm text-construction-red uppercase tracking-wider">Premium Engineering</span>
+</div>
+<h1 class="font-display-lg text-headline-lg-mobile md:text-display-lg text-white mb-6 leading-tight">Building the Future with <span class="text-construction-red text-glow">Precision.</span></h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-10 max-w-2xl">StroyMaster delivers high-end structural integrity and uncompromising aesthetic execution. We engineer elite spaces for commercial and private sector leaders.</p>
+<div class="flex flex-col sm:flex-row gap-4">
+<button class="bg-construction-red text-white font-label-md text-label-md px-8 py-4 rounded-DEFAULT hover:bg-red-700 transition-all duration-150 border border-white/20 shadow-[0_0_20px_rgba(220,38,38,0.4)] hover:shadow-[0_0_30px_rgba(220,38,38,0.6)] flex items-center justify-center gap-2">
+                        Start Project
+                        <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</button>
+<button class="glass-card text-white font-label-md text-label-md px-8 py-4 rounded-DEFAULT hover:bg-white/10 transition-all duration-150 flex items-center justify-center gap-2">
+                        View Portfolio
+                    </button>
+</div>
+</div>
+<!-- Tech Accent Elements -->
+<div class="absolute right-10 bottom-10 hidden lg:flex flex-col gap-4 z-10">
+<div class="glass-card p-4 rounded-lg flex items-center gap-4 w-64">
+<div class="w-12 h-12 rounded-full border border-construction-red flex items-center justify-center bg-construction-red/10">
+<span class="material-symbols-outlined text-construction-red">domain</span>
+</div>
+<div>
+<div class="font-headline-sm text-headline-sm text-white">150+</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant uppercase">Projects Completed</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Competencies Section (Bento Grid) -->
+<section class="mb-[120px]">
+<div class="mb-12">
+<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-white mb-4">Core <span class="text-outline">Competencies</span></h2>
+<div class="w-24 h-1 bg-construction-red"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter auto-rows-[300px]">
+<!-- Architecture -->
+<div class="md:col-span-8 glass-card rounded-xl p-8 relative overflow-hidden group">
+<div class="absolute inset-0 bg-cover bg-center opacity-20 group-hover:opacity-30 transition-opacity duration-500" data-alt="Abstract view of modern architectural lines. A soaring glass and steel facade against a dark background. Strong diagonal lines and geometric precision. High contrast, cool tones, technical and futuristic vibe, fitting a premium corporate construction brand." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBPVzwru3yL92yPM5p7BGxL-xlvXxC6OYqoBiRbIwNIoxvG9qVFY63ebEeB4mlaHXTx4Ps5pS94iG7FkikSm2YrL-fMl25M0GpWdp7vESUIKiFsefziXeR9qNC7m2uhtk46PGGRdWDroAuPxEBCtWZpmaz0dnUX34MMky8CqG8FLUjJMcw81qNUU0ic6WYCSDx_O9cjEg8iBxKfaHIsHHJ_SmSzKirzukNLtdKS9x3Rz1-tsngHQd2OE3tKZCz9YUxbZHd8zNiMZD8'); mix-blend-mode: luminosity;"></div>
+<div class="relative z-10 h-full flex flex-col justify-between">
+<div class="w-14 h-14 rounded-DEFAULT border border-white/20 flex items-center justify-center bg-surface/50 backdrop-blur-md">
+<span class="material-symbols-outlined text-white text-[28px]" style="font-variation-settings: 'FILL' 1;">foundation</span>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-white mb-2 group-hover:text-construction-red transition-colors">Architecture &amp; Engineering</h3>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-md">Structural design and master planning with an emphasis on high-performance materials and load-bearing innovations.</p>
+</div>
+</div>
+</div>
+<!-- Turnkey -->
+<div class="md:col-span-4 glass-card rounded-xl p-8 relative overflow-hidden group">
+<div class="absolute inset-0 bg-grid-pattern opacity-50"></div>
+<div class="relative z-10 h-full flex flex-col justify-between">
+<div class="w-14 h-14 rounded-DEFAULT border border-white/20 flex items-center justify-center bg-surface/50 backdrop-blur-md">
+<span class="material-symbols-outlined text-white text-[28px]">key</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-white mb-2">Turnkey Realization</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">End-to-end project management from breaking ground to final handover.</p>
+</div>
+</div>
+</div>
+<!-- Interior -->
+<div class="md:col-span-12 glass-card rounded-xl p-8 flex flex-col md:flex-row items-center gap-8 relative overflow-hidden border-t-2 border-t-construction-red/50">
+<div class="flex-1 z-10">
+<div class="inline-flex items-center gap-2 bg-white/5 border border-white/10 px-3 py-1 rounded-full mb-4">
+<span class="font-label-sm text-label-sm text-white uppercase tracking-wider">Premium Finish</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-white mb-4">Interior Construction</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6 max-w-xl">High-fidelity interior build-outs for luxury commercial spaces. We execute complex ceiling systems, bespoke joinery, and advanced acoustic treatments.</p>
+<a class="text-construction-red font-label-md text-label-md hover:text-red-400 transition-colors flex items-center gap-1 uppercase tracking-wider" href="#">
+                            Explore Interiors <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+<div class="flex-1 h-full w-full rounded-lg overflow-hidden relative">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="A hyper-modern, minimalist luxury interior space undergoing final construction phases. Polished concrete floors, dark wood paneling, and sophisticated recessed LED lighting strips. The atmosphere is stark, clean, and highly controlled, emphasizing high-end materials and flawless execution in a dark-themed setting." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC3hdMOYBscVfXplBGqdHZyuiAFO8b1qXmpkJES4D-XEOwc052hYjECMpEq0oQw3UIHG01ON8r_p_-z2O3keQXdOU8Ubwcq97C_t0aEbeUTjdkCEvoAFfU2zcZ7uimcgEIpu8cq04N2viVm2B0ZaIS8MODdpZVbfoan3ZMmg0_K74YkytPdbrmmeUPaft7d6Xjtt-EzQmSSKakfajtXnpHwj8DI-n6OOXE0RpZCKjDhza78EOgm9hZ-jz5ho7CeneyhTBGIniZmxrs');"></div>
+<div class="absolute inset-0 border border-white/10 rounded-lg"></div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer (Shared Component) -->
+<footer class="bg-surface-container-lowest dark:bg-surface-container-lowest w-full pt-20 pb-10 border-t border-outline-variant/20">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-desktop max-w-container-max mx-auto">
+<div class="md:col-span-1">
+<div class="font-headline-md text-headline-md text-on-surface mb-4">WebPro</div>
+<p class="font-body-md text-body-md text-on-surface-variant">© 2024 WebPro Multi-Niche Solutions. Precision Engineered.</p>
+</div>
+<div class="flex flex-col gap-3 font-body-md text-body-md">
+<a class="text-on-surface-variant hover:text-on-surface hover:text-primary transition-colors" href="/restaurant/index.html">Chaikhana Bishkek</a>
+<a class="text-on-surface-variant hover:text-on-surface hover:text-primary transition-colors" href="/education/index.html">Bilim Education</a>
+</div>
+<div class="flex flex-col gap-3 font-body-md text-body-md">
+<a class="text-primary underline hover:text-primary transition-colors" href="/construction/index.html">StroyMaster</a>
+<a class="text-on-surface-variant hover:text-on-surface hover:text-primary transition-colors" href="/auto-service/index.html">AutoPro Service</a>
+</div>
+<div class="flex flex-col gap-3 font-body-md text-body-md">
+<a class="text-on-surface-variant hover:text-on-surface hover:text-primary transition-colors" href="#">WhatsApp Support</a>
+<a class="text-on-surface-variant hover:text-on-surface hover:text-primary transition-colors" href="#">Privacy Policy</a>
+</div>
+</div>
+</footer>
+</body></html>
 
-    <!-- Header -->
-    <header class="header" id="header">
-        <div class="header-inner">
-            <a href="#" class="logo">
-                <svg class="logo-icon" viewBox="0 0 38 38" fill="none">
-                    <rect x="2" y="14" width="14" height="22" rx="2" fill="#DC2626"/>
-                    <rect x="12" y="6" width="14" height="30" rx="2" fill="#F97316"/>
-                    <rect x="22" y="2" width="14" height="34" rx="2" fill="#EAB308" opacity="0.9"/>
-                    <rect x="6" y="18" width="4" height="4" rx="1" fill="#18181B"/>
-                    <rect x="6" y="26" width="4" height="4" rx="1" fill="#18181B"/>
-                    <rect x="16" y="10" width="4" height="4" rx="1" fill="#18181B"/>
-                    <rect x="16" y="18" width="4" height="4" rx="1" fill="#18181B"/>
-                    <rect x="16" y="26" width="4" height="4" rx="1" fill="#18181B"/>
-                    <rect x="26" y="6" width="4" height="4" rx="1" fill="#18181B"/>
-                    <rect x="26" y="14" width="4" height="4" rx="1" fill="#18181B"/>
-                    <rect x="26" y="22" width="4" height="4" rx="1" fill="#18181B"/>
-                    <rect x="26" y="30" width="4" height="4" rx="1" fill="#18181B"/>
-                </svg>
-                Строй<span>Мастер</span>
-            </a>
-
-            <nav class="nav">
-                <a href="#services">Услуги</a>
-                <a href="#portfolio">Портфолио</a>
-                <a href="#about">О нас</a>
-                <a href="#contact">Контакты</a>
-            </nav>
-
-            <div class="header-cta">
-                <a href="https://wa.me/996555123456?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D1%80%D0%B0%D1%81%D1%81%D1%87%D0%B8%D1%82%D0%B0%D1%82%D1%8C%20%D1%81%D1%82%D0%BE%D0%B8%D0%BC%D0%BE%D1%81%D1%82%D1%8C%20%D1%81%D1%82%D1%80%D0%BE%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D1%82%D0%B2%D0%B0" class="btn btn-primary" target="_blank" rel="noopener">Рассчитать стоимость</a>
-            </div>
-
-            <button class="burger" id="burger" aria-label="Меню">
-                <span></span><span></span><span></span>
-            </button>
-        </div>
-    </header>
-
-    <!-- Mobile Menu -->
-    <div class="mobile-menu" id="mobileMenu">
-        <a href="#services" class="mobile-link">Услуги</a>
-        <a href="#portfolio" class="mobile-link">Портфолио</a>
-        <a href="#about" class="mobile-link">О нас</a>
-        <a href="#contact" class="mobile-link">Контакты</a>
-        <a href="https://wa.me/996555123456?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D1%80%D0%B0%D1%81%D1%81%D1%87%D0%B8%D1%82%D0%B0%D1%82%D1%8C%20%D1%81%D1%82%D0%BE%D0%B8%D0%BC%D0%BE%D1%81%D1%82%D1%8C%20%D1%81%D1%82%D1%80%D0%BE%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D1%82%D0%B2%D0%B0" class="btn btn-primary" target="_blank" rel="noopener">Рассчитать стоимость</a>
-    </div>
-
-    <!-- Hero -->
-    <section class="hero" id="hero">
-        <div class="hero-pattern"></div>
-        <div class="hero-gradient"></div>
-        <div class="hero-gradient-2"></div>
-        <div class="container hero-inner">
-            <div class="hero-content">
-                <div class="hero-badge">
-                    <span class="hero-badge-dot"></span>
-                    Работаем по всему Кыргызстану
-                </div>
-                <h1>Строим ваше<br>будущее <em>с нуля</em></h1>
-                <p class="hero-text">Более 10 лет мы возводим дома, проводим капитальный ремонт и создаём комфортные пространства для жизни и бизнеса в Бишкеке и регионах Кыргызстана.</p>
-                <div class="hero-actions">
-                    <a href="https://wa.me/996555123456?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%BF%D0%BE%D0%BB%D1%83%D1%87%D0%B8%D1%82%D1%8C%20%D1%81%D0%BC%D0%B5%D1%82%D1%83" class="btn btn-primary" target="_blank" rel="noopener">
-                        Получить смету
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-                    </a>
-                    <a href="#portfolio" class="btn btn-outline">Наши работы</a>
-                </div>
-                <div class="hero-stats-row">
-                    <div class="hero-stat-item">
-                        <h4>200<span>+</span></h4>
-                        <p>Объектов сдано</p>
-                    </div>
-                    <div class="hero-stat-item">
-                        <h4>10<span>+</span></h4>
-                        <p>Лет на рынке</p>
-                    </div>
-                    <div class="hero-stat-item">
-                        <h4>98<span>%</span></h4>
-                        <p>Довольных клиентов</p>
-                    </div>
-                </div>
-            </div>
-            <div class="hero-visual">
-                <div class="hero-svg-wrapper">
-                    <svg class="hero-building-svg" viewBox="0 0 500 480" fill="none">
-                        <!-- Ground line -->
-                        <line x1="30" y1="450" x2="470" y2="450" stroke="#3f3f46" stroke-width="2"/>
-                        <!-- Main tower -->
-                        <rect x="180" y="60" width="140" height="390" rx="4" fill="#27272A" stroke="#DC2626" stroke-width="1.5"/>
-                        <!-- Tower windows -->
-                        <rect x="198" y="82" width="24" height="30" rx="3" fill="#DC2626" opacity="0.25"/>
-                        <rect x="238" y="82" width="24" height="30" rx="3" fill="#DC2626" opacity="0.35"/>
-                        <rect x="278" y="82" width="24" height="30" rx="3" fill="#DC2626" opacity="0.2"/>
-                        <rect x="198" y="130" width="24" height="30" rx="3" fill="#F97316" opacity="0.2"/>
-                        <rect x="238" y="130" width="24" height="30" rx="3" fill="#F97316" opacity="0.3"/>
-                        <rect x="278" y="130" width="24" height="30" rx="3" fill="#DC2626" opacity="0.25"/>
-                        <rect x="198" y="178" width="24" height="30" rx="3" fill="#DC2626" opacity="0.3"/>
-                        <rect x="238" y="178" width="24" height="30" rx="3" fill="#DC2626" opacity="0.2"/>
-                        <rect x="278" y="178" width="24" height="30" rx="3" fill="#F97316" opacity="0.25"/>
-                        <rect x="198" y="226" width="24" height="30" rx="3" fill="#F97316" opacity="0.25"/>
-                        <rect x="238" y="226" width="24" height="30" rx="3" fill="#DC2626" opacity="0.35"/>
-                        <rect x="278" y="226" width="24" height="30" rx="3" fill="#DC2626" opacity="0.2"/>
-                        <rect x="198" y="274" width="24" height="30" rx="3" fill="#DC2626" opacity="0.2"/>
-                        <rect x="238" y="274" width="24" height="30" rx="3" fill="#F97316" opacity="0.25"/>
-                        <rect x="278" y="274" width="24" height="30" rx="3" fill="#DC2626" opacity="0.3"/>
-                        <rect x="198" y="322" width="24" height="30" rx="3" fill="#F97316" opacity="0.3"/>
-                        <rect x="238" y="322" width="24" height="30" rx="3" fill="#DC2626" opacity="0.25"/>
-                        <rect x="278" y="322" width="24" height="30" rx="3" fill="#F97316" opacity="0.2"/>
-                        <rect x="198" y="370" width="24" height="30" rx="3" fill="#DC2626" opacity="0.2"/>
-                        <rect x="238" y="370" width="24" height="30" rx="3" fill="#F97316" opacity="0.35"/>
-                        <rect x="278" y="370" width="24" height="30" rx="3" fill="#DC2626" opacity="0.25"/>
-                        <!-- Tower entrance -->
-                        <rect x="228" y="415" width="44" height="35" rx="3" fill="#DC2626" opacity="0.4"/>
-                        <!-- Left building -->
-                        <rect x="50" y="200" width="120" height="250" rx="4" fill="#27272A" stroke="#F97316" stroke-width="1" opacity="0.7"/>
-                        <rect x="68" y="222" width="18" height="24" rx="2" fill="#F97316" opacity="0.2"/>
-                        <rect x="98" y="222" width="18" height="24" rx="2" fill="#F97316" opacity="0.15"/>
-                        <rect x="128" y="222" width="18" height="24" rx="2" fill="#F97316" opacity="0.25"/>
-                        <rect x="68" y="262" width="18" height="24" rx="2" fill="#F97316" opacity="0.15"/>
-                        <rect x="98" y="262" width="18" height="24" rx="2" fill="#F97316" opacity="0.2"/>
-                        <rect x="128" y="262" width="18" height="24" rx="2" fill="#F97316" opacity="0.18"/>
-                        <rect x="68" y="302" width="18" height="24" rx="2" fill="#F97316" opacity="0.22"/>
-                        <rect x="98" y="302" width="18" height="24" rx="2" fill="#F97316" opacity="0.15"/>
-                        <rect x="128" y="302" width="18" height="24" rx="2" fill="#F97316" opacity="0.2"/>
-                        <rect x="68" y="342" width="18" height="24" rx="2" fill="#F97316" opacity="0.18"/>
-                        <rect x="98" y="342" width="18" height="24" rx="2" fill="#F97316" opacity="0.25"/>
-                        <rect x="128" y="342" width="18" height="24" rx="2" fill="#F97316" opacity="0.15"/>
-                        <rect x="68" y="382" width="18" height="24" rx="2" fill="#F97316" opacity="0.2"/>
-                        <rect x="98" y="382" width="18" height="24" rx="2" fill="#F97316" opacity="0.18"/>
-                        <rect x="128" y="382" width="18" height="24" rx="2" fill="#F97316" opacity="0.22"/>
-                        <!-- Right building -->
-                        <rect x="330" y="160" width="120" height="290" rx="4" fill="#27272A" stroke="#EAB308" stroke-width="1" opacity="0.6"/>
-                        <rect x="348" y="182" width="18" height="24" rx="2" fill="#EAB308" opacity="0.18"/>
-                        <rect x="378" y="182" width="18" height="24" rx="2" fill="#EAB308" opacity="0.25"/>
-                        <rect x="408" y="182" width="18" height="24" rx="2" fill="#EAB308" opacity="0.15"/>
-                        <rect x="348" y="222" width="18" height="24" rx="2" fill="#EAB308" opacity="0.22"/>
-                        <rect x="378" y="222" width="18" height="24" rx="2" fill="#EAB308" opacity="0.18"/>
-                        <rect x="408" y="222" width="18" height="24" rx="2" fill="#EAB308" opacity="0.25"/>
-                        <rect x="348" y="262" width="18" height="24" rx="2" fill="#EAB308" opacity="0.15"/>
-                        <rect x="378" y="262" width="18" height="24" rx="2" fill="#EAB308" opacity="0.2"/>
-                        <rect x="408" y="262" width="18" height="24" rx="2" fill="#EAB308" opacity="0.18"/>
-                        <rect x="348" y="302" width="18" height="24" rx="2" fill="#EAB308" opacity="0.2"/>
-                        <rect x="378" y="302" width="18" height="24" rx="2" fill="#EAB308" opacity="0.15"/>
-                        <rect x="408" y="302" width="18" height="24" rx="2" fill="#EAB308" opacity="0.22"/>
-                        <rect x="348" y="342" width="18" height="24" rx="2" fill="#EAB308" opacity="0.18"/>
-                        <rect x="378" y="342" width="18" height="24" rx="2" fill="#EAB308" opacity="0.25"/>
-                        <rect x="408" y="342" width="18" height="24" rx="2" fill="#EAB308" opacity="0.15"/>
-                        <rect x="348" y="382" width="18" height="24" rx="2" fill="#EAB308" opacity="0.22"/>
-                        <rect x="378" y="382" width="18" height="24" rx="2" fill="#EAB308" opacity="0.18"/>
-                        <rect x="408" y="382" width="18" height="24" rx="2" fill="#EAB308" opacity="0.2"/>
-                        <!-- Crane -->
-                        <line x1="250" y1="60" x2="250" y2="20" stroke="#DC2626" stroke-width="2.5"/>
-                        <line x1="250" y1="22" x2="400" y2="22" stroke="#DC2626" stroke-width="2"/>
-                        <line x1="250" y1="22" x2="200" y2="22" stroke="#F97316" stroke-width="2"/>
-                        <line x1="395" y1="22" x2="395" y2="55" stroke="#A1A1AA" stroke-width="1" stroke-dasharray="3,3"/>
-                        <line x1="250" y1="20" x2="400" y2="14" stroke="#A1A1AA" stroke-width="0.8"/>
-                        <line x1="250" y1="20" x2="200" y2="14" stroke="#A1A1AA" stroke-width="0.8"/>
-                        <!-- Small accent triangle on top -->
-                        <polygon points="250,8 244,20 256,20" fill="#DC2626"/>
-                    </svg>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Services -->
-    <section class="services" id="services">
-        <div class="container">
-            <div class="section-label reveal">Наши услуги</div>
-            <h2 class="section-title reveal">Полный спектр строительных работ</h2>
-            <p class="section-subtitle reveal">От проектирования до сдачи объекта под ключ. Работаем с жилыми, коммерческими и загородными объектами.</p>
-
-            <div class="services-grid">
-                <!-- Card 1 -->
-                <div class="service-card reveal reveal-delay-1">
-                    <div class="service-icon">
-                        <svg viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M5 21V7l8-4v18"/><path d="M19 21V11l-6-4"/><path d="M9 9v.01"/><path d="M9 12v.01"/><path d="M9 15v.01"/><path d="M9 18v.01"/></svg>
-                    </div>
-                    <h3>Строительство домов</h3>
-                    <div class="service-price">от 25 000 сом/м2</div>
-                    <p>Возведение частных домов и коттеджей под ключ. Используем проверенные материалы и современные технологии строительства.</p>
-                </div>
-                <!-- Card 2 -->
-                <div class="service-card reveal reveal-delay-2">
-                    <div class="service-icon">
-                        <svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
-                    </div>
-                    <h3>Капитальный ремонт квартир</h3>
-                    <div class="service-price">от 15 000 сом/м2</div>
-                    <p>Полный ремонт квартир: демонтаж, выравнивание, электрика, сантехника, отделка. Работаем строго по договору.</p>
-                </div>
-                <!-- Card 3 -->
-                <div class="service-card reveal reveal-delay-3">
-                    <div class="service-icon">
-                        <svg viewBox="0 0 24 24"><path d="M12 3L2 12h3v8h6v-6h2v6h6v-8h3L12 3z"/></svg>
-                    </div>
-                    <h3>Дизайн интерьера</h3>
-                    <div class="service-price">от 500 сом/м2</div>
-                    <p>Профессиональная разработка дизайн-проектов. 3D-визуализация, подбор материалов, авторский надзор за реализацией.</p>
-                </div>
-                <!-- Card 4 -->
-                <div class="service-card reveal reveal-delay-1">
-                    <div class="service-icon">
-                        <svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z" fill="none"/><circle cx="9" cy="9" r="2"/><path d="M15 9h.01"/><path d="M9 15h.01"/><path d="M15 15h.01"/><path d="M4 20V4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/></svg>
-                    </div>
-                    <h3>Монтаж инженерных систем</h3>
-                    <div class="service-price">договорная</div>
-                    <p>Проектирование и монтаж отопления, водоснабжения, канализации и вентиляции. Сертифицированные специалисты.</p>
-                </div>
-                <!-- Card 5 -->
-                <div class="service-card reveal reveal-delay-2">
-                    <div class="service-icon">
-                        <svg viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M12 6V2"/><path d="M2 10h20"/><path d="M7 18v2"/><path d="M17 18v2"/></svg>
-                    </div>
-                    <h3>Фасадные работы</h3>
-                    <div class="service-price">от 3 000 сом/м2</div>
-                    <p>Утепление, штукатурка, облицовка, покраска фасадов. Работаем с частными и многоэтажными зданиями.</p>
-                </div>
-                <!-- Card 6 -->
-                <div class="service-card reveal reveal-delay-3">
-                    <div class="service-icon">
-                        <svg viewBox="0 0 24 24"><path d="M12 22c4-4 8-7.5 8-12a8 8 0 1 0-16 0c0 4.5 4 8 8 12z" fill="none"/><circle cx="12" cy="10" r="3" fill="none"/></svg>
-                    </div>
-                    <h3>Ландшафтный дизайн</h3>
-                    <div class="service-price">от 2 000 сом/м2</div>
-                    <p>Проектирование и благоустройство территории: дорожки, газоны, системы полива, освещение, зоны отдыха.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Stats -->
-    <section class="stats" id="about">
-        <div class="container stats-inner">
-            <div class="stat-card reveal reveal-delay-1">
-                <div class="stat-number" data-target="200" data-suffix="+">0</div>
-                <div class="stat-label">Сданных объектов</div>
-            </div>
-            <div class="stat-card reveal reveal-delay-2">
-                <div class="stat-number" data-target="10" data-suffix=" лет">0</div>
-                <div class="stat-label">Опыта работы</div>
-            </div>
-            <div class="stat-card reveal reveal-delay-3">
-                <div class="stat-number" data-target="50" data-suffix="+">0</div>
-                <div class="stat-label">Специалистов в команде</div>
-            </div>
-            <div class="stat-card reveal reveal-delay-4">
-                <div class="stat-number" data-target="100" data-suffix="%">0</div>
-                <div class="stat-label">Гарантия на работы</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Portfolio -->
-    <section class="portfolio" id="portfolio">
-        <div class="container">
-            <div class="section-label reveal">Портфолио</div>
-            <h2 class="section-title reveal">Наши реализованные проекты</h2>
-            <p class="section-subtitle reveal">Каждый объект — это результат слаженной работы нашей команды. Мы гордимся качеством и вниманием к деталям.</p>
-
-            <div class="portfolio-grid">
-                <div class="project-card reveal reveal-delay-1">
-                    <div class="project-bg"></div>
-                    <div class="project-pattern"></div>
-                    <div class="project-overlay"></div>
-                    <div class="project-info">
-                        <span class="project-tag">Ремонт под ключ</span>
-                        <h3>Квартира 85 м2</h3>
-                        <p>Бишкек, жилой комплекс «Асыл Тоо»</p>
-                    </div>
-                </div>
-                <div class="project-card reveal reveal-delay-2">
-                    <div class="project-bg"></div>
-                    <div class="project-pattern"></div>
-                    <div class="project-overlay"></div>
-                    <div class="project-info">
-                        <span class="project-tag">Строительство</span>
-                        <h3>Частный дом 150 м2</h3>
-                        <p>Чолпон-Ата, берег Иссык-Куля</p>
-                    </div>
-                </div>
-                <div class="project-card reveal reveal-delay-3">
-                    <div class="project-bg"></div>
-                    <div class="project-pattern"></div>
-                    <div class="project-overlay"></div>
-                    <div class="project-info">
-                        <span class="project-tag">Коммерческий объект</span>
-                        <h3>Офис 200 м2</h3>
-                        <p>Бишкек, бизнес-центр «Орион»</p>
-                    </div>
-                </div>
-                <div class="project-card reveal reveal-delay-4">
-                    <div class="project-bg"></div>
-                    <div class="project-pattern"></div>
-                    <div class="project-overlay"></div>
-                    <div class="project-info">
-                        <span class="project-tag">Загородная недвижимость</span>
-                        <h3>Коттедж 180 м2</h3>
-                        <p>Южный берег Иссык-Куля</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Process -->
-    <section class="process" id="process">
-        <div class="process-bg-glow"></div>
-        <div class="container">
-            <div class="section-label reveal">Как мы работаем</div>
-            <h2 class="section-title reveal">Пять шагов к вашему объекту</h2>
-            <p class="section-subtitle reveal">Прозрачный процесс от первого звонка до сдачи готового объекта. Вы контролируете каждый этап.</p>
-
-            <div class="process-timeline reveal" id="processTimeline">
-                <div class="process-step active">
-                    <div class="step-number">1</div>
-                    <div>
-                        <h4>Заявка</h4>
-                        <p>Вы оставляете заявку, мы связываемся в течение часа</p>
-                    </div>
-                </div>
-                <div class="process-step">
-                    <div class="step-number">2</div>
-                    <div>
-                        <h4>Замер и расчёт</h4>
-                        <p>Бесплатный выезд специалиста для замеров</p>
-                    </div>
-                </div>
-                <div class="process-step">
-                    <div class="step-number">3</div>
-                    <div>
-                        <h4>Договор</h4>
-                        <p>Фиксируем цену, сроки и объём работ в договоре</p>
-                    </div>
-                </div>
-                <div class="process-step">
-                    <div class="step-number">4</div>
-                    <div>
-                        <h4>Строительство</h4>
-                        <p>Выполняем работы с еженедельными фотоотчётами</p>
-                    </div>
-                </div>
-                <div class="process-step">
-                    <div class="step-number">5</div>
-                    <div>
-                        <h4>Сдача объекта</h4>
-                        <p>Приёмка, гарантийный акт, поддержка после сдачи</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Why Us -->
-    <section class="why-us">
-        <div class="container">
-            <div class="section-label reveal">Почему мы</div>
-            <h2 class="section-title reveal">Четыре причины выбрать СтройМастер</h2>
-            <p class="section-subtitle reveal">Мы не просто строим — мы создаём пространства, в которых приятно жить и работать.</p>
-
-            <div class="why-grid">
-                <div class="why-card reveal reveal-delay-1">
-                    <div class="why-icon">
-                        <svg viewBox="0 0 24 24"><path d="M12 2v4"/><path d="m6.343 6.343 2.828 2.828"/><path d="M2 12h4"/><path d="m17.657 6.343-2.828 2.828"/><path d="M22 12h-4"/><circle cx="12" cy="12" r="4"/></svg>
-                    </div>
-                    <h3>Фиксированная цена</h3>
-                    <p>Стоимость проекта определяется до начала работ и не меняется. Никаких скрытых доплат и неожиданных расходов.</p>
-                </div>
-                <div class="why-card reveal reveal-delay-2">
-                    <div class="why-icon">
-                        <svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4"/><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z"/></svg>
-                    </div>
-                    <h3>Договор и гарантия</h3>
-                    <p>Работаем только по официальному договору. Гарантия на все виды работ — от 2 до 5 лет в зависимости от объекта.</p>
-                </div>
-                <div class="why-card reveal reveal-delay-3">
-                    <div class="why-icon">
-                        <svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-                    </div>
-                    <h3>Собственная бригада</h3>
-                    <p>Штат из 50+ квалифицированных специалистов. Мы не привлекаем случайных подрядчиков — каждый сотрудник проверен.</p>
-                </div>
-                <div class="why-card reveal reveal-delay-4">
-                    <div class="why-icon">
-                        <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
-                    </div>
-                    <h3>Контроль качества</h3>
-                    <p>Многоуровневая система проверки: прораб на объекте ежедневно, инженер-контролёр — на каждом этапе.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact -->
-    <section class="contact" id="contact">
-        <div class="container">
-            <div class="section-label reveal">Контакты</div>
-            <h2 class="section-title reveal">Свяжитесь с нами</h2>
-            <p class="section-subtitle reveal">Оставьте заявку или приезжайте в наш офис. Мы всегда рады ответить на ваши вопросы.</p>
-
-            <div class="contact-grid">
-                <div class="contact-info-list reveal">
-                    <div class="contact-item">
-                        <div class="contact-item-icon">
-                            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                        </div>
-                        <div>
-                            <h4>Адрес офиса</h4>
-                            <p>ул. Жибек Жолу 456, Бишкек,<br>Кыргызская Республика</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-item-icon">
-                            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                        </div>
-                        <div>
-                            <h4>Телефон</h4>
-                            <p>+996 555 123 456<br>+996 312 123 456</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-item-icon">
-                            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-                        </div>
-                        <div>
-                            <h4>Режим работы</h4>
-                            <p>Пн — Сб: 8:00 — 18:00<br>Вс: выходной</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="contact-cta-card reveal reveal-delay-2">
-                    <h3>Получить бесплатную консультацию</h3>
-                    <p>Расскажите нам о вашем проекте, и мы подготовим предварительный расчёт стоимости в течение 24 часов.</p>
-                    <a href="https://wa.me/996555123456?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%BF%D0%BE%D0%BB%D1%83%D1%87%D0%B8%D1%82%D1%8C%20%D0%BA%D0%BE%D0%BD%D1%81%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%86%D0%B8%D1%8E" class="btn btn-primary" target="_blank" rel="noopener">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                        Написать в WhatsApp
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container footer-inner">
-            <div class="footer-copy">
-                &copy; 2026 СтройМастер. Все права защищены.
-            </div>
-            <div class="footer-links">
-                <a href="#services">Услуги</a>
-                <a href="#portfolio">Портфолио</a>
-                <a href="#about">О нас</a>
-                <a href="#contact">Контакты</a>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Floating WhatsApp -->
-    <a href="https://wa.me/996555123456?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D1%80%D0%B0%D1%81%D1%81%D1%87%D0%B8%D1%82%D0%B0%D1%82%D1%8C%20%D1%81%D1%82%D0%BE%D0%B8%D0%BC%D0%BE%D1%81%D1%82%D1%8C%20%D1%81%D1%82%D1%80%D0%BE%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D1%82%D0%B2%D0%B0" class="wa-float" target="_blank" rel="noopener" aria-label="WhatsApp">
-        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-    </a>
-
-    <script>
-        // Header scroll effect
-        const header = document.getElementById('header');
-        let lastScroll = 0;
-
-        window.addEventListener('scroll', () => {
-            const currentScroll = window.pageYOffset;
-            if (currentScroll > 60) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-            lastScroll = currentScroll;
-        }, { passive: true });
-
-        // Mobile menu
-        const burger = document.getElementById('burger');
-        const mobileMenu = document.getElementById('mobileMenu');
-
-        burger.addEventListener('click', () => {
-            burger.classList.toggle('active');
-            mobileMenu.classList.toggle('open');
-            document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
-        });
-
-        document.querySelectorAll('.mobile-link').forEach(link => {
-            link.addEventListener('click', () => {
-                burger.classList.remove('active');
-                mobileMenu.classList.remove('open');
-                document.body.style.overflow = '';
-            });
-        });
-
-        // Intersection Observer for reveal animations
-        const revealObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-
-        document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-
-        // Animated counters
-        function animateCounter(element) {
-            const target = parseInt(element.getAttribute('data-target'));
-            const suffix = element.getAttribute('data-suffix') || '';
-            const duration = 2000;
-            const startTime = performance.now();
-
-            function update(currentTime) {
-                const elapsed = currentTime - startTime;
-                const progress = Math.min(elapsed / duration, 1);
-
-                // Ease out cubic
-                const eased = 1 - Math.pow(1 - progress, 3);
-                const current = Math.round(target * eased);
-
-                element.textContent = current + suffix;
-
-                if (progress < 1) {
-                    requestAnimationFrame(update);
-                }
-            }
-
-            requestAnimationFrame(update);
-        }
-
-        const counterObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const counters = entry.target.querySelectorAll('.stat-number');
-                    counters.forEach(counter => animateCounter(counter));
-                    counterObserver.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.3 });
-
-        const statsSection = document.querySelector('.stats');
-        if (statsSection) counterObserver.observe(statsSection);
-
-        // Process timeline animation
-        const timelineObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const timeline = entry.target;
-                    timeline.classList.add('animated');
-
-                    const steps = timeline.querySelectorAll('.process-step');
-                    steps.forEach((step, index) => {
-                        setTimeout(() => {
-                            step.classList.add('active');
-                        }, 300 * (index + 1));
-                    });
-
-                    timelineObserver.unobserve(timeline);
-                }
-            });
-        }, { threshold: 0.2 });
-
-        const processTimeline = document.getElementById('processTimeline');
-        if (processTimeline) timelineObserver.observe(processTimeline);
-
-        // Smooth scroll for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                e.preventDefault();
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    const headerHeight = header.offsetHeight;
-                    const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight;
-                    window.scrollTo({ top: targetPosition, behavior: 'smooth' });
-                }
-            });
-        });
-    </script>
-</body>
-</html>
