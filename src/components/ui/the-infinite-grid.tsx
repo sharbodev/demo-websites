@@ -181,17 +181,6 @@ export const TheInfiniteGrid = () => {
 
 export const GlobalInfiniteGrid = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const mouse = useRef({ x: -1000, y: -1000 });
-  const dots = useRef<Dot[]>([]);
-
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      mouse.current.x = e.clientX;
-      mouse.current.y = e.clientY;
-    };
-    window.addEventListener("mousemove", handleMouseMove, { passive: true });
-    return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, []);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -199,10 +188,9 @@ export const GlobalInfiniteGrid = () => {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    let animationFrameId: number;
     const gap = 38; // visual screen-wide grid spacing
 
-    const initDots = () => {
+    const drawGrid = () => {
       const w = window.innerWidth;
       const h = window.innerHeight;
       
@@ -212,7 +200,8 @@ export const GlobalInfiniteGrid = () => {
       ctx.resetTransform();
       ctx.scale(dpr, dpr);
 
-      const tempDots: Dot[] = [];
+      ctx.clearRect(0, 0, w, h);
+
       const cols = Math.ceil(w / gap) + 1;
       const rows = Math.ceil(h / gap) + 1;
 
@@ -220,76 +209,23 @@ export const GlobalInfiniteGrid = () => {
         for (let r = 0; r < rows; r++) {
           const x = c * gap;
           const y = r * gap;
-          tempDots.push({
-            x0: x,
-            y0: y,
-            x: x,
-            y: y,
-            opacity: 0.18, // beautiful high-end baseline visibility
-          });
+
+          ctx.beginPath();
+          ctx.fillStyle = "rgba(143, 160, 181, 0.12)"; // beautiful baseline opacity
+          ctx.arc(x, y, 1.0, 0, Math.PI * 2);
+          ctx.fill();
         }
       }
-      dots.current = tempDots;
     };
 
-    initDots();
+    drawGrid();
 
     const handleResize = () => {
-      initDots();
+      drawGrid();
     };
     window.addEventListener("resize", handleResize);
 
-    const repelRadius = 140; // cursor reaction radius
-    const maxRepel = 45; // push distance
-    const ease = 0.08; // inertia ease return
-
-    const animate = () => {
-      const w = window.innerWidth;
-      const h = window.innerHeight;
-      ctx.clearRect(0, 0, w, h);
-
-      dots.current.forEach((dot) => {
-        const dx = dot.x0 - mouse.current.x;
-        const dy = dot.y0 - mouse.current.y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-
-        let targetX = dot.x0;
-        let targetY = dot.y0;
-        let targetOpacity = 0.16;
-        let force = 0;
-
-        if (dist < repelRadius) {
-          force = (repelRadius - dist) / repelRadius;
-          const angle = Math.atan2(dy, dx);
-          const push = force * maxRepel;
-          
-          targetX = dot.x0 + Math.cos(angle) * push;
-          targetY = dot.y0 + Math.sin(angle) * push;
-          targetOpacity = 0.16 + force * 0.7; // glows bright near mouse
-        }
-
-        dot.x += (targetX - dot.x) * ease;
-        dot.y += (targetY - dot.y) * ease;
-        dot.opacity += (targetOpacity - dot.opacity) * ease;
-
-        ctx.beginPath();
-        const r = Math.floor(143 + (56 - 143) * force);
-        const g = Math.floor(160 + (189 - 160) * force);
-        const b = Math.floor(181 + (248 - 181) * force);
-
-        ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${dot.opacity})`;
-        const radius = 1.0 + force * 1.5;
-        ctx.arc(dot.x, dot.y, radius, 0, Math.PI * 2);
-        ctx.fill();
-      });
-
-      animationFrameId = requestAnimationFrame(animate);
-    };
-
-    animate();
-
     return () => {
-      cancelAnimationFrame(animationFrameId);
       window.removeEventListener("resize", handleResize);
     };
   }, []);
@@ -302,3 +238,4 @@ export const GlobalInfiniteGrid = () => {
     />
   );
 };
+
