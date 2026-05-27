@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+
+<html lang="ru"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Белая Улыбка - Стоматологическая Клиника</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "background": "#faf8ff",
+                    "secondary-fixed-dim": "#4cd7f6",
+                    "on-primary-fixed": "#001453",
+                    "surface": "#faf8ff",
+                    "on-surface-variant": "#444653",
+                    "error-container": "#ffdad6",
+                    "secondary-container": "#57dffe",
+                    "surface-container-high": "#e2e7ff",
+                    "surface-dim": "#d2d9f4",
+                    "on-background": "#131b2e",
+                    "on-surface": "#131b2e",
+                    "on-tertiary-fixed-variant": "#384953",
+                    "primary-fixed-dim": "#b8c4ff",
+                    "on-tertiary-fixed": "#0c1e26",
+                    "surface-variant": "#dae2fd",
+                    "tertiary-container": "#3d4d57",
+                    "surface-container-highest": "#dae2fd",
+                    "on-tertiary-container": "#acbec9",
+                    "primary-container": "#1e40af",
+                    "tertiary": "#263640",
+                    "inverse-primary": "#b8c4ff",
+                    "surface-base": "#F8FAFC",
+                    "on-primary": "#ffffff",
+                    "secondary-fixed": "#acedff",
+                    "surface-container-low": "#f2f3ff",
+                    "on-primary-container": "#a8b8ff",
+                    "surface-tint": "#3755c3",
+                    "on-tertiary": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container": "#eaedff",
+                    "inverse-on-surface": "#eef0ff",
+                    "tertiary-fixed-dim": "#b7c9d5",
+                    "surface-bright": "#faf8ff",
+                    "primary-fixed": "#dde1ff",
+                    "secondary": "#00687a",
+                    "on-secondary": "#ffffff",
+                    "primary": "#00288e",
+                    "clinical-gray": "#334155",
+                    "on-secondary-fixed": "#001f26",
+                    "outline-variant": "#c4c5d5",
+                    "inverse-surface": "#283044",
+                    "on-secondary-fixed-variant": "#004e5c",
+                    "tertiary-fixed": "#d3e5f1",
+                    "success-mint": "#10B981",
+                    "on-error": "#ffffff",
+                    "on-secondary-container": "#006172",
+                    "outline": "#757684",
+                    "error": "#ba1a1a",
+                    "on-primary-fixed-variant": "#173bab",
+                    "on-error-container": "#93000a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-desktop": "64px",
+                    "margin-mobile": "20px",
+                    "gutter": "24px",
+                    "container-max": "1280px",
+                    "base": "4px"
+            },
+            "fontFamily": {
+                    "headline-md": ["Manrope"],
+                    "body-lg": ["Manrope"],
+                    "label-md": ["Manrope"],
+                    "headline-xl-mobile": ["Manrope"],
+                    "headline-lg": ["Manrope"],
+                    "label-sm": ["Manrope"],
+                    "body-md": ["Manrope"],
+                    "headline-xl": ["Manrope"]
+            },
+            "fontSize": {
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "headline-xl-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        }
+      }
+    </script>
+<style>
+        .animate-fade-in-up {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .delay-100 { animation-delay: 100ms; }
+        .delay-200 { animation-delay: 200ms; }
+        .delay-300 { animation-delay: 300ms; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface-base text-on-surface font-body-md overflow-x-hidden">
+<!-- Mobile Top Navigation Header -->
+<header class="fixed top-0 left-0 right-0 z-50 bg-surface-container-lowest shadow-sm h-16 flex items-center justify-between px-margin-mobile">
+<div class="font-headline-md text-headline-md font-bold text-primary">Белая Улыбка</div>
+<button class="text-primary p-2">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+</header>
+<!-- Main Content -->
+<main class="pt-16 pb-24">
+<!-- Hero Section -->
+<section class="px-margin-mobile py-10 flex flex-col gap-6 animate-fade-in-up">
+<h1 class="font-headline-xl-mobile text-headline-xl-mobile text-primary">Идеальная улыбка начинается здесь</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Современная стоматология с фокусом на безболезненное лечение и ваш комфорт.</p>
+<div class="relative w-full aspect-square rounded-xl overflow-hidden shadow-[0_4px_20px_0_rgba(15,23,42,0.04)]">
+<img alt="Улыбающаяся пациентка" class="object-cover w-full h-full" data-alt="A macro shot of a healthy, radiant smile in a bright, modern dental clinic. The lighting is high-key and soft, emphasizing a sterile yet welcoming medical environment. The color palette features pristine whites and soft blue accents, reinforcing a sense of clinical clarity and trust." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAEIH_e27He4uJzbOkos3oZjsQttWM7y1FIFuu59LtBSRgrF9vzqLzzy1t4krAFqSElNmUH3GBfsd_xPFD_hrJTWTI5l_mIliPv25jkU4dbO0vaL3K6NDVvFTtCflRes0hlt7VRNITfLJcalPJPPqlfEM3Y8dFSJ6lO5pvk8h0Vp2T3loWASgiJMhYpHKfpfd43kh1GSzC-22jKM_ZPvf1FwcxCeos4SvW8CrRAsh37gkDC9Wmzeqe0b4zxVIUVjwbF3yHaIviqjIM"/>
+</div>
+<button class="w-full bg-primary-container text-on-primary py-4 rounded-lg font-label-md text-label-md shadow-sm active:scale-95 transition-transform mt-2">
+                Записаться на прием
+            </button>
+<!-- Trust Signals -->
+<div class="flex gap-4 overflow-x-auto pb-4 pt-2 snap-x hide-scrollbar">
+<div class="flex-shrink-0 bg-surface-container-lowest p-4 rounded-lg shadow-[0_4px_20px_0_rgba(15,23,42,0.04)] w-48 snap-center flex flex-col gap-2 border border-outline-variant/30">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="verified">verified</span>
+<h3 class="font-label-md text-label-md">15 лет опыта</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Врачи высшей категории</p>
+</div>
+<div class="flex-shrink-0 bg-surface-container-lowest p-4 rounded-lg shadow-[0_4px_20px_0_rgba(15,23,42,0.04)] w-48 snap-center flex flex-col gap-2 border border-outline-variant/30">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="devices">devices</span>
+<h3 class="font-label-md text-label-md">Новое оборудование</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Точная диагностика 3D</p>
+</div>
+<div class="flex-shrink-0 bg-surface-container-lowest p-4 rounded-lg shadow-[0_4px_20px_0_rgba(15,23,42,0.04)] w-48 snap-center flex flex-col gap-2 border border-outline-variant/30">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="sentiment_very_satisfied">sentiment_very_satisfied</span>
+<h3 class="font-label-md text-label-md">Без боли</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Современная анестезия</p>
+</div>
+</div>
+</section>
+<!-- Services Section -->
+<section class="px-margin-mobile py-8 bg-surface-container-lowest animate-fade-in-up delay-100">
+<h2 class="font-headline-lg text-headline-lg text-primary mb-6">Услуги и цены</h2>
+<div class="flex flex-col gap-4">
+<!-- Service Item 1 -->
+<div class="bg-surface-base p-4 rounded-xl border border-outline-variant/50 shadow-[0_4px_20px_0_rgba(15,23,42,0.04)]">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-label-md text-label-md text-on-surface">Профессиональная гигиена</h3>
+<span class="font-label-md text-label-md text-primary">от 4 500 ₽</span>
+</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-3">Ультразвук, Air Flow, фторирование. Предотвращает кариес и осветляет эмаль.</p>
+<div class="inline-flex bg-[#E0F2FE] text-[#0F172A] px-3 py-1 rounded-full font-label-sm text-label-sm">
+                        Профилактика
+                    </div>
+</div>
+<!-- Service Item 2 -->
+<div class="bg-surface-base p-4 rounded-xl border border-outline-variant/50 shadow-[0_4px_20px_0_rgba(15,23,42,0.04)]">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-label-md text-label-md text-on-surface">Лечение кариеса</h3>
+<span class="font-label-md text-label-md text-primary">от 5 000 ₽</span>
+</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-3">Светоотверждаемые пломбы, лечение под микроскопом без боли.</p>
+<div class="inline-flex bg-[#E0F2FE] text-[#0F172A] px-3 py-1 rounded-full font-label-sm text-label-sm">
+                        Терапия
+                    </div>
+</div>
+<!-- Service Item 3 -->
+<div class="bg-surface-base p-4 rounded-xl border border-outline-variant/50 shadow-[0_4px_20px_0_rgba(15,23,42,0.04)]">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-label-md text-label-md text-on-surface">Имплантация</h3>
+<span class="font-label-md text-label-md text-primary">от 35 000 ₽</span>
+</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-3">Восстановление утраченных зубов. Системы премиум и бизнес класса.</p>
+<div class="inline-flex bg-[#E0F2FE] text-[#0F172A] px-3 py-1 rounded-full font-label-sm text-label-sm">
+                        Хирургия
+                    </div>
+</div>
+</div>
+<button class="w-full border border-primary-container text-primary-container py-3 rounded-lg font-label-md text-label-md mt-6 active:bg-surface-container transition-colors">
+                Все услуги
+            </button>
+</section>
+<!-- CTA Block -->
+<section class="mx-margin-mobile my-10 bg-primary-container rounded-xl p-6 text-on-primary shadow-lg animate-fade-in-up delay-200">
+<h2 class="font-headline-lg text-headline-lg mb-2">Боль в зубе?</h2>
+<p class="font-body-md text-body-md opacity-90 mb-6">Примем сегодня. Острая боль обслуживается вне очереди.</p>
+<button class="w-full bg-[#57dffe] text-[#001f26] py-3 rounded-lg font-label-md text-label-md active:scale-95 transition-transform">
+                Срочная запись
+            </button>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-high w-full px-margin-mobile py-8 flex flex-col items-start gap-gutter border-t border-outline-variant pb-24">
+<div class="font-headline-md text-headline-md font-bold text-primary">Белая Улыбка</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant">© 2024 Белая Улыбка. Все права защищены. Стоматологическая клиника с фокусом на здоровье.</p>
+<div class="flex flex-col gap-3 w-full border-t border-outline-variant/50 pt-6">
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-opacity duration-200" href="#">Privacy Policy</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-opacity duration-200" href="#">Terms of Service</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-opacity duration-200" href="#">Sitemap</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-opacity duration-200" href="#">Cookie Policy</a>
+</div>
+</footer>
+<!-- Fixed Mobile Bottom FAB / Quick Action -->
+<div class="fixed bottom-6 right-6 z-50">
+<button class="bg-primary-container text-on-primary w-14 h-14 rounded-full flex items-center justify-center shadow-lg active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-2xl" data-icon="phone_in_talk">phone_in_talk</span>
+</button>
+</div>
+<style>
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</body></html>
+

@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="ru"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>АвтоПро - Профессиональный Автосервис</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-fixed": "#eaddff",
+                        "surface-container-low": "#1b1b1e",
+                        "on-primary-container": "#003751",
+                        "surface-glass": "rgba(255, 255, 255, 0.03)",
+                        "on-primary": "#00344d",
+                        "inverse-primary": "#006591",
+                        "tertiary": "#ffb95f",
+                        "primary-container": "#0ea5e9",
+                        "on-tertiary-container": "#4a2c00",
+                        "construction-red": "#DC2626",
+                        "surface-container-highest": "#353438",
+                        "tertiary-container": "#d88a00",
+                        "surface-variant": "#353438",
+                        "primary-fixed-dim": "#89ceff",
+                        "on-tertiary-fixed": "#2a1700",
+                        "on-tertiary-fixed-variant": "#653e00",
+                        "on-surface": "#e4e1e6",
+                        "auto-cyan": "#22D3EE",
+                        "surface-dim": "#131316",
+                        "on-background": "#e4e1e6",
+                        "surface-container-high": "#2a2a2d",
+                        "surface": "#131316",
+                        "on-surface-variant": "#bec8d2",
+                        "error-container": "#93000a",
+                        "secondary-container": "#6001d1",
+                        "on-primary-fixed": "#001e2f",
+                        "background": "#131316",
+                        "secondary-fixed-dim": "#d2bbff",
+                        "on-error-container": "#ffdad6",
+                        "on-primary-fixed-variant": "#004c6e",
+                        "error": "#ffb4ab",
+                        "on-secondary-container": "#c9aeff",
+                        "outline": "#88929b",
+                        "on-error": "#690005",
+                        "tertiary-fixed": "#ffddb8",
+                        "on-secondary-fixed-variant": "#5a00c6",
+                        "on-secondary-fixed": "#25005a",
+                        "outline-variant": "#3e4850",
+                        "inverse-surface": "#e4e1e6",
+                        "secondary": "#d2bbff",
+                        "on-secondary": "#3f008e",
+                        "primary": "#89ceff",
+                        "restaurant-accent": "#92400E",
+                        "education-indigo": "#1E1B4B",
+                        "primary-fixed": "#c9e6ff",
+                        "surface-bright": "#39393c",
+                        "tertiary-fixed-dim": "#ffb95f",
+                        "inverse-on-surface": "#303033",
+                        "surface-container": "#1f1f22",
+                        "surface-container-lowest": "#0e0e11",
+                        "surface-tint": "#89ceff",
+                        "on-tertiary": "#472a00"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "base": "8px",
+                        "margin-mobile": "20px",
+                        "gutter": "24px",
+                        "container-max": "1280px",
+                        "margin-desktop": "64px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Outfit"],
+                        "label-md": ["Inter"],
+                        "headline-lg-mobile": ["Outfit"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-sm": ["Outfit"],
+                        "headline-lg": ["Outfit"],
+                        "display-lg": ["Outfit"],
+                        "label-sm": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["32px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "label-md": ["14px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "headline-sm": ["24px", {"lineHeight": "1.4", "fontWeight": "500"}],
+                        "headline-lg": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "display-lg": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "label-sm": ["12px", {"lineHeight": "1", "fontWeight": "500"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .delay-100 { animation-delay: 100ms; }
+        .delay-200 { animation-delay: 200ms; }
+        .delay-300 { animation-delay: 300ms; }
+        .delay-400 { animation-delay: 400ms; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-surface text-on-surface antialiased flex flex-col min-h-screen">
+<!-- Top Navigation (Mobile Friendly) -->
+<header class="bg-surface/80 dark:bg-surface/80 backdrop-blur-xl fixed top-0 w-full z-50 border-b border-outline-variant/10 shadow-sm">
+<div class="flex justify-between items-center px-margin-mobile md:px-margin-desktop h-20 max-w-container-max mx-auto">
+<div class="font-headline-sm text-headline-sm font-bold text-auto-cyan tracking-tight">
+                АвтоПро
+            </div>
+<nav class="hidden md:flex gap-gutter">
+<!-- Suppressed on mobile, visible on web -->
+<a class="text-on-surface-variant hover:text-auto-cyan transition-colors font-label-md text-label-md" href="/restaurant">Restaurant</a>
+<a class="text-on-surface-variant hover:text-auto-cyan transition-colors font-label-md text-label-md" href="/education">Education</a>
+<a class="text-on-surface-variant hover:text-auto-cyan transition-colors font-label-md text-label-md" href="/construction">Construction</a>
+<a class="text-auto-cyan font-bold border-b-2 border-auto-cyan pb-1 font-label-md text-label-md" href="/auto-service">Auto Service</a>
+</nav>
+<button class="bg-auto-cyan text-surface font-label-md text-label-md px-4 py-2 rounded-lg hover:bg-auto-cyan/90 transition-colors hidden md:block">
+                Contact Us
+            </button>
+<!-- Mobile Menu Icon (Visual Only) -->
+<button class="md:hidden text-on-surface">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+</div>
+</header>
+<main class="flex-grow pt-20">
+<!-- Hero Section -->
+<section class="px-margin-mobile pt-12 pb-16 flex flex-col items-center text-center fade-in-up">
+<div class="w-full h-64 rounded-xl mb-8 overflow-hidden relative border border-white/10 shadow-[0_0_15px_rgba(34,211,238,0.15)] bg-surface-container-high" data-alt="A highly technological scene showing a modern car engine bay illuminated by cool, artificial cyan and blue LED diagnostic lights. A mechanic's hands or a specialized diagnostic laptop are visible, analyzing complex engine data. The setting is a pristine, dark-themed industrial auto shop with an atmosphere of precision engineering and advanced digital diagnostics. The visual style is premium, sharp, and focused on technological authority." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAX0hMRMrYJRSsbzfNacz6CG4_MnvNTqaMkkYdJR1rWhhBItlNQp9K1eX16C5goK3C8hdEwQL_dkT5T9rfJjHWScS6uUYCoBZPSz77brabriFHeUCGBZhCCddm8LQ6TU55Hr97AOUsJ5bTLWHMiwS1J267ISMal3uNOjqMbAc8QHumcP10DLnXQrn-aFjzrpFl2FRVRzYMu-lwXGC0pcMIt8s3MTTjO_goRDhA2Ryi_z48IXeiLBwvj9fRZWHC7UvCNpH7dL83v5M0'); background-size: cover; background-position: center;">
+<div class="absolute inset-0 bg-gradient-to-t from-surface to-transparent"></div>
+</div>
+<div class="bg-auto-cyan/15 text-auto-cyan font-label-sm text-label-sm px-3 py-1 rounded-full mb-4 inline-block uppercase tracking-widest border border-auto-cyan/30">
+                Высокие Технологии
+            </div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mb-4">
+                Точная <span class="text-auto-cyan">Диагностика</span> и Ремонт
+            </h1>
+<p class="font-body-md text-body-md text-on-surface-variant mb-8 max-w-sm">
+                Инновационные решения для обслуживания вашего автомобиля. От компьютерного анализа до капитального ремонта двигателя с гарантией качества.
+            </p>
+<button class="w-full bg-surface-container-high border border-auto-cyan/30 text-auto-cyan font-label-md text-label-md py-4 rounded-lg flex justify-center items-center gap-2 hover:bg-auto-cyan/10 transition-colors shadow-[inset_0_0_10px_rgba(34,211,238,0.05)] active:scale-95">
+<span class="material-symbols-outlined" data-icon="directions_car">directions_car</span>
+                Записаться на Сервис
+            </button>
+</section>
+<!-- Services Stack -->
+<section class="px-margin-mobile py-8 fade-in-up delay-100">
+<h2 class="font-headline-md text-headline-md text-on-surface mb-6 border-l-4 border-auto-cyan pl-3">Наши Услуги</h2>
+<div class="flex flex-col gap-4">
+<!-- Service Card 1 -->
+<div class="bg-surface-glass backdrop-blur-xl border border-white/10 rounded-xl p-6 relative overflow-hidden group hover:border-auto-cyan/30 transition-colors">
+<div class="absolute top-0 right-0 w-24 h-24 bg-auto-cyan/5 rounded-bl-full -z-10 group-hover:bg-auto-cyan/10 transition-colors"></div>
+<div class="flex justify-between items-start mb-4">
+<div class="bg-surface-container-highest p-3 rounded-lg border border-white/5">
+<span class="material-symbols-outlined text-auto-cyan" data-icon="computer">computer</span>
+</div>
+<span class="font-headline-sm text-headline-sm text-on-surface">от 2,500 ₽</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-2">Компьютерная Диагностика</h3>
+<p class="font-body-md text-body-md text-on-surface-variant text-sm mb-4">
+                        Полное сканирование систем автомобиля на дилерском оборудовании. Выявление скрытых ошибок.
+                    </p>
+<div class="w-full bg-surface-container-high h-1 rounded-full overflow-hidden">
+<div class="bg-auto-cyan w-3/4 h-full"></div>
+</div>
+</div>
+<!-- Service Card 2 -->
+<div class="bg-surface-glass backdrop-blur-xl border border-white/10 rounded-xl p-6 relative overflow-hidden group hover:border-auto-cyan/30 transition-colors fade-in-up delay-200">
+<div class="absolute top-0 right-0 w-24 h-24 bg-auto-cyan/5 rounded-bl-full -z-10 group-hover:bg-auto-cyan/10 transition-colors"></div>
+<div class="flex justify-between items-start mb-4">
+<div class="bg-surface-container-highest p-3 rounded-lg border border-white/5">
+<span class="material-symbols-outlined text-auto-cyan" data-icon="build">build</span>
+</div>
+<span class="font-headline-sm text-headline-sm text-on-surface">от 1,500 ₽</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-2">Техническое Обслуживание</h3>
+<p class="font-body-md text-body-md text-on-surface-variant text-sm mb-4">
+                        Замена масла, фильтров, колодок. Регламентное ТО по стандартам производителя.
+                    </p>
+<div class="w-full bg-surface-container-high h-1 rounded-full overflow-hidden">
+<div class="bg-auto-cyan w-full h-full"></div>
+</div>
+</div>
+<!-- Service Card 3 -->
+<div class="bg-surface-glass backdrop-blur-xl border border-white/10 rounded-xl p-6 relative overflow-hidden group hover:border-auto-cyan/30 transition-colors fade-in-up delay-300">
+<div class="absolute top-0 right-0 w-24 h-24 bg-auto-cyan/5 rounded-bl-full -z-10 group-hover:bg-auto-cyan/10 transition-colors"></div>
+<div class="flex justify-between items-start mb-4">
+<div class="bg-surface-container-highest p-3 rounded-lg border border-white/5">
+<span class="material-symbols-outlined text-auto-cyan" data-icon="settings">settings</span>
+</div>
+<span class="font-headline-sm text-headline-sm text-on-surface">от 15,000 ₽</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-2">Ремонт Двигателя</h3>
+<p class="font-body-md text-body-md text-on-surface-variant text-sm mb-4">
+                        Дефектовка, замена узлов, капитальный ремонт бензиновых и дизельных ДВС.
+                    </p>
+<div class="w-full bg-surface-container-high h-1 rounded-full overflow-hidden">
+<div class="bg-auto-cyan w-1/2 h-full"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Action Section -->
+<section class="px-margin-mobile py-12 fade-in-up delay-400">
+<div class="bg-surface-container-low border border-white/10 rounded-xl p-8 text-center relative overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-br from-auto-cyan/10 to-transparent pointer-events-none"></div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-2 relative z-10">Нужна консультация?</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6 relative z-10">Свяжитесь с мастером напрямую для быстрой оценки.</p>
+<button class="w-full bg-auto-cyan text-surface font-label-md text-label-md py-4 rounded-lg flex justify-center items-center gap-2 shadow-[0_4px_14px_rgba(34,211,238,0.39)] hover:bg-auto-cyan/90 transition-all active:scale-95 relative z-10">
+<svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"></path>
+</svg>
+                    Написать в WhatsApp
+                </button>
+</div>
+</section>
+</main>
+<!-- Footer Component -->
+<!-- Gallery Section -->
+<section class="px-margin-mobile py-8 fade-in-up delay-400">
+<h2 class="font-headline-md text-headline-md text-on-surface mb-6 border-l-4 border-auto-cyan pl-3">Наши будни</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<!-- Image 1: High-tech service area -->
+<div class="group relative overflow-hidden rounded-xl border border-white/10 shadow-[0_0_15px_rgba(34,211,238,0.1)] transition-all hover:border-auto-cyan/50">
+<img alt="Modern high-tech car service interior" class="w-full h-64 md:h-80 object-cover transition-transform duration-500 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBppmnuW9ntym4-Oab15sSXDvFQvyWTwW-0IhejSzesvM_W8GC_y8s1repkAXu0lwV7i2EEw7AZ6699rAOqLo_jS8E1_nKH7VIcKEsY9XAPleHNvW2miRVBPJDTuEVI7Dq2qWJixdz5TOzedFe4pf4B7QCMYQVYIdZpZo3z9qTTYeZGLLzBP92XHA3mqXcj9YU4QlEO-kbxtOfryk-9zigXbrsQgvQBvX4LZHIP4rlWJkUvkpMkK5VjZRpFLnTg59Yt9UG0i4Rodv4"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
+<p class="text-auto-cyan font-label-md">Технологичный сервис</p>
+</div>
+</div>
+<!-- Image 2: High-performance engine -->
+<div class="group relative overflow-hidden rounded-xl border border-white/10 shadow-[0_0_15px_rgba(34,211,238,0.1)] transition-all hover:border-auto-cyan/50">
+<img alt="High-performance car engine" class="w-full h-64 md:h-80 object-cover transition-transform duration-500 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCpDzBFpa4axuZ7Su6FiM-gThYLhA4w4F4EEk_D4mDxLN-irEsvi248FkMybAZgHBufJTzt6hoXZPh9UjyarhGjQDjpSU_IWd7x1vdXOdF_N6JzLmkrZ2589RvSPvO_r0vEnpNma6obMAByyPeXCWSR_F8HDN3j6uM0dq3E2ujGMqjw-w7QIdGmqlidJ2po32mN1RhSZpLFce1ACY_lbl0wB25IJez17qNXVLLCylayfjcqk7wQ5V6AkxciDQMm8OVniYhgN07eCxI"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
+<p class="text-auto-cyan font-label-md">Точность в деталях</p>
+</div>
+</div>
+</div>
+</section><footer class="bg-surface-container-lowest dark:bg-surface-container-lowest w-full pt-12 pb-10 border-t border-outline-variant/20">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto text-center md:text-left">
+<div class="mb-8 md:mb-0">
+<div class="font-headline-md text-headline-md text-on-surface mb-4">АвтоПро</div>
+<p class="font-body-md text-body-md text-on-surface-variant text-sm">© 2024 WebPro Multi-Niche Solutions. Precision Engineered.</p>
+</div>
+<div class="flex flex-col gap-3 font-body-md text-body-md">
+<a class="text-on-surface-variant hover:text-auto-cyan transition-colors" href="/restaurant">Chaikhana Bishkek</a>
+<a class="text-on-surface-variant hover:text-auto-cyan transition-colors" href="/education">Bilim Education</a>
+<a class="text-on-surface-variant hover:text-auto-cyan transition-colors" href="/construction">StroyMaster</a>
+</div>
+<div class="flex flex-col gap-3 font-body-md text-body-md mt-4 md:mt-0">
+<a class="text-auto-cyan underline" href="/auto-service">AutoPro Service</a>
+<a class="text-on-surface-variant hover:text-auto-cyan transition-colors" href="#">WhatsApp Support</a>
+<a class="text-on-surface-variant hover:text-auto-cyan transition-colors" href="#">Privacy Policy</a>
+</div>
+</div>
+</footer>
+</body></html>
+

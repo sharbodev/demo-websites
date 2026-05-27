@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="ru"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Чайхана Бишкек - Мобильная версия</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Outfit:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "secondary-fixed": "#eaddff",
+                      "surface-container-low": "#1b1b1e",
+                      "on-primary-container": "#003751",
+                      "surface-glass": "rgba(255, 255, 255, 0.03)",
+                      "on-primary": "#00344d",
+                      "inverse-primary": "#006591",
+                      "tertiary": "#ffb95f",
+                      "primary-container": "#0ea5e9",
+                      "on-tertiary-container": "#4a2c00",
+                      "construction-red": "#DC2626",
+                      "surface-container-highest": "#353438",
+                      "tertiary-container": "#d88a00",
+                      "surface-variant": "#353438",
+                      "primary-fixed-dim": "#89ceff",
+                      "on-tertiary-fixed": "#2a1700",
+                      "on-tertiary-fixed-variant": "#653e00",
+                      "on-surface": "#e4e1e6",
+                      "auto-cyan": "#22D3EE",
+                      "surface-dim": "#131316",
+                      "on-background": "#e4e1e6",
+                      "surface-container-high": "#2a2a2d",
+                      "surface": "#131316",
+                      "on-surface-variant": "#bec8d2",
+                      "error-container": "#93000a",
+                      "secondary-container": "#6001d1",
+                      "on-primary-fixed": "#001e2f",
+                      "background": "#131316",
+                      "secondary-fixed-dim": "#d2bbff",
+                      "on-error-container": "#ffdad6",
+                      "on-primary-fixed-variant": "#004c6e",
+                      "error": "#ffb4ab",
+                      "on-secondary-container": "#c9aeff",
+                      "outline": "#88929b",
+                      "on-error": "#690005",
+                      "tertiary-fixed": "#ffddb8",
+                      "on-secondary-fixed-variant": "#5a00c6",
+                      "on-secondary-fixed": "#25005a",
+                      "outline-variant": "#3e4850",
+                      "inverse-surface": "#e4e1e6",
+                      "secondary": "#d2bbff",
+                      "on-secondary": "#3f008e",
+                      "primary": "#89ceff",
+                      "restaurant-accent": "#92400E",
+                      "education-indigo": "#1E1B4B",
+                      "primary-fixed": "#c9e6ff",
+                      "surface-bright": "#39393c",
+                      "tertiary-fixed-dim": "#ffb95f",
+                      "inverse-on-surface": "#303033",
+                      "surface-container": "#1f1f22",
+                      "surface-container-lowest": "#0e0e11",
+                      "surface-tint": "#89ceff",
+                      "on-tertiary": "#472a00"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "base": "8px",
+                      "margin-mobile": "20px",
+                      "gutter": "24px",
+                      "container-max": "1280px",
+                      "margin-desktop": "64px"
+              },
+              "fontFamily": {
+                      "headline-md": [
+                              "Outfit"
+                      ],
+                      "label-md": [
+                              "Inter"
+                      ],
+                      "headline-lg-mobile": [
+                              "Outfit"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "headline-sm": [
+                              "Outfit"
+                      ],
+                      "headline-lg": [
+                              "Outfit"
+                      ],
+                      "display-lg": [
+                              "Outfit"
+                      ],
+                      "label-sm": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "headline-md": [
+                              "32px",
+                              {
+                                      "lineHeight": "1.3",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "label-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "1",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "32px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-sm": [
+                              "24px",
+                              {
+                                      "lineHeight": "1.4",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "headline-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "display-lg": [
+                              "64px",
+                              {
+                                      "lineHeight": "1.1",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "label-sm": [
+                              "12px",
+                              {
+                                      "lineHeight": "1",
+                                      "fontWeight": "500"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .animate-fade-in-up {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .delay-100 { animation-delay: 100ms; }
+        .delay-200 { animation-delay: 200ms; }
+        .delay-300 { animation-delay: 300ms; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface antialiased overflow-x-hidden selection:bg-tertiary selection:text-on-tertiary-container">
+<!-- Mobile Header (Hidden on Desktop) -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 dark:bg-surface/80 backdrop-blur-xl border-b border-outline-variant/10 shadow-sm md:hidden px-margin-mobile h-16 flex items-center justify-between">
+<div class="font-headline-sm text-headline-sm font-bold text-tertiary tracking-tight">Чайхана Бишкек</div>
+<button class="text-on-surface-variant hover:text-tertiary transition-colors p-2 active:scale-95 transition-transform rounded-full hover:bg-surface-glass">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</header>
+<!-- TopNavBar (Web - Hidden on Mobile) -->
+<nav class="hidden md:flex justify-between items-center px-margin-desktop h-20 max-w-container-max mx-auto fixed top-0 w-full z-50 bg-surface/80 dark:bg-surface/80 backdrop-blur-xl border-b border-outline-variant/10 shadow-sm">
+<a href="/" class="font-headline-sm text-headline-sm font-bold text-primary tracking-tight">WebPro Ecosystem</a>
+<ul class="flex gap-gutter items-center">
+<li><a class="font-label-md text-label-md text-primary font-bold border-b-2 border-primary pb-1 active:scale-95 transition-transform hover:bg-surface-glass transition-all duration-150 px-2 py-1 rounded" href="/restaurant">Restaurant</a></li>
+<li><a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors active:scale-95 transition-transform hover:bg-surface-glass transition-all duration-150 px-2 py-1 rounded" href="/education">Education</a></li>
+<li><a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors active:scale-95 transition-transform hover:bg-surface-glass transition-all duration-150 px-2 py-1 rounded" href="/construction">Construction</a></li>
+<li><a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors active:scale-95 transition-transform hover:bg-surface-glass transition-all duration-150 px-2 py-1 rounded" href="/auto-service">Auto Service</a></li>
+</ul>
+<button class="bg-primary/10 text-primary font-label-md text-label-md px-4 py-2 rounded-full border border-primary/20 hover:bg-primary/20 active:scale-95 transition-all">Contact Us</button>
+</nav>
+<!-- Main Content -->
+<main class="pt-16 md:pt-20 pb-24 md:pb-32">
+<!-- Hero Section (Mobile Optimized) -->
+<section class="relative min-h-[618px] flex items-end px-margin-mobile pb-12 mb-16" data-alt="A dark, atmospheric restaurant interior with warm ambient lighting. Low key exposure emphasizing rich textures of wood and subtle glowing orange accents from pendant lights. High-end dining aesthetic with a deep, modern-technical dark mode vibe." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAiJ75fBaluYSZjWtaXw1-46AFn6j9HB-_mH62UT8d-iMbGwLnRZodVS-INkyK00ZTH3OM4uPh62C3zJeXImg0IcSDEHlcg7oXUJ5_g6iTjo9x-x_uP9mnPi3d3ZXn88yejmGMJl7vEj5Mnz4O2M6caaDxlROZip0XFVoeFSDvHKFXvsyIWhKKDFz4pRFYDd9Xo5yzilItxpww4RFtyPljJfRi0xQIu2zakHGY3XJjigWq_eUJbK0u5vFCfe4uUAnGcP0S3H3FJVIE'); background-size: cover; background-position: center;">
+<!-- Overlay -->
+<div class="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent"></div>
+<div class="relative z-10 w-full animate-fade-in-up">
+<div class="inline-block px-3 py-1 bg-tertiary/15 text-tertiary font-label-sm text-label-sm rounded-full mb-4 border border-tertiary/20 backdrop-blur-md">
+<span class="material-symbols-outlined text-[14px] align-middle mr-1">restaurant</span>
+                    Традиционная кухня
+                </div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mb-4">Вкус настоящего Востока</h1>
+<p class="font-body-md text-body-md text-on-surface-variant mb-8 max-w-sm">Атмосферное место для встреч с друзьями и близкими. Уютный темный интерьер и аутентичные блюда.</p>
+<button class="w-full bg-tertiary text-on-tertiary-container font-label-md text-label-md py-4 rounded-xl flex items-center justify-center gap-2 active:scale-95 transition-transform shadow-[0_0_20px_rgba(255,185,95,0.2)]">
+                    Забронировать стол
+                    <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</section>
+<!-- Menu Section -->
+<section class="px-margin-mobile mb-16 max-w-md mx-auto">
+<h2 class="font-headline-sm text-headline-sm text-on-surface mb-8 animate-fade-in-up">Популярные блюда</h2>
+<div class="space-y-4">
+<!-- Menu Item 1 -->
+<div class="bg-surface-container-low rounded-xl p-4 border border-outline-variant/10 backdrop-blur-md flex items-center gap-4 animate-fade-in-up delay-100 relative overflow-hidden group">
+<div class="absolute inset-0 bg-gradient-to-r from-tertiary/0 via-tertiary/5 to-tertiary/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
+<div class="w-20 h-20 rounded-lg bg-surface flex-shrink-0 relative overflow-hidden" data-alt="A close up shot of traditional Uzbek Plov served on a dark rustic plate. Rich, warm lighting highlights the rice, tender meat, and carrots. The background is a moody, blurred dark surface." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDw5vo2DAVPh7Teee2GmRzMu1Tf8nTSrM9BOD0SmmTYfvTW4DlXyCYddYlRYM0zk-EDwXOoPlMzmIiFHWZBZaETOEd5Z7meivKmj0Dpr-EfMxxKCKn0J1LJKjj_rmu9_yvppodiE7pwHZWdVufT1sjfTHO1-EwEdCb6gYTeMFNrd2XlTgWLA2PmiLIyWOXLBhaTqEBoQN4bsAzJtKWYj-zezXd8f-Lqo4vU9goi5pF8-krIvQCJaWGH1Eh-EauvoMkk-goZXl9JSi8'); background-size: cover; background-position: center;">
+<div class="absolute inset-0 ring-1 ring-inset ring-white/10 rounded-lg"></div>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-label-md text-label-md text-on-surface">Узгенский Плов</h3>
+<span class="font-label-md text-label-md text-tertiary">450 ₽</span>
+</div>
+<p class="font-body-md text-[14px] leading-snug text-on-surface-variant line-clamp-2">Традиционный плов из узгенского риса с бараниной и специями.</p>
+</div>
+</div>
+<!-- Menu Item 2 -->
+<div class="bg-surface-container-low rounded-xl p-4 border border-outline-variant/10 backdrop-blur-md flex items-center gap-4 animate-fade-in-up delay-200 relative overflow-hidden group">
+<div class="absolute inset-0 bg-gradient-to-r from-tertiary/0 via-tertiary/5 to-tertiary/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
+<div class="w-20 h-20 rounded-lg bg-surface flex-shrink-0 relative overflow-hidden" data-alt="A bowl of rich Lagman noodle soup on a dark wooden table. Steam rising from the hot broth, lit by warm, focused lighting against a deep dark background." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDewfC88lWK_jFv7E1TO1Z46auRiHsOLmW2gETIuKEW6lq6_w7qJBhHDe4HsEhJksS1cGtGDDnm-50OdUZKIdtNqwY-F7p1LiByOX-8k8sCPk9Rmz9j5xHnsLhgMHz6_bDgsALuCeEpPT8hxvKe85_dX9UC0nudlu9UDs4mh1FfjeGMbOMXMsS-mZw-IrCA87kkybXm9qjecSaHz9GLfUC98nxmNdZxuMv_nM96KtUYnFwJHQxACNwWR3yD_ogfCdA_qJwDXJNy3YA'); background-size: cover; background-position: center;">
+<div class="absolute inset-0 ring-1 ring-inset ring-white/10 rounded-lg"></div>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-label-md text-label-md text-on-surface">Босо Лагман</h3>
+<span class="font-label-md text-label-md text-tertiary">380 ₽</span>
+</div>
+<p class="font-body-md text-[14px] leading-snug text-on-surface-variant line-clamp-2">Жареная домашняя лапша с мясом и овощами.</p>
+</div>
+</div>
+<!-- Menu Item 3 -->
+<div class="bg-surface-container-low rounded-xl p-4 border border-outline-variant/10 backdrop-blur-md flex items-center gap-4 animate-fade-in-up delay-300 relative overflow-hidden group">
+<div class="absolute inset-0 bg-gradient-to-r from-tertiary/0 via-tertiary/5 to-tertiary/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
+<div class="w-20 h-20 rounded-lg bg-surface flex-shrink-0 relative overflow-hidden" data-alt="Juicy shashlik skewers resting on a dark slate board. Subtle smoke in the background. High contrast, warm side lighting emphasizing the grilled texture of the meat in a dark moody setting." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCR_FAHtmSPmlQW7P91mB6IPhk3hxB98Ccxn592oGwHqa-x0f1HFJmSvJt07m0iSLOl9e0deDETKFB5JqJQ4bW2zHxTAL0zT6WUvhK-p6woimA8tPerWKMlBC3GctjI9wF35IUVG1wa2hNxE6z9iztwFfjDGUyL-4t2wUha2I5p0UoDgAjBTG0NM01buK_nH5GvALdqvMwqYKJc7SdjpEp1SkOo2DS9sGJEN5QmIStsOprq5FezCrPPYHdXULwD-CFBkM5TxF0uYWg'); background-size: cover; background-position: center;">
+<div class="absolute inset-0 ring-1 ring-inset ring-white/10 rounded-lg"></div>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-label-md text-label-md text-on-surface">Шашлык из баранины</h3>
+<span class="font-label-md text-label-md text-tertiary">520 ₽</span>
+</div>
+<p class="font-body-md text-[14px] leading-snug text-on-surface-variant line-clamp-2">Сочные куски молодого барашка, маринованные по особому рецепту.</p>
+</div>
+</div>
+</div>
+<div class="mt-6 text-center animate-fade-in-up delay-300">
+<button class="text-tertiary font-label-md text-label-md inline-flex items-center gap-1 hover:text-tertiary-fixed transition-colors">
+                    Смотреть всё меню
+                    <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+</section>
+<!-- Booking Form -->
+<section class="px-margin-mobile max-w-md mx-auto">
+<div class="bg-surface-container-high rounded-2xl p-6 border border-outline-variant/20 animate-fade-in-up relative overflow-hidden">
+<!-- Decorative element -->
+<div class="absolute top-0 right-0 w-32 h-32 bg-tertiary/5 rounded-bl-[100px] pointer-events-none"></div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface mb-2 relative z-10">Бронирование</h2>
+<p class="font-body-md text-[14px] text-on-surface-variant mb-6 relative z-10">Оставьте заявку, и мы свяжемся с вами для подтверждения.</p>
+<form class="space-y-4 relative z-10" onsubmit="event.preventDefault();">
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-1">Имя</label>
+<input class="w-full bg-surface-container-lowest border-b-2 border-outline-variant/30 focus:border-tertiary text-on-surface font-body-md py-3 px-4 rounded-t-lg outline-none transition-colors" placeholder="Ваше имя" type="text"/>
+</div>
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-1">Телефон</label>
+<input class="w-full bg-surface-container-lowest border-b-2 border-outline-variant/30 focus:border-tertiary text-on-surface font-body-md py-3 px-4 rounded-t-lg outline-none transition-colors" placeholder="+7 (___) ___-__-__" type="tel"/>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-1">Дата</label>
+<input class="w-full bg-surface-container-lowest border-b-2 border-outline-variant/30 focus:border-tertiary text-on-surface font-body-md py-3 px-4 rounded-t-lg outline-none transition-colors" style="color-scheme: dark;" type="date"/>
+</div>
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-1">Гости</label>
+<select class="w-full bg-surface-container-lowest border-b-2 border-outline-variant/30 focus:border-tertiary text-on-surface font-body-md py-3 px-4 rounded-t-lg outline-none transition-colors appearance-none">
+<option>2 персоны</option>
+<option>3-4 персоны</option>
+<option>5-6 персон</option>
+<option>Более 6</option>
+</select>
+</div>
+</div>
+<button class="w-full bg-transparent border-2 border-tertiary text-tertiary font-label-md text-label-md py-3 rounded-xl mt-4 active:scale-95 transition-transform hover:bg-tertiary/10" type="submit">
+                        Отправить заявку
+                    </button>
+</form>
+</div>
+</section>
+</main>
+<!-- Footer Component (Shared) -->
+<section class="px-margin-mobile mb-16 max-w-md mx-auto">
+<h2 class="font-headline-sm text-headline-sm text-on-surface mb-8 animate-fade-in-up">Атмосфера и вкус</h2>
+<div class="grid grid-cols-1 gap-4">
+<div class="animate-fade-in-up delay-100 rounded-2xl overflow-hidden border border-outline-variant/10 shadow-lg">
+<img alt="Интерьер ресторана" class="w-full h-64 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCSJJQaC3C43BCtLxlw0L4IyIMo75akfuZ7GsYJOgPpN5TUDsndkXFiM87xDWXti4jXsWWx6kHG8e9CxXMSzXHMxQhz-A_YnAMnbOc-Wz3unwpPEsTMkFssp_m5osT7a6_13qdtXFUME8YIrzfqKH5KW1dT9Oi-TWwamH5HBZnSWFtQhPvvzRMN-pdWkRASaPhFm7DV-DGiAd8Ve_HZAfdW0wvb139k5LFbbM8UBD14_44We62sxiLY8fikm6NRstGYngXPikVpD5Q"/>
+</div>
+<div class="animate-fade-in-up delay-200 rounded-2xl overflow-hidden border border-outline-variant/10 shadow-lg">
+<img alt="Фирменный плов" class="w-full h-64 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDyidFHiq-_f6AibqLV3oTsFI--lpKzRzACr2PFXtty5Kw29NXPLifxD6wGiYpfJ-JWr8z-KaSJ9oXyZzpO1nCdiIc9D4IldlsQcKgPVjzLPDqzz2bHqms7LtDGp6ad6GJBX2c49sIjYnlX9eW4YyKyXT606pdTetHd66dPjd00iIoDGkQwLe8-a0ayd0I_zsVsF1JlhGfVslMR5-pXYE4rCQeKmxotXU3dz5_IqGAlmYn7gmvBpT6PQc4taO2y_zUXfCKbYCcu87s"/>
+</div>
+</div>
+</section><footer class="w-full pt-20 pb-10 bg-surface-container-lowest dark:bg-surface-container-lowest border-t border-outline-variant/20 grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-desktop max-w-container-max mx-auto">
+<div class="col-span-1 md:col-span-4 mb-8">
+<div class="font-headline-md text-headline-md text-on-surface">WebPro Ecosystem</div>
+</div>
+<div class="flex flex-col gap-4">
+<a class="font-body-md text-body-md text-primary underline" href="/restaurant">Chaikhana Bishkek</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface hover:text-primary transition-colors" href="/education">Bilim Education</a>
+</div>
+<div class="flex flex-col gap-4">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface hover:text-primary transition-colors" href="/construction">StroyMaster</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface hover:text-primary transition-colors" href="/auto-service">AutoPro Service</a>
+</div>
+<div class="flex flex-col gap-4">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface hover:text-primary transition-colors" href="#">WhatsApp Support</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface hover:text-primary transition-colors" href="#">Privacy Policy</a>
+</div>
+<div class="col-span-1 md:col-span-4 mt-8 pt-8 border-t border-outline-variant/10 text-on-surface-variant font-body-md text-[14px]">
+            © 2024 WebPro Multi-Niche Solutions. Precision Engineered.
+        </div>
+</footer>
+<!-- Mobile Bottom Navigation Shell -->
+<nav class="md:hidden fixed bottom-0 w-full bg-surface-container/95 backdrop-blur-xl border-t border-outline-variant/10 pb-safe pt-2 px-2 flex justify-around items-center z-50">
+<button class="flex flex-col items-center p-2 text-tertiary">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 1;">restaurant</span>
+<span class="font-label-sm text-[10px]">Меню</span>
+</button>
+<button class="flex flex-col items-center p-2 text-on-surface-variant hover:text-tertiary transition-colors">
+<span class="material-symbols-outlined mb-1">book_online</span>
+<span class="font-label-sm text-[10px]">Бронь</span>
+</button>
+<button class="flex flex-col items-center p-2 text-on-surface-variant hover:text-tertiary transition-colors">
+<span class="material-symbols-outlined mb-1">location_on</span>
+<span class="font-label-sm text-[10px]">Контакты</span>
+</button>
+</nav>
+<!-- Support for safe area inset on mobile -->
+<style>
+        .pb-safe { padding-bottom: env(safe-area-inset-bottom, 16px); }
+    </style>
+<script>
+        // Simple intersection observer for scroll animations
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animationPlayState = 'running';
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.animate-fade-in-up').forEach((el) => {
+                el.style.animationPlayState = 'paused';
+                observer.observe(el);
+            });
+        });
+    </script>
+</body></html>
+

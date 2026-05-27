@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+
+<html class="light" lang="ru"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EduCenter - Мобильная версия</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .icon-fill {
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "error": "#ba1a1a",
+                    "on-secondary-container": "#004666",
+                    "inverse-primary": "#c3c0ff",
+                    "outline": "#777587",
+                    "secondary-fixed": "#c9e6ff",
+                    "surface-container-low": "#f2f4f6",
+                    "on-primary-container": "#dad7ff",
+                    "on-error-container": "#93000a",
+                    "on-primary-fixed-variant": "#3323cc",
+                    "on-primary": "#ffffff",
+                    "surface-container-highest": "#e0e3e5",
+                    "tertiary-fixed": "#ffdbcc",
+                    "on-secondary-fixed-variant": "#004c6e",
+                    "tertiary-container": "#a44100",
+                    "on-secondary-fixed": "#001e2f",
+                    "outline-variant": "#c7c4d8",
+                    "inverse-surface": "#2d3133",
+                    "tertiary": "#7e3000",
+                    "primary-container": "#4f46e5",
+                    "on-error": "#ffffff",
+                    "on-tertiary-container": "#ffd2be",
+                    "on-tertiary-fixed-variant": "#7b2f00",
+                    "on-surface": "#191c1e",
+                    "surface-dim": "#d8dadc",
+                    "on-background": "#191c1e",
+                    "primary-fixed": "#e2dfff",
+                    "surface-variant": "#e0e3e5",
+                    "secondary": "#006591",
+                    "on-secondary": "#ffffff",
+                    "primary": "#3525cd",
+                    "primary-fixed-dim": "#c3c0ff",
+                    "on-tertiary-fixed": "#351000",
+                    "surface": "#f7f9fb",
+                    "on-surface-variant": "#464555",
+                    "error-container": "#ffdad6",
+                    "secondary-container": "#39b8fd",
+                    "surface-container": "#eceef0",
+                    "on-primary-fixed": "#0f0069",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-tint": "#4d44e3",
+                    "background": "#f7f9fb",
+                    "secondary-fixed-dim": "#89ceff",
+                    "on-tertiary": "#ffffff",
+                    "surface-bright": "#f7f9fb",
+                    "surface-container-high": "#e6e8ea",
+                    "tertiary-fixed-dim": "#ffb695",
+                    "inverse-on-surface": "#eff1f3"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-desktop": "64px",
+                    "lg": "24px",
+                    "sm": "8px",
+                    "md": "16px",
+                    "xs": "4px",
+                    "margin-mobile": "16px",
+                    "gutter": "24px",
+                    "xl": "40px",
+                    "base": "8px"
+            },
+            "fontFamily": {
+                    "headline-md": ["Manrope"],
+                    "label-md": ["Manrope"],
+                    "headline-lg-mobile": ["Manrope"],
+                    "headline-xl": ["Manrope"],
+                    "body-md": ["Manrope"],
+                    "body-lg": ["Manrope"],
+                    "headline-xl-mobile": ["Manrope"],
+                    "body-sm": ["Manrope"],
+                    "headline-lg": ["Manrope"],
+                    "label-sm": ["Manrope"]
+            },
+            "fontSize": {
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                    "label-md": ["14px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "headline-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-xl-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "label-sm": ["12px", {"lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "600"}]
+            }
+          }
+        }
+      }
+    </script>
+<!-- Custom Styles for Animations -->
+<style>
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .animate-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .delay-100 { transition-delay: 100ms; }
+        .delay-200 { transition-delay: 200ms; }
+        .delay-300 { transition-delay: 300ms; }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background antialiased min-h-screen flex flex-col overflow-x-hidden">
+<!-- TopNavBar (JSON Implementation with mobile focus) -->
+<header class="bg-surface sticky top-0 z-50 shadow-sm w-full transition-all">
+<div class="flex justify-between items-center px-gutter py-4 max-w-7xl mx-auto">
+<!-- Brand -->
+<a class="font-headline-md text-headline-md font-bold text-primary flex items-center gap-2" href="#">
+<span class="material-symbols-outlined icon-fill text-primary">school</span>
+                EduCenter
+            </a>
+<!-- Mobile Menu Toggle (Desktop links hidden on small screens) -->
+<button aria-label="Open menu" class="md:hidden text-on-surface p-2 rounded-full hover:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<!-- Desktop Navigation (Hidden on mobile as per prompt request for mobile version, but kept for structural integrity) -->
+<nav class="hidden md:flex gap-lg items-center">
+<a class="font-label-md text-label-md text-primary border-b-2 border-primary pb-1" href="#">Курсы</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Расписание</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">FAQ</a>
+<button class="font-label-md text-label-md bg-primary text-on-primary px-4 py-2 rounded-full hover:translate-y-[-1px] active:scale-95 transition-all shadow-sm">
+                    Записаться
+                </button>
+</nav>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow flex flex-col gap-xl pb-xl">
+<!-- Hero Section -->
+<section class="px-margin-mobile pt-xl pb-lg relative overflow-hidden flex flex-col items-center text-center animate-on-scroll">
+<!-- Decorative background elements -->
+<div class="absolute top-0 right-0 w-64 h-64 bg-primary-container rounded-full mix-blend-multiply filter blur-3xl opacity-30 -translate-y-1/2 translate-x-1/3"></div>
+<div class="absolute bottom-0 left-0 w-48 h-48 bg-secondary-container rounded-full mix-blend-multiply filter blur-3xl opacity-30 translate-y-1/3 -translate-x-1/4"></div>
+<div class="relative z-10 flex flex-col items-center gap-md">
+<span class="font-label-sm text-label-sm text-primary uppercase tracking-wider bg-primary-fixed px-3 py-1 rounded-full">Образовательный центр</span>
+<h1 class="font-headline-xl-mobile text-headline-xl-mobile text-on-surface">Открой мир знаний с <span class="text-primary">Билим</span></h1>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-[280px]">
+                    Современные методики обучения, опытные преподаватели и удобный формат для достижения ваших целей.
+                </p>
+<button class="mt-4 font-label-md text-label-md bg-primary text-on-primary px-6 py-3 rounded-full w-full max-w-[280px] flex justify-center items-center gap-2 hover:bg-surface-tint active:scale-95 transition-all shadow-md">
+                    Начать обучение
+                    <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</section>
+<!-- Course Categories (Vertical Stack) -->
+<section class="px-margin-mobile flex flex-col gap-md">
+<div class="flex items-center justify-between mb-sm animate-on-scroll">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface">Направления</h2>
+</div>
+<!-- Card 1 -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden flex flex-col animate-on-scroll delay-100 border border-outline-variant">
+<div class="h-32 bg-surface-variant w-full relative bg-cover bg-center" data-alt="A modern web development setup on a desk, featuring a laptop displaying lines of code, a secondary monitor, and a cup of coffee. The lighting is bright and clean, emphasizing a professional and focused learning environment. The color palette incorporates cool tech-inspired blues and soft whites, matching a light-mode educational UI aesthetic." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC7glM-q1M8EWn55KM-xrPNH5mOa_bQtE0-zeDEZVbiF4AIv6i3o7AzIcNW_5fsqNYulWh-2LrYucbOpAKKZbfg8TCWVasKIagIzNdsQZK-Fb6-A9lq8naNSON9oDosVEoSo3dLyTN8rIFfcCQIieyRjyFWSWkOQx-MPABzYkOgTX44QLGxHeOn_e3GM-dBbEaffd4YdmZA0rrgWPciHA4PNt8PwvXYut7McDd6DR-FrUbQmSQubgtRA4jnEmmXOebr68feJJHeoug');">
+<div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+<div class="absolute bottom-2 left-3 bg-surface text-on-surface font-label-sm text-label-sm px-2 py-1 rounded-md">IT &amp; Code</div>
+</div>
+<div class="p-md flex flex-col gap-xs">
+<div class="flex justify-between items-start">
+<h3 class="font-label-md text-label-md text-on-surface">Веб-разработка</h3>
+<span class="material-symbols-outlined text-outline">north_east</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Освойте создание современных сайтов с нуля.</p>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden flex flex-col animate-on-scroll delay-200 border border-outline-variant">
+<div class="h-32 bg-surface-variant w-full relative bg-cover bg-center" data-alt="A collaborative business meeting setting with hands pointing at colorful charts and graphs on a wooden table. The scene is brightly lit with natural daylight, conveying a sense of active learning and strategy. The overall aesthetic is professional, modern, and inviting, utilizing soft white backgrounds with subtle color accents to fit a premium corporate design system." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBWJTZNIj72_86PNmjR3WIJNan8xM42Vr_r3XiBPsF_zQbjb_m3XRKM0bhi6FiFSFTpun6Chn0i3JIBFkx_ZRAiope-izo8usQt4KMeb_HvrNHAFV6cL7vGOwoymJfSzJPMzNKSbOk50lc8bv-Gg8GujOR-PUqnDfsaViWal49BW3jrIeLJp8zyMAEUUVzq5oFN1feYica3tUzoYjx149CpwkO681ogq-UFdrNcvKpYXzxQtVIzjyRgjecEj2-e3kIahEZQ62JNuqc');">
+<div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+<div class="absolute bottom-2 left-3 bg-surface text-on-surface font-label-sm text-label-sm px-2 py-1 rounded-md">Бизнес</div>
+</div>
+<div class="p-md flex flex-col gap-xs">
+<div class="flex justify-between items-start">
+<h3 class="font-label-md text-label-md text-on-surface">Управление проектами</h3>
+<span class="material-symbols-outlined text-outline">north_east</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Научитесь вести команды к успешному результату.</p>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden flex flex-col animate-on-scroll delay-300 border border-outline-variant">
+<div class="h-32 bg-surface-variant w-full relative bg-cover bg-center" data-alt="A creative workspace showing a person sketching geometric designs on a digital tablet with a stylus. The environment is minimalist and bright, focusing on the creative process. The visual style uses a high-contrast light mode approach, with pristine whites and soft indigo shadows, reflecting a modern design education theme." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA9GPG_vuuU4ggwHxMRxmz5XrLaMB4sAf_tQfGplCJOzLY1SIZOlL9ZXSvRBNKdz8uij_tLgDMjrdxn7TdvbxQfDTJQHJBZHhraHnA_0132U7aqEoHZgHKrjsVkmt0DUzOxPkjFcfrFJQFtQofNOC1s6-7ldLn14HPhJOVXhXOZgcsrmJfj7frgV2kpDXEEJvrA9Q8UEDS53gUqoPDjrLBnjlkBF70jitENDyE_1kKGFgpJIdQ3FkKs2YolVo13BMYMFs-9UNlFSyI');">
+<div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+<div class="absolute bottom-2 left-3 bg-surface text-on-surface font-label-sm text-label-sm px-2 py-1 rounded-md">Дизайн</div>
+</div>
+<div class="p-md flex flex-col gap-xs">
+<div class="flex justify-between items-start">
+<h3 class="font-label-md text-label-md text-on-surface">UX/UI Дизайн</h3>
+<span class="material-symbols-outlined text-outline">north_east</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Создавайте удобные и красивые интерфейсы.</p>
+</div>
+</div>
+<button class="mt-sm font-label-md text-label-md text-primary flex items-center justify-center gap-1 py-2 hover:bg-surface-variant rounded-full transition-colors w-full">
+                Все направления
+                <span class="material-symbols-outlined text-[18px]">expand_more</span>
+</button>
+</section>
+<!-- Pricing Section (Mobile Optimized Vertical Stack) -->
+<section class="px-margin-mobile flex flex-col gap-md py-lg bg-surface-container-low rounded-t-3xl mt-md">
+<div class="text-center mb-sm animate-on-scroll">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface">Тарифы</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-xs">Выберите подходящий формат обучения</p>
+</div>
+<!-- Plan 1: Landing -->
+<div class="bg-surface-container-lowest rounded-2xl p-md shadow-sm border border-outline-variant flex flex-col gap-sm animate-on-scroll delay-100">
+<div class="flex justify-between items-center">
+<span class="font-label-md text-label-md text-secondary">Лендинг</span>
+<span class="material-symbols-outlined text-secondary">web</span>
+</div>
+<div class="flex items-baseline gap-1">
+<span class="font-headline-md text-headline-md text-on-surface">15 000 ₸</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">/курс</span>
+</div>
+<ul class="flex flex-col gap-2 mt-2">
+<li class="flex items-center gap-2 font-body-sm text-body-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px] text-primary">check_circle</span>
+                        Базовые материалы
+                    </li>
+<li class="flex items-center gap-2 font-body-sm text-body-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px] text-primary">check_circle</span>
+                        Доступ 1 месяц
+                    </li>
+</ul>
+<button class="mt-2 font-label-md text-label-md text-primary border border-primary py-2 rounded-full hover:bg-primary hover:text-on-primary transition-colors">Выбрать</button>
+</div>
+<!-- Plan 2: Business (Highlighted) -->
+<div class="bg-primary rounded-2xl p-md shadow-md flex flex-col gap-sm animate-on-scroll delay-200 relative overflow-hidden transform scale-[1.02]">
+<div class="absolute top-0 right-0 w-32 h-32 bg-white opacity-10 rounded-full translate-x-8 -translate-y-8"></div>
+<div class="flex justify-between items-center relative z-10">
+<span class="font-label-md text-label-md text-on-primary opacity-90 flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">star</span> Бизнес
+                    </span>
+<span class="bg-on-primary text-primary font-label-sm text-label-sm px-2 py-0.5 rounded-full">Хит</span>
+</div>
+<div class="flex items-baseline gap-1 relative z-10">
+<span class="font-headline-md text-headline-md text-on-primary">45 000 ₸</span>
+<span class="font-body-sm text-body-sm text-on-primary opacity-80">/курс</span>
+</div>
+<ul class="flex flex-col gap-2 mt-2 relative z-10">
+<li class="flex items-center gap-2 font-body-sm text-body-sm text-on-primary">
+<span class="material-symbols-outlined text-[16px] opacity-90">check_circle</span>
+                        Полный доступ к платформе
+                    </li>
+<li class="flex items-center gap-2 font-body-sm text-body-sm text-on-primary">
+<span class="material-symbols-outlined text-[16px] opacity-90">check_circle</span>
+                        Поддержка куратора
+                    </li>
+<li class="flex items-center gap-2 font-body-sm text-body-sm text-on-primary">
+<span class="material-symbols-outlined text-[16px] opacity-90">check_circle</span>
+                        Сертификат
+                    </li>
+</ul>
+<button class="mt-2 font-label-md text-label-md bg-on-primary text-primary py-2 rounded-full active:scale-95 transition-transform relative z-10">Оформить</button>
+</div>
+<!-- Plan 3: Mini-shop -->
+<div class="bg-surface-container-lowest rounded-2xl p-md shadow-sm border border-outline-variant flex flex-col gap-sm animate-on-scroll delay-300">
+<div class="flex justify-between items-center">
+<span class="font-label-md text-label-md text-tertiary">Мини-магазин</span>
+<span class="material-symbols-outlined text-tertiary">storefront</span>
+</div>
+<div class="flex items-baseline gap-1">
+<span class="font-headline-md text-headline-md text-on-surface">75 000 ₸</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">/курс</span>
+</div>
+<ul class="flex flex-col gap-2 mt-2">
+<li class="flex items-center gap-2 font-body-sm text-body-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px] text-primary">check_circle</span>
+                        Все из "Бизнес"
+                    </li>
+<li class="flex items-center gap-2 font-body-sm text-body-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px] text-primary">check_circle</span>
+                        Индивидуальные сессии
+                    </li>
+</ul>
+<button class="mt-2 font-label-md text-label-md text-primary border border-primary py-2 rounded-full hover:bg-primary hover:text-on-primary transition-colors">Выбрать</button>
+</div>
+</section>
+<!-- FAQ Accordion Section -->
+<section class="px-margin-mobile flex flex-col gap-md animate-on-scroll">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mb-xs">Частые вопросы</h2>
+<div class="flex flex-col gap-2">
+<!-- FAQ Item 1 -->
+<div class="bg-surface border border-outline-variant rounded-xl overflow-hidden faq-item transition-all duration-300">
+<button class="w-full flex justify-between items-center p-md text-left faq-button outline-none">
+<span class="font-label-md text-label-md text-on-surface">Как проходит обучение?</span>
+<span class="material-symbols-outlined text-on-surface-variant transition-transform duration-300 faq-icon">expand_more</span>
+</button>
+<div class="faq-content hidden px-md pb-md">
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                            Обучение проходит в онлайн-формате на нашей платформе. Вы получаете доступ к видеолекциям, практическим заданиям и можете общаться с кураторами в удобное время.
+                        </p>
+</div>
+</div>
+<!-- FAQ Item 2 -->
+<div class="bg-surface border border-outline-variant rounded-xl overflow-hidden faq-item transition-all duration-300">
+<button class="w-full flex justify-between items-center p-md text-left faq-button outline-none">
+<span class="font-label-md text-label-md text-on-surface">Выдаете ли вы сертификат?</span>
+<span class="material-symbols-outlined text-on-surface-variant transition-transform duration-300 faq-icon">expand_more</span>
+</button>
+<div class="faq-content hidden px-md pb-md">
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                            Да, после успешного завершения курса и сдачи финального проекта вы получите электронный сертификат, который можно добавить в резюме.
+                        </p>
+</div>
+</div>
+<!-- FAQ Item 3 -->
+<div class="bg-surface border border-outline-variant rounded-xl overflow-hidden faq-item transition-all duration-300">
+<button class="w-full flex justify-between items-center p-md text-left faq-button outline-none">
+<span class="font-label-md text-label-md text-on-surface">Можно ли вернуть деньги?</span>
+<span class="material-symbols-outlined text-on-surface-variant transition-transform duration-300 faq-icon">expand_more</span>
+</button>
+<div class="faq-content hidden px-md pb-md">
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                            Мы предоставляем гарантию возврата средств в течение первых 14 дней обучения, если курс вам не подойдет.
+                        </p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer (JSON Implementation) -->
+<footer class="bg-surface-container-low border-t border-outline-variant mt-auto">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-lg px-gutter py-xl max-w-7xl mx-auto flex flex-col items-center text-center">
+<!-- Brand -->
+<div class="mb-sm">
+<span class="font-label-md text-label-md font-extrabold text-primary flex items-center justify-center gap-1">
+<span class="material-symbols-outlined icon-fill">school</span>
+                    EduCenter
+                </span>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-2">© 2024 EduCenter. Все права защищены.</p>
+</div>
+<!-- Links (Stacked vertically for mobile) -->
+<nav class="flex flex-col gap-4 w-full">
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-opacity hover:opacity-80 block py-1" href="#">Политика конфиденциальности</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-opacity hover:opacity-80 block py-1" href="#">Условия использования</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-opacity hover:opacity-80 block py-1" href="#">Контакты</a>
+</nav>
+</div>
+</footer>
+<!-- Interactive Scripts -->
+<script>
+        // Intersection Observer for Scroll Animations
+        document.addEventListener('DOMContentLoaded', () => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: "0px 0px -50px 0px"
+            });
+
+            document.querySelectorAll('.animate-on-scroll').forEach((el) => {
+                observer.observe(el);
+            });
+
+            // FAQ Accordion Logic
+            const faqItems = document.querySelectorAll('.faq-item');
+            
+            faqItems.forEach(item => {
+                const button = item.querySelector('.faq-button');
+                const content = item.querySelector('.faq-content');
+                const icon = item.querySelector('.faq-icon');
+
+                button.addEventListener('click', () => {
+                    const isOpen = !content.classList.contains('hidden');
+                    
+                    // Close all other items (optional, depending on desired UX)
+                    faqItems.forEach(otherItem => {
+                        if (otherItem !== item) {
+                            otherItem.querySelector('.faq-content').classList.add('hidden');
+                            otherItem.querySelector('.faq-icon').style.transform = 'rotate(0deg)';
+                            otherItem.classList.remove('border-primary');
+                        }
+                    });
+
+                    // Toggle current item
+                    if (isOpen) {
+                        content.classList.add('hidden');
+                        icon.style.transform = 'rotate(0deg)';
+                        item.classList.remove('border-primary');
+                    } else {
+                        content.classList.remove('hidden');
+                        icon.style.transform = 'rotate(180deg)';
+                        // Subtle visual feedback for active item
+                        item.classList.add('border-primary');
+                    }
+                });
+            });
+        });
+    </script>
+</body></html>
+
