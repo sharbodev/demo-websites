@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 
-<html class="dark" lang="en"><head>
+<html class="dark" lang="ru"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Chaikhana Bishkek - Taste of Traditions</title>
+<title>Чайхана Бишкек - Вкус Традиций</title>
 <!-- Fonts & Icons -->
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Outfit:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <!-- Tailwind CSS -->
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
@@ -123,6 +122,17 @@
         ::-webkit-scrollbar-track { background: #131316; }
         ::-webkit-scrollbar-thumb { background: #353438; border-radius: 4px; }
         ::-webkit-scrollbar-thumb:hover { background: #88929b; }
+
+        /* Scroll Animation Styles */
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
     </style>
 </head>
 <body class="bg-background text-on-surface font-body-md overflow-x-hidden">
@@ -132,25 +142,25 @@
 <!-- Brand -->
 <a class="font-headline-sm text-headline-sm font-bold text-primary tracking-tight flex items-center gap-2" href="/">
 <span class="material-symbols-outlined icon-fill text-restaurant-accent">restaurant</span>
-                WebPro Ecosystem
+                WebPro Экосистема
             </a>
 <!-- Desktop Navigation -->
 <nav class="hidden md:flex items-center gap-8">
-<a class="text-primary font-bold border-b-2 border-primary pb-1 active:scale-95 transition-transform" href="/restaurant/index.html">Restaurant</a>
-<a class="text-on-surface-variant hover:text-primary transition-colors active:scale-95 transition-transform hover:bg-surface-glass px-3 py-2 rounded-lg" href="/education/index.html">Education</a>
-<a class="text-on-surface-variant hover:text-primary transition-colors active:scale-95 transition-transform hover:bg-surface-glass px-3 py-2 rounded-lg" href="/construction/index.html">Construction</a>
-<a class="text-on-surface-variant hover:text-primary transition-colors active:scale-95 transition-transform hover:bg-surface-glass px-3 py-2 rounded-lg" href="/auto-service/index.html">Auto Service</a>
+<a class="text-primary font-bold border-b-2 border-primary pb-1 active:scale-95 transition-transform" href="#">Ресторан</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors active:scale-95 transition-transform hover:bg-surface-glass px-3 py-2 rounded-lg" href="/education">Образование</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors active:scale-95 transition-transform hover:bg-surface-glass px-3 py-2 rounded-lg" href="/construction">Строительство</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors active:scale-95 transition-transform hover:bg-surface-glass px-3 py-2 rounded-lg" href="/auto-service">Автосервис</a>
 </nav>
 <!-- Actions -->
 <div class="flex items-center gap-4">
-<button aria-label="Search" class="hidden md:flex text-on-surface-variant hover:text-primary transition-colors">
+<button aria-label="Поиск" class="hidden md:flex text-on-surface-variant hover:text-primary transition-colors">
 <span class="material-symbols-outlined">search</span>
 </button>
 <a class="hidden md:inline-flex bg-restaurant-accent text-white px-6 py-3 rounded-lg hover:bg-restaurant-accent/90 transition-colors duration-150 active:scale-95 border border-restaurant-accent/50 shadow-[0_0_15px_rgba(146,64,14,0.3)]" href="#booking">
-                    Contact Us
+                    Связаться с нами
                 </a>
 <!-- Mobile Menu Toggle -->
-<button aria-label="Menu" class="md:hidden text-on-surface-variant">
+<button aria-label="Меню" class="md:hidden text-on-surface-variant">
 <span class="material-symbols-outlined">menu</span>
 </button>
 </div>
@@ -165,55 +175,55 @@
 <div class="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent"></div>
 <div class="absolute inset-0 bg-gradient-to-r from-background via-background/60 to-transparent"></div>
 </div>
-<div class="relative z-10 w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-20">
+<div class="relative z-10 w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-20 reveal">
 <div class="max-w-3xl">
 <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-surface-glass border border-restaurant-accent/30 backdrop-blur-md mb-6">
 <span class="w-2 h-2 rounded-full bg-restaurant-accent animate-pulse"></span>
-<span class="font-label-sm text-label-sm text-restaurant-accent uppercase tracking-wider">Chaikhana Bishkek</span>
+<span class="font-label-sm text-label-sm text-restaurant-accent uppercase tracking-wider">Чайхана Бишкек</span>
 </div>
 <h1 class="font-display-lg text-display-lg text-on-surface mb-6">
-                        A Masterclass in <br/>
-<span class="text-transparent bg-clip-text bg-gradient-to-r from-restaurant-accent to-tertiary">Culinary Tradition</span>
+                        Искусство <br/>
+<span class="text-transparent bg-clip-text bg-gradient-to-r from-restaurant-accent to-tertiary">кулинарных традиций</span>
 </h1>
 <p class="font-body-lg text-body-lg text-on-surface-variant mb-10 max-w-xl">
-                        Experience the authentic flavors of Central Asia, reimagined for the modern palate. Precision-crafted dishes served in an atmosphere of unparalleled sophistication.
+                        Ощутите аутентичные вкусы Центральной Азии, переосмысленные для современного гурмана. Искусно приготовленные блюда подаются в атмосфере непревзойденной изысканности.
                     </p>
 <div class="flex flex-col sm:flex-row gap-4">
 <a class="inline-flex items-center justify-center gap-2 bg-on-surface text-surface px-8 py-4 rounded-lg font-label-md text-label-md hover:bg-inverse-surface transition-colors active:scale-95 group" href="#booking">
-                            Book a Table
+                            Забронировать столик
                             <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
 </a>
 <a class="inline-flex items-center justify-center gap-2 bg-surface-glass border border-outline-variant/30 text-on-surface px-8 py-4 rounded-lg font-label-md text-label-md hover:bg-surface-container transition-colors backdrop-blur-md active:scale-95" href="#menu">
 <span class="material-symbols-outlined">menu_book</span>
-                            Explore Menu
+                            Смотреть меню
                         </a>
 </div>
 </div>
 </div>
 <!-- Scroll Indicator -->
 <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce flex flex-col items-center gap-2 text-on-surface-variant/50">
-<span class="font-label-sm text-label-sm">Discover</span>
+<span class="font-label-sm text-label-sm">Узнать больше</span>
 <span class="material-symbols-outlined">arrow_downward</span>
 </div>
 </section>
 <!-- Menu Categories Bento Grid -->
-<section class="py-24 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto relative" id="menu">
+<section class="py-24 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto relative reveal" id="menu">
 <!-- Decorative Glow -->
 <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-restaurant-accent/5 rounded-full blur-[120px] pointer-events-none"></div>
 <div class="mb-16 text-center md:text-left relative z-10">
-<h2 class="font-headline-lg text-headline-lg md:text-headline-lg text-on-surface mb-4">Curated Excellence</h2>
-<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">Our menu is a testament to quality, featuring locally sourced ingredients prepared with time-honored techniques and modern precision.</p>
+<h2 class="font-headline-lg text-headline-lg md:text-headline-lg text-on-surface mb-4">Безупречный выбор</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">Наше меню – это свидетельство качества, включающее местные ингредиенты, приготовленные с использованием проверенных временем техник и современной точности.</p>
 </div>
 <div class="grid grid-cols-1 md:grid-cols-12 gap-gutter relative z-10">
 <!-- Main Dishes (Spans 8 cols) -->
-<a class="group md:col-span-8 rounded-2xl overflow-hidden relative min-h-[400px] bg-surface-container-high border border-white/5 shadow-2xl transition-all duration-300 hover:border-restaurant-accent/30 block" href="#">
-<img alt="" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-40 transition-opacity duration-500 group-hover:scale-105" data-alt="A top-down view of a beautifully plated traditional Central Asian plov (pilaf) in a dark, textured ceramic bowl. The dish is rich with braised lamb, golden carrots, and roasted garlic, steaming slightly. The background is a dark, matte slate surface. The lighting is focused and dramatic, highlighting the textures of the food and creating a premium, mouth-watering aesthetic consistent with a dark-mode luxury brand." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZL86Ink50jAtiOcaKIMhjY1VrjWxybdaxS1h5DpWTwujrrsWIlQ_WdMBwkxQTmgATgvOD_24KDtECNOi3YcX123WMZm9_-qzI9DVuV5XS32_sZS9IZwehLuAMpdYnBQdAkv9s8DM3CbIn8ufzSH1-JkqILa16WJnFG-oaexc_--42-cC1ByZVQpGJhqbMhnKmUtUXq-r0AzsFvBQDhAg-YIfxogOMBD4C161zaap91MsjYcrEjtXGhltcx8fsyJeFEWa9MqsBZ3s"/>
+<a class="group md:col-span-8 rounded-2xl overflow-hidden relative min-h-[400px] bg-surface-container-high border border-white/5 shadow-2xl transition-all duration-300 hover:border-restaurant-accent/30 hover:scale-[1.01] hover:shadow-restaurant-accent/10 block reveal" href="#">
+<img alt="" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-40 transition-opacity duration-500 group-hover:scale-105" data-alt="A top-down view of a beautifully plated traditional Central Asian plov (pilaf) in a dark, textured ceramic bowl. The dish is rich with braised lamb, golden carrots, and roasted garlic, steaming slightly. The background is a dark, matte slate surface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZL86Ink50jAtiOcaKIMhjY1VrjWxybdaxS1h5DpWTwujrrsWIlQ_WdMBwkxQTmgATgvOD_24KDtECNOi3YcX123WMZm9_-qzI9DVuV5XS32_sZS9IZwehLuAMpdYnBQdAkv9s8DM3CbIn8ufzSH1-JkqILa16WJnFG-oaexc_--42-cC1ByZVQpGJhqbMhnKmUtUXq-r0AzsFvBQDhAg-YIfxogOMBD4C161zaap91MsjYcrEjtXGhltcx8fsyJeFEWa9MqsBZ3s"/>
 <div class="absolute inset-0 bg-gradient-to-t from-surface via-surface/40 to-transparent"></div>
 <div class="absolute bottom-0 left-0 p-8 w-full">
 <div class="flex items-center justify-between">
 <div>
-<h3 class="font-headline-md text-headline-md text-on-surface mb-2">Main Courses</h3>
-<p class="font-body-md text-body-md text-on-surface-variant">Signature Pilaf, Lagman, and deeply flavorful stews.</p>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2">Основные блюда</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Фирменный плов, лагман и насыщенные тушеные блюда.</p>
 </div>
 <div class="w-12 h-12 rounded-full bg-surface-glass border border-white/10 backdrop-blur-md flex items-center justify-center group-hover:bg-restaurant-accent group-hover:border-restaurant-accent transition-all duration-300">
 <span class="material-symbols-outlined text-on-surface">arrow_outward</span>
@@ -222,14 +232,14 @@
 </div>
 </a>
 <!-- Grill (Spans 4 cols) -->
-<a class="group md:col-span-4 rounded-2xl overflow-hidden relative min-h-[400px] bg-surface-container-high border border-white/5 shadow-2xl transition-all duration-300 hover:border-restaurant-accent/30 block" href="#">
-<img alt="" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-40 transition-opacity duration-500 group-hover:scale-105" data-alt="Close-up of succulent meat skewers sizzling over hot charcoal on an open grill. Sparks and a light haze of smoke rise against a pitch-black background. The glowing embers provide a fierce, warm orange under-lighting that strongly accents the high-tech, premium dark aesthetic of the restaurant brand. The focus is sharp on the meat's charred texture." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDS2drNE2yspy7r9qWWzFOz1VwECagKOIm9CejRw2ZejmZdjpnEf36C-RIIDB9iMtyOcyjtMIY7hcClD83ivoNvZGsJV8c9JSYklzcthOcPTlNX7_oiZ0W4KolS1KzG_FLoVSB97HUFioe-99AnBt6YZa4AdDgcRQPRzkUHXBrnhP_Ym8ETSFomwOYP4TTf4vAScR5faA-PLVm5jS5eVXX_L3kSr5Jfk7KeXIZZSQCIJXxc4uL_LFDMNlnYiIPPCTjYVqGWE4lH2Pk"/>
+<a class="group md:col-span-4 rounded-2xl overflow-hidden relative min-h-[400px] bg-surface-container-high border border-white/5 shadow-2xl transition-all duration-300 hover:border-restaurant-accent/30 hover:scale-[1.01] hover:shadow-restaurant-accent/10 block reveal" href="#">
+<img alt="" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-40 transition-opacity duration-500 group-hover:scale-105" data-alt="Close-up of succulent meat skewers sizzling over hot charcoal on an open grill." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDS2drNE2yspy7r9qWWzFOz1VwECagKOIm9CejRw2ZejmZdjpnEf36C-RIIDB9iMtyOcyjtMIY7hcClD83ivoNvZGsJV8c9JSYklzcthOcPTlNX7_oiZ0W4KolS1KzG_FLoVSB97HUFioe-99AnBt6YZa4AdDgcRQPRzkUHXBrnhP_Ym8ETSFomwOYP4TTf4vAScR5faA-PLVm5jS5eVXX_L3kSr5Jfk7KeXIZZSQCIJXxc4uL_LFDMNlnYiIPPCTjYVqGWE4lH2Pk"/>
 <div class="absolute inset-0 bg-gradient-to-t from-surface via-surface/40 to-transparent"></div>
 <div class="absolute bottom-0 left-0 p-8 w-full">
 <div class="flex items-center justify-between">
 <div>
-<h3 class="font-headline-sm text-headline-sm text-on-surface mb-2">Premium Grill</h3>
-<p class="font-body-md text-body-md text-on-surface-variant">Charcoal-fired perfection.</p>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-2">Премиум гриль</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Совершенство на углях.</p>
 </div>
 <div class="w-10 h-10 rounded-full bg-surface-glass border border-white/10 backdrop-blur-md flex items-center justify-center group-hover:bg-restaurant-accent group-hover:border-restaurant-accent transition-all duration-300">
 <span class="material-symbols-outlined text-on-surface">arrow_outward</span>
@@ -238,117 +248,177 @@
 </div>
 </a>
 <!-- Drinks (Spans 12 cols, shorter height) -->
-<a class="group md:col-span-12 rounded-2xl overflow-hidden relative min-h-[250px] bg-surface-container-high border border-white/5 shadow-2xl transition-all duration-300 hover:border-restaurant-accent/30 block flex items-center" href="#">
-<img alt="" class="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:opacity-30 transition-opacity duration-500 group-hover:scale-105" data-alt="A sophisticated dark bar setting featuring a row of ornate traditional teapots and modern crystal glassware resting on a polished black marble counter. The lighting is moody and directional, catching the condensation on the glasses and the metallic sheen of the teapots. Deep indigo and warm amber reflections emphasize the luxurious, high-end atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD8tWwhZhj11Q_Fgtc7DVvnJLgo_LxPB541txnfgLNTKnrZ73IJsgI8VME0a4LRSdqhzyEXosqqhKDPjaZCjD7Sfn5cnYJxTfQs1fGxTTXe1PDr2mOZatxyArsNlohqbf1AbG4AGWSRpRIvfubeu_Y4TIko5OpJiK5XeZmLgwc6AgtJpXEmAOqc7hE9ggfjm7svuOHl8QKQrD_bo3IgT9-aFM4vHesdB8hgLqqkspt-J7Cb3qgDTteygj7_uOPpd6ns5W3b74wUgR0"/>
+<a class="group md:col-span-12 rounded-2xl overflow-hidden relative min-h-[250px] bg-surface-container-high border border-white/5 shadow-2xl transition-all duration-300 hover:border-restaurant-accent/30 hover:scale-[1.01] hover:shadow-restaurant-accent/10 block flex items-center reveal" href="#">
+<img alt="" class="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:opacity-30 transition-opacity duration-500 group-hover:scale-105" data-alt="A sophisticated dark bar setting featuring a row of ornate traditional teapots and modern crystal glassware." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD8tWwhZhj11Q_Fgtc7DVvnJLgo_LxPB541txnfgLNTKnrZ73IJsgI8VME0a4LRSdqhzyEXosqqhKDPjaZCjD7Sfn5cnYJxTfQs1fGxTTXe1PDr2mOZatxyArsNlohqbf1AbG4AGWSRpRIvfubeu_Y4TIko5OpJiK5XeZmLgwc6AgtJpXEmAOqc7hE9ggfjm7svuOHl8QKQrD_bo3IgT9-aFM4vHesdB8hgLqqkspt-J7Cb3qgDTteygj7_uOPpd6ns5W3b74wUgR0"/>
 <div class="absolute inset-0 bg-gradient-to-r from-surface via-surface/80 to-transparent"></div>
 <div class="relative z-10 p-8 md:p-12 w-full md:w-1/2">
-<h3 class="font-headline-md text-headline-md text-on-surface mb-3">Artisan Beverages</h3>
-<p class="font-body-md text-body-md text-on-surface-variant mb-6">From traditional spiced teas to modern mixology, crafted to complement every dish.</p>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-3">Авторские напитки</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6">От традиционных чаев со специями до современной миксологии, созданной дополнить каждое блюдо.</p>
 <span class="inline-flex items-center text-restaurant-accent font-label-md text-label-md group-hover:text-tertiary transition-colors">
-                            View Drinks Menu <span class="material-symbols-outlined ml-2 text-sm">chevron_right</span>
+                            Меню напитков <span class="material-symbols-outlined ml-2 text-sm">chevron_right</span>
 </span>
 </div>
 </a>
 </div>
 </section>
 <!-- Interior Gallery (Asymmetric) -->
-<section class="py-24 bg-surface-container-lowest">
+<section class="py-24 bg-surface-container-lowest reveal">
 <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
 <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
 <div class="max-w-2xl">
-<h2 class="font-headline-lg text-headline-lg text-on-surface mb-4">Atmosphere Defined</h2>
-<p class="font-body-lg text-body-lg text-on-surface-variant">A space designed for comfort and elegance. Deep tones, tactile materials, and precise lighting create an environment that elevates the dining experience.</p>
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-4">Атмосфера гостеприимства</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Пространство, созданное для комфорта и элегантности. Глубокие тона, приятные на ощупь материалы и продуманное освещение создают атмосферу, которая возвышает впечатления от ужина.</p>
 </div>
 <a class="hidden md:inline-flex items-center gap-2 text-on-surface-variant hover:text-on-surface transition-colors font-label-md text-label-md" href="#">
-                        View Full Gallery
+                        Смотреть галерею
                         <span class="material-symbols-outlined">east</span>
 </a>
 </div>
 <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-gutter auto-rows-[200px] md:auto-rows-[300px]">
 <!-- Large Feature Image -->
-<div class="col-span-2 row-span-2 rounded-xl overflow-hidden relative group">
-<img alt="" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A wide architectural shot of a high-end restaurant interior at night. The design features industrial-chic elements combined with traditional luxury: exposed dark steel beams, warm Edison bulb chandeliers, and plush, tufted leather booths in deep maroon. The overall tone is profoundly dark but warmly illuminated, perfectly capturing a modern glassmorphism aesthetic applied to physical space." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCjolN7bApSyxa8N2Q2omOyZyjAtv_kw28bqeoOs14fjVeHubQa33ttt6xEiVIhKTQ5RHVUGtRJolmshON3JTdBpFSmratj-AkvT3puS_XuPOiePd8zIDWfg3Sv84fjLxOgscRPFdIo_CS6yWjSy4cmkAdt5BlsNCl7RKGrpHIxkvzabri8CjPKF4YNvyZ4_tUcIH5aSfTRcu69ClmxSSduVtq-ZkBGDsqav9Sp7VMWqL9ljhnVq1e2Ce9gZq04Mx2Q0oI9QWBBfL8"/>
+<div class="col-span-2 row-span-2 rounded-xl overflow-hidden relative group reveal">
+<img alt="" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A wide architectural shot of a high-end restaurant interior at night." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCjolN7bApSyxa8N2Q2omOyZyjAtv_kw28bqeoOs14fjVeHubQa33ttt6xEiVIhKTQ5RHVUGtRJolmshON3JTdBpFSmratj-AkvT3puS_XuPOiePd8zIDWfg3Sv84fjLxOgscRPFdIo_CS6yWjSy4cmkAdt5BlsNCl7RKGrpHIxkvzabri8CjPKF4YNvyZ4_tUcIH5aSfTRcu69ClmxSSduVtq-ZkBGDsqav9Sp7VMWqL9ljhnVq1e2Ce9gZq04Mx2Q0oI9QWBBfL8"/>
 <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500"></div>
 </div>
 <!-- Standard Images -->
-<div class="col-span-1 row-span-1 rounded-xl overflow-hidden relative group">
-<img alt="" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A close detail shot of a sophisticated table setting in a dimly lit restaurant. A sleek black ceramic plate sits on a dark woven placemat, accompanied by minimalist matte-black cutlery and a crystal water glass catching a glint of warm amber light. The composition is highly structured, emphasizing precision and premium quality." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBUXX_U8L6PaR8SlE5M5USwuE5O7_njquaMIeUIAsbVuOYSQ8mGFMMCCrV61Oe8ySSIjsv8042JExF1I2zWMudmHD6-cHSYdC-7ZL4jWt-IUpxbN8R607JYGwJevKnaItXDWpqXg0S23_ygsyUayZ5tjzILy2iFpRUh1b47W-vHBiKaJO6-ZYUaag_Pi2oYXgtdOfjULC_xqgRWXCkEZFwTwFFRuW0W_27tH-4El-9FFzQHj083KZVLKkIlUpgNBMn6PhBpQe5J5Wg"/>
+<div class="col-span-1 row-span-1 rounded-xl overflow-hidden relative group reveal">
+<img alt="" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A close detail shot of a sophisticated table setting in a dimly lit restaurant." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBUXX_U8L6PaR8SlE5M5USwuE5O7_njquaMIeUIAsbVuOYSQ8mGFMMCCrV61Oe8ySSIjsv8042JExF1I2zWMudmHD6-cHSYdC-7ZL4jWt-IUpxbN8R607JYGwJevKnaItXDWpqXg0S23_ygsyUayZ5tjzILy2iFpRUh1b47W-vHBiKaJO6-ZYUaag_Pi2oYXgtdOfjULC_xqgRWXCkEZFwTwFFRuW0W_27tH-4El-9FFzQHj083KZVLKkIlUpgNBMn6PhBpQe5J5Wg"/>
 </div>
-<div class="col-span-1 row-span-1 rounded-xl overflow-hidden relative group">
-<img alt="" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="An intimate corner of a luxury dining space featuring a small, polished wood table and two mid-century modern chairs upholstered in deep charcoal fabric. A single pendant light with a copper finish hangs directly above, creating a tight pool of warm light against the stark, dark-painted wall behind it. The mood is exclusive and quiet." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAyO92ffjxVzoeFkGecc6I6KhWjPBgD8NClGiNmAdX6FUE4C71s3Rpfd48NN1Hdp36nFCCmQnm9OR0TBk9owAP2wIuFA1n6OWxnSP_u2Bu8xyl11elcjsR-sOjveQ5No1v1icKeq7tA1FdltoN4plXUIrpGgb2Tj2RL19w4w58KIjm7eC71Oo1dXFUpX39QuVfesUwl_bjcc5IJZASexu2s89lCQN8YFLNDjZWuID4tdopgkLGPDi3lOZS4H2LssRjpQcoN2nSnJmc"/>
+<div class="col-span-1 row-span-1 rounded-xl overflow-hidden relative group reveal">
+<img alt="" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="An intimate corner of a luxury dining space." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAyO92ffjxVzoeFkGecc6I6KhWjPBgD8NClGiNmAdX6FUE4C71s3Rpfd48NN1Hdp36nFCCmQnm9OR0TBk9owAP2wIuFA1n6OWxnSP_u2Bu8xyl11elcjsR-sOjveQ5No1v1icKeq7tA1FdltoN4plXUIrpGgb2Tj2RL19w4w58KIjm7eC71Oo1dXFUpX39QuVfesUwl_bjcc5IJZASexu2s89lCQN8YFLNDjZWuID4tdopgkLGPDi3lOZS4H2LssRjpQcoN2nSnJmc"/>
 </div>
-<div class="col-span-2 row-span-1 rounded-xl overflow-hidden relative group">
-<img alt="" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A bustling but elegant open kitchen viewed from the dark dining room. Chefs in crisp black uniforms are visible working intensely under bright, focused stainless-steel hoods. The contrast between the brilliant, clinical light of the kitchen and the deep shadows of the foreground dining area highlights the 'mechanical precision' aspect of the brand identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBjnXUJQ-JPNBZAFwcjtVligg5wCHhv0rkK0I9iKJRkO0Hz8Mo8uMyda8uKkykMubtaS5EXrVxZa5mbuBFMIFwDG3uV1x48I6KIggbosoZvgrRsYW5SAyAGMuhil-2nOoujtxteA678QzAWWoszfFWIEF42JnnS5bml_xN86-RtN6F3ADNMgFcYFpXddrWLinQAf2jdAdmDu9P6_9Gz-g7WQbrFAbfbJHmbXC30smCloDrAc2g5X_NVg1d_4FmEV_vbK9vE2nil90Q"/>
+<div class="col-span-2 row-span-1 rounded-xl overflow-hidden relative group reveal">
+<img alt="" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A bustling but elegant open kitchen." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBjnXUJQ-JPNBZAFwcjtVligg5wCHhv0rkK0I9iKJRkO0Hz8Mo8uMyda8uKkykMubtaS5EXrVxZa5mbuBFMIFwDG3uV1x48I6KIggbosoZvgrRsYW5SAyAGMuhil-2nOoujtxteA678QzAWWoszfFWIEF42JnnS5bml_xN86-RtN6F3ADNMgFcYFpXddrWLinQAf2jdAdmDu9P6_9Gz-g7WQbrFAbfbJHmbXC30smCloDrAc2g5X_NVg1d_4FmEV_vbK9vE2nil90Q"/>
 </div>
 </div>
 </div>
 </section>
+<!-- Popular Items Section (Moved higher) -->
+<section class="py-24 bg-surface-container-lowest relative overflow-hidden reveal" id="prices">
+<div class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-restaurant-accent/20 to-transparent"></div>
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop relative z-10">
+<div class="text-center mb-16 reveal">
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-4">Наше меню</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto">Попробуйте наши самые популярные блюда, приготовленные по традиционным рецептам с использованием отборных ингредиентов.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Item 1: Плов -->
+<div class="bg-surface-container border border-white/5 rounded-2xl p-8 hover:border-restaurant-accent/30 transition-all duration-300 group shadow-xl hover:scale-[1.02] hover:shadow-restaurant-accent/10 reveal">
+<div class="flex justify-between items-start mb-6">
+<div class="w-12 h-12 rounded-full bg-restaurant-accent/10 flex items-center justify-center text-restaurant-accent">
+<span class="material-symbols-outlined">restaurant_menu</span>
+</div>
+<span class="font-label-md text-label-md text-restaurant-accent px-3 py-1 rounded-full bg-restaurant-accent/10">Хит</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-2">Плов</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6">Традиционный праздничный плов с нежной бараниной и ароматными специями.</p>
+<div class="pt-6 border-t border-outline-variant/20 flex items-center justify-between">
+<span class="text-on-surface-variant font-label-sm uppercase">Цена</span>
+<span class="font-headline-sm text-on-surface">от 450 сом</span>
+</div>
+</div>
+<!-- Item 2: Лагман -->
+<div class="bg-surface-container border border-white/5 rounded-2xl p-8 hover:border-restaurant-accent/30 transition-all duration-300 group shadow-xl hover:scale-[1.02] hover:shadow-restaurant-accent/10 reveal">
+<div class="flex justify-between items-start mb-6">
+<div class="w-12 h-12 rounded-full bg-restaurant-accent/10 flex items-center justify-center text-restaurant-accent">
+<span class="material-symbols-outlined">soup_kitchen</span>
+</div>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-2">Лагман</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6">Домашняя лапша с сочным мясом и овощами в наваристом бульоне.</p>
+<div class="pt-6 border-t border-outline-variant/20 flex items-center justify-between">
+<span class="text-on-surface-variant font-label-sm uppercase">Цена</span>
+<span class="font-headline-sm text-on-surface">от 380 сом</span>
+</div>
+</div>
+<!-- Item 3: Шашлык -->
+<div class="bg-surface-container border border-white/5 rounded-2xl p-8 hover:border-restaurant-accent/30 transition-all duration-300 group shadow-xl hover:scale-[1.02] hover:shadow-restaurant-accent/10 reveal">
+<div class="flex justify-between items-start mb-6">
+<div class="w-12 h-12 rounded-full bg-restaurant-accent/10 flex items-center justify-center text-restaurant-accent">
+<span class="material-symbols-outlined">outdoor_grill</span>
+</div>
+<span class="font-label-md text-label-md text-tertiary px-3 py-1 rounded-full bg-tertiary/10">Премиум</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-2">Шашлык</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6">Мясо, приготовленное на открытом огне с дымком от натуральных углей.</p>
+<div class="pt-6 border-t border-outline-variant/20 flex items-center justify-between">
+<span class="text-on-surface-variant font-label-sm uppercase">Цена</span>
+<span class="font-headline-sm text-on-surface">от 550 сом</span>
+</div>
+</div>
+</div>
+<div class="mt-16 text-center reveal">
+<a class="inline-flex items-center gap-2 text-on-surface-variant hover:text-restaurant-accent transition-colors font-label-md text-label-md group" href="#menu">
+        Открыть полное меню <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">east</span>
+</a>
+</div>
+</div>
+</section>
 <!-- Booking & WhatsApp CTA -->
-<section class="py-24 relative overflow-hidden" id="booking">
+<section class="py-24 relative overflow-hidden reveal" id="booking">
 <!-- Background element -->
 <div class="absolute inset-0 bg-surface-container-high border-y border-outline-variant/10"></div>
 <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop relative z-10">
 <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
 <!-- Form Area -->
-<div class="bg-surface border border-white/5 p-8 md:p-12 rounded-2xl shadow-2xl backdrop-blur-xl relative">
+<div class="bg-surface border border-white/5 p-8 md:p-12 rounded-2xl shadow-2xl backdrop-blur-xl relative reveal">
 <!-- Decorative top edge glow -->
 <div class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-restaurant-accent/50 to-transparent"></div>
-<h2 class="font-headline-md text-headline-md text-on-surface mb-2">Reserve Your Table</h2>
-<p class="font-body-md text-body-md text-on-surface-variant mb-8">Secure your experience at Chaikhana Bishkek.</p>
+<h2 class="font-headline-md text-headline-md text-on-surface mb-2">Забронировать столик</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mb-8">Забронируйте столик в Чайхана Бишкек.</p>
 <form class="space-y-6">
 <div class="grid grid-cols-2 gap-4">
 <div class="space-y-1">
-<label class="font-label-sm text-label-sm text-on-surface-variant uppercase">Date</label>
+<label class="font-label-sm text-label-sm text-on-surface-variant uppercase">Дата</label>
 <input class="w-full bg-surface-container-lowest border-0 border-b border-outline-variant focus:border-restaurant-accent focus:ring-0 text-on-surface py-3 px-0 transition-colors" type="date"/>
 </div>
 <div class="space-y-1">
-<label class="font-label-sm text-label-sm text-on-surface-variant uppercase">Time</label>
+<label class="font-label-sm text-label-sm text-on-surface-variant uppercase">Время</label>
 <input class="w-full bg-surface-container-lowest border-0 border-b border-outline-variant focus:border-restaurant-accent focus:ring-0 text-on-surface py-3 px-0 transition-colors" type="time"/>
 </div>
 </div>
 <div class="space-y-1">
-<label class="font-label-sm text-label-sm text-on-surface-variant uppercase">Guests</label>
+<label class="font-label-sm text-label-sm text-on-surface-variant uppercase">Гости</label>
 <select class="w-full bg-surface-container-lowest border-0 border-b border-outline-variant focus:border-restaurant-accent focus:ring-0 text-on-surface py-3 px-0 transition-colors">
-<option>2 People</option>
-<option>3 People</option>
-<option>4 People</option>
-<option>5+ People</option>
+<option>2 Персоны</option>
+<option>3 Персоны</option>
+<option>4 Персоны</option>
+<option>5+ Персон</option>
 </select>
 </div>
 <div class="space-y-1">
-<label class="font-label-sm text-label-sm text-on-surface-variant uppercase">Name</label>
-<input class="w-full bg-surface-container-lowest border-0 border-b border-outline-variant focus:border-restaurant-accent focus:ring-0 text-on-surface py-3 px-0 transition-colors" placeholder="John Doe" type="text"/>
+<label class="font-label-sm text-label-sm text-on-surface-variant uppercase">Имя</label>
+<input class="w-full bg-surface-container-lowest border-0 border-b border-outline-variant focus:border-restaurant-accent focus:ring-0 text-on-surface py-3 px-0 transition-colors" placeholder="Иван Иванов" type="text"/>
 </div>
 <button class="w-full bg-on-surface text-surface py-4 rounded-lg font-label-md text-label-md hover:bg-inverse-surface transition-colors active:scale-[0.98] mt-4" type="button">
-                                Confirm Reservation
+                                Подтвердить бронирование
                             </button>
 </form>
 </div>
 <!-- Direct Contact / WhatsApp -->
-<div class="space-y-8">
+<div class="space-y-8 reveal">
 <div>
-<h2 class="font-headline-lg text-headline-lg text-on-surface mb-4">Immediate Assistance</h2>
-<p class="font-body-lg text-body-lg text-on-surface-variant">Prefer to speak with us directly? For large gatherings, private events, or immediate inquiries, our concierge team is available via WhatsApp.</p>
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-4">Нужна помощь?</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Предпочитаете связаться с нами напрямую? Для проведения больших мероприятий, частных встреч или срочных вопросов наша команда консьержей доступна через WhatsApp.</p>
 </div>
 <div class="flex flex-col gap-4">
 <a class="inline-flex items-center gap-4 bg-[#25D366]/10 border border-[#25D366]/20 p-6 rounded-xl hover:bg-[#25D366]/20 transition-colors group w-full max-w-md" href="#">
 <div class="w-12 h-12 rounded-full bg-[#25D366] flex items-center justify-center shadow-[0_0_20px_rgba(37,211,102,0.4)]">
-<!-- Simple WhatsApp icon approximation using Material Symbols -->
 <span class="material-symbols-outlined text-white">chat</span>
 </div>
 <div>
-<p class="font-label-md text-label-md text-on-surface">Message us on WhatsApp</p>
+<p class="font-label-md text-label-md text-on-surface">Написать в WhatsApp</p>
 <p class="font-body-md text-body-md text-on-surface-variant group-hover:text-on-surface transition-colors">+996 555 123 456</p>
 </div>
 <span class="material-symbols-outlined ml-auto text-on-surface-variant group-hover:translate-x-1 transition-transform">arrow_forward</span>
 </a>
-<div class="flex items-center gap-4 text-on-surface-variant">
+<div class="flex items-center gap-4 text-on-surface-variant reveal">
 <span class="material-symbols-outlined">location_on</span>
-<span class="font-body-md text-body-md">123 Manas Ave, Bishkek, Kyrgyzstan</span>
+<span class="font-body-md text-body-md">пр. Манаса 123, Бишкек, Кыргызстан</span>
 </div>
-<div class="flex items-center gap-4 text-on-surface-variant">
+<div class="flex items-center gap-4 text-on-surface-variant reveal">
 <span class="material-symbols-outlined">schedule</span>
-<span class="font-body-md text-body-md">Daily: 11:00 AM - 11:00 PM</span>
+<span class="font-body-md text-body-md">Ежедневно: 11:00 - 23:00</span>
 </div>
 </div>
 </div>
@@ -365,33 +435,32 @@
 <span class="material-symbols-outlined icon-fill text-restaurant-accent">restaurant</span>
                      WebPro
                 </div>
-<p class="text-on-surface-variant mb-6 text-sm">Multi-Niche Solutions.<br/>Precision Engineered.</p>
+<p class="text-on-surface-variant mb-6 text-sm">Мультинишевые решения.<br/>Точная разработка.</p>
 </div>
 <!-- Links Columns -->
 <div class="col-span-1 md:col-span-3 grid grid-cols-2 md:grid-cols-3 gap-8">
 <div class="flex flex-col gap-3">
-<h4 class="font-label-md text-label-md text-on-surface uppercase tracking-wider mb-2">Ecosystem</h4>
-<a class="text-primary underline" href="/restaurant/index.html">Chaikhana Bishkek</a>
-<a class="text-on-surface-variant hover:text-primary transition-colors" href="/education/index.html">Bilim Education</a>
-<a class="text-on-surface-variant hover:text-primary transition-colors" href="/construction/index.html">StroyMaster</a>
-<a class="text-on-surface-variant hover:text-primary transition-colors" href="/auto-service/index.html">AutoPro Service</a>
+<h4 class="font-label-md text-label-md text-on-surface uppercase tracking-wider mb-2">Экосистема</h4>
+<a class="text-primary underline" href="/restaurant">Чайхана Бишкек</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Билим Образование</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="/construction">СтройМастер</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">АвтоПро Сервис</a>
 </div>
 <div class="flex flex-col gap-3">
-<h4 class="font-label-md text-label-md text-on-surface uppercase tracking-wider mb-2">Support</h4>
-<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">WhatsApp Support</a>
-<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Contact Us</a>
+<h4 class="font-label-md text-label-md text-on-surface uppercase tracking-wider mb-2">Поддержка</h4>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Поддержка WhatsApp</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Связаться с нами</a>
 </div>
 <div class="flex flex-col gap-3">
-<h4 class="font-label-md text-label-md text-on-surface uppercase tracking-wider mb-2">Legal</h4>
-<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Privacy Policy</a>
-<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Terms of Service</a>
+<h4 class="font-label-md text-label-md text-on-surface uppercase tracking-wider mb-2">Правовая информация</h4>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Политика конфиденциальности</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Условия использования</a>
 </div>
 </div>
 <!-- Copyright -->
 <div class="col-span-1 md:col-span-4 mt-16 pt-8 border-t border-outline-variant/10 text-center md:text-left text-sm text-on-surface-variant flex flex-col md:flex-row justify-between items-center gap-4">
-<p>© 2024 WebPro Multi-Niche Solutions. Precision Engineered.</p>
+<p>© 2024 WebPro Мультинишевые решения. Точная разработка.</p>
 <div class="flex gap-4">
-<!-- Social placeholders -->
 <a class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center hover:bg-surface-bright transition-colors text-on-surface-variant hover:text-on-surface" href="#">
 <span class="material-symbols-outlined text-sm">language</span>
 </a>
@@ -399,18 +468,41 @@
 </div>
 </div>
 </footer>
-<!-- Minimal JS for Nav background on scroll -->
+<!-- Scripts -->
 <script>
-        const nav = document.getElementById('main-nav');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                nav.classList.add('shadow-md');
-                nav.classList.replace('bg-surface/80', 'bg-surface/95');
-            } else {
-                nav.classList.remove('shadow-md');
-                nav.classList.replace('bg-surface/95', 'bg-surface/80');
+    // Navigation Scroll Effect
+    const nav = document.getElementById('main-nav');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            nav.classList.add('shadow-md');
+            nav.classList.replace('bg-surface/80', 'bg-surface/95');
+        } else {
+            nav.classList.remove('shadow-md');
+            nav.classList.replace('bg-surface/95', 'bg-surface/80');
+        }
+    });
+
+    // Intersection Observer for Entrance Animations
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+                // Optional: Unobserve after animation is triggered
+                // revealObserver.unobserve(entry.target);
             }
         });
-    </script>
+    }, observerOptions);
+
+    // Initial check and start observing
+    document.addEventListener('DOMContentLoaded', () => {
+        const revealElements = document.querySelectorAll('.reveal');
+        revealElements.forEach(el => revealObserver.observe(el));
+    });
+</script>
 </body></html>
 

@@ -1,391 +1,479 @@
 <!DOCTYPE html>
 
-<html class="dark" lang="ru"><head>
+<html lang="ru"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Образование Bilim - Информационные Технологии</title>
-<!-- Fonts -->
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Outfit:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
-<!-- Material Icons -->
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<!-- Tailwind CSS -->
+<title>Bilim - Образовательный центр</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<!-- Design System Configuration -->
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <script id="tailwind-config">
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            "colors": {
-                    "inverse-surface": "#e4e1e6",
-                    "surface-container-low": "#1b1b1e",
-                    "inverse-on-surface": "#303033",
-                    "on-surface-variant": "#bec8d2",
-                    "tertiary": "#ffb95f",
-                    "tertiary-fixed": "#ffddb8",
-                    "on-error": "#690005",
-                    "surface": "#131316",
-                    "secondary": "#d2bbff",
-                    "secondary-fixed": "#eaddff",
-                    "outline": "#88929b",
-                    "construction-red": "#DC2626",
-                    "primary-container": "#0ea5e9",
-                    "tertiary-container": "#d88a00",
-                    "surface-tint": "#89ceff",
-                    "on-background": "#e4e1e6",
-                    "tertiary-fixed-dim": "#ffb95f",
-                    "error": "#ffb4ab",
-                    "on-secondary": "#3f008e",
-                    "on-secondary-fixed": "#25005a",
-                    "on-surface": "#e4e1e6",
-                    "secondary-container": "#6001d1",
-                    "on-error-container": "#ffdad6",
-                    "on-tertiary-fixed": "#2a1700",
-                    "on-secondary-container": "#c9aeff",
-                    "on-tertiary-container": "#4a2c00",
-                    "on-primary-fixed-variant": "#004c6e",
-                    "on-tertiary": "#472a00",
-                    "surface-glass": "rgba(255, 255, 255, 0.03)",
-                    "on-primary-container": "#003751",
-                    "error-container": "#93000a",
-                    "surface-container-high": "#2a2a2d",
-                    "on-primary-fixed": "#001e2f",
-                    "surface-container": "#1f1f22",
-                    "surface-container-highest": "#353438",
-                    "primary-fixed": "#c9e6ff",
-                    "on-primary": "#00344d",
-                    "primary": "#89ceff",
-                    "secondary-fixed-dim": "#d2bbff",
-                    "outline-variant": "#3e4850",
-                    "surface-container-lowest": "#0e0e11",
-                    "auto-cyan": "#22D3EE",
-                    "on-tertiary-fixed-variant": "#653e00",
-                    "on-secondary-fixed-variant": "#5a00c6",
-                    "inverse-primary": "#006591",
-                    "background": "#131316",
-                    "surface-variant": "#353438",
-                    "education-indigo": "#1E1B4B",
-                    "restaurant-accent": "#92400E",
-                    "surface-bright": "#39393c",
-                    "primary-fixed-dim": "#89ceff",
-                    "surface-dim": "#131316"
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-primary": "#c3c0ff",
+                        "on-primary-fixed": "#0f0069",
+                        "background": "#f7f9fb",
+                        "primary-fixed": "#e2dfff",
+                        "on-tertiary-fixed-variant": "#7b2f00",
+                        "on-error-container": "#93000a",
+                        "primary": "#3525cd",
+                        "secondary-fixed-dim": "#89ceff",
+                        "outline-variant": "#c7c4d8",
+                        "outline": "#777587",
+                        "on-surface": "#191c1e",
+                        "surface": "#f7f9fb",
+                        "surface-container-high": "#e6e8ea",
+                        "surface-container": "#eceef0",
+                        "on-primary-container": "#dad7ff",
+                        "secondary-container": "#39b8fd",
+                        "on-tertiary": "#ffffff",
+                        "on-tertiary-fixed": "#351000",
+                        "on-secondary-fixed": "#001e2f",
+                        "surface-tint": "#4d44e3",
+                        "secondary": "#006591",
+                        "on-surface-variant": "#464555",
+                        "on-secondary-container": "#004666",
+                        "on-secondary-fixed-variant": "#004c6e",
+                        "surface-variant": "#e0e3e5",
+                        "primary-fixed-dim": "#c3c0ff",
+                        "tertiary-container": "#a44100",
+                        "tertiary-fixed": "#ffdbcc",
+                        "primary-container": "#4f46e5",
+                        "error-container": "#ffdad6",
+                        "tertiary": "#7e3000",
+                        "surface-container-low": "#f2f4f6",
+                        "error": "#ba1a1a",
+                        "surface-dim": "#d8dadc",
+                        "secondary-fixed": "#c9e6ff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-container": "#ffd2be",
+                        "on-primary-fixed-variant": "#3323cc",
+                        "on-primary": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "tertiary-fixed-dim": "#ffb695",
+                        "on-background": "#191c1e",
+                        "inverse-surface": "#2d3133",
+                        "inverse-on-surface": "#eff1f3",
+                        "surface-container-highest": "#e0e3e5",
+                        "surface-bright": "#f7f9fb"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "lg": "24px",
+                        "md": "16px",
+                        "base": "8px",
+                        "xs": "4px",
+                        "sm": "8px",
+                        "margin-desktop": "64px",
+                        "gutter": "24px",
+                        "xl": "40px"
+                    },
+                    "fontFamily": {
+                        "headline-xl-mobile": ["Manrope"],
+                        "headline-lg-mobile": ["Manrope"],
+                        "headline-lg": ["Manrope"],
+                        "body-lg": ["Manrope"],
+                        "label-sm": ["Manrope"],
+                        "body-sm": ["Manrope"],
+                        "label-md": ["Manrope"],
+                        "headline-xl": ["Manrope"],
+                        "body-md": ["Manrope"],
+                        "headline-md": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "headline-xl-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "600"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "label-md": ["14px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600"}],
+                        "headline-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "700"}]
+                    }
+                },
             },
-            "borderRadius": {
-                    "DEFAULT": "0.25rem",
-                    "lg": "0.5rem",
-                    "xl": "0.75rem",
-                    "full": "9999px"
-            },
-            "spacing": {
-                    "margin-mobile": "20px",
-                    "base": "8px",
-                    "gutter": "24px",
-                    "margin-desktop": "64px",
-                    "container-max": "1280px"
-            },
-            "fontFamily": {
-                    "label-md": ["Inter"],
-                    "headline-sm": ["Outfit"],
-                    "headline-lg-mobile": ["Outfit"],
-                    "body-lg": ["Inter"],
-                    "display-lg": ["Outfit"],
-                    "headline-lg": ["Outfit"],
-                    "headline-md": ["Outfit"],
-                    "body-md": ["Inter"],
-                    "label-sm": ["Inter"]
-            },
-            "fontSize": {
-                    "label-md": ["14px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
-                    "headline-sm": ["24px", {"lineHeight": "1.4", "fontWeight": "500"}],
-                    "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "600"}],
-                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
-                    "display-lg": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
-                    "headline-lg": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600"}],
-                    "headline-md": ["32px", {"lineHeight": "1.3", "fontWeight": "600"}],
-                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
-                    "label-sm": ["12px", {"lineHeight": "1", "fontWeight": "500"}]
-            }
-          }
         }
-      }
     </script>
 <style>
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        .gradient-bg {
+            background: linear-gradient(to top right, #f7f9fb, #e6e8ea, #f7f9fb);
         }
-        .icon-filled {
-            font-variation-settings: 'FILL' 1;
+        .indigo-glow {
+            box-shadow: 0 0 20px rgba(79, 70, 229, 0.1);
         }
-        
-        /* Smooth scrolling for anchor links if any */
-        html { scroll-behavior: smooth; }
-        
-        /* Custom scrollbar for a more premium feel */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: var(--color-surface); }
-        ::-webkit-scrollbar-thumb { background: var(--color-surface-variant); border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: var(--color-outline-variant); }
+        .indigo-glow:hover {
+            box-shadow: 0 10px 40px rgba(79, 70, 229, 0.25);
+        }
+        .button-gradient {
+            background: linear-gradient(45deg, #4f46e5, #39b8fd);
+        }
+        .text-gradient {
+            background: linear-gradient(45deg, #4f46e5, #39b8fd);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(199, 196, 216, 0.4);
+        }
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .card-hover:hover {
+            transform: scale(1.02);
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
     </style>
 </head>
-<body class="bg-surface text-on-surface antialiased selection:bg-primary selection:text-on-primary overflow-x-hidden">
-<!-- TopNavBar (Shared Component) -->
-<nav class="fixed top-0 w-full z-50 bg-surface/80 dark:bg-surface/80 backdrop-blur-xl border-b border-outline-variant/10 shadow-sm">
-<div class="flex justify-between items-center px-margin-mobile md:px-margin-desktop h-20 max-w-container-max mx-auto">
-<!-- Brand Logo -->
-<a href="/" class="font-headline-sm text-headline-sm font-bold text-primary tracking-tight">WebPro Ecosystem</a>
-<!-- Navigation Links (Desktop) -->
-<ul class="hidden md:flex items-center gap-gutter font-label-md text-label-md">
-<li><a class="text-on-surface-variant hover:text-primary transition-colors hover:bg-surface-glass transition-all duration-150 px-3 py-2 rounded" href="/restaurant/index.html">Ресторанный бизнес</a></li>
-<!-- Active State for Education based on intent -->
-<li><a class="text-primary font-bold border-b-2 border-primary pb-1 px-3 py-2" href="/education/index.html">Образование</a></li>
-<li><a class="text-on-surface-variant hover:text-primary transition-colors hover:bg-surface-glass transition-all duration-150 px-3 py-2 rounded" href="/construction/index.html">Строительство</a></li>
-<li><a class="text-on-surface-variant hover:text-primary transition-colors hover:bg-surface-glass transition-all duration-150 px-3 py-2 rounded" href="/auto-service/index.html">Автосервис</a></li>
-</ul>
-<!-- Trailing Action -->
-<div class="hidden md:block">
-<button class="bg-primary text-on-primary font-label-md text-label-md px-6 py-3 rounded-full hover:bg-primary-fixed transition-colors active:scale-95">
-                    Связаться с нами
-                </button>
+<body class="bg-background text-on-surface font-body-md min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<nav class="bg-surface sticky full-width top-0 z-50 bg-surface-container shadow-sm border-b-0 border-outline-variant/20">
+<div class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop h-20 max-w-[1280px] mx-auto">
+<div class="flex items-center gap-md">
+<a class="text-headline-md font-headline-md font-extrabold text-primary tracking-tight" href="#">Bilim</a>
 </div>
-<!-- Mobile Menu Toggle (Decorative for this scope) -->
-<button class="md:hidden text-on-surface">
-<span class="material-symbols-outlined">menu</span>
-</button>
+<div class="hidden md:flex items-center gap-lg">
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md hover:bg-surface-bright transition-all duration-300 px-3 py-2 rounded-lg" href="#">Рестораны</a>
+<a class="text-primary font-bold border-b-2 border-primary pb-1 font-label-md text-label-md Active: scale-95 transition-transform duration-200 px-3 py-2" href="#">Обучение</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md hover:bg-surface-bright transition-all duration-300 px-3 py-2 rounded-lg" href="/construction">Строительство</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md hover:bg-surface-bright transition-all duration-300 px-3 py-2 rounded-lg" href="/auto-service">Автосервис</a>
+</div>
+<div class="flex items-center gap-sm">
+<button class="button-gradient text-white font-label-md text-label-md h-[48px] px-6 rounded-lg transition-transform hover:scale-105 active:scale-95 shadow-lg shadow-primary-container/30">Записаться</button>
+</div>
 </div>
 </nav>
-<main class="pt-24 pb-32">
-<!-- Hero Section: Cosmic Knowledge -->
-<section class="relative min-h-[819px] flex items-center justify-center px-margin-mobile md:px-margin-desktop overflow-hidden">
-<!-- Atmospheric Background Elements -->
-<div class="absolute inset-0 z-0 opacity-40">
-<div class="absolute top-1/4 left-1/4 w-[40vw] h-[40vw] bg-primary rounded-full mix-blend-screen filter blur-[100px] opacity-20 animate-pulse"></div>
-<div class="absolute bottom-1/4 right-1/4 w-[50vw] h-[50vw] bg-secondary rounded-full mix-blend-screen filter blur-[120px] opacity-10"></div>
+<main class="flex-grow">
+<!-- Hero Section -->
+<section class="relative w-full overflow-hidden gradient-bg min-h-[80vh] flex items-center pt-20">
+<div class="absolute inset-0 z-0">
+<img alt="Advanced futuristic classroom" class="w-full h-full object-cover opacity-30 mix-blend-luminosity" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBXD2obKZ_CEg4bn5_vLTrS6lTsKCCulg3iwQ0PDBlxIWsJD1gzY95rxv9wf8lG8F815yQQNt3Fdx2oWQsrl3bqrON299jd2PjSUn8sfGisGecD8KqJMNZI8rQKdoUKsJbC4NLett7k6cqV5Xb1w6u8LQE67hkuUHr6kptlS3ah853QyUT8t0HImFyJQFiD8fXQ9PCV2j7_QfcKOGxDrXdpBePTLIuN7_Sn81EoZcvcHbgKFUKkptUJfsG8N14qnZ-N0a1-ANP5KmM"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-on-surface/40"></div>
 </div>
-<div class="relative z-10 max-w-container-max mx-auto w-full grid grid-cols-1 md:grid-cols-12 gap-gutter items-center">
-<div class="col-span-1 md:col-span-8 flex flex-col items-start gap-6">
-<div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-surface-glass border border-primary/20 text-primary font-label-sm text-label-sm backdrop-blur-md">
-<span class="material-symbols-outlined text-[16px] icon-filled">stars</span>
-                        Образовательный центр Bilim
-                    </div>
-<h1 class="font-display-lg text-headline-lg-mobile md:text-display-lg text-on-surface tracking-tight">
-                        Раскройте свой <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">потенциал в мире IT.</span>
-</h1>
+<div class="relative z-10 max-w-[1280px] mx-auto px-margin-mobile md:px-margin-desktop w-full text-center md:text-left flex flex-col md:flex-row items-center gap-xl">
+<div class="flex-1 space-y-8 reveal">
+<div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-surface-container-highest/50 border border-outline/30 backdrop-blur-md">
+<span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+<span class="font-label-sm text-label-sm text-secondary">Новый набор открыт</span>
+</div>
+<h1 class="font-headline-xl text-headline-xl text-on-surface tracking-tight">
+                    Раскройте свой <br class="hidden md:block"/>
+<span class="text-gradient">потенциал</span> в мире IT
+                </h1>
 <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">
-                        Освойте навыки будущего в высокотехнологичной среде. Мы сокращаем разрыв между вашими амбициями и профессиональным мастерством.
-                    </p>
-<div class="flex flex-wrap gap-4 mt-4">
-<button class="bg-primary text-on-primary font-label-md text-label-md px-8 py-4 rounded-full hover:bg-primary-fixed transition-colors shadow-[0_0_20px_rgba(137,206,255,0.2)] active:scale-95 flex items-center gap-2">
-                            Начать путь
+                    Передовые образовательные программы, сфокусированные на практике. Погрузитесь в современную среду обучения и станьте востребованным специалистом.
+                </p>
+<div class="flex flex-col sm:flex-row gap-4 pt-4">
+<button class="button-gradient text-white font-label-md text-label-md h-[48px] px-8 rounded-lg transition-all hover:scale-105 shadow-lg shadow-primary-container/40 flex items-center justify-center gap-2">
+                        Выбрать курс
+                        <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</button>
+<button class="bg-transparent border border-primary text-primary hover:bg-primary/10 font-label-md text-label-md h-[48px] px-8 rounded-lg transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[20px]">play_circle</span>
+                        Смотреть демо
+                    </button>
+</div>
+</div>
+<div class="flex-1 hidden md:block relative reveal" style="transition-delay: 200ms;">
+<div class="absolute inset-0 bg-primary-container blur-[100px] opacity-20 rounded-full"></div>
+<div class="glass-card p-6 rounded-xl relative z-10 border border-outline-variant/30 indigo-glow transform rotate-2 hover:rotate-0 transition-transform duration-500">
+<div class="flex justify-between items-center mb-6">
+<div class="flex gap-2">
+<div class="w-3 h-3 rounded-full bg-error"></div>
+<div class="w-3 h-3 rounded-full bg-tertiary"></div>
+<div class="w-3 h-3 rounded-full bg-secondary"></div>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">terminal ~ bash</span>
+</div>
+<div class="font-body-md text-body-md text-secondary-fixed font-mono space-y-2">
+<p>&gt; npm install success</p>
+<p>&gt; initializing learning_module...</p>
+<p class="text-primary-fixed">&gt; loading course: Advanced Web Development</p>
+<p class="animate-pulse">&gt; _</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Stats Section -->
+<section class="py-xl bg-surface-container-lowest border-y border-outline-variant/10">
+<div class="max-w-[1280px] mx-auto px-margin-mobile md:px-margin-desktop">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-lg reveal">
+<div class="text-center space-y-2">
+<h3 class="font-headline-lg text-headline-lg text-primary">500+</h3>
+<p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Выпускников</p>
+</div>
+<div class="text-center space-y-2">
+<h3 class="font-headline-lg text-headline-lg text-secondary">15</h3>
+<p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Направлений</p>
+</div>
+<div class="text-center space-y-2">
+<h3 class="font-headline-lg text-headline-lg text-tertiary">90%</h3>
+<p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Трудоустройство</p>
+</div>
+<div class="text-center space-y-2">
+<h3 class="font-headline-lg text-headline-lg text-primary">24/7</h3>
+<p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Поддержка</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Courses Section -->
+<section class="py-xl max-w-[1280px] mx-auto px-margin-mobile md:px-margin-desktop">
+<div class="text-center mb-16 space-y-4 reveal">
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Направления обучения</h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl mx-auto">Выберите программу, которая соответствует вашим карьерным целям, и начните погружение в профессию.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+<!-- Course Card 1 -->
+<div class="bg-surface-container rounded-xl border border-outline-variant/30 overflow-hidden group hover:border-primary/50 transition-all duration-300 indigo-glow flex flex-col h-full reveal card-hover">
+<div class="h-48 relative overflow-hidden bg-surface-container-high">
+<img alt="Modern software development" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtzo6SATZueqxT-0JUNAzWxsGAWQrbYF8XRxLtzWA020uOT_JE4b6TFUCcIV1XmxV55RpKpVaflTErvQMKTnV9ftgADwZ0eKcImslKu-imBK7RnQVNlOsYuYZ_ueLFRBA1Ad43Q8Fcr4_oZb0IQ_dAU2eugdFnSgXYixyl_j8GwVTgtiVOT7Ac56OQfaeqG7cBWYTgxQrF5pF44WYwGzPCuno9vBYCtruB7fJOzi8c33_H_ScPn1iYSPFNtuez7N20WOWjfNTXe_A"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container to-transparent"></div>
+<div class="absolute top-4 right-4 bg-surface/80 backdrop-blur-sm px-3 py-1 rounded-full border border-outline/20">
+<span class="font-label-sm text-label-sm text-secondary">Популярное</span>
+</div>
+</div>
+<div class="p-6 flex flex-col flex-grow">
+<div class="flex items-center gap-2 text-primary mb-3">
+<span class="material-symbols-outlined">code</span>
+<span class="font-label-md text-label-md">Разработка</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2 group-hover:text-primary transition-colors">Программирование</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6 flex-grow">Освойте современные языки программирования и фреймворки. От основ до создания сложных веб-приложений.</p>
+<div class="space-y-4">
+<div class="flex justify-between items-center text-sm">
+<span class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">schedule</span> 6 месяцев</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">bar_chart</span> Средний уровень</span>
+</div>
+<div class="w-full h-1 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-primary to-secondary w-1/3"></div>
+</div>
+<button class="w-full bg-transparent border border-outline-variant text-on-surface hover:border-primary hover:text-primary font-label-md text-label-md h-[40px] rounded-lg transition-colors flex items-center justify-center gap-2 mt-4">
+                            Подробнее
                             <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
 </button>
-<button class="bg-transparent border-2 border-outline text-on-surface font-label-md text-label-md px-8 py-4 rounded-full hover:border-primary hover:text-primary transition-colors active:scale-95">
-                            Расписание
-                        </button>
-</div>
-</div>
-<!-- Abstract Hero Visual (CSS driven) -->
-<div class="hidden md:flex col-span-4 justify-center relative">
-<div class="w-full aspect-square rounded-full border border-outline-variant/30 flex items-center justify-center relative animate-[spin_60s_linear_infinite]">
-<div class="w-3/4 aspect-square rounded-full border border-primary/20 flex items-center justify-center">
-<div class="w-1/2 aspect-square rounded-full bg-surface-glass backdrop-blur-xl border border-secondary/30 flex items-center justify-center shadow-[0_0_30px_rgba(210,187,255,0.1)]">
-<span class="material-symbols-outlined text-[64px] text-primary drop-shadow-[0_0_10px_rgba(137,206,255,0.5)]">public</span>
 </div>
 </div>
 </div>
+<!-- Course Card 2 -->
+<div class="bg-surface-container rounded-xl border border-outline-variant/30 overflow-hidden group hover:border-primary/50 transition-all duration-300 indigo-glow flex flex-col h-full reveal card-hover" style="transition-delay: 100ms;">
+<div class="h-48 relative overflow-hidden bg-surface-container-high">
+<img alt="Modern graphic design" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCep_240M-2mzzeqixk7H0HwJsf7aJT1tlBMJEJVCFHbcGVYAUYrMGozJ7M6-y3C0IDz3ddBVtO0kZvvLxJBCkwcw0pdqdd6lCxQrreahNU6KF6KswP5SUXynm-Th7KBs0K9P2MhHqKiNN5ciks2mMHtqLPyOo8c-mUJJiGyMH2LUgDkZ8VbnyGOWCNzDBup5gj1b4gc0gWyx-Wp_mt5NVNrvEvx51J3RUkpOzrPv2d8A7LMChh8Mq-jHZ7BCsN8MwdEphBqpskQVI"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container to-transparent"></div>
 </div>
+<div class="p-6 flex flex-col flex-grow">
+<div class="flex items-center gap-2 text-tertiary mb-3">
+<span class="material-symbols-outlined">brush</span>
+<span class="font-label-md text-label-md">Дизайн</span>
 </div>
-</section>
-<!-- Study Directions (Bento Grid) -->
-<section class="py-20 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
-<div class="mb-12 flex flex-col gap-2">
-<h2 class="font-headline-lg text-headline-lg text-on-surface">Направления <span class="text-primary">обучения</span></h2>
-<p class="font-body-md text-body-md text-on-surface-variant max-w-xl">Выверенные учебные программы, созданные для современной цифровой экономики.</p>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2 group-hover:text-tertiary transition-colors">Дизайн</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6 flex-grow">Создавайте удобные и красивые интерфейсы. Изучите Figma, основы типографики и композиции.</p>
+<div class="space-y-4">
+<div class="flex justify-between items-center text-sm">
+<span class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">schedule</span> 4 месяца</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">bar_chart</span> Для начинающих</span>
 </div>
-<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
-<!-- IT Card (Large span) -->
-<div class="col-span-1 md:col-span-8 group relative bg-surface-container border border-outline-variant/10 rounded-xl p-8 overflow-hidden transition-all duration-300 hover:border-primary/30 hover:bg-surface-container-high cursor-pointer">
-<div class="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full filter blur-[50px] group-hover:bg-primary/10 transition-all duration-500"></div>
-<div class="relative z-10 flex flex-col h-full justify-between gap-12">
-<div class="w-16 h-16 rounded-lg bg-surface flex items-center justify-center border border-primary/20 shadow-[0_0_15px_rgba(137,206,255,0.1)]">
-<span class="material-symbols-outlined text-[32px] text-primary">terminal</span>
+<div class="w-full h-1 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-tertiary to-secondary w-0 group-hover:w-full transition-all duration-1000 ease-out"></div>
 </div>
-<div>
-<div class="flex items-center gap-3 mb-2">
-<h3 class="font-headline-md text-headline-md text-on-surface">Информационные технологии</h3>
-<span class="px-3 py-1 bg-primary/10 text-primary font-label-sm text-label-sm rounded-full">Высокий спрос</span>
-</div>
-<p class="font-body-md text-body-md text-on-surface-variant max-w-md">Full-stack разработка, программная инженерия и системная архитектура от ветеранов индустрии.</p>
-</div>
-</div>
-</div>
-<!-- Languages Card -->
-<div class="col-span-1 md:col-span-4 group relative bg-surface-container border border-outline-variant/10 rounded-xl p-8 overflow-hidden transition-all duration-300 hover:border-secondary/30 hover:bg-surface-container-high cursor-pointer flex flex-col justify-between gap-8">
-<div class="w-14 h-14 rounded-lg bg-surface flex items-center justify-center border border-secondary/20 shadow-[0_0_15px_rgba(210,187,255,0.1)]">
-<span class="material-symbols-outlined text-[28px] text-secondary">language</span>
-</div>
-<div>
-<h3 class="font-headline-sm text-headline-sm text-on-surface mb-2">Прикладные языки</h3>
-<p class="font-body-md text-body-md text-on-surface-variant">Деловой английский и техническая коммуникация для глобальных команд.</p>
-</div>
-</div>
-<!-- Design Card -->
-<div class="col-span-1 md:col-span-5 group relative bg-surface-container border border-outline-variant/10 rounded-xl p-8 overflow-hidden transition-all duration-300 hover:border-tertiary/30 hover:bg-surface-container-high cursor-pointer flex flex-col justify-between gap-8">
-<div class="w-14 h-14 rounded-lg bg-surface flex items-center justify-center border border-tertiary/20 shadow-[0_0_15px_rgba(255,185,95,0.1)]">
-<span class="material-symbols-outlined text-[28px] text-tertiary">design_services</span>
-</div>
-<div>
-<h3 class="font-headline-sm text-headline-sm text-on-surface mb-2">UI/UX и продуктовый дизайн</h3>
-<p class="font-body-md text-body-md text-on-surface-variant">Системное мышление, механика интерфейсов и методологии пользовательских исследований.</p>
-</div>
-</div>
-<!-- Analytics Card (Extra to fill bento) -->
-<div class="col-span-1 md:col-span-7 group relative bg-surface-container border border-outline-variant/10 rounded-xl p-8 overflow-hidden transition-all duration-300 hover:border-auto-cyan/30 hover:bg-surface-container-high cursor-pointer flex flex-row items-center justify-between gap-8">
-<div>
-<h3 class="font-headline-sm text-headline-sm text-on-surface mb-2">Аналитика данных</h3>
-<p class="font-body-md text-body-md text-on-surface-variant max-w-sm">Преобразуйте необработанные данные в стратегические инсайты с помощью современных инструментов.</p>
-</div>
-<div class="w-16 h-16 rounded-full bg-surface-glass border border-outline-variant/20 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
-<span class="material-symbols-outlined text-[32px] text-on-surface">bar_chart</span>
+<button class="w-full bg-transparent border border-outline-variant text-on-surface hover:border-tertiary hover:text-tertiary font-label-md text-label-md h-[40px] rounded-lg transition-colors flex items-center justify-center gap-2 mt-4">
+                            Подробнее
+                            <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
 </div>
 </div>
 </div>
-</section>
-<!-- Schedule Preview (Timeline style) -->
-<section class="py-20 px-margin-mobile md:px-margin-desktop bg-surface-container-lowest border-y border-outline-variant/10">
-<div class="max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-12 gap-gutter">
-<div class="col-span-1 md:col-span-4 flex flex-col gap-4">
-<h2 class="font-headline-md text-headline-md text-on-surface">Ближайшие <br/>наборы</h2>
-<p class="font-body-md text-body-md text-on-surface-variant">Забронируйте место в следующем потоке. Количество мест строго ограничено для обеспечения высокого качества менторства.</p>
-<a class="inline-flex items-center gap-2 text-primary font-label-md text-label-md hover:text-primary-fixed transition-colors mt-4" href="#">
-                        Полный календарь <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
-</a>
+<!-- Course Card 3 -->
+<div class="bg-surface-container rounded-xl border border-outline-variant/30 overflow-hidden group hover:border-primary/50 transition-all duration-300 indigo-glow flex flex-col h-full reveal card-hover" style="transition-delay: 200ms;">
+<div class="h-48 relative overflow-hidden bg-surface-container-high">
+<img alt="Data science" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCcrMXOcBMRbf6JftGfutcbyAIQJEe26AOTbNGn7L1KHjTU0D1hMasPBdwOGcF5N49UVsKtz6Q7grmg7Hu2rqZefYQQej_5kAPodwZ5_Nb8jIfh8TgJRMQfT4yMV8iSTvu-QA-oHKYXoL7f8c_gIW4chni5ZKiCDxyVGtDhiTGmV4AJZXxJZEbCt3hrY8xY9CVy0uB5PqtRhyFeqJhT2kQTqZt5Lkzu00LZwueWqnK1HG5EzpFgzK1_huqqL7bFbGusc5vxitCTeB0"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container to-transparent"></div>
 </div>
-<div class="col-span-1 md:col-span-8 flex flex-col gap-6 md:pl-12">
-<!-- Timeline Item 1 -->
-<div class="flex gap-6 items-start group">
-<div class="flex flex-col items-center gap-2 mt-1">
-<div class="w-4 h-4 rounded-full bg-primary shadow-[0_0_10px_rgba(137,206,255,0.4)]"></div>
-<div class="w-px h-24 bg-outline-variant/30 group-last:hidden"></div>
+<div class="p-6 flex flex-col flex-grow">
+<div class="flex items-center gap-2 text-secondary mb-3">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-label-md text-label-md">Аналитика</span>
 </div>
-<div class="bg-surface-container rounded-xl p-6 border border-outline-variant/10 flex-1 hover:border-primary/30 transition-colors">
-<div class="flex flex-wrap justify-between items-start gap-4 mb-2">
-<h4 class="font-headline-sm text-headline-sm text-on-surface">Буткемп по Frontend-архитектуре</h4>
-<span class="px-3 py-1 bg-surface-glass border border-outline-variant/20 rounded-md font-label-sm text-label-sm text-on-surface-variant">15 Окт - 20 Янв</span>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2 group-hover:text-secondary transition-colors">Аналитика данных</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6 flex-grow">Научитесь работать с большими данными, строить предиктивные модели и использовать машинное обучение.</p>
+<div class="space-y-4">
+<div class="flex justify-between items-center text-sm">
+<span class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">schedule</span> 8 месяцев</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">bar_chart</span> Продвинутый</span>
 </div>
-<p class="font-body-md text-body-md text-on-surface-variant mb-4">Продвинутый React, управление состоянием и оптимизация производительности.</p>
-<div class="flex gap-2">
-<span class="text-xs font-medium text-primary px-2 py-1 bg-primary/10 rounded">Онлайн</span>
-<span class="text-xs font-medium text-secondary px-2 py-1 bg-secondary/10 rounded">Осталось 24 места</span>
+<div class="w-full h-1 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-secondary to-primary w-0 group-hover:w-full transition-all duration-1000 ease-out"></div>
 </div>
-</div>
-</div>
-<!-- Timeline Item 2 -->
-<div class="flex gap-6 items-start group">
-<div class="flex flex-col items-center gap-2 mt-1">
-<div class="w-4 h-4 rounded-full bg-outline-variant"></div>
-<div class="w-px h-24 bg-outline-variant/30 group-last:hidden"></div>
-</div>
-<div class="bg-surface-container rounded-xl p-6 border border-outline-variant/10 flex-1 hover:border-primary/30 transition-colors">
-<div class="flex flex-wrap justify-between items-start gap-4 mb-2">
-<h4 class="font-headline-sm text-headline-sm text-on-surface">Проектирование UX-систем</h4>
-<span class="px-3 py-1 bg-surface-glass border border-outline-variant/20 rounded-md font-label-sm text-label-sm text-on-surface-variant">01 Ноя - 15 Дек</span>
-</div>
-<p class="font-body-md text-body-md text-on-surface-variant mb-4">Создание масштабируемых дизайн-систем и библиотек компонентов.</p>
-<div class="flex gap-2">
-<span class="text-xs font-medium text-primary px-2 py-1 bg-primary/10 rounded">Гибрид</span>
-<span class="text-xs font-medium text-tertiary px-2 py-1 bg-tertiary/10 rounded">Лист ожидания</span>
-</div>
+<button class="w-full bg-transparent border border-outline-variant text-on-surface hover:border-secondary hover:text-secondary font-label-md text-label-md h-[40px] rounded-lg transition-colors flex items-center justify-center gap-2 mt-4">
+                            Подробнее
+                            <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
 </div>
 </div>
 </div>
 </div>
 </section>
-<!-- FAQ Accordion -->
-<section class="py-20 px-margin-mobile md:px-margin-desktop max-w-[800px] mx-auto">
-<div class="text-center mb-12 flex flex-col gap-4">
-<h2 class="font-headline-lg text-headline-lg text-on-surface">Частые <span class="text-secondary">вопросы</span></h2>
-<p class="font-body-md text-body-md text-on-surface-variant">Технические детали зачисления и процесса обучения.</p>
+<!-- Pricing Section (MOVED HERE) -->
+<section class="py-xl max-w-[1280px] mx-auto px-margin-mobile md:px-margin-desktop bg-background">
+<div class="text-center mb-16 space-y-4 reveal">
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Тарифы на обучение</h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl mx-auto">Прозрачная стоимость и гибкие условия для каждого студента. Выберите подходящий формат обучения.</p>
 </div>
-<div class="flex flex-col gap-4">
-<details class="group bg-surface-container rounded-lg border border-outline-variant/10 overflow-hidden" open="">
-<summary class="flex justify-between items-center p-6 cursor-pointer font-headline-sm text-headline-sm text-on-surface list-none">
-                        Нужен ли мне опыт?
-                        <span class="material-symbols-outlined text-outline transition-transform duration-300 group-open:rotate-180">expand_more</span>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Pricing Card 1 -->
+<div class="glass-card p-8 rounded-xl border border-outline-variant/30 flex flex-col items-center text-center indigo-glow transition-all duration-300 reveal card-hover">
+<span class="material-symbols-outlined text-primary text-[48px] mb-4">article</span>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2">Лендинг</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-6">Идеально для быстрого старта и презентации одного продукта.</p>
+<div class="text-headline-lg text-headline-lg text-primary mb-8">
+                    от 5 000 <span class="text-label-md">сом</span>
+</div>
+<button class="w-full bg-transparent border border-primary text-primary hover:bg-primary/5 font-label-md text-label-md h-[48px] rounded-lg transition-colors">
+                    Выбрать
+                </button>
+</div>
+<!-- Pricing Card 2 -->
+<div class="bg-surface-container rounded-xl border-2 border-primary/40 p-8 flex flex-col items-center text-center indigo-glow relative transition-all duration-300 reveal card-hover" style="transition-delay: 100ms;">
+<div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-white px-4 py-1 rounded-full text-label-sm font-label-sm uppercase">
+                    Популярный
+                </div>
+<span class="material-symbols-outlined text-primary text-[48px] mb-4">business_center</span>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2">Бизнес-сайт</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-6">Комплексное решение для малого и среднего бизнеса.</p>
+<div class="text-headline-lg text-headline-lg text-primary mb-8">
+                    от 8 000 <span class="text-label-md">сом</span>
+</div>
+<button class="w-full button-gradient text-white font-label-md text-label-md h-[48px] rounded-lg shadow-lg shadow-primary-container/30 transition-transform hover:scale-105">
+                    Выбрать
+                </button>
+</div>
+<!-- Pricing Card 3 -->
+<div class="glass-card p-8 rounded-xl border border-outline-variant/30 flex flex-col items-center text-center indigo-glow transition-all duration-300 reveal card-hover" style="transition-delay: 200ms;">
+<span class="material-symbols-outlined text-primary text-[48px] mb-4">shopping_bag</span>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2">Мини-магазин</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-6">Полноценная витрина для ваших товаров с корзиной.</p>
+<div class="text-headline-lg text-headline-lg text-primary mb-8">
+                    от 15 000 <span class="text-label-md">сом</span>
+</div>
+<button class="w-full bg-transparent border border-primary text-primary hover:bg-primary/5 font-label-md text-label-md h-[48px] rounded-lg transition-colors">
+                    Выбрать
+                </button>
+</div>
+</div>
+</section>
+<!-- FAQ Section -->
+<section class="py-xl max-w-[1280px] mx-auto px-margin-mobile md:px-margin-desktop">
+<div class="text-center mb-12 reveal">
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Часто задаваемые вопросы</h2>
+</div>
+<div class="max-w-3xl mx-auto space-y-4">
+<div class="border border-outline-variant/30 rounded-xl bg-surface-container-low overflow-hidden reveal">
+<details class="group">
+<summary class="flex items-center justify-between p-6 cursor-pointer list-none font-headline-md text-on-surface hover:bg-surface-container transition-colors">
+<span>Нужен ли мне опыт?</span>
+<span class="material-symbols-outlined transition-transform group-open:rotate-180">expand_more</span>
 </summary>
-<div class="px-6 pb-6 font-body-md text-body-md text-on-surface-variant border-t border-outline-variant/10 pt-4">
-                        Для базовых курсов предварительный опыт не требуется. Мы начинаем с основ. Для продвинутых буткемпов проводится техническое собеседование, чтобы обеспечить соответствие уровню группы.
-                    </div>
-</details>
-<details class="group bg-surface-container rounded-lg border border-outline-variant/10 overflow-hidden">
-<summary class="flex justify-between items-center p-6 cursor-pointer font-headline-sm text-headline-sm text-on-surface list-none">
-                        Какое оборудование потребуется?
-                        <span class="material-symbols-outlined text-outline transition-transform duration-300 group-open:rotate-180">expand_more</span>
-</summary>
-<div class="px-6 pb-6 font-body-md text-body-md text-on-surface-variant border-t border-outline-variant/10 pt-4">
-                        Рекомендуется современный ноутбук (macOS, Windows или Linux) с минимум 8 ГБ оперативной памяти. Все требования к программному обеспечению и облачным средам будут предоставлены после зачисления.
-                    </div>
-</details>
-<details class="group bg-surface-container rounded-lg border border-outline-variant/10 overflow-hidden">
-<summary class="flex justify-between items-center p-6 cursor-pointer font-headline-sm text-headline-sm text-on-surface list-none">
-                        Гарантируете ли вы трудоустройство?
-                        <span class="material-symbols-outlined text-outline transition-transform duration-300 group-open:rotate-180">expand_more</span>
-</summary>
-<div class="px-6 pb-6 font-body-md text-body-md text-on-surface-variant border-t border-outline-variant/10 pt-4">
-                        Мы обеспечиваем связи с индустрией и помощь в создании портфолио. Хотя мы не гарантируем трудоустройство напрямую, наши выпускники стабильно присоединяются к лучшим техническим командам.
+<div class="p-6 pt-0 font-body-md text-on-surface-variant border-t border-outline-variant/10">
+                        Для базовых курсов опыт не требуется, мы начинаем с основ.
                     </div>
 </details>
 </div>
-</section>
-<!-- WhatsApp Enrollment CTA -->
-<section class="py-10 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
-<div class="relative bg-surface-container-high rounded-2xl border border-primary/20 overflow-hidden flex flex-col md:flex-row items-center justify-between p-8 md:p-12 gap-8 shadow-[0_0_40px_rgba(137,206,255,0.05)]">
-<!-- Decorative background elements -->
-<div class="absolute top-0 right-0 w-full h-full bg-gradient-to-r from-transparent via-primary/5 to-transparent skew-x-12 translate-x-full group-hover:translate-x-[-200%] transition-transform duration-1000 ease-in-out"></div>
-<div class="relative z-10 flex flex-col gap-4 max-w-xl">
-<h2 class="font-headline-md text-headline-md text-on-surface">Готовы начать обучение?</h2>
-<p class="font-body-md text-body-md text-on-surface-variant">Свяжитесь с нашими специалистами приемной комиссии через WhatsApp, чтобы закрепить за собой место в предстоящем потоке.</p>
+<div class="border border-outline-variant/30 rounded-xl bg-surface-container-low overflow-hidden reveal" style="transition-delay: 100ms;">
+<details class="group">
+<summary class="flex items-center justify-between p-6 cursor-pointer list-none font-headline-md text-on-surface hover:bg-surface-container transition-colors">
+<span>Какое оборудование потребуется?</span>
+<span class="material-symbols-outlined transition-transform group-open:rotate-180">expand_more</span>
+</summary>
+<div class="p-6 pt-0 font-body-md text-on-surface-variant border-t border-outline-variant/10">
+                        Достаточно современного ноутбука. Мы предоставим список необходимого ПО.
+                    </div>
+</details>
 </div>
-<div class="relative z-10 flex-shrink-0">
-<a class="inline-flex items-center justify-center gap-3 bg-[#25D366] text-[#003716] font-label-md text-label-md px-8 py-4 rounded-full hover:bg-[#20bd5a] transition-all shadow-lg hover:shadow-xl active:scale-95 font-bold" href="#">
-<svg class="w-6 h-6 fill-current" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"></path></svg>
-                        Оформить заявку
-                    </a>
+<div class="border border-outline-variant/30 rounded-xl bg-surface-container-low overflow-hidden reveal" style="transition-delay: 200ms;">
+<details class="group">
+<summary class="flex items-center justify-between p-6 cursor-pointer list-none font-headline-md text-on-surface hover:bg-surface-container transition-colors">
+<span>Гарантируете ли вы трудоустройство?</span>
+<span class="material-symbols-outlined transition-transform group-open:rotate-180">expand_more</span>
+</summary>
+<div class="p-6 pt-0 font-body-md text-on-surface-variant border-t border-outline-variant/10">
+                        Мы помогаем с составлением резюме и подготовкой к собеседованиям в компании-партнеры.
+                    </div>
+</details>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="py-xl relative overflow-hidden">
+<div class="absolute inset-0 bg-primary-container/10"></div>
+<div class="max-w-[800px] mx-auto px-margin-mobile md:px-margin-desktop text-center relative z-10 glass-card rounded-2xl p-lg indigo-glow reveal">
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-4">Готовы начать обучение?</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mb-8">Оставьте заявку, и наш менеджер свяжется с вами для консультации по выбору программы.</p>
+<div class="flex flex-col sm:flex-row gap-4 justify-center">
+<input class="bg-surface-container-highest border-b border-outline-variant focus:border-primary text-on-surface px-4 h-[48px] rounded-t-md outline-none transition-colors w-full sm:w-auto min-w-[250px] font-body-md" placeholder="Ваш Email" type="email"/>
+<button class="button-gradient text-white font-label-md text-label-md h-[48px] px-8 rounded-lg transition-transform hover:scale-105 shadow-lg shadow-primary-container/30">
+                    Отправить заявку
+                </button>
 </div>
 </div>
 </section>
 </main>
-<!-- Footer (Shared Component) -->
-<footer class="w-full pt-20 pb-10 border-t border-outline-variant/20 bg-surface-container-lowest dark:bg-surface-container-lowest">
-<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
-<!-- Brand Column -->
-<div class="col-span-1 md:col-span-1 flex flex-col gap-4">
-<span class="font-headline-md text-headline-md text-on-surface">WebPro</span>
-<p class="font-body-md text-body-md text-on-surface-variant max-w-xs">
-                    © 2024 WebPro Multi-Niche Solutions. Точная инженерия.
-                </p>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest border-t border-outline-variant">
+<div class="flex flex-col md:flex-row justify-between items-center w-full py-lg px-margin-mobile md:px-margin-desktop max-w-[1280px] mx-auto">
+<div class="mb-6 md:mb-0">
+<a class="text-headline-md font-headline-md text-primary" href="#">Bilim</a>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-2">© 2024 Bilim Ecosystem. All rights reserved.</p>
 </div>
-<!-- Links Column -->
-<div class="col-span-1 md:col-span-3 grid grid-cols-2 md:grid-cols-3 gap-8">
-<div class="flex flex-col gap-3">
-<span class="font-label-md text-label-md text-on-surface mb-2">Экосистема</span>
-<a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface hover:text-primary transition-colors" href="/restaurant/index.html">Чайхана Бишкек</a>
-<a class="font-body-md text-body-md text-primary underline" href="/education/index.html">Образование Bilim</a>
-<a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface hover:text-primary transition-colors" href="/construction/index.html">СтройМастер</a>
-</div>
-<div class="flex flex-col gap-3">
-<span class="font-label-md text-label-md text-on-surface mb-2">Поддержка</span>
-<a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface hover:text-primary transition-colors" href="/auto-service/index.html">АвтоСервис AutoPro</a>
-<a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface hover:text-primary transition-colors" href="#">Поддержка в WhatsApp</a>
-</div>
-<div class="flex flex-col gap-3">
-<span class="font-label-md text-label-md text-on-surface mb-2">Юридическая информация</span>
-<a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface hover:text-primary transition-colors" href="#">Политика конфиденциальности</a>
-</div>
+<div class="flex flex-wrap justify-center gap-x-6 gap-y-4">
+<a class="text-on-surface-variant hover:text-secondary transition-colors font-label-md text-label-md" href="#">Рестораны</a>
+<a class="text-primary hover:text-secondary transition-colors font-label-md text-label-md" href="#">Обучение</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors font-label-md text-label-md" href="/construction">Строительство</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors font-label-md text-label-md" href="/auto-service">Автосервис</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors font-label-md text-label-md" href="#">Политика конфиденциальности</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors font-label-md text-label-md" href="#">Условия использования</a>
 </div>
 </div>
 </footer>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    // Stop observing once it's revealed
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        const revealElements = document.querySelectorAll('.reveal');
+        revealElements.forEach(el => observer.observe(el));
+    });
+</script>
 </body></html>
 

@@ -1,15 +1,14 @@
 <!DOCTYPE html>
 
-<html class="dark" lang="en"><head>
+<html class="dark" lang="ru"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>AutoPro - Precision Auto Service</title>
+<title>AutoPro - Профессиональный автосервис</title>
 <!-- Google Fonts -->
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Outfit:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
 <!-- Material Symbols -->
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <style>
         .material-symbols-outlined {
@@ -32,6 +31,17 @@
         ::-webkit-scrollbar-track { background: #131316; }
         ::-webkit-scrollbar-thumb { background: #3e4850; border-radius: 4px; }
         ::-webkit-scrollbar-thumb:hover { background: #22D3EE; }
+
+        /* Animation classes */
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
     </style>
 <!-- Tailwind CSS -->
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
@@ -144,65 +154,65 @@
 <ul class="flex space-x-8 items-center">
 <li>
 <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors hover:bg-surface-glass transition-all duration-150 px-3 py-2 rounded-md active:scale-95 transition-transform" href="#">
-                        Restaurant
-                    </a>
+                    Рестораны
+                </a>
 </li>
 <li>
 <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors hover:bg-surface-glass transition-all duration-150 px-3 py-2 rounded-md active:scale-95 transition-transform" href="#">
-                        Education
-                    </a>
+                    Образование
+                </a>
 </li>
 <li>
 <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors hover:bg-surface-glass transition-all duration-150 px-3 py-2 rounded-md active:scale-95 transition-transform" href="#">
-                        Construction
-                    </a>
+                    Строительство
+                </a>
 </li>
 <!-- Active Link -->
 <li>
 <a class="font-label-md text-label-md text-primary font-bold border-b-2 border-primary pb-1 active:scale-95 transition-transform" href="#">
-                        Auto Service
-                    </a>
+                    Автосервис
+                </a>
 </li>
 </ul>
 <!-- Trailing Action -->
 <button class="font-label-md text-label-md bg-surface-container border border-outline-variant hover:border-primary text-primary px-6 py-2 rounded-full transition-all duration-150 active:scale-95 flex items-center gap-2 shadow-[0_0_15px_rgba(137,206,255,0.05)] hover:shadow-[0_0_20px_rgba(137,206,255,0.15)]">
-                Contact Us
-            </button>
+            Связаться с нами
+        </button>
 </div>
-<!-- Mobile Nav Fallback (Simplified representation for mobile responsiveness mandate) -->
+<!-- Mobile Nav Fallback -->
 <div class="flex justify-between items-center px-margin-mobile h-20 md:hidden">
 <div class="font-headline-sm text-headline-sm font-bold text-primary tracking-tight">
-                WebPro
-            </div>
+            WebPro
+        </div>
 <span class="material-symbols-outlined text-primary">menu</span>
 </div>
 </nav>
 <main class="pt-32 pb-24 space-y-32">
 <!-- Hero Section -->
-<section class="relative max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+<section class="reveal relative max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
 <!-- Brutalist Tech Grid Background element -->
 <div class="absolute inset-0 pointer-events-none opacity-20" style="background-image: radial-gradient(circle at 2px 2px, #3e4850 1px, transparent 0); background-size: 32px 32px;"></div>
 <div class="grid grid-cols-1 md:grid-cols-12 gap-gutter items-center relative z-10">
 <div class="md:col-span-7 space-y-8">
 <div class="inline-flex items-center gap-2 bg-auto-cyan/10 border border-auto-cyan/30 text-auto-cyan px-4 py-2 rounded-full font-label-sm text-label-sm uppercase tracking-widest backdrop-blur-md">
 <span class="w-2 h-2 rounded-full bg-auto-cyan animate-pulse"></span>
-                        AutoPro Engineering
-                    </div>
+                    AutoPro Engineering
+                </div>
 <h1 class="font-display-lg text-display-lg text-on-surface">
-                        Precision <span class="text-transparent bg-clip-text bg-gradient-to-r from-auto-cyan to-primary">Diagnostics.</span><br/>
-                        Brutal Performance.
-                    </h1>
+                    Профессиональная <span class="text-transparent bg-clip-text bg-gradient-to-r from-auto-cyan to-primary">диагностика.</span><br/>
+                    Безупречный результат.
+                </h1>
 <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">
-                        High-end automotive servicing for modern performance vehicles. We combine clinical diagnostic environments with industrial-grade repair execution. No compromises.
-                    </p>
+                    Высококлассное обслуживание современных мощных автомобилей. Мы сочетаем клиническую чистоту диагностических зон с промышленным уровнем выполнения ремонта. Никаких компромиссов.
+                </p>
 <div class="flex flex-col sm:flex-row gap-4 pt-4">
 <button class="bg-auto-cyan text-surface font-label-md text-label-md px-8 py-4 rounded-full flex items-center justify-center gap-2 hover:bg-auto-cyan/90 transition-all active:scale-95 shadow-[0_0_30px_rgba(34,211,238,0.2)]">
 <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">directions_car</span>
-                            Book Diagnostic
-                        </button>
+                        Записаться на диагностику
+                    </button>
 <button class="bg-surface-glass border border-outline-variant/30 text-on-surface font-label-md text-label-md px-8 py-4 rounded-full flex items-center justify-center gap-2 hover:bg-surface-container hover:border-outline-variant transition-all active:scale-95 backdrop-blur-md">
-                            View Services
-                        </button>
+                        Услуги
+                    </button>
 </div>
 </div>
 <div class="md:col-span-5 relative mt-12 md:mt-0">
@@ -213,10 +223,10 @@
 <!-- Tech overlay elements -->
 <div class="absolute bottom-4 left-4 right-4 bg-surface/90 backdrop-blur-md border border-outline-variant/30 p-4 rounded-lg flex justify-between items-center">
 <div class="space-y-1">
-<div class="font-label-sm text-label-sm text-on-surface-variant uppercase">System Status</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant uppercase">Статус системы</div>
 <div class="font-label-md text-label-md text-auto-cyan flex items-center gap-1">
-<span class="material-symbols-outlined text-[16px]">check_circle</span> Operational
-                                </div>
+<span class="material-symbols-outlined text-[16px]">check_circle</span> Работает
+                            </div>
 </div>
 <div class="w-16 h-8 bg-surface-container rounded overflow-hidden relative">
 <div class="absolute top-0 left-0 bottom-0 w-3/4 bg-auto-cyan/20"></div>
@@ -227,14 +237,13 @@
 </div>
 </div>
 </section>
-<!-- Brands Section (Corporate Minimalism representation) -->
-<section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop border-y border-outline-variant/10 py-12 bg-surface-glass">
+<!-- Brands Section -->
+<section class="reveal max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop border-y border-outline-variant/10 py-12 bg-surface-glass">
 <div class="flex flex-col md:flex-row justify-between items-center gap-8">
 <div class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest whitespace-nowrap">
-                    Engineered For
-                </div>
+                Спроектировано для
+            </div>
 <div class="flex flex-wrap justify-center md:justify-end gap-12 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
-<!-- Abstract text representations of high-end brands to fit the corporate minimalist style -->
 <span class="font-headline-sm text-headline-sm text-on-surface tracking-tighter">BVARIA</span>
 <span class="font-headline-sm text-headline-sm text-on-surface tracking-tighter">STUTTGART</span>
 <span class="font-headline-sm text-headline-sm text-on-surface tracking-tighter">INGOLSTADT</span>
@@ -243,16 +252,16 @@
 </div>
 </section>
 <!-- Services Section (Bento Grid) -->
-<section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop space-y-12">
+<section class="reveal max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop space-y-12">
 <div class="space-y-4">
-<h2 class="font-headline-lg text-headline-lg text-on-surface">Service Matrices</h2>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Матрица услуг</h2>
 <p class="font-body-md text-body-md text-on-surface-variant max-w-xl">
-                    Modular service protocols designed for maximum efficiency and total vehicle transparency.
-                </p>
+                Модульные протоколы обслуживания, разработанные для максимальной эффективности и полной прозрачности процессов.
+            </p>
 </div>
 <div class="grid grid-cols-1 md:grid-cols-12 auto-rows-[minmax(300px,auto)] gap-gutter">
-<!-- Diagnostics (Spans 8 cols) -->
-<div class="md:col-span-8 bg-surface-container-low border border-outline-variant/20 rounded-xl p-8 relative overflow-hidden group hover:border-auto-cyan/50 transition-colors duration-300">
+<!-- Diagnostics -->
+<div class="reveal md:col-span-8 bg-surface-container-low border border-outline-variant/20 rounded-xl p-8 relative overflow-hidden group hover:border-auto-cyan/50 transition-all duration-300">
 <div class="absolute inset-0 bg-gradient-to-br from-auto-cyan/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 <div class="relative z-10 h-full flex flex-col justify-between">
 <div class="flex justify-between items-start">
@@ -260,23 +269,23 @@
 <span class="material-symbols-outlined text-auto-cyan" style="font-variation-settings: 'FILL' 1;">troubleshoot</span>
 </div>
 <div class="font-headline-md text-headline-md text-on-surface bg-surface border border-outline-variant/20 px-4 py-1 rounded-full shadow-inner">
-                                $150<span class="font-body-md text-body-md text-on-surface-variant">/base</span>
+                            $150<span class="font-body-md text-body-md text-on-surface-variant">/база</span>
 </div>
 </div>
 <div class="mt-12 space-y-4">
-<h3 class="font-headline-md text-headline-md text-on-surface">Telemetry &amp; Diagnostics</h3>
+<h3 class="font-headline-md text-headline-md text-on-surface">Телеметрия и диагностика</h3>
 <p class="font-body-md text-body-md text-on-surface-variant max-w-md">
-                                Full-spectrum ECU interfacing, sensor array calibration, and predictive failure analysis using proprietary WebPro algorithms.
-                            </p>
+                            Полноспектральное взаимодействие с ЭБУ, калибровка сенсорных массивов и предиктивный анализ неисправностей с использованием проприетарных алгоритмов WebPro.
+                        </p>
 <div class="flex gap-2 flex-wrap pt-4">
-<span class="bg-auto-cyan/10 text-auto-cyan font-label-sm text-label-sm px-3 py-1 rounded-full border border-auto-cyan/20">OBD-II Deep Scan</span>
-<span class="bg-auto-cyan/10 text-auto-cyan font-label-sm text-label-sm px-3 py-1 rounded-full border border-auto-cyan/20">Drivetrain Analysis</span>
+<span class="bg-auto-cyan/10 text-auto-cyan font-label-sm text-label-sm px-3 py-1 rounded-full border border-auto-cyan/20">Глубокое сканирование OBD-II</span>
+<span class="bg-auto-cyan/10 text-auto-cyan font-label-sm text-label-sm px-3 py-1 rounded-full border border-auto-cyan/20">Анализ трансмиссии</span>
 </div>
 </div>
 </div>
 </div>
-<!-- Detailing (Spans 4 cols) -->
-<div class="md:col-span-4 bg-surface-container-low border border-outline-variant/20 rounded-xl p-8 relative overflow-hidden group hover:border-primary/50 transition-colors duration-300">
+<!-- Detailing -->
+<div class="reveal md:col-span-4 bg-surface-container-low border border-outline-variant/20 rounded-xl p-8 relative overflow-hidden group hover:border-primary/50 transition-all duration-300">
 <div class="relative z-10 h-full flex flex-col justify-between">
 <div class="flex justify-between items-start">
 <div class="p-3 bg-surface-container border border-outline-variant/30 rounded-lg inline-block">
@@ -284,36 +293,36 @@
 </div>
 </div>
 <div class="mt-12 space-y-4">
-<h3 class="font-headline-sm text-headline-sm text-on-surface">Aesthetic Restoration</h3>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Эстетическая реставрация</h3>
 <p class="font-body-md text-body-md text-on-surface-variant">
-                                Nanoceramic coating, multi-stage paint correction, and interior cabin revitalization.
-                            </p>
+                            Нанокерамическое покрытие, многоэтапная коррекция ЛКП и восстановление интерьера салона.
+                        </p>
 <div class="font-label-md text-label-md text-primary mt-4 flex items-center gap-1 group-hover:gap-2 transition-all">
-                                View Packages <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+                            Посмотреть пакеты <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
 </div>
 </div>
 </div>
 </div>
-<!-- Repair Operations (Spans 12 cols, wide) -->
-<div class="md:col-span-12 bg-surface border border-outline-variant/10 rounded-xl overflow-hidden relative flex flex-col md:flex-row group">
+<!-- Repair Operations -->
+<div class="reveal md:col-span-12 bg-surface border border-outline-variant/10 rounded-xl overflow-hidden relative flex flex-col md:flex-row group">
 <div class="md:w-1/2 p-8 md:p-12 flex flex-col justify-center space-y-6 relative z-10 bg-surface/90 backdrop-blur-md">
 <div class="inline-flex items-center gap-2 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest">
-<span class="material-symbols-outlined text-[18px]">build</span> Core Operations
-                        </div>
-<h3 class="font-headline-lg text-headline-lg text-on-surface">Mechanical Execution</h3>
+<span class="material-symbols-outlined text-[18px]">build</span> Основные операции
+                    </div>
+<h3 class="font-headline-lg text-headline-lg text-on-surface">Слесарный ремонт</h3>
 <p class="font-body-md text-body-md text-on-surface-variant">
-                            From suspension geometry recalibration to complete engine block teardowns. Executed in a dust-controlled environment with micrometer precision.
-                        </p>
+                        От перекалибровки геометрии подвески до полной переборки блоков цилиндров. Выполняется в помещении с контролем пыли с микрометрической точностью.
+                    </p>
 <ul class="space-y-3 pt-4 border-t border-outline-variant/10">
 <li class="flex items-center gap-3 font-body-md text-body-md text-on-surface">
-<span class="material-symbols-outlined text-auto-cyan text-[18px]">check</span> Transmission Overhauls
-                            </li>
+<span class="material-symbols-outlined text-auto-cyan text-[18px]">check</span> Капитальный ремонт КПП
+                        </li>
 <li class="flex items-center gap-3 font-body-md text-body-md text-on-surface">
-<span class="material-symbols-outlined text-auto-cyan text-[18px]">check</span> Performance Tuning
-                            </li>
+<span class="material-symbols-outlined text-auto-cyan text-[18px]">check</span> Тюнинг производительности
+                        </li>
 <li class="flex items-center gap-3 font-body-md text-body-md text-on-surface">
-<span class="material-symbols-outlined text-auto-cyan text-[18px]">check</span> Braking System Upgrades
-                            </li>
+<span class="material-symbols-outlined text-auto-cyan text-[18px]">check</span> Модернизация тормозных систем
+                        </li>
 </ul>
 </div>
 <div class="md:w-1/2 relative min-h-[300px]">
@@ -323,65 +332,144 @@
 </div>
 </div>
 </section>
+<!-- Pricing Section (Moved Higher) -->
+<section class="reveal max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-12">
+<div class="flex flex-col md:flex-row justify-between items-end gap-8 mb-16">
+<div class="space-y-4">
+<h2 class="font-headline-lg text-headline-lg text-on-surface uppercase tracking-tight">Диребас цен</h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-xl">
+                    Ададированные тарифы для поддержания вашего автомобиля в идеальном состоянии.
+                </p>
+</div>
+<div class="hidden md:block">
+<span class="material-symbols-outlined text-auto-cyan text-6xl opacity-20 select-none">payments</span>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Price Card 1 -->
+<div class="reveal bg-surface-container border border-outline-variant/30 p-8 rounded-xl hover:border-auto-cyan/50 hover:scale-[1.02] hover:shadow-[0_10px_30px_-10px_rgba(34,211,238,0.2)] transition-all duration-300 group">
+<div class="space-y-6">
+<div class="flex justify-between items-start">
+<span class="material-symbols-outlined text-auto-cyan bg-auto-cyan/10 p-3 rounded-lg">terminal</span>
+<span class="text-label-sm text-outline uppercase tracking-widest">Диагностика</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Компьютерная диагностика</h3>
+<div class="pt-4 border-t border-outline-variant/10">
+<div class="text-display-lg text-[40px] text-auto-cyan">от 1 500 <span class="text-label-md text-on-surface-variant">сом</span></div>
+</div>
+</div>
+</div>
+<!-- Price Card 2 -->
+<div class="reveal bg-surface-container border border-outline-variant/30 p-8 rounded-xl hover:border-auto-cyan/50 hover:scale-[1.02] hover:shadow-[0_10px_30px_-10px_rgba(34,211,238,0.2)] transition-all duration-300 group">
+<div class="space-y-6">
+<div class="flex justify-between items-start">
+<span class="material-symbols-outlined text-auto-cyan bg-auto-cyan/10 p-3 rounded-lg">settings_suggest</span>
+<span class="text-label-sm text-outline uppercase tracking-widest">Сервис</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Техническое обслуживание</h3>
+<div class="pt-4 border-t border-outline-variant/10">
+<div class="text-display-lg text-[40px] text-auto-cyan">от 3 000 <span class="text-label-md text-on-surface-variant">сом</span></div>
+</div>
+</div>
+</div>
+<!-- Price Card 3 -->
+<div class="reveal bg-surface-container border border-outline-variant/30 p-8 rounded-xl hover:border-auto-cyan/50 hover:scale-[1.02] hover:shadow-[0_10px_30px_-10px_rgba(34,211,238,0.2)] transition-all duration-300 group">
+<div class="space-y-6">
+<div class="flex justify-between items-start">
+<span class="material-symbols-outlined text-auto-cyan bg-auto-cyan/10 p-3 rounded-lg">precision_manufacturing</span>
+<span class="text-label-sm text-outline uppercase tracking-widest">Ремонт</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Слесарный ремонт</h3>
+<div class="pt-4 border-t border-outline-variant/10">
+<div class="text-display-lg text-[40px] text-auto-cyan">от 2 500 <span class="text-label-md text-on-surface-variant">сом</span></div>
+</div>
+</div>
+</div>
+</div>
+</section>
 <!-- CTA Section -->
-<section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+<section class="reveal max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
 <div class="bg-surface-container-high border border-outline-variant/20 rounded-2xl p-12 md:p-20 text-center relative overflow-hidden flex flex-col items-center justify-center">
 <!-- Abstract glowing element -->
 <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-auto-cyan/10 rounded-full blur-[100px] pointer-events-none"></div>
 <div class="relative z-10 space-y-8 max-w-2xl mx-auto">
 <span class="material-symbols-outlined text-[48px] text-auto-cyan drop-shadow-[0_0_15px_rgba(34,211,238,0.5)]">support_agent</span>
-<h2 class="font-headline-lg text-headline-lg text-on-surface">Initiate Service Protocol</h2>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Записаться на сервис</h2>
 <p class="font-body-lg text-body-lg text-on-surface-variant">
-                        Direct line to our lead technicians. Skip the desk. Send diagnostics or request an immediate slot via secure channel.
-                    </p>
+                    Прямая связь с нашими ведущими специалистами. Минуя регистратуру. Отправьте данные диагностики или запросите ближайшее окно по защищенному каналу.
+                </p>
 <div class="pt-4 flex justify-center">
 <!-- WhatsApp stylized button -->
 <button class="bg-[#25D366] text-[#000000] font-label-md text-label-md px-10 py-5 rounded-full flex items-center gap-3 hover:bg-[#20bd5a] transition-all active:scale-95 shadow-[0_0_30px_rgba(37,211,102,0.2)]">
 <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">chat</span>
-                            Connect on WhatsApp
-                        </button>
+                        Связаться в WhatsApp
+                    </button>
 </div>
 <div class="font-label-sm text-label-sm text-outline uppercase tracking-widest pt-4">
-                        Average Response Time: <span class="text-on-surface">4 Minutes</span>
+                    Среднее время ответа: <span class="text-on-surface">4 Минуты</span>
 </div>
 </div>
 </div>
 </section>
 </main>
-<!-- Footer Shared Component -->
+<!-- Footer -->
 <footer class="bg-surface-container-lowest dark:bg-surface-container-lowest border-t border-outline-variant/20 w-full pt-20 pb-10">
 <div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-desktop max-w-container-max mx-auto">
 <!-- Brand Logo -->
 <div class="md:col-span-1 flex flex-col space-y-4">
 <span class="font-headline-md text-headline-md text-on-surface">
-                    WebPro
-                </span>
+                WebPro
+            </span>
 <p class="font-body-md text-body-md text-primary dark:text-primary opacity-80">
-                    © 2024 WebPro Multi-Niche Solutions. Precision Engineered.
-                </p>
+                © 2024 WebPro Многопрофильные решения. Профессиональный подход.
+            </p>
 </div>
 <!-- Links -->
 <div class="md:col-span-3 flex flex-wrap gap-x-8 gap-y-4 md:justify-end items-start pt-2 md:pt-0">
 <a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface hover:text-primary transition-colors" href="#">
-                    Chaikhana Bishkek
-                 </a>
+                Чайхана Бишкек
+            </a>
 <a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface hover:text-primary transition-colors" href="#">
-                    Bilim Education
-                 </a>
+                Билим Образование
+            </a>
 <a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface hover:text-primary transition-colors" href="#">
-                    StroyMaster
-                 </a>
+                СтройМастер
+            </a>
 <a class="font-body-md text-body-md text-primary underline" href="#">
-                    AutoPro Service
-                 </a>
+                AutoPro Сервис
+            </a>
 <a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface hover:text-primary transition-colors" href="#">
-                    WhatsApp Support
-                 </a>
+                Поддержка WhatsApp
+            </a>
 <a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface hover:text-primary transition-colors" href="#">
-                    Privacy Policy
-                 </a>
+                Политика конфиденциальности
+            </a>
 </div>
 </div>
 </footer>
+<script>
+    // Intersection Observer for scroll-triggered animations
+    document.addEventListener('DOMContentLoaded', () => {
+        const observerOptions = {
+            root: null,
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    // Once animated, we can stop observing it
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Targeted elements for animation
+        const revealElements = document.querySelectorAll('.reveal');
+        revealElements.forEach(el => observer.observe(el));
+    });
+</script>
 </body></html>
 
