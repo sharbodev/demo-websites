@@ -115,7 +115,6 @@ async def generate_ai_reply(user_id: int, user_message: str) -> str:
             contents=api_history,
             generation_config=genai.types.GenerationConfig(
                 temperature=0.7,
-                max_output_tokens=1024,
             )
         )
         
