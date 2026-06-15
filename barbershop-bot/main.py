@@ -344,7 +344,32 @@ async def handle_user_text(message: Message):
 
 # ----------------- Main Startup -----------------
 
+def run_dummy_web_server():
+    import threading
+    from http.server import SimpleHTTPRequestHandler, HTTPServer
+    
+    port = int(os.getenv("PORT", "8080"))
+    class DummyHandler(SimpleHTTPRequestHandler):
+        def do_GET(self):
+            self.send_response(200)
+            self.send_header("Content-type", "text/plain")
+            self.end_headers()
+            self.wfile.write(b"Bot is online!")
+            
+    try:
+        server = HTTPServer(("0.0.0.0", port), DummyHandler)
+        logger.info(f"Starting dummy HTTP server on port {port} for Render health checks...")
+        
+        # Start server in a daemon thread
+        t = threading.Thread(target=server.serve_forever, daemon=True)
+        t.start()
+    except Exception as e:
+        logger.error(f"Error starting dummy web server: {e}")
+
 async def main():
+    # Run the dummy web server to keep Render Free Tier Web Service alive
+    run_dummy_web_server()
+    
     dp.include_router(router)
     logger.info("Starting Telegram Barbershop AI Bot...")
     await dp.start_polling(bot)
