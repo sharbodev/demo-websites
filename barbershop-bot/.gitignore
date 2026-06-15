@@ -1,0 +1,13 @@
+# Python environments
+.venv/
+venv/
+ENV/
+env/
+*.pyc
+__pycache__/
+
+# Local files & keys
+.env
+bookings.json
+.vscode/
+.idea/
