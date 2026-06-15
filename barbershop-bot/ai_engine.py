@@ -106,7 +106,7 @@ async def generate_ai_reply(user_id: int, user_message: str) -> str:
     try:
         # Create model instance dynamically to pick up any settings changes
         model = genai.GenerativeModel(
-            model_name="gemini-2.0-flash",
+            model_name="gemini-3.5-flash",
             system_instruction=get_system_prompt()
         )
         
