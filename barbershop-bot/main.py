@@ -206,37 +206,39 @@ async def show_my_bookings(message: Message):
     # Sort upcoming by date
     upcoming.sort(key=lambda x: x[1])
     
-    text = "📋 **Личный кабинет & Записи**\n\n"
+    text = "📋 <b>Личный кабинет &amp; Записи</b>\n\n"
     
     # If client is registered, show loyalty card
     if client:
         visits = client.get("loyalty_visits", 0)
+        if visits is None:
+            visits = 0
         stars = "⭐ " * visits + "☆ " * (3 - visits)
-        text += f"🏆 **Программа лояльности:**\n"
+        text += f"🏆 <b>Программа лояльности:</b>\n"
         text += f"▫️ Баланс: {visits}/3 стрижек {stars}\n"
         
         if client.get("discount_available"):
-            text += f"🎁 **Доступна скидка 20% на следующий визит!**\n\n"
+            text += f"🎁 <b>Доступна скидка 20% на следующий визит!</b>\n\n"
         else:
-            text += f"ℹ️ *После {3 - visits} визитов вы получите скидку 20%!* 🎁\n\n"
+            text += f"ℹ️ <i>После {3 - visits} визитов вы получите скидку 20%!</i> 🎁\n\n"
             
-        text += f"👥 **Пригласи друга:**\n"
-        text += f"▫️ Твой код: `{client.get('referral_code')}`\n"
+        text += f"👥 <b>Пригласи друга:</b>\n"
+        text += f"▫️ Твой код: <code>{client.get('referral_code')}</code>\n"
         bot_info = await bot.get_me()
         ref_link = f"https://t.me/{bot_info.username}?start=ref_{client.get('referral_code')}"
         text += f"🔗 Ссылка для друзей:\n{ref_link}\n"
-        text += "*(Когда друг завершит первую стрижку, он получит 10% скидки, а тебе зачислится +1 визит!)*\n\n"
+        text += "<i>(Когда друг завершит первую стрижку, он получит 10% скидки, а тебе зачислится +1 визит!)</i>\n\n"
     else:
         text += "ℹ️ Вы еще не совершали записей. Программа лояльности активируется автоматически после первой записи.\n\n"
         
     builder = InlineKeyboardBuilder()
     
     if upcoming:
-        text += "📅 **Ваши ближайшие записи:**\n"
+        text += "📅 <b>Ваши ближайшие записи:</b>\n"
         for idx, (b, b_dt) in enumerate(upcoming, 1):
             date_formatted = b_dt.strftime("%d.%m.%Y")
             text += (
-                f"{idx}. **{b.get('service_name')}** ({b.get('price')} сом)\n"
+                f"{idx}. <b>{b.get('service_name')}</b> ({b.get('price')} сом)\n"
                 f"   Мастер: {b.get('barber_name')}\n"
                 f"   🕒 {date_formatted} в {b.get('time')}\n\n"
             )
@@ -253,7 +255,7 @@ async def show_my_bookings(message: Message):
         builder.button(text="🔑 Ввести реф. код друга", callback_data="enter_referral")
         
     builder.adjust(1)
-    await message.answer(text, reply_markup=builder.as_markup(), parse_mode=ParseMode.MARKDOWN)
+    await message.answer(text, reply_markup=builder.as_markup(), parse_mode=ParseMode.HTML)
 
 @router.callback_query(F.data == "enter_referral")
 async def cb_enter_referral(callback: CallbackQuery, state: FSMContext):
