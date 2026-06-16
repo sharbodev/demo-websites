@@ -310,6 +310,22 @@ export default function BarbershopAdmin() {
     }
   };
 
+  // 10b. Delete Booking
+  const deleteBooking = async (id: string) => {
+    if (!confirm("Вы уверены, что хотите безвозвратно удалить эту запись?")) return;
+    try {
+      const { error } = await supabaseClient
+        .from("barbershop_bookings")
+        .delete()
+        .eq("id", id);
+      if (error) throw error;
+      setBookings(bookings.filter(b => b.id !== id));
+      showSuccess("Запись успешно удалена");
+    } catch (err: any) {
+      alert(`Ошибка при удалении: ${err.message}`);
+    }
+  };
+
   // 11. Save general settings
   const handleSaveSettings = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -599,8 +615,8 @@ CREATE TABLE barbershop_bookings (
                         : "border-[#1E293B]"
                     }`}
                   >
-                    {/* Status Badge */}
-                    <div className="absolute top-4 right-4">
+                    {/* Status Badge & Delete Button */}
+                    <div className="absolute top-4 right-4 flex items-center space-x-2">
                       <span className={`text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full ${
                         booking.status === "cancelled" 
                           ? "bg-red-500/15 text-red-400" 
@@ -610,6 +626,13 @@ CREATE TABLE barbershop_bookings (
                       }`}>
                         {booking.status === "cancelled" ? "Отменено" : booking.status === "completed" ? "Выполнено" : "Подтверждено"}
                       </span>
+                      <button
+                        onClick={() => deleteBooking(booking.id)}
+                        className="text-[#64748B] hover:text-red-400 p-1.5 rounded-lg hover:bg-red-500/10 transition cursor-pointer flex items-center justify-center"
+                        title="Удалить запись"
+                      >
+                        <Trash2 className="w-3.5 h-3.5" />
+                      </button>
                     </div>
 
                     <div className="space-y-3">
