@@ -17,6 +17,7 @@ from aiogram.types import (
     KeyboardButton,
     ReplyKeyboardRemove,
 )
+from aiogram.utils.keyboard import InlineKeyboardBuilder
 
 import config
 import ai_engine
