@@ -20,7 +20,10 @@ import {
   Clock,
   MapPin,
   Phone,
-  MessageSquare
+  MessageSquare,
+  Star,
+  TrendingUp,
+  Award
 } from "lucide-react";
 
 export default function BarbershopAdmin() {
@@ -37,6 +40,8 @@ export default function BarbershopAdmin() {
   const [bookings, setBookings] = useState<any[]>([]);
   const [barbers, setBarbers] = useState<any[]>([]);
   const [services, setServices] = useState<any[]>([]);
+  const [clients, setClients] = useState<any[]>([]);
+  const [reviews, setReviews] = useState<any[]>([]);
   const [settings, setSettings] = useState<any>({
     business_name: "Blade Barbershop",
     phone: "+996 555 123 456",
@@ -119,6 +124,20 @@ export default function BarbershopAdmin() {
         .order("name");
       if (sErr) throw sErr;
       setServices(sData || []);
+
+      // Fetch clients
+      const { data: cData, error: cErr } = await supabaseClient
+        .from("barbershop_clients")
+        .select("*")
+        .order("created_at", { ascending: false });
+      if (!cErr) setClients(cData || []);
+
+      // Fetch reviews
+      const { data: rData, error: rErr } = await supabaseClient
+        .from("barbershop_reviews")
+        .select("*")
+        .order("created_at", { ascending: false });
+      if (!rErr) setReviews(rData || []);
 
       // Fetch settings
       const { data: setDocs, error: setErr } = await supabaseClient
@@ -323,6 +342,21 @@ export default function BarbershopAdmin() {
       showSuccess("Запись успешно удалена");
     } catch (err: any) {
       alert(`Ошибка при удалении: ${err.message}`);
+    }
+  };
+
+  // 10c. Update Client Loyalty stats manually
+  const updateClientLoyalty = async (id: string, visits: number, discountAvailable: boolean) => {
+    try {
+      const { error } = await supabaseClient
+        .from("barbershop_clients")
+        .update({ loyalty_visits: visits, discount_available: discountAvailable })
+        .eq("id", id);
+      if (error) throw error;
+      setClients(clients.map(c => c.id === id ? { ...c, loyalty_visits: visits, discount_available: discountAvailable } : c));
+      showSuccess("Лояльность клиента успешно обновлена");
+    } catch (err: any) {
+      alert(`Ошибка при обновлении лояльности: ${err.message}`);
     }
   };
 
@@ -542,10 +576,10 @@ CREATE TABLE barbershop_bookings (
         )}
 
         {/* Tab Buttons (Mobile Friendly Slider / Grid) */}
-        <div className="grid grid-cols-4 gap-2 mb-8 bg-[#0F172A]/50 border border-[#1E293B] p-1.5 rounded-xl">
+        <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-2 mb-8 bg-[#0F172A]/50 border border-[#1E293B] p-1.5 rounded-xl">
           <button
             onClick={() => setActiveTab("bookings")}
-            className={`flex flex-col sm:flex-row items-center justify-center space-y-1 sm:space-y-0 sm:space-x-2 py-3 px-1.5 rounded-lg text-xs sm:text-sm font-medium transition cursor-pointer ${
+            className={`flex items-center justify-center space-x-2 py-3 px-1.5 rounded-lg text-xs sm:text-sm font-medium transition cursor-pointer ${
               activeTab === "bookings" ? "bg-indigo-600 text-white shadow-md" : "text-[#94A3B8] hover:text-white"
             }`}
           >
@@ -554,7 +588,7 @@ CREATE TABLE barbershop_bookings (
           </button>
           <button
             onClick={() => setActiveTab("barbers")}
-            className={`flex flex-col sm:flex-row items-center justify-center space-y-1 sm:space-y-0 sm:space-x-2 py-3 px-1.5 rounded-lg text-xs sm:text-sm font-medium transition cursor-pointer ${
+            className={`flex items-center justify-center space-x-2 py-3 px-1.5 rounded-lg text-xs sm:text-sm font-medium transition cursor-pointer ${
               activeTab === "barbers" ? "bg-indigo-600 text-white shadow-md" : "text-[#94A3B8] hover:text-white"
             }`}
           >
@@ -563,7 +597,7 @@ CREATE TABLE barbershop_bookings (
           </button>
           <button
             onClick={() => setActiveTab("services")}
-            className={`flex flex-col sm:flex-row items-center justify-center space-y-1 sm:space-y-0 sm:space-x-2 py-3 px-1.5 rounded-lg text-xs sm:text-sm font-medium transition cursor-pointer ${
+            className={`flex items-center justify-center space-x-2 py-3 px-1.5 rounded-lg text-xs sm:text-sm font-medium transition cursor-pointer ${
               activeTab === "services" ? "bg-indigo-600 text-white shadow-md" : "text-[#94A3B8] hover:text-white"
             }`}
           >
@@ -571,8 +605,35 @@ CREATE TABLE barbershop_bookings (
             <span>Услуги</span>
           </button>
           <button
+            onClick={() => setActiveTab("clients")}
+            className={`flex items-center justify-center space-x-2 py-3 px-1.5 rounded-lg text-xs sm:text-sm font-medium transition cursor-pointer ${
+              activeTab === "clients" ? "bg-indigo-600 text-white shadow-md" : "text-[#94A3B8] hover:text-white"
+            }`}
+          >
+            <Users className="w-4 h-4 text-emerald-400" />
+            <span>Клиенты</span>
+          </button>
+          <button
+            onClick={() => setActiveTab("reviews")}
+            className={`flex items-center justify-center space-x-2 py-3 px-1.5 rounded-lg text-xs sm:text-sm font-medium transition cursor-pointer ${
+              activeTab === "reviews" ? "bg-indigo-600 text-white shadow-md" : "text-[#94A3B8] hover:text-white"
+            }`}
+          >
+            <Star className="w-4 h-4 text-amber-400" />
+            <span>Отзывы</span>
+          </button>
+          <button
+            onClick={() => setActiveTab("analytics")}
+            className={`flex items-center justify-center space-x-2 py-3 px-1.5 rounded-lg text-xs sm:text-sm font-medium transition cursor-pointer ${
+              activeTab === "analytics" ? "bg-indigo-600 text-white shadow-md" : "text-[#94A3B8] hover:text-white"
+            }`}
+          >
+            <TrendingUp className="w-4 h-4 text-cyan-400" />
+            <span>Аналитика</span>
+          </button>
+          <button
             onClick={() => setActiveTab("settings")}
-            className={`flex flex-col sm:flex-row items-center justify-center space-y-1 sm:space-y-0 sm:space-x-2 py-3 px-1.5 rounded-lg text-xs sm:text-sm font-medium transition cursor-pointer ${
+            className={`flex items-center justify-center space-x-2 py-3 px-1.5 rounded-lg text-xs sm:text-sm font-medium transition cursor-pointer ${
               activeTab === "settings" ? "bg-indigo-600 text-white shadow-md" : "text-[#94A3B8] hover:text-white"
             }`}
           >
@@ -648,7 +709,12 @@ CREATE TABLE barbershop_bookings (
                         <div>
                           <span className="text-[#64748B] block uppercase tracking-wider text-[10px]">Услуга:</span>
                           <span className="font-semibold text-white">{booking.service_name}</span>
-                          <span className="text-[#94A3B8] block">{booking.price} сом</span>
+                          <span className="text-[#94A3B8] block">
+                            {booking.price} сом
+                            {booking.discount_applied && (
+                              <span className="ml-1.5 px-1.5 py-0.5 bg-emerald-500/20 border border-emerald-500/30 text-emerald-400 rounded text-[9px] font-medium uppercase tracking-wider">Скидка</span>
+                            )}
+                          </span>
                         </div>
                         <div>
                           <span className="text-[#64748B] block uppercase tracking-wider text-[10px]">Мастер:</span>
@@ -1004,6 +1070,283 @@ CREATE TABLE barbershop_bookings (
                 </button>
               </div>
             </form>
+          </div>
+        )}
+
+        {/* --- TAB CONTENT: CLIENTS --- */}
+        {!loading && activeTab === "clients" && (
+          <div className="space-y-6">
+            <h2 className="text-xl font-bold flex items-center space-x-2">
+              <Users className="w-5 h-5 text-emerald-400" />
+              <span>База клиентов и программа лояльности</span>
+            </h2>
+
+            {clients.length === 0 ? (
+              <div className="bg-[#0F172A] border border-[#1E293B] p-8 rounded-2xl text-center text-[#94A3B8]">
+                Клиенты еще не зарегистрированы в системе.
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {clients.map((client) => {
+                  return (
+                    <div key={client.id} className="bg-[#0F172A]/70 border border-[#1E293B] p-5 rounded-2xl space-y-4 shadow-lg hover:border-emerald-500/25 transition duration-200">
+                      <div>
+                        <h3 className="font-bold text-white text-base">{client.full_name || "Без имени"}</h3>
+                        {client.telegram_username && (
+                          <span className="text-xs text-indigo-400 block mt-0.5">tg: @{client.telegram_username}</span>
+                        )}
+                        <span className="text-xs text-[#94A3B8] block mt-1">📱 {client.phone || "Номер не указан"}</span>
+                      </div>
+
+                      <div className="border-t border-[#1E293B]/60 pt-3 space-y-2.5">
+                        <div className="flex items-center justify-between text-xs">
+                          <span className="text-[#64748B]">Прогресс лояльности:</span>
+                          <span className="font-bold text-white">{client.loyalty_visits}/3 визитов</span>
+                        </div>
+                        
+                        {/* Progress Bar */}
+                        <div className="w-full bg-[#070A13] h-2 rounded-full overflow-hidden">
+                          <div 
+                            className="bg-emerald-500 h-full transition-all duration-300"
+                            style={{ width: `${(client.loyalty_visits / 3) * 100}%` }}
+                          ></div>
+                        </div>
+
+                        <div className="flex items-center justify-between text-xs">
+                          <span className="text-[#64748B]">Скидка 20%:</span>
+                          {client.discount_available ? (
+                            <span className="px-2 py-0.5 bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 rounded-full text-[10px] font-semibold tracking-wider">ГОТОВА</span>
+                          ) : (
+                            <span className="px-2 py-0.5 bg-slate-800 border border-slate-700 text-[#64748B] rounded-full text-[10px] font-semibold tracking-wider">НЕТ</span>
+                          )}
+                        </div>
+
+                        <div className="flex items-center justify-between text-xs">
+                          <span className="text-[#64748B]">Реф. код / Приглашён:</span>
+                          <span className="font-mono text-white text-[11px] bg-[#070A13] px-2 py-0.5 rounded border border-[#1E293B]">
+                            {client.referral_code} {client.referred_by && `(от ${client.referred_by})`}
+                          </span>
+                        </div>
+                      </div>
+
+                      <div className="border-t border-[#1E293B]/60 pt-3 flex items-center justify-between gap-2">
+                        <div className="flex items-center space-x-1">
+                          <button
+                            onClick={() => updateClientLoyalty(client.id, Math.max(0, client.loyalty_visits - 1), client.discount_available)}
+                            className="bg-slate-800 hover:bg-slate-700 text-white font-bold w-8 h-8 rounded-lg text-xs transition cursor-pointer"
+                          >
+                            -1
+                          </button>
+                          <button
+                            onClick={() => updateClientLoyalty(client.id, Math.min(3, client.loyalty_visits + 1), client.loyalty_visits + 1 >= 3)}
+                            className="bg-slate-800 hover:bg-slate-700 text-white font-bold w-8 h-8 rounded-lg text-xs transition cursor-pointer"
+                          >
+                            +1
+                          </button>
+                        </div>
+                        <button
+                          onClick={() => updateClientLoyalty(client.id, client.loyalty_visits, !client.discount_available)}
+                          className={`px-3 py-1.5 rounded-lg text-xs font-semibold cursor-pointer transition ${
+                            client.discount_available 
+                              ? "bg-amber-600/10 hover:bg-amber-600/25 border border-amber-500/30 text-amber-400" 
+                              : "bg-emerald-600/10 hover:bg-emerald-600/25 border border-emerald-500/30 text-emerald-400"
+                          }`}
+                        >
+                          {client.discount_available ? "Сбросить скидку" : "Выдать скидку"}
+                        </button>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* --- TAB CONTENT: REVIEWS --- */}
+        {!loading && activeTab === "reviews" && (
+          <div className="space-y-6">
+            <h2 className="text-xl font-bold flex items-center space-x-2">
+              <Star className="w-5 h-5 text-amber-400" fill="currentColor" />
+              <span>Отзывы клиентов о стрижках</span>
+            </h2>
+
+            {reviews.length === 0 ? (
+              <div className="bg-[#0F172A] border border-[#1E293B] p-8 rounded-2xl text-center text-[#94A3B8]">
+                Отзывов пока нет. Бот запрашивает их через час после стрижки.
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {reviews.map((rev) => {
+                  const bInfo = bookings.find(b => b.id === rev.booking_id) || {};
+                  const clientInfo = clients.find(c => c.id === rev.client_id) || {};
+                  const stars = "★".repeat(rev.rating) + "☆".repeat(5 - rev.rating);
+                  
+                  return (
+                    <div key={rev.id} className="bg-[#0F172A]/70 border border-[#1E293B] p-5 rounded-2xl space-y-3 shadow-lg">
+                      <div className="flex items-center justify-between">
+                        <span className="text-amber-400 text-lg font-bold tracking-wider">{stars}</span>
+                        <span className="text-[10px] text-[#64748B]">
+                          {rev.created_at ? new Date(rev.created_at).toLocaleDateString("ru-RU") : ""}
+                        </span>
+                      </div>
+                      
+                      {rev.comment && (
+                        <p className="text-[#E2E8F0] text-sm italic leading-relaxed bg-[#070A13] p-3 rounded-xl border border-[#1E293B]">
+                          "{rev.comment}"
+                        </p>
+                      )}
+
+                      <div className="border-t border-[#1E293B]/60 pt-3 grid grid-cols-2 gap-2 text-[11px] text-[#94A3B8]">
+                        <div>
+                          <span className="text-[#64748B] block uppercase text-[9px] tracking-wider">Клиент:</span>
+                          <span className="font-semibold text-[#E2E8F0]">{clientInfo.full_name || bInfo.client_name || "Постоянный клиент"}</span>
+                        </div>
+                        <div>
+                          <span className="text-[#64748B] block uppercase text-[9px] tracking-wider">Мастер / Услуга:</span>
+                          <span className="font-semibold text-[#E2E8F0]">{bInfo.barber_name} — {bInfo.service_name}</span>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* --- TAB CONTENT: ANALYTICS --- */}
+        {!loading && activeTab === "analytics" && (
+          <div className="space-y-6">
+            <h2 className="text-xl font-bold flex items-center space-x-2">
+              <TrendingUp className="w-5 h-5 text-cyan-400" />
+              <span>Аналитика и статистика бизнеса</span>
+            </h2>
+
+            {/* Summary Grid */}
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+              <div className="bg-[#0F172A]/70 border border-[#1E293B] p-5 rounded-2xl shadow-lg">
+                <span className="text-xs text-[#94A3B8] uppercase tracking-wider block">Выручка</span>
+                <span className="text-2xl font-bold text-white block mt-1">
+                  {bookings.filter(b => b.status === "completed").reduce((sum, b) => sum + (b.price || 0), 0).toLocaleString()} сом
+                </span>
+                <span className="text-[10px] text-emerald-400 block mt-1">Выполненные визиты</span>
+              </div>
+
+              <div className="bg-[#0F172A]/70 border border-[#1E293B] p-5 rounded-2xl shadow-lg">
+                <span className="text-xs text-[#94A3B8] uppercase tracking-wider block">Визитов выполнено</span>
+                <span className="text-2xl font-bold text-white block mt-1">
+                  {bookings.filter(b => b.status === "completed").length}
+                </span>
+                <span className="text-[10px] text-indigo-400 block mt-1">Стрижек сделано</span>
+              </div>
+
+              <div className="bg-[#0F172A]/70 border border-[#1E293B] p-5 rounded-2xl shadow-lg">
+                <span className="text-xs text-[#94A3B8] uppercase tracking-wider block">Отмены записей</span>
+                <span className="text-2xl font-bold text-white block mt-1">
+                  {bookings.filter(b => b.status === "cancelled").length}
+                </span>
+                <span className="text-[10px] text-red-400 block mt-1">
+                  Доля отмен: {bookings.length > 0 ? ((bookings.filter(b => b.status === "cancelled").length / bookings.length) * 100).toFixed(1) : 0}%
+                </span>
+              </div>
+
+              <div className="bg-[#0F172A]/70 border border-[#1E293B] p-5 rounded-2xl shadow-lg">
+                <span className="text-xs text-[#94A3B8] uppercase tracking-wider block">База клиентов</span>
+                <span className="text-2xl font-bold text-white block mt-1">
+                  {clients.length}
+                </span>
+                <span className="text-[10px] text-emerald-400 block mt-1">
+                  Со скидкой лояльности: {clients.filter(c => c.discount_available).length} чел
+                </span>
+              </div>
+            </div>
+
+            {/* Popularity Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {/* Popular Services */}
+              <div className="bg-[#0F172A]/70 border border-[#1E293B] p-5 rounded-2xl shadow-lg space-y-4">
+                <h3 className="font-bold text-white text-base">📈 Популярные услуги</h3>
+                
+                {(() => {
+                  const completedBookings = bookings.filter(b => b.status === "completed");
+                  const serviceCounts: { [key: string]: number } = {};
+                  completedBookings.forEach(b => {
+                    serviceCounts[b.service_name] = (serviceCounts[b.service_name] || 0) + 1;
+                  });
+                  
+                  const sortedServices = Object.entries(serviceCounts)
+                    .sort((a, b) => b[1] - a[1])
+                    .slice(0, 5);
+                  
+                  const maxCount = sortedServices[0]?.[1] || 1;
+
+                  if (sortedServices.length === 0) {
+                    return <p className="text-sm text-[#64748B]">Записей еще нет.</p>;
+                  }
+
+                  return (
+                    <div className="space-y-3.5">
+                      {sortedServices.map(([name, count]) => (
+                        <div key={name} className="space-y-1.5">
+                          <div className="flex justify-between text-xs">
+                            <span className="font-medium text-[#E2E8F0]">{name}</span>
+                            <span className="font-semibold text-white">{count} раз</span>
+                          </div>
+                          <div className="w-full bg-[#070A13] h-1.5 rounded-full overflow-hidden">
+                            <div 
+                              className="bg-indigo-500 h-full"
+                              style={{ width: `${(count / maxCount) * 100}%` }}
+                            ></div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  );
+                })()}
+              </div>
+
+              {/* Workload Barbers */}
+              <div className="bg-[#0F172A]/70 border border-[#1E293B] p-5 rounded-2xl shadow-lg space-y-4">
+                <h3 className="font-bold text-white text-base">💇‍♂️ Загруженность мастеров</h3>
+                
+                {(() => {
+                  const completedBookings = bookings.filter(b => b.status === "completed");
+                  const barberCounts: { [key: string]: number } = {};
+                  completedBookings.forEach(b => {
+                    barberCounts[b.barber_name] = (barberCounts[b.barber_name] || 0) + 1;
+                  });
+                  
+                  const sortedBarbers = Object.entries(barberCounts)
+                    .sort((a, b) => b[1] - a[1]);
+                    
+                  const maxCount = sortedBarbers[0]?.[1] || 1;
+
+                  if (sortedBarbers.length === 0) {
+                    return <p className="text-sm text-[#64748B]">Записей еще нет.</p>;
+                  }
+
+                  return (
+                    <div className="space-y-3.5">
+                      {sortedBarbers.map(([name, count]) => (
+                        <div key={name} className="space-y-1.5">
+                          <div className="flex justify-between text-xs">
+                            <span className="font-medium text-[#E2E8F0]">{name}</span>
+                            <span className="font-semibold text-white">{count} стрижек</span>
+                          </div>
+                          <div className="w-full bg-[#070A13] h-1.5 rounded-full overflow-hidden">
+                            <div 
+                              className="bg-cyan-500 h-full"
+                              style={{ width: `${(count / maxCount) * 100}%` }}
+                            ></div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  );
+                })()}
+              </div>
+            </div>
           </div>
         )}
       </main>

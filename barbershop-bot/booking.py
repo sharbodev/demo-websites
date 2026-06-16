@@ -124,13 +124,36 @@ def get_times_keyboard(date_str: str, barber_id: str) -> InlineKeyboardMarkup:
     # Standard working time slots
     all_slots = ["10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00"]
     
-    # Filter out already booked slots
+    # Load active barbers to calculate capacity
+    barbers = config.get_active_barbers()
+    total_barbers_count = max(1, len(barbers))
+    
+    # Filter out already booked slots with advanced collision logic
     bookings = load_bookings()
     booked_slots = set()
-    for b in bookings:
-        if b.get("date") == date_str:
-            if barber_id == "any" or b.get("barber_id") == barber_id:
-                booked_slots.add(b.get("time"))
+    
+    for slot in all_slots:
+        # Get active bookings at this date, time and not cancelled
+        slot_bookings = [
+            b for b in bookings 
+            if b.get("date") == date_str 
+            and b.get("time") == slot 
+            and b.get("status") != "cancelled"
+        ]
+        
+        total_bookings_at_slot = len(slot_bookings)
+        
+        # If all barbers are busy, slot is unavailable for everyone
+        if total_bookings_at_slot >= total_barbers_count:
+            booked_slots.add(slot)
+            continue
+            
+        # If client wants a specific barber
+        if barber_id != "any":
+            # Check if this specific barber is already booked
+            is_barber_busy = any(b.get("barber_id") == barber_id for b in slot_bookings)
+            if is_barber_busy:
+                booked_slots.add(slot)
                 
     available_slots = [slot for slot in all_slots if slot not in booked_slots]
     
