@@ -165,7 +165,7 @@ export default function Home() {
 
           <a 
             className="hidden md:inline-flex items-center justify-center px-6 py-3 bg-cyan-400 text-[#00363e] font-sora text-label-caps rounded-full shadow-[0_0_20px_rgba(34,211,238,0.3)] hover:shadow-[0_0_30px_rgba(34,211,238,0.5)] hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300"
-            href="https://wa.me/996555123456?text=Здравствуйте!%20Интересует%20создание%20сайта" 
+            href="https://wa.me/996552003989?text=Здравствуйте!%20Интересует%20создание%20сайта" 
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -199,7 +199,7 @@ export default function Home() {
         <a href="#advantages" onClick={() => setMobileMenuOpen(false)} className="text-xl font-bold tracking-widest text-[#8FA0B5] hover:text-white uppercase font-sora">Преимущества</a>
         
         <a 
-          href="https://wa.me/996555123456?text=Здравствуйте!%20Интересует%20создание%20сайта" 
+          href="https://wa.me/996552003989?text=Здравствуйте!%20Интересует%20создание%20сайта" 
           target="_blank" 
           rel="noopener noreferrer"
           className="px-8 py-4 bg-cyan-400 text-[#00363e] font-sora font-black rounded-full shadow-[0_0_20px_rgba(34,211,238,0.3)] text-sm uppercase tracking-wider"
@@ -240,7 +240,7 @@ export default function Home() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto">
               <a 
                 className="w-full sm:w-auto px-8 py-4 bg-cyan-400 text-[#00363e] font-sora text-sm font-black uppercase tracking-wider rounded-full shadow-[0_0_20px_rgba(34,211,238,0.3)] hover:shadow-[0_0_30px_rgba(34,211,238,0.6)] hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300 flex items-center justify-center gap-2"
-                href="https://wa.me/996555123456?text=Здравствуйте!%20Интересует%20создание%20сайта"
+                href="https://wa.me/996552003989?text=Здравствуйте!%20Интересует%20создание%20сайта"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -411,7 +411,7 @@ export default function Home() {
                           ? "bg-cyan-400 text-[#00363e] shadow-[0_0_20px_rgba(34,211,238,0.2)] hover:shadow-[0_0_30px_rgba(34,211,238,0.4)]"
                           : "border border-white/10 text-white hover:bg-white/5 hover:border-white/20"
                       }`}
-                      href="https://wa.me/996555123456?text=Здравствуйте!%20Интересует%20создание%20сайта"
+                      href="https://wa.me/996552003989?text=Здравствуйте!%20Интересует%20создание%20сайта"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
@@ -617,7 +617,7 @@ export default function Home() {
             
             <a 
               className="inline-flex items-center justify-center px-10 py-5 bg-[#25D366] text-white font-sora text-sm font-black uppercase tracking-wider rounded-full shadow-[0_0_20px_rgba(37,211,102,0.4)] hover:bg-[#20bd5a] hover:shadow-[0_0_30px_rgba(37,211,102,0.6)] hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300 gap-3"
-              href="https://wa.me/996555123456?text=Здравствуйте!%20Интересует%20создание%20сайта"
+              href="https://wa.me/996552003989?text=Здравствуйте!%20Интересует%20создание%20сайта"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -661,7 +661,7 @@ export default function Home() {
                 <span>Бишкек, Кыргызстан</span>
               </li>
               <li>
-                <a className="hover:text-cyan-400 transition-colors" href="https://wa.me/996555123456">+996 555 123 456</a>
+                <a className="hover:text-cyan-400 transition-colors" href="https://wa.me/996552003989">+996 552 003 989</a>
               </li>
             </ul>
           </div>
@@ -670,7 +670,7 @@ export default function Home() {
 
       {/* Floating WhatsApp Action button */}
       <a 
-        href="https://wa.me/996555123456?text=Здравствуйте!%20Интересует%20создание%20сайта" 
+        href="https://wa.me/996552003989?text=Здравствуйте!%20Интересует%20создание%20сайта" 
         target="_blank" 
         rel="noopener noreferrer"
         className="fixed bottom-8 right-8 z-50 bg-[#25D366] text-white w-16 h-16 rounded-full flex items-center justify-center shadow-2xl hover:scale-110 active:scale-95 transition-transform group"
